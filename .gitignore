@@ -111,6 +111,8 @@ dist
 
 # testing
 /coverage
+/tests/cypress/screenshots
+/tests/cypress/videos
 
 # production
 /build
@@ -125,4 +127,4 @@ dist
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.gitmessage 
+.gitmessage
