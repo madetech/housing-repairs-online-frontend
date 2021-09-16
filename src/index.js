@@ -3,10 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { TopNav, PhaseBanner, Footer } from 'govuk-react';
 
 ReactDOM.render(
   <React.StrictMode>
+    <TopNav company="Housing Repairs Online" />
+    <PhaseBanner level="beta">
+          This part of GOV.UK is being rebuilt &#8211;{' '}
+    </PhaseBanner>
     <App />
+    <Footer />
   </React.StrictMode>,
   document.getElementById('root')
 );
