@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import { MultiChoice, Radio } from 'govuk-react';
 
 function App() {
   return (
@@ -17,6 +18,14 @@ function App() {
         >
           Learn React
         </a>
+        <MultiChoice label="example">
+          <Radio name="group1" inline>
+            Yes
+          </Radio>
+          <Radio name="group1" inline>
+            No
+          </Radio>
+        </MultiChoice>
       </header>
     </div>
   );
