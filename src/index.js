@@ -3,10 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { TopNav, PhaseBanner, Footer, Main, Page, BackLink, H1 } from 'govuk-react';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Page
+      header={<TopNav company= "COLC" serviceTitle="Housing Repairs Online" />}
+      beforeChildren={<PhaseBanner level="beta" data-test-id="PhaseBanner">This service is still in beta</PhaseBanner>}
+      footer={<Footer />}
+    >
+      <App />
+    </Page>
   </React.StrictMode>,
   document.getElementById('root')
 );
