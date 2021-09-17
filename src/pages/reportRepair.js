@@ -1,5 +1,6 @@
-function ReportRepair(){
-  return <h4> will render form here </h4>
+import ReportRepair from '../components/reportRepair'
+function ReportRepairPage() {
+  return (<div><ReportRepair/></div>)
 }
 
-export default ReportRepair;
+export default ReportRepairPage;
