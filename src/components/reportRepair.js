@@ -17,10 +17,14 @@ export default class Report extends Component {
     this.setState({ prevStep: backstep > 0 ? backstep : 1});
     this.setState({ step: prevStep });
   };
-  nextStep = () => {
+  nextStep = (skipTo) => {
     const { step } = this.state;
     this.setState({ prevStep: step });
-    this.setState({ step: step + 1 });
+    if (skipTo) {
+      this.setState({ step: skipTo });
+    } else {
+      this.setState({ step: step + 1 });
+    }
   };
   handleChange = (input, value) => {
     this.setState({ [input]: value });
@@ -48,10 +52,6 @@ export default class Report extends Component {
         nextStep={this.nextStep}
         handleChange={this.handleChange}
         values={values}/>)
-      // return (<Postcode
-      //   nextStep={this.nextStep}
-      //   handleChange={this.handleChange}
-      //   values={values}/>)
     case 2:
       return (<Postcode
         nextStep={this.nextStep}
