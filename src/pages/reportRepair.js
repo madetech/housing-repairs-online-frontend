@@ -1,6 +1,13 @@
+import { Component } from 'react';
 import ReportRepair from '../components/reportRepair'
-function ReportRepairPage() {
-  return (<div><ReportRepair/></div>)
-}
 
-export default ReportRepairPage;
+export default class ReportRepairPage extends Component {
+  componentDidMount() {
+    document.title = 'Report a repair';
+  }
+  render() {
+    return (
+      <div><ReportRepair/></div>
+    )
+  }
+}

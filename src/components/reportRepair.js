@@ -10,11 +10,14 @@ export default class Report extends Component {
     address: '',
   };
   prevStep = () => {
-    const { step } = this.state;
-    this.setState({ step: step - 1 });
+    const { prevStep, step } = this.state;
+    const backstep = step - 1;
+    this.setState({ prevStep: backstep > 0 ? backstep : 1});
+    this.setState({ step: prevStep });
   };
   nextStep = () => {
     const { step } = this.state;
+    this.setState({ prevStep: step });
     this.setState({ step: step + 1 });
   };
   handleChange = (input, value) => {
@@ -23,12 +26,11 @@ export default class Report extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.step !== 1) {
-      console.log('prevState:', prevState);
-      const setState = this.setState
+      const back = this.prevStep
       window.history.pushState(null, document.title, window.location.href);
       window.addEventListener('popstate', function (event){
-        setState(prevState);
-        // window.history.pushState(null, document.title,  window.location.href);
+        window.history.replaceState(null, document.title, window.location.href);
+        back();
       });
     }
   }
