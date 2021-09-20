@@ -2,6 +2,8 @@ import { Component } from 'react';
 import Postcode from './reportRepair/postcode';
 import Address from './reportRepair/address';
 import Confirmation from './reportRepair/confirmation';
+import TypeOfRepair from './reportRepair/typeOfRepair';
+import Emergency from './reportRepair/emergency';
 
 export default class Report extends Component {
   state = {
@@ -42,20 +44,31 @@ export default class Report extends Component {
 
     switch (step) {
     case 1:
+      return (<TypeOfRepair
+        nextStep={this.nextStep}
+        handleChange={this.handleChange}
+        values={values}/>)
+      // return (<Postcode
+      //   nextStep={this.nextStep}
+      //   handleChange={this.handleChange}
+      //   values={values}/>)
+    case 2:
       return (<Postcode
         nextStep={this.nextStep}
         handleChange={this.handleChange}
         values={values}/>)
-    case 2:
+    case 3:
       return (<Address
         prevStep={this.prevStep}
         nextStep={this.nextStep}
         handleChange={this.handleChange}
         values={values}/>)
-    case 3:
+    case 4:
       return (<Confirmation
         values={values}/>)
     // never forget the default case, otherwise VS code would be mad!
+    case 5:
+      return (<Emergency/>)
     default:
       // do nothing
       return <div>nothing</div>
