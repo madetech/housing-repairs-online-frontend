@@ -40,9 +40,6 @@ export default class Report extends Component {
         values={values}/>)
     case 3:
       return (<Confirmation
-        prevStep={this.prevStep}tion
-        nextStep={this.nextStep}
-        handleChange={this.handleChange}
         values={values}/>)
     // never forget the default case, otherwise VS code would be mad!
     default:
