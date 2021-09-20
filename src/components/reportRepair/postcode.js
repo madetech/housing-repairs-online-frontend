@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Button, InputField } from 'govuk-react'
+import { Button, InputField,GridRow, GridCol } from 'govuk-react'
 
 
 const Postcode = ({handleChange, nextStep, values}) => {
@@ -10,16 +10,18 @@ const Postcode = ({handleChange, nextStep, values}) => {
     handleChange('postcode', postcode);
     nextStep();
   }
-
-  return <div>
-    <InputField id="postcode-input" name="group0" >Postcode</InputField>
-    <Button onClick={Continue} >Continue</Button>
-  </div>
+  const input = { defaultValue: values.postcode }
+  return <GridRow>
+    <GridCol setWidth="one-third">
+      <InputField id="postcode-input" name="group0" input={input} >Postcode</InputField>
+      <Button onClick={Continue} >Continue</Button>
+    </GridCol>
+  </GridRow>
 };
 
 Postcode.propTypes = {
   nextStep: PropTypes.func,
-  values: PropTypes.array,
+  values: PropTypes.object,
   handleChange: PropTypes.func,
 }
 
