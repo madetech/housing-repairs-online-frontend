@@ -23,29 +23,17 @@ export default class Report extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.step !== 1) {
-      console.log('booooooo👻');
-      console.log('prevProps:', prevProps);
       console.log('prevState:', prevState);
-      console.log(this);
-      const back = this.prevStep
+      const setState = this.setState
       window.history.pushState(null, document.title, window.location.href);
       window.addEventListener('popstate', function (event){
-        back();
+        setState(prevState);
         // window.history.pushState(null, document.title,  window.location.href);
       });
     }
   }
 
   render() {
-
-    // if(this.state.step != 1){
-    //   console.log('  blocking back');
-    //   window.history.pushState(null, document.title, window.location.href);
-    //   window.addEventListener('popstate', function (event){
-    //     window.history.pushState(null, document.title,  window.location.href);
-    //     console.log('going back');
-    //   });
-    // }
     const { step } = this.state;
     const {postcode, address} = this.state;
     const values = {postcode, address}
