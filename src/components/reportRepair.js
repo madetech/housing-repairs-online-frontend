@@ -17,8 +17,8 @@ export default class Report extends Component {
     const { step } = this.state;
     this.setState({ step: step + 1 });
   };
-  handleChange = (input) => (e) => {
-    this.setState({ [input]: e.target.value });
+  handleChange = (input, value) => {
+    this.setState({ [input]: value });
   };
 
   render() {
