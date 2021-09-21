@@ -7,7 +7,7 @@ const Address = ({handleChange, nextStep, values}) => {
     const el = document.getElementById('address-input').children[1];
     let address = el.value
     handleChange('address', address);
-    nextStep();
+    nextStep('confirmation');
   }
   const input = { defaultValue: values.address }
   return <GridRow>

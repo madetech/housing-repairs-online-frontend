@@ -8,7 +8,7 @@ const Postcode = ({handleChange, nextStep, values}) => {
     const el = document.getElementById('postcode-input').children[1];
     let postcode = el.value
     handleChange('postcode', postcode);
-    nextStep();
+    nextStep('address');
   }
   const input = { defaultValue: values.postcode }
   return <GridRow>

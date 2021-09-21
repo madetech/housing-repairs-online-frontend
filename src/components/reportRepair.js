@@ -8,30 +8,28 @@ import {
   Redirect,
   Switch,
   Route,
+  useHistory,
   useRouteMatch
 } from 'react-router-dom';
 
 export default function Report() {
+  let history = useHistory();
+  let { path, url } = useRouteMatch();
 
   let state = {
     step: 1,
     postcode: '',
     address: '',
   };
+
   const prevStep = () => {
     const { prevStep, step } = this.state;
     const backstep = step - 1;
     this.setState({ prevStep: backstep > 0 ? backstep : 1});
     this.setState({ step: prevStep });
   };
-  const nextStep = (skipTo) => {
-    const { step } = state;
-    state.prevStep = step;
-    if (skipTo) {
-      state.step = skipTo;
-    } else {
-      state.step = step + 1;
-    };
+  const nextStep = (step) => {
+    history.push(`${path}/${step}`)
     console.log(state);
   };
   const handleChange = (input, value) => {
@@ -52,8 +50,6 @@ export default function Report() {
   // const { step } = this.state;
   const {postcode, address} = state;
   const values = {postcode, address};
-
-  let { path, url } = useRouteMatch();
 
   return (
     <Switch>

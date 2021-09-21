@@ -9,9 +9,9 @@ const TypeOfRepair = ({handleChange, nextStep, values}) => {
     const typeOfRepair = el.value
     handleChange('typeOfRepair', typeOfRepair);
     if (typeOfRepair === 'emergency') {
-      return nextStep(5);
+      return nextStep('emergency');
     }
-    nextStep();
+    nextStep('postcode');
   }
   return <GridRow>
     <GridCol setWidth="two-third">
