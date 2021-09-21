@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import Postcode from './reportRepair/postcode';
 import Address from './reportRepair/address';
 import Confirmation from './reportRepair/confirmation';
@@ -15,12 +15,7 @@ import {
 export default function Report() {
   let history = useHistory();
   let { path, url } = useRouteMatch();
-
-  let state = {
-    step: 1,
-    postcode: '',
-    address: '',
-  };
+  const [state, setState] = useState({postcode: 'postcode', address: 'address'});
 
   const prevStep = () => {
     const { prevStep, step } = this.state;
@@ -33,7 +28,8 @@ export default function Report() {
     console.log(state);
   };
   const handleChange = (input, value) => {
-    state[input] = value;
+    // state[input] = value;
+    setState({[input]: value});
   };
 
   // componentDidUpdate(prevProps, prevState) {
