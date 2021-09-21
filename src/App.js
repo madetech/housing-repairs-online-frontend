@@ -10,7 +10,7 @@ function App() {
         <Route path="/report-repair">
           <ReportRepairPage />
         </Route>
-        <Route path="/">
+        <Route exact path="/">
           <LandingPage />
         </Route>
       </Switch>
