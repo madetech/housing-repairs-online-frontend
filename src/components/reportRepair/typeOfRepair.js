@@ -8,15 +8,11 @@ const TypeOfRepair = ({handleChange, nextStep, values}) => {
     const el = document.querySelector('input[name="type"]:checked');
     const typeOfRepair = el.value
     handleChange('typeOfRepair', typeOfRepair);
-    if (typeOfRepair === 'emergency') {
-      return nextStep('emergency');
-    }
-    nextStep('postcode');
   }
   return <GridRow>
     <GridCol setWidth="two-third">
       <Radio name="type" value="emergency">Emergency</Radio>
-      <Radio name="type" value="non emergency">Non emergency</Radio>
+      <Radio name="type" value="non-emergency">Non emergency</Radio>
       <Button onClick={Continue} >Continue</Button>
     </GridCol>
   </GridRow>

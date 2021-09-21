@@ -4,6 +4,8 @@ import Address from './reportRepair/address';
 import Confirmation from './reportRepair/confirmation';
 import TypeOfRepair from './reportRepair/typeOfRepair';
 import Emergency from './reportRepair/emergency';
+import { BackLink } from 'govuk-react'
+
 import {
   Redirect,
   Switch,
@@ -12,72 +14,90 @@ import {
   useRouteMatch
 } from 'react-router-dom';
 
+const FLOW = {
+  'type': {prevStep: false, nextStep: [
+    {condition: 'emergency', nextStep: 'emergency'},
+    {condition: 'non-emergency', nextStep: 'postcode'}
+  ]},
+  'postcode': {prevStep: 'type', nextStep: 'address'},
+  'address': {prevStep: 'postcode', nextStep: 'confirmation'},
+  'confirmation': {prevStep: 'address'}
+}
+
 export default function Report() {
   let history = useHistory();
   let { path, url } = useRouteMatch();
-  const [state, setState] = useState({postcode: 'postcode', address: 'address'});
+  const [state, setState] = useState({data:{}, step: 'type'});
+
+  const nextStep = (step) => {
+    state.prevStep = state.step
+    state.step = step;
+    setState(state);
+    history.push(`${path}/${step}`)
+  };
+
+  const prevStepIsNotDefinedOrEqualsCurrentStep = () => (state.prevStep === state.step || !state.prevStep)
+
+  const prevStepIsInFlow = () => (FLOW[state.step] && FLOW[state.step].prevStep)
 
   const prevStep = () => {
-    const { prevStep, step } = this.state;
-    const backstep = step - 1;
-    this.setState({ prevStep: backstep > 0 ? backstep : 1});
-    this.setState({ step: prevStep });
-  };
-  const nextStep = (step) => {
-    history.push(`${path}/${step}`)
-    console.log(state);
-  };
+    // Clicking the back button twice will result in the current
+    // step being the same as the previous step, so we need to
+    // workout what the new previous step should be.
+    if (prevStepIsNotDefinedOrEqualsCurrentStep()) {
+      if (prevStepIsInFlow()) {
+        state.prevStep = FLOW[state.step].prevStep
+      } else {
+        return history.push('/')
+      }
+    }
+    state.step = state.prevStep
+    setState(state);
+    history.push(`${path}/${state.prevStep}`)
+  }
+
   const handleChange = (input, value) => {
-    // state[input] = value;
-    setState({[input]: value});
+    state.data[input] = value
+    setState(state);
+    let nextFlowStep = FLOW[state.step].nextStep
+    if (Array.isArray(nextFlowStep)) {
+      nextFlowStep = nextFlowStep.find(o => o.condition === value).nextStep;
+    }
+    nextStep(nextFlowStep);
   };
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (this.state.step !== 1) {
-  //     const back = this.prevStep
-  //     window.history.pushState(null, document.title, window.location.href);
-  //     window.addEventListener('popstate', function (event){
-  //       window.history.replaceState(null, document.title, window.location.href);
-  //       back();
-  //     });
-  //   }
-  // }
-
-  // const { step } = this.state;
-  const {postcode, address} = state;
-  const values = {postcode, address};
+  const values = state.data;
 
   return (
-    <Switch>
-      <Route exact path={path}>
-        <Redirect to={`${path}/typeOfRepair`} />
-      </Route>
-      <Route path={`${path}/typeOfRepair`}>
-        <TypeOfRepair
-          nextStep={nextStep}
-          handleChange={handleChange}
-          values={values}/>
-      </Route>
-      <Route path={`${path}/postcode`}>
-        <Postcode
-          nextStep={nextStep}
-          handleChange={handleChange}
-          values={values}/>
-      </Route>
-      <Route path={`${path}/address`}>
-        <Address
-          prevStep={prevStep}
-          nextStep={nextStep}
-          handleChange={handleChange}
-          values={values}/>
-      </Route>
-      <Route path={`${path}/confirmation`}>
-        <Confirmation
-          values={values}/>
-      </Route>
-      <Route path={`${path}/emergency`}>
-        <Emergency/>
-      </Route>
-    </Switch>
+    <div>
+      <BackLink onClick={prevStep}>Back</BackLink>
+      <Switch>
+        <Route exact path={path}>
+          <Redirect to={`${path}/type`} />
+        </Route>
+        <Route path={`${path}/type`}>
+          <TypeOfRepair
+            handleChange={handleChange}
+            values={values}/>
+        </Route>
+        <Route path={`${path}/postcode`}>
+          <Postcode
+            handleChange={handleChange}
+            values={values}/>
+        </Route>
+        <Route path={`${path}/address`}>
+          <Address
+            handleChange={handleChange}
+            values={values}/>
+        </Route>
+        <Route path={`${path}/confirmation`}>
+          <Confirmation
+            values={values}/>
+        </Route>
+        <Route path={`${path}/emergency`}>
+          <Emergency/>
+        </Route>
+      </Switch>
+    </div>
   )
 }
