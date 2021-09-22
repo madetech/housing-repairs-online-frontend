@@ -40,7 +40,6 @@ export default class Flow {
   }
   handleChange = (input, value, state) => {
     state.data[input] = value
-    this.setState(state);
     let nextFlowStep = this.flow[state.step].nextStep
     if (Array.isArray(nextFlowStep)) {
       nextFlowStep = nextFlowStep.find(o => o.condition === value).nextStep;
