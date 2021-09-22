@@ -19,6 +19,9 @@ import { Fragment } from 'react';
 
 
 function LandingPage() {
+  const start=()=>{
+    window.location.hash='/report-repairs'
+  }
   return (
     <Fragment>
       <GridRow>
@@ -48,7 +51,14 @@ function LandingPage() {
               </ListItem>
             </OrderedList>
           </Details>
-          <Button icon={<ButtonArrow />} start='true' >Start now</Button>
+          <a href="/report-repair" role="button" draggable="false"
+            className="govuk-button govuk-button--start"
+            data-module="govuk-button">
+            Start now
+            <svg className="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+            </svg>
+          </a>
           <H3>Before you start</H3>
           <Paragraph>
             Reports can be made without signing up for a council account. If you
