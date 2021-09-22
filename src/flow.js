@@ -19,16 +19,16 @@ export default class Flow {
     this.setState(state);
     this.history.push(`${this.path}/${step}`)
   };
-  prevStepIsNotDefinedOrEqualsCurrentStep = (state) => (state.prevStep === state.step || !state.prevStep)
+  _prevStepIsNotDefinedOrEqualsCurrentStep = (state) => (state.prevStep === state.step || !state.prevStep)
 
-  prevStepIsInFlow = (state) => (this.flow[state.step] && this.flow[state.step].prevStep)
+  _prevStepIsInFlow = (state) => (this.flow[state.step] && this.flow[state.step].prevStep)
 
   prevStep = (state) => {
     // Clicking the back button twice will result in the current
     // step being the same as the previous step, so we need to
     // workout what the new previous step should be.
-    if (this.prevStepIsNotDefinedOrEqualsCurrentStep(state)) {
-      if (this.prevStepIsInFlow(state)) {
+    if (this._prevStepIsNotDefinedOrEqualsCurrentStep(state)) {
+      if (this._prevStepIsInFlow(state)) {
         state.prevStep = this.flow[state.step].prevStep
       } else {
         return this.history.push('/')

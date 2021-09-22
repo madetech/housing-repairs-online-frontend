@@ -5,7 +5,7 @@ import Confirmation from './reportRepair/confirmation';
 import TypeOfRepair from './reportRepair/typeOfRepair';
 import Emergency from './reportRepair/emergency';
 import { BackLink } from 'govuk-react';
-import Flow from './flow';
+import Flow from '../flow';
 import {
   Redirect,
   Switch,
