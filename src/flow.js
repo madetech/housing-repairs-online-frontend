@@ -42,7 +42,8 @@ export default class Flow {
     state.data[input] = value
     let nextFlowStep = this.flow[state.step].nextStep
     if (Array.isArray(nextFlowStep)) {
-      nextFlowStep = nextFlowStep.find(o => o.condition === value).nextStep;
+      const condition = nextFlowStep.find(o => o.condition === value);
+      nextFlowStep = condition ? condition.nextStep : state.step;
     }
     this.nextStep(nextFlowStep,state);
   };

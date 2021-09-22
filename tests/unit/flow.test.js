@@ -135,17 +135,33 @@ describe('Flow', () => {
 
   describe('handleChange', ()=> {
     describe('when next step is conditional', ()=>{
-      test('next step and data are set appropriately', ()=>{
-        flow.handleChange('field', 'emergency', {step: 'type', data: {}});
-        expect(setStateSpy).toHaveBeenCalledWith({
-          prevStep: 'type',
-          step: 'emergency',
-          data: {
-            'field': 'emergency'
-          }
+      describe('when condition exists', ()=>{
+        test('next step and data are set appropriately', ()=>{
+          flow.handleChange('field', 'emergency', {step: 'type', data: {}});
+          expect(setStateSpy).toHaveBeenCalledWith({
+            prevStep: 'type',
+            step: 'emergency',
+            data: {
+              'field': 'emergency'
+            }
+          });
+          expect(historySpy.push).toHaveBeenCalledWith(`${pathDummy}/emergency`);
         });
-        expect(historySpy.push).toHaveBeenCalledWith(`${pathDummy}/emergency`);
       });
+
+      describe('when condition doesn\'t exist', ()=>{
+        test('current step is reset and data is set', ()=>{
+          flow.handleChange('field', 'bunnies', {step: 'type', data: {}});
+          expect(setStateSpy).toHaveBeenCalledWith({
+            prevStep: 'type',
+            step: 'type',
+            data: {
+              'field': 'bunnies'
+            }
+          });
+          expect(historySpy.push).toHaveBeenCalledWith(`${pathDummy}/type`);
+        });
+      })
     });
 
     describe('when next step is unconditional', ()=>{
