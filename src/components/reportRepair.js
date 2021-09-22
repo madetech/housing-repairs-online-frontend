@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Postcode from './reportRepair/postcode';
 import Address from './reportRepair/address';
 import Confirmation from './reportRepair/confirmation';
 import TypeOfRepair from './reportRepair/typeOfRepair';
 import Emergency from './reportRepair/emergency';
-import { BackLink } from 'govuk-react'
-
+import { BackLink } from 'govuk-react';
+import Flow from './flow';
 import {
   Redirect,
   Switch,
@@ -14,58 +14,18 @@ import {
   useRouteMatch
 } from 'react-router-dom';
 
-const FLOW = {
-  'type': {prevStep: false, nextStep: [
-    {condition: 'emergency', nextStep: 'emergency'},
-    {condition: 'non-emergency', nextStep: 'postcode'}
-  ]},
-  'postcode': {prevStep: 'type', nextStep: 'address'},
-  'address': {prevStep: 'postcode', nextStep: 'confirmation'},
-  'confirmation': {prevStep: 'address'}
-}
-
 export default function Report() {
   let history = useHistory();
   let { path, url } = useRouteMatch();
   const [state, setState] = useState({data:{}, step: 'type'});
-
-  const nextStep = (step) => {
-    state.prevStep = state.step
-    state.step = step;
-    setState(state);
-    history.push(`${path}/${step}`)
-  };
-
-  const prevStepIsNotDefinedOrEqualsCurrentStep = () => (state.prevStep === state.step || !state.prevStep)
-
-  const prevStepIsInFlow = () => (FLOW[state.step] && FLOW[state.step].prevStep)
-
+  const flow = new Flow(setState, history, path)
   const prevStep = () => {
-    // Clicking the back button twice will result in the current
-    // step being the same as the previous step, so we need to
-    // workout what the new previous step should be.
-    if (prevStepIsNotDefinedOrEqualsCurrentStep()) {
-      if (prevStepIsInFlow()) {
-        state.prevStep = FLOW[state.step].prevStep
-      } else {
-        return history.push('/')
-      }
-    }
-    state.step = state.prevStep
-    setState(state);
-    history.push(`${path}/${state.prevStep}`)
+    flow.prevStep(state)
   }
 
   const handleChange = (input, value) => {
-    state.data[input] = value
-    setState(state);
-    let nextFlowStep = FLOW[state.step].nextStep
-    if (Array.isArray(nextFlowStep)) {
-      nextFlowStep = nextFlowStep.find(o => o.condition === value).nextStep;
-    }
-    nextStep(nextFlowStep);
+    flow.handleChange(input,value,state)
   };
-
   const values = state.data;
 
   return (

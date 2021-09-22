@@ -17,6 +17,11 @@ test('true equals true', () => {
   console.log(wrapper);
   expect(wrapper.state).toBe({data:{}, step: 'type'});
 });
+
+test('does something', () => {
+  shallow(<Report />);
+
+});
 // it('should disable submit button on submit click', () => {
 //     const submitButton = wrapper.find(Button);
 //     submitButton.simulate('click');
