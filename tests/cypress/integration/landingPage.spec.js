@@ -19,7 +19,8 @@ describe('App', () => {
   });
 
   it('displays a start button', () => {
-    cy.get("button").contains('Start now');
+    cy.get('a').contains('Start now').should('have.attr', 'href', '/report-repair');
+
   });
 
   context('smell gas prompt', () => {

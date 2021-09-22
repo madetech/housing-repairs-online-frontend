@@ -1,5 +1,12 @@
 import PropTypes from 'prop-types';
-import { Button, Radio, GridRow, GridCol, MultiChoice } from 'govuk-react'
+import {
+  Button,
+  Radio,
+  GridRow,
+  GridCol,
+  MultiChoice,
+  Fieldset, FormGroup, InputField
+} from 'govuk-react'
 
 
 const TypeOfRepair = ({handleChange, nextStep, values}) => {
@@ -11,9 +18,16 @@ const TypeOfRepair = ({handleChange, nextStep, values}) => {
   }
   return <GridRow>
     <GridCol setWidth="two-third">
-      <Radio name="type" value="emergency">Emergency</Radio>
-      <Radio name="type" value="non-emergency">Non emergency</Radio>
-      <Button onClick={Continue} >Continue</Button>
+      <Fieldset>
+        <Fieldset.Legend size="XL" isPageHeading>Is this an emergency?</Fieldset.Legend>
+        <form action="">
+          <FormGroup>
+            <Radio name="type" value="emergency">Yes</Radio>
+            <Radio name="type" value="non-emergency">No</Radio>
+          </FormGroup>
+          <Button onClick={Continue} >Continue</Button>
+        </form>
+      </Fieldset>
     </GridCol>
   </GridRow>
 };

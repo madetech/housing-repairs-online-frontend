@@ -1,18 +1,28 @@
 import PropTypes from 'prop-types';
-import { Button, InputField,GridRow, GridCol } from 'govuk-react'
+import { Button, InputField, GridRow, GridCol, Fieldset, FormGroup } from 'govuk-react'
 
 const Address = ({handleChange, nextStep, values}) => {
+  let address;
+
+  const onChange = e => {
+    address = e.target.value
+  }
   const Continue = e => {
     e.preventDefault();
-    const el = document.getElementById('address-input').children[1];
-    let address = el.value
     handleChange('address', address);
   }
-  const input = { defaultValue: values.address }
+  const input = { defaultValue: values.address, id: 'address', onChange: onChange }
   return <GridRow>
-    <GridCol setWidth="one-third">
-      <InputField id="address-input" name="group0" input={input} >Address</InputField>
-      <Button onClick={Continue} >Continue</Button>
+    <GridCol setWidth="two-thirds">
+      <Fieldset>
+        <Fieldset.Legend size="XL" isPageHeading>Where is the repair located?</Fieldset.Legend>
+        <form action="">
+          <FormGroup>
+            <InputField name="address" input={input} >Address</InputField>
+          </FormGroup>
+          <Button onClick={Continue} >Continue</Button>
+        </form>
+      </Fieldset>
     </GridCol>
   </GridRow>
 };

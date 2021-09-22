@@ -1,6 +1,4 @@
-import PropTypes from 'prop-types';
-import { H1,GridRow, GridCol, Paragraph } from 'govuk-react'
-
+import { H1, GridRow, GridCol, Paragraph } from 'govuk-react'
 
 const Emergency = () => {
 
