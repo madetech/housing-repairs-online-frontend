@@ -37,5 +37,15 @@ describe('Flow', () => {
       expect(historySpy.push).toHaveBeenCalledWith(`${pathDummy}/${step}`);
     });
   });
+  describe('_prevStepIsNotDefinedOrEqualsCurrentStep', () => {
+    test('returns true if previous step is not defined', () => {
+      const state = {
+        prevStep: '',
+        step: 'anything'
+      }
+      let result = flow._prevStepIsNotDefinedOrEqualsCurrentStep(state)
+      expect(result).toBe(true)
+    })
+  })
 
 })
