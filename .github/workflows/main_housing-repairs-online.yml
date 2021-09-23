@@ -21,17 +21,19 @@ jobs:
         with:
           node-version: '14.x'
 
-      - name: npm install, build, and test
+      - name: yarn install, build, and test
         run: |
-          npm install
-          npm run build --if-present
-          npm run test --if-present
+          yarn install --frozen-lockfile
+          yarn run build --if-present
+          yarn lint
+          yarn test
+          yarn test:headless:integration
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
-          name: node-app
-          path: .
+          name: housing-repairs0online
+          path: ./src/
 
   deploy:
     runs-on: ubuntu-latest
