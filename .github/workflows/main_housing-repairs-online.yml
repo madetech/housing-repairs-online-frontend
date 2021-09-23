@@ -32,7 +32,7 @@ jobs:
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
-          name: housing-repairs0online
+          name: housing-repairs-online
           path: ./src/
 
   deploy:
@@ -46,7 +46,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v2
         with:
-          name: node-app
+          name: housing-repairs-online
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
