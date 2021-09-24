@@ -75,3 +75,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
   - [Cypress](https://docs.cypress.io/) is used for integration testing `yarn test:integration`
 - Frontend components:
   https://govuk-react.github.io/govuk-react/?path=/docs/welcome--page
+- Local dev
+  https://github.com/Azure/static-web-apps-cli

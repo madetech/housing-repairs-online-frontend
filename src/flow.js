@@ -13,10 +13,12 @@ export default class Flow {
       'confirmation': {prevStep: 'address'}
     }
   }
-  nextStep (step, state) {
-    state.prevStep = state.step
+  nextStep (step, state, prevStep) {
+    state.prevStep = prevStep ? prevStep : state.step
     state.step = step;
     this.setState(state);
+    console.log(state)
+
     this.history.push(`${this.path}/${step}`)
   };
   _prevStepIsNotDefinedOrEqualsCurrentStep = (state) => (state.prevStep === state.step || !state.prevStep)
@@ -40,12 +42,27 @@ export default class Flow {
   }
   handleChange = (input, value, state) => {
     state.data[input] = value
-    let nextFlowStep = this.flow[state.step].nextStep
-    if (Array.isArray(nextFlowStep)) {
-      const condition = nextFlowStep.find(o => o.condition === value);
-      nextFlowStep = condition ? condition.nextStep : state.step;
+    let nextFlowStep =  this.flow[state.step]?.nextStep
+    if (nextFlowStep) {
+      if (Array.isArray(nextFlowStep)) {
+        const condition = nextFlowStep.find(o => o.condition === value);
+        nextFlowStep = condition ? condition.nextStep : state.step;
+      }
+      return this.nextStep(nextFlowStep, state);
     }
-    this.nextStep(nextFlowStep,state);
-  };
-}
 
+    const { flowNextStep, flowPrevStep } = this._stepsFromUrl()
+    state.prevStep = flowPrevStep;
+    console.log(flowPrevStep)
+    this.nextStep(flowNextStep, state, flowPrevStep);
+  };
+
+  _stepsFromUrl = () =>{
+    const urlStep = window.location.pathname.split('/').pop()
+    const flowNextStep = Object.keys(this.flow).find(key => this.flow[key].prevStep === urlStep);
+    return {
+      flowNextStep: flowNextStep,
+      flowPrevStep: urlStep
+    }
+  }
+}
