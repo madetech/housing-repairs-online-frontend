@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import Postcode from './reportRepair/postcode';
 import Address from './reportRepair/address';
 import Confirmation from './reportRepair/confirmation';
-import TypeOfRepair from './reportRepair/typeOfRepair';
-import Emergency from './reportRepair/emergency';
+import PriorityList from './reportRepair/priorityList';
+import EmergencyRepair from './reportRepair/emergencyRepair';
+import NotEligible from './reportRepair/notEligible';
 import { BackLink } from 'govuk-react';
 import Flow from '../flow';
 import {
@@ -17,7 +18,7 @@ import {
 export default function Report() {
   let history = useHistory();
   let { path, url } = useRouteMatch();
-  const [state, setState] = useState({data:{}, step: 'type'});
+  const [state, setState] = useState({data:{}, step: 'postcode'});
   const flow = new Flow(setState, history, path)
   const prevStep = () => {
     flow.prevStep(state)
@@ -33,10 +34,10 @@ export default function Report() {
       <BackLink onClick={prevStep}>Back</BackLink>
       <Switch>
         <Route exact path={path}>
-          <Redirect to={`${path}/type`} />
+          <Redirect to={`${path}/postcode`} />
         </Route>
-        <Route path={`${path}/type`}>
-          <TypeOfRepair
+        <Route path={`${path}/priority-list`}>
+          <PriorityList
             handleChange={handleChange}
             values={values}/>
         </Route>
@@ -54,8 +55,11 @@ export default function Report() {
           <Confirmation
             values={values}/>
         </Route>
-        <Route path={`${path}/emergency`}>
-          <Emergency/>
+        <Route path={`${path}/emergency-repair`}>
+          <EmergencyRepair/>
+        </Route>
+        <Route path={`${path}/not-eligible`}>
+          <NotEligible/>
         </Route>
       </Switch>
     </div>

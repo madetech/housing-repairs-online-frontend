@@ -137,29 +137,29 @@ describe('Flow', () => {
     describe('when next step is conditional', ()=>{
       describe('when condition exists', ()=>{
         test('next step and data are set appropriately', ()=>{
-          flow.handleChange('field', 'emergency', {step: 'type', data: {}});
+          flow.handleChange('field', 'emergency', {step: 'priority-list', data: {}});
           expect(setStateSpy).toHaveBeenCalledWith({
-            prevStep: 'type',
-            step: 'emergency',
+            prevStep: 'priority-list',
+            step: 'emergency-repair',
             data: {
               'field': 'emergency'
             }
           });
-          expect(historySpy.push).toHaveBeenCalledWith(`${pathDummy}/emergency`);
+          expect(historySpy.push).toHaveBeenCalledWith(`${pathDummy}/emergency-repair`);
         });
       });
 
       describe('when condition doesn\'t exist', ()=>{
         test('current step is reset and data is set', ()=>{
-          flow.handleChange('field', 'bunnies', {step: 'type', data: {}});
+          flow.handleChange('field', 'bunnies', {step: 'priority-list', data: {}});
           expect(setStateSpy).toHaveBeenCalledWith({
-            prevStep: 'type',
-            step: 'type',
+            prevStep: 'priority-list',
+            step: 'priority-list',
             data: {
               'field': 'bunnies'
             }
           });
-          expect(historySpy.push).toHaveBeenCalledWith(`${pathDummy}/type`);
+          expect(historySpy.push).toHaveBeenCalledWith(`${pathDummy}/priority-list`);
         });
       })
     });
@@ -183,19 +183,19 @@ describe('Flow', () => {
         global.window = Object.create(window);
         Object.defineProperty(window, 'location', {
           value: {
-            pathname: '/report-repair/type'
+            pathname: '/report-repair/priority-list'
           }
         });
 
         flow.handleChange('field', 'value', {step: 'emergency', data: {}});
         expect(setStateSpy).toHaveBeenCalledWith({
-          prevStep: 'type',
-          step: 'postcode',
+          prevStep: 'priority-list',
+          step: 'prior-repair',
           data: {
             'field': 'value'
           }
         });
-        expect(historySpy.push).toHaveBeenCalledWith(`${pathDummy}/postcode`);
+        expect(historySpy.push).toHaveBeenCalledWith(`${pathDummy}/prior-repair`);
       });
     })
   });

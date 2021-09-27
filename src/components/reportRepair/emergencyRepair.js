@@ -19,4 +19,4 @@ const EmergencyRepair = () => {
   </GridRow>
 };
 
-export default Emergency;
+export default EmergencyRepair;

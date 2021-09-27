@@ -5,15 +5,12 @@ export default class Flow {
     this.path = path;
     this.flow =     this.flow = {
       'postcode': {prevStep: false, nextStep: 'address'},
-      'address': {prevStep: 'postcode', nextStep: [
-        {condition: 'no-address', nextStep: 'not-eligible'},
-        {condition: 'address', nextStep: 'priority-list'}
-      ]},
-      'priority-list': {prevStep: 'address'}, nextStep: [
+      'address': {prevStep: 'postcode', nextStep: 'priority-list'},
+      'priority-list': {prevStep: 'address', nextStep: [
         {condition: 'gas-emergency', nextStep: 'smell-gas'},
         {condition: 'emergency', nextStep: 'emergency-repair'},
         {condition: 'non-emergency', nextStep: 'prior-repair'}
-      ],
+      ]},
       'prior-repair': {prevStep:'priority-list', nextStep: 'repair-location'},
       'repair-location': { prevStep: 'prior-repair', nextStep: 'repair-type'},
       'repair-type': { prevStep: 'repair-location', nextStep: [
@@ -98,7 +95,6 @@ export default class Flow {
     state.prevStep = prevStep ? prevStep : state.step
     state.step = step;
     this.setState(state);
-    console.log(state)
 
     this.history.push(`${this.path}/${step}`)
   };
@@ -134,7 +130,6 @@ export default class Flow {
 
     const { flowNextStep, flowPrevStep } = this._stepsFromUrl()
     state.prevStep = flowPrevStep;
-    console.log(flowPrevStep)
     this.nextStep(flowNextStep, state, flowPrevStep);
   };
 

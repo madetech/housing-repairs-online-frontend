@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-import { Button, InputField, GridRow, GridCol, Fieldset, FormGroup } from 'govuk-react'
+import { Button, InputField, GridRow, GridCol, Fieldset, FormGroup, Link } from 'govuk-react'
+import { Link as RouterLink } from 'react-router-dom';
 
 const Address = ({handleChange, nextStep, values}) => {
   let address;
@@ -23,6 +24,7 @@ const Address = ({handleChange, nextStep, values}) => {
           <Button onClick={Continue} >Continue</Button>
         </form>
       </Fieldset>
+      <Link as={RouterLink} to="not-eligible">Can not find my address</Link>
     </GridCol>
   </GridRow>
 };
