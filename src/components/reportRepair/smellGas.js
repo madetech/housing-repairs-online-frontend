@@ -1,6 +1,6 @@
 import { H1, GridRow, GridCol, Paragraph } from 'govuk-react'
 
-const SmellGass = () => {
+const SmellGas = () => {
 
   return <GridRow>
     <GridCol setWidth="two-thirds">
@@ -12,4 +12,4 @@ const SmellGass = () => {
   </GridRow>
 };
 
-export default SmellGass;
+export default SmellGas;

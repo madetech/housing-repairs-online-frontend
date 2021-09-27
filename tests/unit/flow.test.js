@@ -190,12 +190,12 @@ describe('Flow', () => {
         flow.handleChange('field', 'value', {step: 'emergency', data: {}});
         expect(setStateSpy).toHaveBeenCalledWith({
           prevStep: 'priority-list',
-          step: 'prior-repair',
+          step: 'communal',
           data: {
             'field': 'value'
           }
         });
-        expect(historySpy.push).toHaveBeenCalledWith(`${pathDummy}/prior-repair`);
+        expect(historySpy.push).toHaveBeenCalledWith(`${pathDummy}/communal`);
       });
     })
   });

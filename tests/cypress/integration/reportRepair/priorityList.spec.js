@@ -1,11 +1,9 @@
 describe('priorityList', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/report-repair/');
-    cy.get('button').click()
-    cy.get('button').click()
   });
 
-  it('displays service title', () => {
+  it('displays the question title', () => {
     cy.contains('What is the problem?');
   });
 
