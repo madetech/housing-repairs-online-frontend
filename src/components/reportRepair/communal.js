@@ -24,9 +24,11 @@ const Communal = ({handleChange, nextStep, values}) => {
             <Radio name="communal" value="yes">Yes</Radio>
             <Radio name="communal" value="no">No</Radio>
           </FormGroup>
-          <Details summary="Which areas are communal?" className="govuk-!-margin-top-6" data-testid="landing-page-gas-prompt">
-            Communal areas are any spaces that are shared with other residents. <br/>
-            For example, this would include gardens, lifts, corridors, or car parks.
+          <Details summary="Which areas are communal?" className="govuk-!-margin-top-6" data-testid="communal-area-prompt">
+            <span data-testid="communal-area-info">
+              Communal areas are any spaces that are shared with other residents. <br/>
+              For example, this would include gardens, lifts, corridors, or car parks.
+            </span>
           </Details>
           <Button onClick={Continue} >Continue</Button>
         </form>
