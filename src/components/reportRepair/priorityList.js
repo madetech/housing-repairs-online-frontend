@@ -9,7 +9,7 @@ import {
 } from 'govuk-react'
 
 
-const TypeOfRepair = ({handleChange, nextStep, values}) => {
+const PriorityList = ({handleChange, nextStep, values}) => {
   const Continue = e => {
     e.preventDefault();
     const el = document.querySelector('input[name="type"]:checked');
@@ -32,10 +32,10 @@ const TypeOfRepair = ({handleChange, nextStep, values}) => {
   </GridRow>
 };
 
-TypeOfRepair.propTypes = {
+PriorityList.propTypes = {
   nextStep: PropTypes.func,
   values: PropTypes.object,
   handleChange: PropTypes.func,
 }
 
-export default TypeOfRepair;
+export default PriorityList;
