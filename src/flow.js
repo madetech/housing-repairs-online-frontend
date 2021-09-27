@@ -3,14 +3,85 @@ export default class Flow {
     this.setState = setState;
     this.history = history;
     this.path = path;
-    this.flow = {
+    this.flow =     this.flow = {
       'type': {prevStep: false, nextStep: [
         {condition: 'emergency', nextStep: 'emergency'},
         {condition: 'non-emergency', nextStep: 'postcode'}
       ]},
       'postcode': {prevStep: 'type', nextStep: 'address'},
-      'address': {prevStep: 'postcode', nextStep: 'confirmation'},
-      'confirmation': {prevStep: 'address'}
+      'address': {prevStep: 'postcode', nextStep: 'priority-list'},
+      'priority-list': {prevStep: 'address'}, nextStep: [
+        {condition: 'emergency', nextStep: 'smell-gas'},
+        {condition: 'non-emergency', nextStep: 'prior-repair'}
+      ],
+      'prior-repair': {prevStep:'priority-list', nextStep: 'repair-location'},
+      'repair-location': { prevStep: 'prior-repair', nextStep: 'repair-type'},
+      'repair-type': { prevStep: 'repair-location', nextStep: [
+        {condition: 'cupboards-or-worktops', nextStep: 'repair-description'},
+        {condition: 'damp-or-mould', nextStep: 'repair-description-damp'},
+        {condition: 'electrical', nextStep: 'repair-description'},
+        {condition: 'heating-or-hot-water', nextStep: 'repair-description'},
+        {condition: 'sink', nextStep: 'repair-description'},
+        {condition: 'drip-or-leak', nextStep: 'repair-description-leak'},
+        {condition: 'something-else', nextStep: 'repair-description'}
+      ]},
+      'repair-description-damp': {prevStep: 'repair-type', nextStep: [
+        {condition: 'damp', nextStep: 'repair-damp'},
+        {condition: 'mould', nextStep: 'repair-description-damp-mold'},
+        {condition: 'both', nextStep: 'repair-description'},
+        {condition: 'not-sure', nextStep: 'repair-description'},
+      ]},
+      'repair-damp': { prevStep: 'repair-description-damp', nextStep: 'repair-description-damp-pipes'},
+      'repair-description-damp-pipes': {prevStep: 'repair-damp', nextStep:'repair-description' },
+      'repair-description-damp-mold':{prevStep:'repair-description-damp', nextStep: 'repair-description' },
+      'repair-description-electrical': { prevStep: 'repair-type', nextStep: [
+        {condition: 'extractor-fan', nextStep: 'repair-description'},
+        {condition: 'light-fitting', nextStep: 'repair-description'},
+        {condition: 'light-switch', nextStep: 'repair-description'},
+        {condition: 'smoke-detector-beeping', nextStep: 'repair-description-electrical-smoke-alarm'},
+        {condition: 'sockets', nextStep: 'repair-description'},
+        {condition: 'carbon-monoxide-alarm', nextStep: 'repair-description-electrical-carbon-monoxide-alarm'},
+        {condition: 'something-else', nextStep: 'repair-description'}
+      ]},
+      'repair-description-heating-water': {prevStep: 'repair-type', nextStep: [
+        {condition: 'no-heating-or-hot-water', nextStep: 'repair-description-heating-water-emergency'},
+        {condition: 'radiator-not-working', nextStep: 'repair-description'},
+        {condition: 'radiator-coming-loose', nextStep: 'repair-description'},
+        {condition: 'radiator-leaking', nextStep: 'repair-description'},
+        {condition: 'something-else', nextStep: 'repair-description'},
+      ]},
+      'repair-description-leak': { prevStep: 'repair-type', nextStep: [
+        {condition: 'dripping-from-wall-or-ceiling', nextStep: 'repair-description-leak-electrics'},
+        {condition: 'containable-sink-leak', nextStep: 'repair-description'},
+        {condition: 'tap-dripping-water', nextStep: 'repair-description'},
+        {condition: 'running-tap', nextStep: 'emergency-repair'},
+        {condition: 'non-containable-radiator-leak', nextStep: 'repair-description'},
+        {condition: 'something-else', nextStep: 'repair-description'},
+      ]},
+      'repair-description': {prevStep:'' , nextStep: 'personal-details'},//need to investigate this as there are numerous prev steps
+      'personal-details': {prevStep: 'repair-description', nextStep:'repair-availability'},
+      'repair-availability': {prevStep: 'personal-details', nextStep: 'contact-details-appointment'},
+      'contact-details-appointment': { prevStep: 'repair-availability', nextStep: 'appointment-playback'},
+      'appointment-playback': {prevStep: 'contact-details-appointment', nextStep: [
+        {condition: 'change-appointment', nextStep:'repair-availability'},
+        {condition: 'keep-appointment', nextStep: 'contact-details'}
+      ]},
+      'contact-details': {prevStep: 'appointment-playback', nextStep: 'summary'},
+      'summary': {prevStep: 'appointment-playback', nextStep: [
+        {condition: 'change-repair-address', nextStep: 'postcode'},
+        {condition: 'change-contact-details', nextStep: 'contact-details'},
+        {condition: 'change-phone-number', nextStep: 'contact-details-appointment'},
+        {condition: 'change-location', nextStep: 'repair-location'},
+        {condition: 'change-issue', nextStep: 'repair-type'},
+        {condition: 'change-description', nextStep: 'repair-description'},
+        {condition: 'change-appointment-date', nextStep: 'repair-availability'},
+        {condition: 'change-appointment-information', nextStep: 'personal-details'},
+        {condition: 'confirm-and-report', nextStep: 'confirmation'}
+      ]},
+      'confirmation': {prevStep:'summary', nextStep: [
+        {condition: 'report-another-issue', nextStep: 'index'},
+        {condition: 'request-confirmation', nextStep: 'confirmation-template'}
+      ]}
     }
   }
   nextStep (step, state, prevStep) {
