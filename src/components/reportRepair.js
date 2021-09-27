@@ -5,6 +5,7 @@ import Confirmation from './reportRepair/confirmation';
 import PriorityList from './reportRepair/priorityList';
 import EmergencyRepair from './reportRepair/emergencyRepair';
 import NotEligible from './reportRepair/notEligible';
+import SmellGass from './reportRepair/smellGas';
 import { BackLink } from 'govuk-react';
 import Flow from '../flow';
 import {
@@ -60,6 +61,9 @@ export default function Report() {
         </Route>
         <Route path={`${path}/not-eligible`}>
           <NotEligible/>
+        </Route>
+        <Route path={`${path}/smell-gas`}>
+          <SmellGass/>
         </Route>
       </Switch>
     </div>
