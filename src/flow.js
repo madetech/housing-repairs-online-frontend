@@ -4,14 +4,14 @@ export default class Flow {
     this.history = history;
     this.path = path;
     this.flow =     this.flow = {
-      'type': {prevStep: false, nextStep: [
-        {condition: 'emergency', nextStep: 'emergency'},
-        {condition: 'non-emergency', nextStep: 'postcode'}
+      'postcode': {prevStep: false, nextStep: 'address'},
+      'address': {prevStep: 'postcode', nextStep: [
+        {condition: 'no-address', nextStep: 'not-eligible'},
+        {condition: 'address', nextStep: 'priority-list'}
       ]},
-      'postcode': {prevStep: 'type', nextStep: 'address'},
-      'address': {prevStep: 'postcode', nextStep: 'priority-list'},
       'priority-list': {prevStep: 'address'}, nextStep: [
-        {condition: 'emergency', nextStep: 'smell-gas'},
+        {condition: 'gas-emergency', nextStep: 'smell-gas'},
+        {condition: 'emergency', nextStep: 'emergency-repair'},
         {condition: 'non-emergency', nextStep: 'prior-repair'}
       ],
       'prior-repair': {prevStep:'priority-list', nextStep: 'repair-location'},
@@ -33,7 +33,7 @@ export default class Flow {
       ]},
       'repair-damp': { prevStep: 'repair-description-damp', nextStep: 'repair-description-damp-pipes'},
       'repair-description-damp-pipes': {prevStep: 'repair-damp', nextStep:'repair-description' },
-      'repair-description-damp-mold':{prevStep:'repair-description-damp', nextStep: 'repair-description' },
+      'repair-description-damp-mold': {prevStep:'repair-description-damp', nextStep: 'repair-description' },
       'repair-description-electrical': { prevStep: 'repair-type', nextStep: [
         {condition: 'extractor-fan', nextStep: 'repair-description'},
         {condition: 'light-fitting', nextStep: 'repair-description'},
@@ -43,6 +43,8 @@ export default class Flow {
         {condition: 'carbon-monoxide-alarm', nextStep: 'repair-description-electrical-carbon-monoxide-alarm'},
         {condition: 'something-else', nextStep: 'repair-description'}
       ]},
+      'repair-description-electrical-smoke-alarm': {prevStep: 'repair-description-electrical'},
+      'repair-description-electrical-carbon-monoxide-alarm': {prevStep: 'repair-description-electrical'},
       'repair-description-heating-water': {prevStep: 'repair-type', nextStep: [
         {condition: 'no-heating-or-hot-water', nextStep: 'repair-description-heating-water-emergency'},
         {condition: 'radiator-not-working', nextStep: 'repair-description'},
@@ -58,7 +60,15 @@ export default class Flow {
         {condition: 'non-containable-radiator-leak', nextStep: 'repair-description'},
         {condition: 'something-else', nextStep: 'repair-description'},
       ]},
-      'repair-description': {prevStep:'' , nextStep: 'personal-details'},//need to investigate this as there are numerous prev steps
+      'repair-description-leak-electrics': {prevStep: 'repair-description-leak', nextStep: [
+        {condition: 'dripping-on-to-electrics', nextStep: 'repair-leak-description-electrics-emergency'},
+        {condition: 'containable-with-bucket', nextStep: 'repair-description-leak-inside'},
+        {condition: 'not-containable', nextStep: 'repair-leak-description-electrics-emergency'}
+      ]},
+      'repair-description-leak-inside': {prevStep: 'repair-description-leak-electrics', nextStep: 'repair-description-leak-source'},
+      'repair-description-leak-source': {prevStep: 'repair-description-leak-inside', nextStep: 'repair-description'},
+      'repair-leak-description-electrics-emergency': {prevStep: 'repair-description-leak-electrics'},
+      'repair-description': {prevStep:'' , nextStep: 'personal-details'},//need to investigate this as there are numerous prev steps, but it might just work
       'personal-details': {prevStep: 'repair-description', nextStep:'repair-availability'},
       'repair-availability': {prevStep: 'personal-details', nextStep: 'contact-details-appointment'},
       'contact-details-appointment': { prevStep: 'repair-availability', nextStep: 'appointment-playback'},

@@ -1,6 +1,6 @@
 import { H1, GridRow, GridCol, Paragraph } from 'govuk-react'
 
-const Emergency = () => {
+const EmergencyRepair = () => {
 
   return <GridRow>
     <GridCol setWidth="two-thirds">
