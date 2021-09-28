@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Postcode from './reportRepair/postcode';
 import Address from './reportRepair/address';
 import Confirmation from './reportRepair/confirmation';
@@ -25,6 +25,23 @@ export default function Report() {
   const prevStep = () => {
     flow.prevStep(state)
   }
+
+  const [ locationKeys, setLocationKeys ] = useState([])
+
+  useEffect(() => {
+    return history.listen(location => {
+      if (history.action === 'PUSH') {
+        setLocationKeys([ location.key ])
+      }
+
+      if (history.action === 'POP') {
+        if (locationKeys[1] !== location.key) {
+          setLocationKeys((keys) => [ location.key, ...keys ])
+          prevStep();
+        }
+      }
+    })
+  }, [ locationKeys, ])
 
   const handleChange = (input, value) => {
     flow.handleChange(input,value,state)

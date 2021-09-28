@@ -80,4 +80,26 @@ describe('priorityList', () => {
       cy.url().should('include', '/report-repair/communal');
     });
   })
+
+  context('User uses back buttons to navigate out of an exit page and selects a different option', ()=>{
+    it('should redirect the user to a different exit page',  () => {
+      cy.contains('I can smell gas').click();
+      cy.get('button').click();
+      cy.go('back')
+      cy.contains('I have no heating').click();
+      cy.get('button').click()
+      cy.url().should('include', '/report-repair/emergency-repair');
+    })
+  })
+
+  context('User uses back buttons to navigate out of an exit page and selects the same option', ()=>{
+    it('should redirect the user to a different exit page',  () => {
+      cy.contains('I can smell gas').click();
+      cy.get('button').click();
+      cy.go('back')
+      cy.contains('I can smell gas').click();
+      cy.get('button').click()
+      cy.url().should('include', '/report-repair/smell-gas');
+    })
+  })
 });
