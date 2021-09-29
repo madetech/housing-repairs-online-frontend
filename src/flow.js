@@ -3,8 +3,8 @@ export default class Flow {
     this.setState = setState;
     this.history = history;
     this.path = path;
-    this.flow =     this.flow = {
-      'priority-list': {prevStep: 'address', nextStep: [
+    this.flow = {
+      'priority-list': {prevStep: false, nextStep: [
         {condition: 'gas-emergency', nextStep: 'smell-gas'},
         {condition: 'emergency', nextStep: 'emergency-repair'},
         {condition: 'non-emergency', nextStep: 'communal'}
@@ -13,7 +13,7 @@ export default class Flow {
         {condition: 'yes', nextStep: 'not-eligible'},
         {condition: 'no', nextStep: 'postcode'}
       ]},
-      'postcode': {prevStep: 'resident-type', nextStep: 'address'},
+      'postcode': {prevStep: 'communal', nextStep: 'address'},
       'address': {prevStep: 'postcode', nextStep: 'repair-location'},
       'repair-location': { prevStep: 'prior-repair', nextStep: 'repair-type'},
       'repair-type': { prevStep: 'repair-location', nextStep: [
@@ -111,13 +111,18 @@ export default class Flow {
     // workout what the new previous step should be.
     if (this._prevStepIsNotDefinedOrEqualsCurrentStep(state)) {
       if (this._prevStepIsInFlow(state)) {
+        console.log(state)
         state.prevStep = this.flow[state.step].prevStep
+        console.log('11111')
       } else {
+        console.log('22222')
         return this.history.push('/')
       }
     }
+
     state.step = state.prevStep
     this.setState(state);
+    console.log('set state', state)
     this.history.push(`${this.path}/${state.prevStep}`)
   }
   handleChange = (input, value, state) => {
