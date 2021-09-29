@@ -3,11 +3,11 @@ describe('priorityList', () => {
     cy.visit('http://localhost:3000/report-repair/');
   });
 
-  xit('displays the question title', () => {
+  it('displays the question title', () => {
     cy.contains('What is the problem?');
   });
 
-  xcontext('When a user selects: I can smell gas', ()=>{
+  context('When a user selects: I can smell gas', ()=>{
     it('should redirect them to smell gas page',  () => {
       cy.contains('I can smell gas').click();
       cy.get('button').click()
@@ -15,7 +15,7 @@ describe('priorityList', () => {
     });
   });
 
-  xcontext('When a user selects: I have no heating', ()=>{
+  context('When a user selects: I have no heating', ()=>{
     it('should redirect them to emergency page',  () => {
       cy.contains('I have no heating').click();
       cy.get('button').click()
@@ -24,7 +24,7 @@ describe('priorityList', () => {
   })
 
 
-  xcontext('When a user selects: I have no water', ()=>{
+  context('When a user selects: I have no water', ()=>{
     it('should redirect them to emergency page',  () => {
       cy.contains('I have no water').click();
       cy.get('button').click()
@@ -33,7 +33,7 @@ describe('priorityList', () => {
   })
 
 
-  xcontext('When a user selects: I have no electricity', ()=>{
+  context('When a user selects: I have no electricity', ()=>{
     it('should redirect them to emergency page',  () => {
       cy.contains('I have no electricity').click();
       cy.get('button').click()
@@ -41,7 +41,7 @@ describe('priorityList', () => {
     });
   });
 
-  xcontext('When a user selects: I have water leaking on to electrics', ()=>{
+  context('When a user selects: I have water leaking on to electrics', ()=>{
     it('should redirect them to emergency page',  () => {
       cy.contains('I have water leaking on to electrics').click();
       cy.get('button').click()
@@ -49,7 +49,7 @@ describe('priorityList', () => {
     });
   });
 
-  xcontext('When a user selects: I can\'t secure my property', ()=>{
+  context('When a user selects: I can\'t secure my property', ()=>{
     it('should redirect them to emergency page',  () => {
       cy.contains('I can\'t secure my property').click();
       cy.get('button').click()
@@ -57,7 +57,7 @@ describe('priorityList', () => {
     });
   });
 
-  xcontext('When a user selects: I have exposed wiring or sockets', ()=>{
+  context('When a user selects: I have exposed wiring or sockets', ()=>{
     it('should redirect them to emergency page',  () => {
       cy.contains('I have exposed wiring or sockets').click();
       cy.get('button').click()
@@ -65,7 +65,7 @@ describe('priorityList', () => {
     });
   });
 
-  xcontext('When a user selects: My carbon monoxide or smoke alarm is beeping', ()=>{
+  context('When a user selects: My carbon monoxide or smoke alarm is beeping', ()=>{
     it('should redirect them to emergency page',  () => {
       cy.contains('My carbon monoxide or smoke alarm is beeping').click();
       cy.get('button').click()
@@ -73,7 +73,7 @@ describe('priorityList', () => {
     });
   });
 
-  xcontext('When a user selects: Something else', ()=>{
+  context('When a user selects: Something else', ()=>{
     it('should redirect them to communal page',  () => {
       cy.contains('Something else').click();
       cy.get('button').click()
@@ -81,8 +81,8 @@ describe('priorityList', () => {
     });
   })
 
-  xcontext('User uses back buttons to navigate out of an exit page and selects a different option', ()=>{
-    it('should redirect the user to a different exit page',  () => {
+  context('User uses back buttons to navigate out of an eit page and selects a different option', ()=>{
+    it('should redirect the user to a different eit page',  () => {
       cy.contains('I can smell gas').click();
       cy.get('button').click();
       cy.go('back')
@@ -92,8 +92,8 @@ describe('priorityList', () => {
     })
   })
 
-  xcontext('User uses back buttons to navigate out of an exit page and selects the same option', ()=>{
-    it('should redirect the user to the same exit page',  () => {
+  context('User uses back buttons to navigate out of an eit page and selects the same option', ()=>{
+    it('should redirect the user to the same eit page',  () => {
       cy.contains('I can smell gas').click();
       cy.get('button').click();
       cy.go('back')
@@ -103,7 +103,7 @@ describe('priorityList', () => {
     })
   })
 
-  context('User presses the back button twice from an exit page', ()=>{
+  context('User presses the back button twice from an eit page', ()=>{
     it('should redirect the user to the home page',  () => {
       cy.contains('I can smell gas').click();
       cy.get('button').click();
