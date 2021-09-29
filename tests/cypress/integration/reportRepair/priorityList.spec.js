@@ -109,7 +109,7 @@ describe('priorityList', () => {
       cy.get('button').click();
       cy.go('back')
       cy.go('back')
-      cy.url().should('eq', 'http://localhost:3000/report-repair');
+      cy.url().should('eq', 'http://localhost:3000/');
     })
   })
 });
