@@ -103,7 +103,7 @@ describe('priorityList', () => {
     })
   })
 
-  context('User presses the back button twice from an eit page', ()=>{
+  context('User presses the back button twice from an exit page', ()=>{
     it('should redirect the user to the home page',  () => {
       cy.contains('I can smell gas').click();
       cy.get('button').click();

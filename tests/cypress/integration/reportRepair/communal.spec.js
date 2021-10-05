@@ -1,4 +1,4 @@
-describe('priorityList', () => {
+describe('communal', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/report-repair/');
     cy.contains('Something else').click();
