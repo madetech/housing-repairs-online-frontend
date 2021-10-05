@@ -7,6 +7,13 @@ describe('priorityList', () => {
     cy.contains('What is the problem?');
   });
 
+  context('When a user doesn\'t select any option', ()=>{
+    it('an error should be shown',  () => {
+      cy.get('button').click()
+      cy.contains('Error');
+    });
+  });
+
   context('When a user selects: I can smell gas', ()=>{
     it('should redirect them to smell gas page',  () => {
       cy.contains('I can smell gas').click();
@@ -23,7 +30,6 @@ describe('priorityList', () => {
     });
   })
 
-
   context('When a user selects: I have no water', ()=>{
     it('should redirect them to emergency page',  () => {
       cy.contains('I have no water').click();
@@ -31,7 +37,6 @@ describe('priorityList', () => {
       cy.url().should('include', '/report-repair/emergency-repair');
     });
   })
-
 
   context('When a user selects: I have no electricity', ()=>{
     it('should redirect them to emergency page',  () => {
