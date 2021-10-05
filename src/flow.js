@@ -111,18 +111,14 @@ export default class Flow {
     // workout what the new previous step should be.
     if (this._prevStepIsNotDefinedOrEqualsCurrentStep(state)) {
       if (this._prevStepIsInFlow(state)) {
-        console.log(state)
         state.prevStep = this.flow[state.step].prevStep
-        console.log('11111')
       } else {
-        console.log('22222')
         return this.history.push('/')
       }
     }
 
     state.step = state.prevStep
     this.setState(state);
-    console.log('set state', state)
     this.history.push(`${this.path}/${state.prevStep}`)
   }
   handleChange = (input, value, state) => {

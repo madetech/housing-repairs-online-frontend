@@ -30,9 +30,6 @@ export default function Report() {
 
   useEffect(() => {
     return history.listen(location => {
-      if (history.action === 'PUSH') {
-        setLocationKeys([ location.key ])
-      }
 
       if (history.action === 'POP') {
         if (locationKeys[1] !== location.key) {
@@ -41,7 +38,7 @@ export default function Report() {
         }
       }
     })
-  }, [ locationKeys, ])
+  }, [ locationKeys ])
 
   const handleChange = (input, value) => {
     flow.handleChange(input,value,state)
