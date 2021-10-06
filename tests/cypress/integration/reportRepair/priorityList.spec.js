@@ -10,7 +10,7 @@ describe('priorityList', () => {
   context('When a user doesn\'t select any option', ()=>{
     it('an error should be shown',  () => {
       cy.get('button').click()
-      cy.contains('Error');
+      cy.contains('Required');
     });
   });
 
@@ -86,8 +86,8 @@ describe('priorityList', () => {
     });
   })
 
-  context('User uses back buttons to navigate out of an eit page and selects a different option', ()=>{
-    it('should redirect the user to a different eit page',  () => {
+  context('User uses back buttons to navigate out of an exit page and selects a different option', ()=>{
+    it('should redirect the user to a different exit page',  () => {
       cy.contains('I can smell gas').click();
       cy.get('button').click();
       cy.go('back')
@@ -97,8 +97,8 @@ describe('priorityList', () => {
     })
   })
 
-  context('User uses back buttons to navigate out of an eit page and selects the same option', ()=>{
-    it('should redirect the user to the same eit page',  () => {
+  context('User uses back buttons to navigate out of an exit page and selects the same option', ()=>{
+    it('should redirect the user to the same exit page',  () => {
       cy.contains('I can smell gas').click();
       cy.get('button').click();
       cy.go('back')
