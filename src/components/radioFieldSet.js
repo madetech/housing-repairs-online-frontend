@@ -5,29 +5,43 @@ import {
 } from 'govuk-react'
 import { Field, Form } from 'react-final-form';
 
-
-const required = (value) => (value ? undefined : 'Required');
+const required = (value) => {
+  return value ? undefined : 'Required'
+};
 
 const RadioGroup = ({label, hint, options, input, meta}) => (
   <div>
     <MultiChoice label={label} hint={hint} meta={meta}>
-      {options.map((o) => (
-        <div key={o.value}>
-          <Radio {...input} value={o.value} checked={o.value === input.value}>
-            {o.title}
-          </Radio>
-        </div>
+      {options.map(o => (
+        <Radio
+          key={o.value}
+          {...input}
+          value={o.value}
+          checked={o.checked}
+        >
+          {o.title}
+        </Radio>
       ))}
     </MultiChoice>
   </div>
 );
 
 RadioGroup.propTypes = {
+  input: PropTypes.shape({
+    value: PropTypes.string
+  }),
+  meta: PropTypes.shape({}),
   label: PropTypes.string,
-  hint:  PropTypes.string,
-  options:  PropTypes.array,
-  input:  PropTypes.object,
-  meta:  PropTypes.object
+  hint: PropTypes.string,
+  options: PropTypes.array,
+};
+
+RadioGroup.defaultProps = {
+  input: {},
+  meta: {},
+  label: undefined,
+  hint: undefined,
+  options: [],
 };
 
 const RadioFieldSet = ({props}) => (
@@ -44,6 +58,7 @@ const RadioFieldSet = ({props}) => (
             component={RadioGroup}
             options={props.options}
             validate={required}
+            type='radio'
           />
         </Fieldset>
         <div className="govuk-!-margin-top-6">
@@ -67,4 +82,3 @@ RadioFieldSet.propTypes = {
   beforeButton:  PropTypes.object
 };
 export default RadioFieldSet;
-

@@ -117,4 +117,13 @@ describe('priorityList', () => {
       cy.url().should('eq', 'http://localhost:3000/');
     })
   })
+
+  context('When a user proceeds to next step and goes back', ()=>{
+    it('should have user\'s selection reselected',  () => {
+      cy.contains('Something else').click();
+      cy.get('button').click()
+      cy.contains('Back').click();
+      cy.get('[value="non-emergency/9"]').should('be.checked')
+    });
+  })
 });

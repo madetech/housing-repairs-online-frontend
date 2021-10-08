@@ -5,9 +5,15 @@ export default class Flow {
     this.path = path;
     this.flow = {
       'priority-list': {prevStep: false, nextStep: [
-        {condition: 'gas-emergency', nextStep: 'smell-gas'},
-        {condition: 'emergency', nextStep: 'emergency-repair'},
-        {condition: 'non-emergency', nextStep: 'communal'}
+        {condition: 'gas-emergency/1', nextStep: 'smell-gas'},
+        {condition: 'emergency/2', nextStep: 'emergency-repair'},
+        {condition: 'emergency/3', nextStep: 'emergency-repair'},
+        {condition: 'emergency/4', nextStep: 'emergency-repair'},
+        {condition: 'emergency/5', nextStep: 'emergency-repair'},
+        {condition: 'emergency/6', nextStep: 'emergency-repair'},
+        {condition: 'emergency/7', nextStep: 'emergency-repair'},
+        {condition: 'emergency/8', nextStep: 'emergency-repair'},
+        {condition: 'non-emergency/9', nextStep: 'communal'}
       ]},
       'communal': {prevStep: 'priority-list', nextStep: [
         {condition: 'yes', nextStep: 'not-eligible'},
@@ -122,6 +128,8 @@ export default class Flow {
     this.history.push(`${this.path}/${state.prevStep}`)
   }
   handleChange = (input, value, state) => {
+    console.log('HANDLE CHANGE')
+    console.log(state)
     state.data[input] = value
     let nextFlowStep =  this.flow[state.step]?.nextStep
     if (nextFlowStep) {
