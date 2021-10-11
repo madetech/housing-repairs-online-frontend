@@ -7,13 +7,11 @@ import {Component} from 'react';
 class RadioFieldSet extends Component {
   constructor(props) {
     super(props);
-    this.name = this.props.props.name;
-    this.label = this.props.props.label;
-    this.hint = this.props.props.hint;
-    this.options = this.props.props.options;
-    this.title = this.props.props.title;
-    this.onSubmit = this.props.props.onSubmit;
-    this.beforeButton = this.props.props.beforeButton;
+    this.name = this.props.name;
+    this.options = this.props.options;
+    this.title = this.props.title;
+    this.onSubmit = this.props.onSubmit;
+    this.beforeButton = this.props.beforeButton;
     this.state = {
       error: null,
       value: {[this.name]: this.options.find(o => o.checked)?.value}
@@ -73,16 +71,10 @@ class RadioFieldSet extends Component {
 }
 
 RadioFieldSet.propTypes = {
-  props: PropTypes.object,
-  name: PropTypes.string,
-  options: PropTypes.array,
-  onSubmit: PropTypes.func,
-  hint:  PropTypes.string,
-  label:  PropTypes.string,
-  title:  PropTypes.string,
-  input:  PropTypes.object,
-  meta:  PropTypes.object,
-  checked: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  options: PropTypes.array.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  title:  PropTypes.string.isRequired,
   beforeButton:  PropTypes.object
 };
 export default RadioFieldSet;

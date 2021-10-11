@@ -25,20 +25,20 @@ const PriorityList = ({handleChange, values}) => {
     { value: 'non-emergency/9', title: 'Something else'},
   ]
 
-  const options = {
-    name: 'priority-list',
-    title: 'What is the problem?',
-    options: radioOptions.map(o =>{
-      if (values['priority-list'] == o.value) {
-        o.checked =  true
-      }
-      return o
-    }),
-    onSubmit: Continue
-  }
+  const name =  'priority-list';
+  const title =  'What is the problem?';
+  const options =  radioOptions.map(o =>{
+    if (values['priority-list'] == o.value) {
+      o.checked =  true
+    }
+    return o
+  });
+
   return <GridRow>
     <GridCol setWidth="two-third">
-      <RadioFieldSet props={options}></RadioFieldSet>
+      <RadioFieldSet name={name}
+        title={title}
+        options={options} onSubmit={Continue}></RadioFieldSet>
     </GridCol>
   </GridRow>
 };
