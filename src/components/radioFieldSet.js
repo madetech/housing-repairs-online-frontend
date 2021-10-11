@@ -8,13 +8,19 @@ class RadioFieldSet extends Component {
   constructor(props) {
     super(props);
     this.name = this.props.name;
-    this.options = this.props.options;
+    this.checked = this.props.checked;
+    this.options = this.props.options.map(o =>{
+      if (this.checked == o.value) {
+        o.checked = true
+      }
+      return o
+    });
     this.title = this.props.title;
     this.onSubmit = this.props.onSubmit;
     this.beforeButton = this.props.beforeButton;
     this.state = {
       error: null,
-      value: {[this.name]: this.options.find(o => o.checked)?.value}
+      value: {[this.name]: this.checked}
     };
   }
 
@@ -75,6 +81,7 @@ RadioFieldSet.propTypes = {
   options: PropTypes.array.isRequired,
   onSubmit: PropTypes.func.isRequired,
   title:  PropTypes.string.isRequired,
+  checked: PropTypes.string,
   beforeButton:  PropTypes.object
 };
 export default RadioFieldSet;

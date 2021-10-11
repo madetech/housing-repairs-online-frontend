@@ -6,26 +6,13 @@ import {
 } from 'govuk-react'
 import RadioFieldSet from '../radioFieldSet';
 
-
 const Communal = ({handleChange, nextStep, values}) => {
-  const Continue = val => {
-    const selected = val['communal'];
-    handleChange('communal', selected);
-  }
-
-  const radioOptions = [
-    { value: 'yes', title: 'Yes'},
-    { value: 'no', title: 'No'}
-  ]
-
   const name =  'communal';
   const title =  'Is the issue in a communal area?';
-  const options =  radioOptions.map(o =>{
-    if (values['communal'] == o.value) {
-      o.checked =  true
-    }
-    return o
-  });
+  const options =  [
+    { value: 'yes', title: 'Yes'},
+    { value: 'no', title: 'No'}
+  ];
   const beforeButton =  (
     <Details summary="Which areas are communal?" data-testid="communal-area-prompt">
       <span data-testid="communal-area-info">
@@ -35,12 +22,19 @@ const Communal = ({handleChange, nextStep, values}) => {
     </Details>
   );
 
+  const Continue = val => {
+    const selected = val[name];
+    handleChange(name, selected);
+  }
+
   return <GridRow>
     <GridCol setWidth="two-third">
-      {/*<RadioFieldSet props={options}></RadioFieldSet>*/}
       <RadioFieldSet name={name}
         title={title}
-        options={options} onSubmit={Continue} beforeButton={beforeButton}></RadioFieldSet>
+        options={options}
+        onSubmit={Continue}
+        beforeButton={beforeButton}
+        checked={values[name]}></RadioFieldSet>
     </GridCol>
   </GridRow>
 };
