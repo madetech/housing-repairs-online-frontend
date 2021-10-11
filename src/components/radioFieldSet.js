@@ -6,41 +6,6 @@ import {
 import { Field, Form } from 'react-final-form';
 import {Component} from 'react';
 
-const RadioGroup = ({label, hint, options, input, meta}) => (
-  <div>
-    <MultiChoice label={label} hint={hint} meta={meta}>
-      {options.map(o => (
-        <Radio
-          key={o.value}
-          {...input}
-          value={o.value}
-          checked={o.checked}
-        >
-          {o.title}
-        </Radio>
-      ))}
-    </MultiChoice>
-  </div>
-);
-
-RadioGroup.propTypes = {
-  input: PropTypes.shape({
-    value: PropTypes.string
-  }),
-  meta: PropTypes.shape({}),
-  label: PropTypes.string,
-  hint: PropTypes.string,
-  options: PropTypes.array,
-};
-
-RadioGroup.defaultProps = {
-  input: {},
-  meta: {},
-  label: undefined,
-  hint: undefined,
-  options: [],
-};
-
 class RadioFieldSet extends Component {
   constructor(props) {
     super(props);
@@ -52,6 +17,23 @@ class RadioFieldSet extends Component {
     this.onSubmit = this.props.props.onSubmit;
     this.beforeButton = this.props.props.beforeButton;
   }
+
+  radioGroup = ({label, hint, options, input, meta}) => (
+    <div>
+      <MultiChoice label={label} hint={hint} meta={meta}>
+        {options.map(o => (
+          <Radio
+            key={o.value}
+            {...input}
+            value={o.value}
+            checked={o.checked}
+          >
+            {o.title}
+          </Radio>
+        ))}
+      </MultiChoice>
+    </div>
+  );
 
   formSubmit = (params)=>{
     if (Object.keys(params).length === 0 ) {
@@ -79,7 +61,7 @@ class RadioFieldSet extends Component {
                 name={this.name}
                 label={this.label}
                 hint={this.hint}
-                component={RadioGroup}
+                component={this.radioGroup}
                 options={this.options}
                 validate={this.required}
                 type='radio'
