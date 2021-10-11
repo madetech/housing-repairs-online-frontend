@@ -13,13 +13,20 @@ const Communal = ({handleChange, nextStep, values}) => {
     handleChange('communal', selected);
   }
 
+  const radioOptions = [
+    { value: 'yes', title: 'Yes'},
+    { value: 'no', title: 'No'}
+  ]
+
   const options = {
     name: 'communal',
     title: 'Is the issue in a communal area?',
-    options: [
-      { value: 'yes', title: 'Yes'},
-      { value: 'no', title: 'No'}
-    ],
+    options: radioOptions.map(o =>{
+      if (values['communal'] == o.value) {
+        o.checked =  true
+      }
+      return o
+    }),
     beforeButton: (
       <Details summary="Which areas are communal?" data-testid="communal-area-prompt">
         <span data-testid="communal-area-info">
