@@ -128,8 +128,6 @@ export default class Flow {
     this.history.push(`${this.path}/${state.prevStep}`)
   }
   handleChange = (input, value, state) => {
-    console.log('HANDLE CHANGE')
-    console.log(state)
     state.data[input] = value
     let nextFlowStep =  this.flow[state.step]?.nextStep
     if (nextFlowStep) {

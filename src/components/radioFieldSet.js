@@ -4,10 +4,7 @@ import {
   MultiChoice, Radio
 } from 'govuk-react'
 import { Field, Form } from 'react-final-form';
-
-const required = (value) => {
-  return value ? undefined : 'Required'
-};
+import {Component} from 'react';
 
 const RadioGroup = ({label, hint, options, input, meta}) => (
   <div>
@@ -44,31 +41,60 @@ RadioGroup.defaultProps = {
   options: [],
 };
 
-const RadioFieldSet = ({props}) => (
-  <Form
-    onSubmit={props.onSubmit}
-    render={({ handleSubmit }) => (
-      <form onSubmit={handleSubmit}>
-        <Fieldset>
-          <Fieldset.Legend size="XL" isPageHeading>{props.title}</Fieldset.Legend>
-          <Field
-            name={props.name}
-            label={props.label}
-            hint={props.hint}
-            component={RadioGroup}
-            options={props.options}
-            validate={required}
-            type='radio'
-          />
-        </Fieldset>
-        <div className="govuk-!-margin-top-6">
-          {props.beforeButton}
-        </div>
-        <Button>Continue</Button>
-      </form>
-    )}
-  />
-)
+class RadioFieldSet extends Component {
+  constructor(props) {
+    super(props);
+    this.name = this.props.props.name;
+    this.label = this.props.props.label;
+    this.hint = this.props.props.hint;
+    this.options = this.props.props.options;
+    this.title = this.props.props.title;
+    this.onSubmit = this.props.props.onSubmit;
+  }
+
+  formSubmit = (params)=>{
+    if (Object.keys(params).length === 0 ) {
+      params[this.name] = this.options.find(o => o.checked).value;
+    }
+    this.onSubmit(params)
+  };
+
+  required = (value) => {
+    if (value || this.options.find(o => o.checked)) {
+      return undefined
+    } else
+      return 'Required'
+  }
+
+  render(){
+    return (
+      <Form
+        onSubmit={this.formSubmit}
+        render={({handleSubmit}) => (
+          <form onSubmit={handleSubmit}>
+            <Fieldset>
+              <Fieldset.Legend size="XL" isPageHeading>{this.title}</Fieldset.Legend>
+              <Field
+                name={this.name}
+                label={this.label}
+                hint={this.hint}
+                component={RadioGroup}
+                options={this.options}
+                validate={this.required}
+                type='radio'
+              />
+            </Fieldset>
+            <div className="govuk-!-margin-top-6">
+              {this.props.beforeButton}
+            </div>
+            <Button>Continue</Button>
+          </form>
+        )}
+      />
+    )
+  }
+}
+
 RadioFieldSet.propTypes = {
   props: PropTypes.object,
   name: PropTypes.string,
@@ -79,6 +105,7 @@ RadioFieldSet.propTypes = {
   title:  PropTypes.string,
   input:  PropTypes.object,
   meta:  PropTypes.object,
+  checked: PropTypes.string,
   beforeButton:  PropTypes.object
 };
 export default RadioFieldSet;
