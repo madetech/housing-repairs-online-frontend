@@ -50,6 +50,7 @@ class RadioFieldSet extends Component {
     this.options = this.props.props.options;
     this.title = this.props.props.title;
     this.onSubmit = this.props.props.onSubmit;
+    this.beforeButton = this.props.props.beforeButton;
   }
 
   formSubmit = (params)=>{
@@ -85,7 +86,7 @@ class RadioFieldSet extends Component {
               />
             </Fieldset>
             <div className="govuk-!-margin-top-6">
-              {this.props.beforeButton}
+              {this.beforeButton}
             </div>
             <Button>Continue</Button>
           </form>
