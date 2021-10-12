@@ -41,32 +41,34 @@ class RadioFieldSet extends Component {
 
   render(){
     return (
-      <div className={this.state.error ? 'govuk-form-group--error' : 'govuk-form-group'}>
-        <fieldset className="govuk-fieldset">
-          <legend
-            className="govuk-fieldset__legend govuk-fieldset__legend--l">
-            <h1 className="govuk-fieldset__heading">
-              {this.title}
-            </h1>
-          </legend>
-          <span id={`${this.name}-error`}
-            className="govuk-error-message">
-            {this.state.error}
-          </span>
-          <div className="govuk-radios" onChange={this.setValue.bind(this)}>
-            {this.options.map((o, i) => (
-              <div className="govuk-radios__item" key={i}>
-                <input className="govuk-radios__input"
-                  id={`${this.name}-${i}`} name={this.name}
-                  type="radio" value={o.value} defaultChecked={o.checked}/>
-                <label className="govuk-label govuk-radios__label"
-                  htmlFor={`${this.name}-${i}`}>
-                  {o.title}
-                </label>
-              </div>
-            ))}
-          </div>
-        </fieldset>
+      <div>
+        <legend
+          className="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 className="govuk-fieldset__heading">
+            {this.title}
+          </h1>
+        </legend>
+        <div className={this.state.error ? 'govuk-form-group--error' : 'govuk-form-group'}>
+          <fieldset className="govuk-fieldset">
+            <span id={`${this.name}-error`}
+              className="govuk-error-message">
+              {this.state.error}
+            </span>
+            <div className="govuk-radios" onChange={this.setValue.bind(this)}>
+              {this.options.map((o, i) => (
+                <div className="govuk-radios__item" key={i}>
+                  <input className="govuk-radios__input"
+                    id={`${this.name}-${i}`} name={this.name}
+                    type="radio" value={o.value} defaultChecked={o.checked}/>
+                  <label className="govuk-label govuk-radios__label"
+                    htmlFor={`${this.name}-${i}`}>
+                    {o.title}
+                  </label>
+                </div>
+              ))}
+            </div>
+          </fieldset>
+        </div>
         <div className="govuk-!-margin-top-6">
           {this.beforeButton}
         </div>
