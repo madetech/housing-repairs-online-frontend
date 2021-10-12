@@ -43,7 +43,13 @@ export default function Report() {
   const handleChange = (input, value) => {
     flow.handleChange(input,value,state)
   };
+
+  const storeAddresses = (addresses) => {
+    state.addresses = addresses
+    setState(state)
+  }
   const values = state.data;
+  const addresses = state.addresses;
 
   return (
     <div>
@@ -65,12 +71,16 @@ export default function Report() {
         <Route path={`${path}/postcode`}>
           <Postcode
             handleChange={handleChange}
-            values={values}/>
+            values={values}
+            storeAddresses={storeAddresses}
+          />
         </Route>
         <Route path={`${path}/address`}>
           <Address
             handleChange={handleChange}
-            values={values}/>
+            values={values}
+            addresses={addresses}
+          />
         </Route>
         <Route path={`${path}/confirmation`}>
           <Confirmation

@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
-import { Button, InputField, GridRow, GridCol, Fieldset, FormGroup, Link } from 'govuk-react'
+import { Button, Select, GridRow, GridCol, Fieldset, FormGroup, Link } from 'govuk-react'
 import { Link as RouterLink } from 'react-router-dom';
 
-const Address = ({handleChange, nextStep, values}) => {
+const Address = ({handleChange, values, addresses}) => {
   let address;
+
+  addresses = addresses.map((a) => Object.values(a).join(', '))
 
   const onChange = e => {
     address = e.target.value
@@ -12,14 +14,25 @@ const Address = ({handleChange, nextStep, values}) => {
     e.preventDefault();
     handleChange('address', address);
   }
-  const input = { defaultValue: values.address, id: 'address', onChange: onChange }
+
   return <GridRow>
     <GridCol setWidth="two-thirds">
       <Fieldset>
         <Fieldset.Legend size="XL" isPageHeading>Where is the repair located?</Fieldset.Legend>
         <form action="">
           <FormGroup>
-            <InputField name="address" input={input} >Address</InputField>
+            <Select
+              input={{
+                name: 'address',
+                onChange: onChange
+              }}
+            >
+              {addresses?.map((address, i) => (
+                <option value={address} key={i}>
+                  {address}
+                </option>
+              ))}
+            </Select>
           </FormGroup>
           <Button onClick={Continue} >Continue</Button>
         </form>
@@ -29,8 +42,12 @@ const Address = ({handleChange, nextStep, values}) => {
   </GridRow>
 };
 
+Address.defaultProps = {
+  addresses: []
+};
+
 Address.propTypes = {
-  nextStep: PropTypes.func,
+  addresses: PropTypes.array,
   values: PropTypes.object,
   handleChange: PropTypes.func,
 }
