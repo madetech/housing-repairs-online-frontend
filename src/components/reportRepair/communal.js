@@ -1,38 +1,40 @@
 import PropTypes from 'prop-types';
 import {
-  Button,
-  Radio,
   GridRow,
   GridCol,
-  Fieldset,
-  FormGroup, Details
+  Details
 } from 'govuk-react'
-
+import RadioFieldSet from '../radioFieldSet';
 
 const Communal = ({handleChange, nextStep, values}) => {
-  const Continue = e => {
-    e.preventDefault();
-    const el = document.querySelector('input[name="communal"]:checked');
-    handleChange('communal', el.value);
+  const name =  'communal';
+  const title =  'Is the issue in a communal area?';
+  const options =  [
+    { value: 'yes', title: 'Yes'},
+    { value: 'no', title: 'No'}
+  ];
+  const beforeButton =  (
+    <Details summary="Which areas are communal?" data-testid="communal-area-prompt">
+      <span data-testid="communal-area-info">
+          Communal areas are any spaces that are shared with other residents. <br/>
+          For example, this would include gardens, lifts, corridors, or car parks.
+      </span>
+    </Details>
+  );
+
+  const Continue = val => {
+    const selected = val[name];
+    handleChange(name, selected);
   }
+
   return <GridRow>
     <GridCol setWidth="two-third">
-      <Fieldset>
-        <Fieldset.Legend size="XL" isPageHeading>Is the issue in a communal area?</Fieldset.Legend>
-        <form action="">
-          <FormGroup>
-            <Radio name="communal" value="yes">Yes</Radio>
-            <Radio name="communal" value="no">No</Radio>
-          </FormGroup>
-          <Details summary="Which areas are communal?" className="govuk-!-margin-top-6" data-testid="communal-area-prompt">
-            <span data-testid="communal-area-info">
-              Communal areas are any spaces that are shared with other residents. <br/>
-              For example, this would include gardens, lifts, corridors, or car parks.
-            </span>
-          </Details>
-          <Button onClick={Continue} >Continue</Button>
-        </form>
-      </Fieldset>
+      <RadioFieldSet name={name}
+        title={title}
+        options={options}
+        onSubmit={Continue}
+        beforeButton={beforeButton}
+        checked={values[name]}></RadioFieldSet>
     </GridCol>
   </GridRow>
 };

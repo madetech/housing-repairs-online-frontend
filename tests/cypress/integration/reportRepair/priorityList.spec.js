@@ -7,6 +7,13 @@ describe('priorityList', () => {
     cy.contains('What is the problem?');
   });
 
+  context('When a user doesn\'t select any option', ()=>{
+    it('an error should be shown',  () => {
+      cy.get('button').click()
+      cy.contains('Required');
+    });
+  });
+
   context('When a user selects: I can smell gas', ()=>{
     it('should redirect them to smell gas page',  () => {
       cy.contains('I can smell gas').click();
@@ -23,7 +30,6 @@ describe('priorityList', () => {
     });
   })
 
-
   context('When a user selects: I have no water', ()=>{
     it('should redirect them to emergency page',  () => {
       cy.contains('I have no water').click();
@@ -31,7 +37,6 @@ describe('priorityList', () => {
       cy.url().should('include', '/report-repair/emergency-repair');
     });
   })
-
 
   context('When a user selects: I have no electricity', ()=>{
     it('should redirect them to emergency page',  () => {
@@ -81,8 +86,8 @@ describe('priorityList', () => {
     });
   })
 
-  context('User uses back buttons to navigate out of an eit page and selects a different option', ()=>{
-    it('should redirect the user to a different eit page',  () => {
+  context('User uses back buttons to navigate out of an exit page and selects a different option', ()=>{
+    it('should redirect the user to a different exit page',  () => {
       cy.contains('I can smell gas').click();
       cy.get('button').click();
       cy.go('back')
@@ -92,8 +97,8 @@ describe('priorityList', () => {
     })
   })
 
-  context('User uses back buttons to navigate out of an eit page and selects the same option', ()=>{
-    it('should redirect the user to the same eit page',  () => {
+  context('User uses back buttons to navigate out of an exit page and selects the same option', ()=>{
+    it('should redirect the user to the same exit page',  () => {
       cy.contains('I can smell gas').click();
       cy.get('button').click();
       cy.go('back')
@@ -111,5 +116,14 @@ describe('priorityList', () => {
       cy.go('back')
       cy.url().should('eq', 'http://localhost:3000/');
     })
+  })
+
+  context('When a user proceeds to next step and goes back', ()=>{
+    it('should have user\'s selection reselected',  () => {
+      cy.contains('Something else').click();
+      cy.get('button').click()
+      cy.contains('Back').click();
+      cy.get('[value="non-emergency/9"]').should('be.checked')
+    });
   })
 });
