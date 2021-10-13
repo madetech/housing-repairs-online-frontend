@@ -137,12 +137,12 @@ describe('Flow', () => {
     describe('when next step is conditional', ()=>{
       describe('when condition exists', ()=>{
         test('next step and data are set appropriately', ()=>{
-          flow.handleChange('field', 'emergency', {step: 'priority-list', data: {}});
+          flow.handleChange('field', 'emergency/2', {step: 'priority-list', data: {}});
           expect(setStateSpy).toHaveBeenCalledWith({
             prevStep: 'priority-list',
             step: 'emergency-repair',
             data: {
-              'field': 'emergency'
+              'field': 'emergency/2'
             }
           });
           expect(historySpy.push).toHaveBeenCalledWith(`${pathDummy}/emergency-repair`);

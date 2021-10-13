@@ -44,5 +44,13 @@ describe('communal', () => {
       cy.get('button').click()
       cy.url().should('include', '/report-repair/postcode');
     });
+  });
+
+
+  context('When a user doesn\t select anything', ()=>{
+    it('should show required message',  () => {
+      cy.get('button').click()
+      cy.contains('Required');
+    });
   })
 });
