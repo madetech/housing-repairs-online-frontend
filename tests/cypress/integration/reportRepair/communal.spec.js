@@ -46,8 +46,14 @@ describe('communal', () => {
     });
   });
 
+  context('When a user doesn\'t select any option', ()=>{
+    it('an error should be shown',  () => {
+      cy.get('button').click()
+      cy.contains('Required');
+    });
+  });
 
-  context('When a user doesn\t select anything', ()=>{
+  context('When a user doesn\'t select anything', ()=>{
     it('should show required message',  () => {
       cy.get('button').click()
       cy.contains('Required');
