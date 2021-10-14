@@ -16,7 +16,7 @@ export default class Flow {
         {condition: 'non-emergency/9', nextStep: 'communal'}
       ]},
       'communal': {prevStep: 'priority-list', nextStep: [
-        {condition: 'yes', nextStep: 'not-eligible'},
+        {condition: 'yes', nextStep: 'not-eligible-non-emergency'},
         {condition: 'no', nextStep: 'postcode'}
       ]},
       'postcode': {prevStep: 'communal', nextStep: 'address'},
