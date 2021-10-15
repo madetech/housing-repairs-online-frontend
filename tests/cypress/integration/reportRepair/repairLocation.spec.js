@@ -40,14 +40,14 @@ describe('repairLocation', () => {
       it('should redirect them to kitchen repair type page',  () => {
         cy.contains('Kitchen').click();
         cy.get('button').click()
-        cy.url().should('include', '/report-repair/repair-type');
+        cy.url().should('include', '/report-repair/repair-kitchen-types');
       });
     });
     context('by checking the radio button', ()=>{
       it('should redirect them to kitchen repair type page',  () => {
         cy.get('[value="kitchen"]').check();
         cy.get('button').click()
-        cy.url().should('include', '/report-repair/repair-type');
+        cy.url().should('include', '/report-repair/repair-kitchen-types');
       });
     });
   });

@@ -22,9 +22,9 @@ export default class Flow {
       'postcode': {prevStep: 'communal', nextStep: 'address'},
       'address': {prevStep: 'postcode', nextStep: 'repair-location'},
       'repair-location': { prevStep: 'address', nextStep: [
-        {condition: 'kitchen', nextStep: 'repair-type'}
+        {condition: 'kitchen', nextStep: 'repair-kitchen-types'}
       ]},
-      'repair-type': { prevStep: 'repair-location', nextStep: [
+      'repair-kitchen-types': { prevStep: 'repair-location', nextStep: [
         {condition: 'cupboards-or-worktops', nextStep: 'repair-description'},
         {condition: 'damp-or-mould', nextStep: 'repair-description-damp'},
         {condition: 'electrical', nextStep: 'repair-description'},
@@ -33,7 +33,7 @@ export default class Flow {
         {condition: 'drip-or-leak', nextStep: 'repair-description-leak'},
         {condition: 'something-else', nextStep: 'repair-description'}
       ]},
-      'repair-description-damp': {prevStep: 'repair-type', nextStep: [
+      'repair-description-damp': {prevStep: 'repair-kitchen-types', nextStep: [
         {condition: 'damp', nextStep: 'repair-damp'},
         {condition: 'mould', nextStep: 'repair-description-damp-mold'},
         {condition: 'both', nextStep: 'repair-description'},
@@ -42,7 +42,7 @@ export default class Flow {
       'repair-damp': { prevStep: 'repair-description-damp', nextStep: 'repair-description-damp-pipes'},
       'repair-description-damp-pipes': {prevStep: 'repair-damp', nextStep:'repair-description' },
       'repair-description-damp-mold': {prevStep:'repair-description-damp', nextStep: 'repair-description' },
-      'repair-description-electrical': { prevStep: 'repair-type', nextStep: [
+      'repair-description-electrical': { prevStep: 'repair-kitchen-types', nextStep: [
         {condition: 'extractor-fan', nextStep: 'repair-description'},
         {condition: 'light-fitting', nextStep: 'repair-description'},
         {condition: 'light-switch', nextStep: 'repair-description'},
@@ -53,14 +53,14 @@ export default class Flow {
       ]},
       'repair-description-electrical-smoke-alarm': {prevStep: 'repair-description-electrical'},
       'repair-description-electrical-carbon-monoxide-alarm': {prevStep: 'repair-description-electrical'},
-      'repair-description-heating-water': {prevStep: 'repair-type', nextStep: [
+      'repair-description-heating-water': {prevStep: 'repair-kitchen-types', nextStep: [
         {condition: 'no-heating-or-hot-water', nextStep: 'repair-description-heating-water-emergency'},
         {condition: 'radiator-not-working', nextStep: 'repair-description'},
         {condition: 'radiator-coming-loose', nextStep: 'repair-description'},
         {condition: 'radiator-leaking', nextStep: 'repair-description'},
         {condition: 'something-else', nextStep: 'repair-description'},
       ]},
-      'repair-description-leak': { prevStep: 'repair-type', nextStep: [
+      'repair-description-leak': { prevStep: 'repair-kitchen-types', nextStep: [
         {condition: 'dripping-from-wall-or-ceiling', nextStep: 'repair-description-leak-electrics'},
         {condition: 'containable-sink-leak', nextStep: 'repair-description'},
         {condition: 'tap-dripping-water', nextStep: 'repair-description'},
@@ -90,7 +90,7 @@ export default class Flow {
         {condition: 'change-contact-details', nextStep: 'contact-details'},
         {condition: 'change-phone-number', nextStep: 'contact-details-appointment'},
         {condition: 'change-location', nextStep: 'repair-location'},
-        {condition: 'change-issue', nextStep: 'repair-type'},
+        {condition: 'change-issue', nextStep: 'repair-kitchen-types'},
         {condition: 'change-description', nextStep: 'repair-description'},
         {condition: 'change-appointment-date', nextStep: 'repair-availability'},
         {condition: 'change-appointment-information', nextStep: 'personal-details'},
