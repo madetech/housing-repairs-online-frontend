@@ -34,7 +34,7 @@ describe('communal', () => {
     it('should redirect them to not eligible non emergency page',  () => {
       cy.contains('Yes').click();
       cy.get('button').click()
-      cy.url().should('include', '/report-repair/not-eligible-non-emergency');
+      cy.url().should('include', '/report-repair/not-eligible-communal-repairs');
     });
   });
 
@@ -50,7 +50,7 @@ describe('communal', () => {
     });
     it('and then it will redirect them to the not eligible if they click cannot find my address',  () => {
       cy.get('button').click()
-      cy.contains('Can not find my address').click();
+      cy.contains('I can\'t find my address').click();
       cy.url().should('include', '/report-repair/not-eligible');
     });
   

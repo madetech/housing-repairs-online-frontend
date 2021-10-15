@@ -21,7 +21,7 @@ const Address = ({handleChange, nextStep, values}) => {
           <FormGroup>
             <InputField name="address" input={input} >Address</InputField>
           </FormGroup>
-          <Link as={RouterLink} to="not-eligible">I can't find my address on this list</Link>
+          <Link as={RouterLink} to="not-eligible">I can&apos;t find my address on this list</Link>
           <br/>
           <br/>
           <Button onClick={Continue} >Continue</Button>
