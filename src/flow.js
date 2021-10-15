@@ -21,7 +21,9 @@ export default class Flow {
       ]},
       'postcode': {prevStep: 'communal', nextStep: 'address'},
       'address': {prevStep: 'postcode', nextStep: 'repair-location'},
-      'repair-location': { prevStep: 'address', nextStep: 'repair-type'},
+      'repair-location': { prevStep: 'address', nextStep: [
+        {condition: 'kitchen', nextStep: 'repair-type'}
+      ]},
       'repair-type': { prevStep: 'repair-location', nextStep: [
         {condition: 'cupboards-or-worktops', nextStep: 'repair-description'},
         {condition: 'damp-or-mould', nextStep: 'repair-description-damp'},
