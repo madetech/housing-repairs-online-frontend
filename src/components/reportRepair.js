@@ -8,6 +8,8 @@ import NotEligible from './reportRepair/notEligible';
 import SmellGas from './reportRepair/smellGas';
 import Communal from './reportRepair/communal';
 import NotEligibleCommunalRepairs from './reportRepair/NotEligibleCommunalRepairs'
+import RepairLocation from './reportRepair/repairLocation';
+
 import { BackLink } from 'govuk-react';
 import Flow from '../flow';
 import {
@@ -88,6 +90,12 @@ export default function Report() {
         </Route>
         <Route path={`${path}/smell-gas`}>
           <SmellGas/>
+        </Route>
+        <Route path={`${path}/repair-location`}>
+          <RepairLocation
+            handleChange={handleChange}
+            values={values}
+          />
         </Route>
       </Switch>
     </div>
