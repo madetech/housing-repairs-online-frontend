@@ -12,7 +12,7 @@ const NotEligibleCommunalRepairs = () => {
     <GridRow>
       <GridCol setWidth="two-thirds">
         <H1>
-          For communal repairs places call us during the office hours below
+          For communal repairs please call us during the office hours below
         </H1>
         <UnorderedList>
           <ListItem> Monday 9am - 5pm</ListItem>
