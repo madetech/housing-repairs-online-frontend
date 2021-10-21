@@ -58,13 +58,13 @@ function LandingPage() {
               <Paragraph>
                 Opening times:
               </Paragraph>
-              <unOrderedList>
+              <UnorderedList>
                 <ListItem>Monday 9am - 5pm</ListItem>
                 <ListItem>Tuesday 9am - 5pm</ListItem>
                 <ListItem>Wednesday 9am - 4.30pm</ListItem>
                 <ListItem>Thursday 10am - 5pm</ListItem>
                 <ListItem>Friday 9am - 4.30pm</ListItem>
-              </unOrderedList>
+              </UnorderedList>
             </div>
           </Details>
           <Paragraph>
@@ -82,14 +82,14 @@ function LandingPage() {
               <Paragraph>
                 They can include:
               </Paragraph>
-              <unOrderedList>
+              <UnorderedList>
                 <ListItem>repairs to door entry systems</ListItem>
                 <ListItem>lock repairs to communal doors</ListItem>
                 <ListItem>lighting repairs to shared areas</ListItem>
                 <ListItem>glazing repairs to shared doors or stairway windows</ListItem>
                 <ListItem>roof and gutter repairs</ListItem>
                 <ListItem>structure and external walls to your block</ListItem>
-              </unOrderedList>
+              </UnorderedList>
             </div>
           </Details>
           <a href="/report-repair" role="button" draggable="false"
