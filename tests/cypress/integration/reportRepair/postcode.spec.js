@@ -15,7 +15,6 @@ describe('postcode', () => {
     it('an error should be shown',  () => {
       cy.get('button').click()
       cy.contains('Required');
-      cy.get('input').type('Hello, World')
     });
   });
 

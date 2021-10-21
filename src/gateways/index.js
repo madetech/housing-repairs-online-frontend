@@ -1,5 +1,5 @@
-import SearchProperties from './SearchProperties';
+import SearchPropertiesGateway from './SearchPropertiesGateway';
 
 export {
-  SearchProperties
+  SearchPropertiesGateway
 };

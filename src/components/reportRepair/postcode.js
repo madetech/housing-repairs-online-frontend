@@ -3,13 +3,13 @@ import {
   GridRow,
   GridCol,
 } from 'govuk-react'
-import {SearchProperties} from '../../gateways';
+import {SearchPropertiesGateway} from '../../gateways';
 import TextInput from '../textInput';
 
 const Postcode = ({handleChange, values, storeAddresses}) => {
   const Continue = val => {
     const postcode = val['postcode'];
-    SearchProperties(postcode)
+    SearchPropertiesGateway(postcode)
       .then(results => {
         storeAddresses(results);
         handleChange('postcode', postcode);

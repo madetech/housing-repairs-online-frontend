@@ -5,7 +5,12 @@ import { Link as RouterLink } from 'react-router-dom';
 const Address = ({handleChange, values, addresses}) => {
   let address;
 
-  addresses = addresses.map((a) => Object.values(a).join(', '))
+  addresses = addresses.map((a) => {
+    return {
+      obj: a,
+      display: `${a.addressLine1}, ${a.addressLine2}, ${a.postCode}`
+    }
+  })
 
   const onChange = e => {
     address = e.target.value
@@ -27,9 +32,12 @@ const Address = ({handleChange, values, addresses}) => {
                 onChange: onChange
               }}
             >
+              <option value={undefined}>
+                {addresses?.length} addresses found
+              </option>
               {addresses?.map((address, i) => (
-                <option value={address} key={i}>
-                  {address}
+                <option value={Object.values(address.obj)} key={i}>
+                  {address.display}
                 </option>
               ))}
             </Select>
