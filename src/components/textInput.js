@@ -11,6 +11,7 @@ class TextInput extends Component {
     this.title = this.props.title;
     this.label = this.props.label;
     this.onSubmit = this.props.onSubmit;
+    this.validation = this.props.validation;
     this.state = {
       value: this.props.value || '',
       error: {}
@@ -30,13 +31,25 @@ class TextInput extends Component {
   };
 
   formSubmit = (e) => {
+    e.preventDefault();
+
     if (this.state.value?.length > 0) {
       this.setState({
         value: this.state.value,
         error: {}
       });
+      if (this.validation && !this.validation.isValid(this.state.value)) {
+        return this.setState({
+          value: this.state.value,
+          error: {
+            error: this.validation.errorMessage,
+            touched: true
+          }
+        })
+      }
       return this.onSubmit(this.state.value)
     }
+
     this.setState({
       value: this.state.value,
       error: {
@@ -66,7 +79,10 @@ TextInput.propTypes = {
   name: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
   label: PropTypes.string,
-  onChange: PropTypes.func,
-  title:  PropTypes.string.isRequired
+  title:  PropTypes.string.isRequired,
+  validation: PropTypes.shape({
+    errorMessage: PropTypes.string,
+    isValid: PropTypes.func
+  }),
 };
 export default TextInput;
