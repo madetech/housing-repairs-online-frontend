@@ -24,22 +24,21 @@ class TextInput extends Component {
 
   setValue(event) {
     this.setState({
-      value: {[this.name]: event.target.value},
+      value: event.target.value,
       error: {}
     })
   };
 
   formSubmit = (e) => {
-    e.preventDefault();
-    if (this.state.value) {
+    if (this.state.value?.length > 0) {
       this.setState({
-        value: {[this.name]: this.state.value},
+        value: this.state.value,
         error: {}
       });
       return this.onSubmit(this.state.value)
     }
     this.setState({
-      value: {[this.name]: this.state.value},
+      value: this.state.value,
       error: {
         error: 'Required',
         touched: true
