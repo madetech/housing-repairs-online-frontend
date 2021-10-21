@@ -1,4 +1,4 @@
-const {SearchProperties} = require('../../../src/gateways');
+const {SearchPropertiesGateway} = require('../../../src/gateways');
 
 describe('SearchProperties', () => {
   let mockedFetch;
@@ -21,10 +21,10 @@ describe('SearchProperties', () => {
   });
 
   test('api gets called appropriately', async () => {
-    await SearchProperties(postcode);
+    await SearchPropertiesGateway(postcode);
 
     expect(mockedFetch).toHaveBeenCalledWith(
-      `${api_url}/address-search?postcode=${postcode}`,
+      `${api_url}/addresses?postcode=${postcode}`,
       {'headers': {'X-API-Key': api_key}}
     )
   });
@@ -33,7 +33,7 @@ describe('SearchProperties', () => {
     test('an error gets raised', async () => {
       status = 400;
 
-      await SearchProperties(postcode).then((res)=>{
+      await SearchPropertiesGateway(postcode).then((res)=>{
         expect(res).toEqual(Error('Error searching'));
       });
     })
