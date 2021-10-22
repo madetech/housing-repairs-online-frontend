@@ -1,12 +1,19 @@
+import {intercept_address_search} from './helpers';
+
 describe('repairLocation', () => {
   beforeEach(() => {
+    const postcode = 'M3 0W';
+    intercept_address_search(postcode);
     cy.visit('http://localhost:3000/report-repair/');
     cy.contains('Something else').click();
     cy.get('button').click();
     cy.contains('No').click();
     cy.get('button').click();
+    cy.get('input').type(postcode);
     cy.get('button').click();
+    cy.wait(2000)
     cy.get('button').click();
+
   });
 
   it('displays the repair location question', () => {
