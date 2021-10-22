@@ -1,8 +1,8 @@
-import {intercept_address_search} from './helpers';
+import {intercept_address_search} from '../../support/helpers';
 
 describe('address', () => {
   beforeEach(() => {
-    const postcode = 'M3 0W';
+    const postcode = 'SW1A 1AA';
     intercept_address_search(postcode);
     cy.visit('http://localhost:3000/report-repair/');
     cy.contains('Something else').click();
@@ -11,7 +11,6 @@ describe('address', () => {
     cy.get('button').click();
     cy.get('input').type(postcode);
     cy.get('button').click();
-    cy.wait(2000)
 
   });
 

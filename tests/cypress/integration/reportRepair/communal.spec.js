@@ -1,3 +1,5 @@
+import {intercept_address_search} from "../../support/helpers";
+
 describe('communal', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/report-repair/');
@@ -40,20 +42,23 @@ describe('communal', () => {
 
   context('When a user selects: No', ()=>{
     beforeEach(() => {
+      intercept_address_search();
       cy.contains('No').click();
       cy.get('button').click()
     });
     it('should redirect them to postcode then address page respectively',  () => {
       cy.url().should('include', '/report-repair/postcode');
+      cy.get('input').type('SW1A 1AA');
       cy.get('button').click()
       cy.url().should('include', '/report-repair/address');
     });
     it('and then it will redirect them to the not eligible if they click cannot find my address',  () => {
+      cy.get('input').type('SW1A 1AA');
       cy.get('button').click()
       cy.contains('I can\'t find my address').click();
       cy.url().should('include', '/report-repair/not-eligible');
     });
-  
+
   });
 
   context('When a user doesn\'t select any option', ()=>{

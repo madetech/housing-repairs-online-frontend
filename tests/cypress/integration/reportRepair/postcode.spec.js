@@ -1,4 +1,4 @@
-import {intercept_address_search} from './helpers';
+import {intercept_address_search} from '../../support/helpers';
 
 describe('postcode', () => {
   beforeEach(() => {
