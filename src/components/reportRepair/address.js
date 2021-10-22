@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import { Button, Select, GridRow, GridCol, Fieldset, FormGroup, Link } from 'govuk-react'
 import { Link as RouterLink } from 'react-router-dom';
+import {useState} from 'react';
 
 const Address = ({handleChange, values, addresses}) => {
-  let address;
+  const [state, setState] = useState({error: {}, value: 'null'});
 
   addresses = addresses.map((a) => {
     return {
@@ -12,12 +13,22 @@ const Address = ({handleChange, values, addresses}) => {
     }
   })
 
+  const found_addresses = `${addresses?.length} ${addresses?.length === 1 ? 'address': 'addresses'} found`
+
   const onChange = e => {
-    address = e.target.value
+    setState({error: {}, value: e.target.value})
   }
+
   const Continue = e => {
     e.preventDefault();
-    handleChange('address', address);
+
+    if (state.value === 'null') {
+      return setState({error: {
+        error: 'Required',
+        touched: true
+      }})
+    }
+    return handleChange('address', state.value);
   }
 
   return <GridRow>
@@ -31,9 +42,10 @@ const Address = ({handleChange, values, addresses}) => {
                 name: 'address',
                 onChange: onChange
               }}
+              meta={state.error}
             >
-              <option value={undefined}>
-                {addresses?.length} addresses found
+              <option value="null">
+                {found_addresses}
               </option>
               {addresses?.map((address, i) => (
                 <option value={Object.values(address.obj)} key={i}>

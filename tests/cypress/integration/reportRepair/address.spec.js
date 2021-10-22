@@ -11,11 +11,19 @@ describe('address', () => {
     cy.get('button').click();
     cy.get('input').type(postcode);
     cy.get('button').click();
-
   });
 
   it('displays the question', () => {
     cy.contains('Where is the repair located?');
   });
+
+
+  context('When a user doesn\'t select anything', ()=>{
+    it('an error should be shown',  () => {
+      cy.get('button').click()
+      cy.contains('Required');
+    });
+  });
+
 
 });
