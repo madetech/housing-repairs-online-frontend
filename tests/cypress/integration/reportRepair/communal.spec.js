@@ -31,19 +31,29 @@ describe('communal', () => {
   });
 
   context('When a user selects: Yes', ()=>{
-    it('should redirect them to smell gas page',  () => {
+    it('should redirect them to not eligible non emergency page',  () => {
       cy.contains('Yes').click();
       cy.get('button').click()
-      cy.url().should('include', '/report-repair/not-eligible');
+      cy.url().should('include', '/report-repair/not-eligible-communal-repairs');
     });
   });
 
   context('When a user selects: No', ()=>{
-    it('should redirect them to smell gas page',  () => {
+    beforeEach(() => {
       cy.contains('No').click();
       cy.get('button').click()
-      cy.url().should('include', '/report-repair/postcode');
     });
+    it('should redirect them to postcode then address page respectively',  () => {
+      cy.url().should('include', '/report-repair/postcode');
+      cy.get('button').click()
+      cy.url().should('include', '/report-repair/address');
+    });
+    it('and then it will redirect them to the not eligible if they click cannot find my address',  () => {
+      cy.get('button').click()
+      cy.contains('I can\'t find my address').click();
+      cy.url().should('include', '/report-repair/not-eligible');
+    });
+  
   });
 
   context('When a user doesn\'t select any option', ()=>{

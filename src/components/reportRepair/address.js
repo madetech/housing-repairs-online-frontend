@@ -42,10 +42,12 @@ const Address = ({handleChange, values, addresses}) => {
               ))}
             </Select>
           </FormGroup>
+          <Link as={RouterLink} to="not-eligible">I can&apos;t find my address on this list</Link>
+          <br/>
+          <br/>
           <Button onClick={Continue} >Continue</Button>
         </form>
       </Fieldset>
-      <Link as={RouterLink} to="not-eligible">Can not find my address</Link>
     </GridCol>
   </GridRow>
 };

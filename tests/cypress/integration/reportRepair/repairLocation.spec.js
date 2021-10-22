@@ -1,0 +1,70 @@
+describe('repairLocation', () => {
+  beforeEach(() => {
+    cy.visit('http://localhost:3000/report-repair/');
+    cy.contains('Something else').click();
+    cy.get('button').click();
+    cy.contains('No').click();
+    cy.get('button').click();
+    cy.get('button').click();
+    cy.get('button').click();
+  });
+
+  it('displays the repair location question', () => {
+    cy.contains('Where is the problem located?');
+  });
+
+  context('repair location options', () => {
+    it('displays "Kitchen" as an option', () => {
+      cy.contains('Kitchen');
+    });
+
+    it('displays "Bathroom" as an option', () => {
+      cy.contains('Bathroom');
+    });
+
+    it('displays "Bedroom" as an option', () => {
+      cy.contains('Bedroom');
+    });
+
+    it('displays "Living Areas" as an option', () => {
+      cy.contains('Living Areas');
+    });
+
+    it('displays "Outside" as an option', () => {
+      cy.contains('Outside');
+    });
+  });
+
+  context('When a user selects: Kitchen', ()=>{
+    context('by clicking the label', ()=>{
+      it('should redirect them to kitchen repair type page',  () => {
+        cy.contains('Kitchen').click();
+        cy.get('button').click()
+        cy.url().should('include', '/report-repair/repair-kitchen-types');
+      });
+    });
+    context('by checking the radio button', ()=>{
+      it('should redirect them to kitchen repair type page',  () => {
+        cy.get('[value="kitchen"]').check();
+        cy.get('button').click()
+        cy.url().should('include', '/report-repair/repair-kitchen-types');
+      });
+    });
+  });
+
+  context('When a user selects an option', ()=>{
+    it('should be selected when they navigate back to the page',  () => {
+      cy.contains('Kitchen').click();
+      cy.get('button').click()
+      cy.contains('Back').click()
+      cy.get('[value="kitchen"]').should('be.checked')
+    });
+  });
+
+  context('When a user doesn\'t select anything', ()=>{
+    it('should show required message',  () => {
+      cy.get('button').click()
+      cy.contains('Required');
+    });
+  })
+});
