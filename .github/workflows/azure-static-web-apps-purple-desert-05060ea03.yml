@@ -11,7 +11,7 @@ on:
 
 jobs:
   test:
-    name: Test and lint
+    name: Lint and unit test
     runs-on: ubuntu-latest
     strategy:
       matrix:
