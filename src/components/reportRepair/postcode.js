@@ -8,11 +8,10 @@ import TextInput from '../textInput';
 
 const Postcode = ({handleChange, values, storeAddresses}) => {
   const Continue = val => {
-    const postcode = val['postcode'];
-    SearchPropertiesGateway(postcode)
+    SearchPropertiesGateway(val)
       .then(results => {
         storeAddresses(results);
-        handleChange('postcode', postcode);
+        handleChange('postcode', val);
       })
       .catch(err => {
         console.error(err)
