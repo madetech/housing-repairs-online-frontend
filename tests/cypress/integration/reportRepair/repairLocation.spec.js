@@ -2,17 +2,16 @@ import {intercept_address_search} from '../../support/helpers';
 
 describe('repairLocation', () => {
   beforeEach(() => {
-    const postcode = 'SW1A 1AA';
-    intercept_address_search(postcode);
+    intercept_address_search();
     cy.visit('http://localhost:3000/report-repair/');
     cy.contains('Something else').click();
     cy.get('button').click();
     cy.contains('No').click();
     cy.get('button').click();
-    cy.get('input').type(postcode);
+    cy.get('input').type('SW1A 2AA');
     cy.get('button').click();
+    cy.get('select').select('1 Downing Street, London, SW1A 2AA')
     cy.get('button').click();
-
   });
 
   it('displays the repair location question', () => {

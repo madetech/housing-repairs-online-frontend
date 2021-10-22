@@ -48,12 +48,12 @@ describe('communal', () => {
     });
     it('should redirect them to postcode then address page respectively',  () => {
       cy.url().should('include', '/report-repair/postcode');
-      cy.get('input').type('SW1A 1AA');
+      cy.get('input').type('SW1A 2AA');
       cy.get('button').click()
       cy.url().should('include', '/report-repair/address');
     });
     it('and then it will redirect them to the not eligible if they click cannot find my address',  () => {
-      cy.get('input').type('SW1A 1AA');
+      cy.get('input').type('SW1A 2AA');
       cy.get('button').click()
       cy.contains('I can\'t find my address').click();
       cy.url().should('include', '/report-repair/not-eligible');

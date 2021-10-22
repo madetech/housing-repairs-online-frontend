@@ -34,7 +34,7 @@ describe('postcode', () => {
     });
 
     it('the user proceeds to the address selection',  () => {
-      cy.get('input').type('SW1A 1AA');
+      cy.get('input').type('SW1A 2AA');
       cy.get('button').click()
       cy.url().should('include', '/report-repair/address');
     });
