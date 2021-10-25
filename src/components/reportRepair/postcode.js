@@ -1,42 +1,48 @@
 import PropTypes from 'prop-types';
 import {
-  Button,
-  InputField,
   GridRow,
   GridCol,
-  Fieldset,
-  FormGroup
 } from 'govuk-react'
+import {SearchPropertiesGateway} from '../../gateways';
+import TextInput from '../textInput';
 
-
-const Postcode = ({handleChange, nextStep, values}) => {
-  let postcode;
-
-  const onChange = e => {
-    postcode = e.target.value
+const Postcode = ({handleChange, values, storeAddresses}) => {
+  const Continue = val => {
+    SearchPropertiesGateway(val)
+      .then(results => {
+        storeAddresses(results);
+        handleChange('postcode', val);
+      })
+      .catch(err => {
+        console.error(err)
+      });
   }
-  const Continue = e => {
-    e.preventDefault();
-    handleChange('postcode', postcode);
+
+  const Validation = {
+    errorMessage: 'Not a valid postcode',
+    isValid: (postcode) =>{
+      const str = postcode.toUpperCase();
+      const regexp = /^[A-Z]{1,2}[0-9][0-9A-Z]?\s?[0-9][A-Z]{2}$|^[A-Z]{2}-?[0-9]{4}$/;
+      return regexp.test(str);
+    }
   }
-  const input = { defaultValue: values.postcode, id: 'postcode', onChange: onChange }
+
   return <GridRow>
     <GridCol setWidth="two-thirds">
-      <Fieldset>
-        <Fieldset.Legend size="XL" isPageHeading>Where is the repair located?</Fieldset.Legend>
-        <form action="">
-          <FormGroup>
-            <InputField name="postcode" input={input} >Postcode</InputField>
-          </FormGroup>
-          <Button onClick={Continue} >Continue</Button>
-        </form>
-      </Fieldset>
+      <TextInput
+        value={values.postcode}
+        name={'postcode'}
+        onSubmit={Continue}
+        validation={Validation}
+        label="Postcode"
+        title="What is the property address?"
+      ></TextInput>
     </GridCol>
   </GridRow>
 };
 
 Postcode.propTypes = {
-  nextStep: PropTypes.func,
+  storeAddresses: PropTypes.func,
   values: PropTypes.object,
   handleChange: PropTypes.func,
 }
