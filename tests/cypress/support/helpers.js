@@ -1,5 +1,5 @@
 export function intercept_address_search(numberOfResults = 1, postcode='SW1A 2AA') {
-  const api_url = 'http://repais.api';
+  const api_url = 'http://repairs.api';
   const response = [];
 
   for (let i = 0; i < numberOfResults; i++) {
