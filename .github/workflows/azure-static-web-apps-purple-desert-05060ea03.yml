@@ -52,7 +52,7 @@ jobs:
           output_location: "build" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
         env:
-          REACT_APP_REPAIRS_API: ${{ secrets.REACT_APP_ADDRESSES_API_KEY }}
+          REACT_APP_REPAIRS_API: ${{ secrets.REACT_APP_REPAIRS_API_KEY }}
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
