@@ -45,4 +45,4 @@ jobs:
           app-name: 'housing-repairs-online-frontend'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_93A2B31E1577402AA3DF54EE6CCDDA25 }}
-          package: build
+          package: ./build
