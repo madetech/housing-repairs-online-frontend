@@ -1328,6 +1328,11 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
+"@ljharb/eslint-config@^19.0.1":
+  version "19.0.1"
+  resolved "https://registry.yarnpkg.com/@ljharb/eslint-config/-/eslint-config-19.0.1.tgz#a325c506119cce78e37bd5398724fd18d7ef163e"
+  integrity sha512-KlmeoU1y5zBUsRKLhMRX/CWqte2mqKlT5j9llupF0QmlYNX5xFJPzKEcIoY1xudwtRDPJ2nS3qozZjEGIbyT4Q==
+
 "@napi-rs/triples@1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@napi-rs/triples/-/triples-1.0.3.tgz#76d6d0c3f4d16013c61e45dfca5ff1e6c31ae53c"

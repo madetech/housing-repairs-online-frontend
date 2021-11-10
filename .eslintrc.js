@@ -5,7 +5,8 @@ module.exports = {
   },
   'extends': [
     'plugin:react/recommended',
-    'plugin:editorconfig/all'
+    'plugin:editorconfig/all',
+    'next/core-web-vitals'
   ],
   'parser': 'babel-eslint',
   'parserOptions': {
