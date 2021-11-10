@@ -1,4 +1,4 @@
-import Flow from '../../src/flow'
+import Flow from '../../flow'
 
 describe('Flow', () => {
   let setStateSpy;
@@ -28,7 +28,7 @@ describe('Flow', () => {
         prevStep: '',
         step: step
       });
-      expect(historySpy.push).toHaveBeenCalledWith(`${pathDummy}/${step}`);
+      expect(historySpy.push).toHaveBeenCalledWith(`${step}`);
     });
 
     test('overrides step when there is a current step and previous step', () => {
@@ -38,7 +38,7 @@ describe('Flow', () => {
         prevStep: 'Two',
         step: step
       });
-      expect(historySpy.push).toHaveBeenCalledWith(`${pathDummy}/${step}`);
+      expect(historySpy.push).toHaveBeenCalledWith(`${step}`);
     });
   });
 
@@ -102,7 +102,7 @@ describe('Flow', () => {
         prevStep: 'postcode',
         step: 'postcode'
       });
-      expect(historySpy.push).toHaveBeenCalledWith(`${pathDummy}/postcode`);
+      expect(historySpy.push).toHaveBeenCalledWith('postcode');
     });
 
     describe('when step and previous step are equal', ()=> {
@@ -116,7 +116,7 @@ describe('Flow', () => {
           prevStep: 'postcode',
           step: 'postcode'
         });
-        expect(historySpy.push).toHaveBeenCalledWith(`${pathDummy}/postcode`);
+        expect(historySpy.push).toHaveBeenCalledWith('postcode');
       });
     });
 
@@ -145,7 +145,7 @@ describe('Flow', () => {
               'field': 'emergency/2'
             }
           });
-          expect(historySpy.push).toHaveBeenCalledWith(`${pathDummy}/emergency-repair`);
+          expect(historySpy.push).toHaveBeenCalledWith('emergency-repair');
         });
       });
 
@@ -159,7 +159,7 @@ describe('Flow', () => {
               'field': 'bunnies'
             }
           });
-          expect(historySpy.push).toHaveBeenCalledWith(`${pathDummy}/priority-list`);
+          expect(historySpy.push).toHaveBeenCalledWith('priority-list');
         });
       })
     });
@@ -174,7 +174,7 @@ describe('Flow', () => {
             'field': 'M3 0W'
           }
         });
-        expect(historySpy.push).toHaveBeenCalledWith(`${pathDummy}/address`);
+        expect(historySpy.push).toHaveBeenCalledWith('address');
       });
     });
 
@@ -195,7 +195,7 @@ describe('Flow', () => {
             'field': 'value'
           }
         });
-        expect(historySpy.push).toHaveBeenCalledWith(`${pathDummy}/communal`);
+        expect(historySpy.push).toHaveBeenCalledWith('communal');
       });
     })
   });

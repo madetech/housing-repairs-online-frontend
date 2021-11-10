@@ -6,7 +6,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest",
+    "test": "jest tests/unit",
     "lint:fix": "eslint --fix */**/*.js tests/**/*.js",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
