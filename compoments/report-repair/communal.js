@@ -12,8 +12,8 @@ const Communal = ({handleChange, nextStep, values}) => {
     { value: 'no', title: 'No'}
   ];
   const beforeButton =  (
-    <Details summary="Which areas are communal?" testId="communal-area-prompt">
-      <span testId="communal-area-info">
+    <Details summary="Which areas are communal?" testid="communal-area-prompt">
+      <span data-testid="communal-area-info">
           Communal areas are any spaces that are shared with other residents. <br/>
           For example, this would include gardens, lifts, corridors, or car parks.
       </span>

@@ -15,16 +15,16 @@ export default function Home() {
       <div className="govuk-grid-column-two-thirds">
         <h1>Request a repair</h1>
         <h2>Before you start</h2>
-        <WarningText testId="landing-page-gas-warning">
+        <WarningText testid="landing-page-gas-warning">
             If you suspect you have a gas leak, you must report it immediately
             to the Gas Emergency Service on 0800 111 999 or via textphone
             (minicom) on 0800 371 787
         </WarningText>
-        <WarningText testId="landing-page-emergency-warning" className="govuk-!-margin-top-4">
+        <WarningText testid="landing-page-emergency-warning" className="govuk-!-margin-top-4">
             For other emergency repairs, please see customer services {contactDetailsPageLink}.
         </WarningText>
-        <Details summary="What is an emergency?" className="govuk-!-margin-top-6" testId="landing-page-emergency-prompt">
-          <div testId='landing-page-emergency-info'>
+        <Details summary="What is an emergency?" className="govuk-!-margin-top-6" testid="landing-page-emergency-prompt">
+          <div data-testid='landing-page-emergency-info'>
             <p>
                 An emergency is defined as something which could cause danger to
                 someone’s health or safety or cause serious damage and destruction
@@ -55,8 +55,8 @@ export default function Home() {
             To request a repair for a <strong>communal area</strong>, please see customer
             services {contactDetailsPageLink}.
         </p>
-        <Details summary="Which areas are communal?" className="govuk-!-margin-top-6" testId="landing-page-communal-prompt">
-          <div testId='landing-page-communal-info'>
+        <Details summary="Which areas are communal?" className="govuk-!-margin-top-6" testid="landing-page-communal-prompt">
+          <div data-testid='landing-page-communal-info'>
             <p>
                 Communal repairs are usually in areas that people share.
             </p>
