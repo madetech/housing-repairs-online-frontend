@@ -1,4 +1,4 @@
-import Router, {useRouter} from 'next/router';
+import {useRouter} from 'next/router';
 import Address from '../../compoments/report-repair/address';
 import Communal from '../../compoments/report-repair/communal';
 import Confirmation from '../../compoments/report-repair/confirmation';

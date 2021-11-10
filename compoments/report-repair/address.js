@@ -11,7 +11,7 @@ const fetcher = (...args) => fetch(...args).then(res => res.json())
 const Address = ({handleChange, values}) => {
   const [state, setState] = useState({error: {}, value: 'null'});
 
-  const { data, error } = useSWR(`/api/hello?postcode=${values.postcode}`, fetcher)
+  const { data, error } = useSWR(`/api/address?postcode=${values.postcode}`, fetcher)
 
   if (error) return <div>failed to load</div>
   if (!data) return <div>loading...</div>
@@ -34,7 +34,7 @@ const Address = ({handleChange, values}) => {
 
     if (state.value === 'null') {
       return setState({error: {
-        error: 'Required',
+        msg: 'Required',
         touched: true
       }})
     }
@@ -48,7 +48,11 @@ const Address = ({handleChange, values}) => {
           <h1 className="govuk-fieldset__heading">Where is the repair located?</h1>
         </legend>
         <form action="">
-          <div>
+          <div className={state.error.msg ? 'govuk-form-group govuk-form-group--error' : 'govuk-form-group'}>
+            <span id={'address-error'}
+              className="govuk-error-message">
+              {state.error.msg}
+            </span>
             <Select
               input={{
                 name: 'address',

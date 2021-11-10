@@ -1,5 +1,3 @@
-import {intercept_address_search} from '../../support/helpers';
-
 describe('postcode', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/report-repair/');
@@ -29,10 +27,6 @@ describe('postcode', () => {
   });
 
   context('When a user type a valid postcode', ()=>{
-    before(()=>{
-      intercept_address_search();
-    });
-
     it('the user proceeds to the address selection',  () => {
       cy.get('input').type('SW1A 2AA');
       cy.get('button').click()
