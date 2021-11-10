@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
-import Button from "./button";
+import Button from './button';
 import React from 'react';
-
-
 import {Component} from 'react';
 
 class TextInput extends Component {
@@ -44,18 +42,17 @@ class TextInput extends Component {
         return this.setState({
           value: this.state.value,
           error: {
-            error: this.validation.errorMessage,
+            msg: this.validation.errorMessage,
             touched: true
           }
         })
       }
       return this.onSubmit(this.state.value)
     }
-
     this.setState({
       value: this.state.value,
       error: {
-        error: 'Required',
+        msg: 'Required',
         touched: true
       }
     })
@@ -63,16 +60,26 @@ class TextInput extends Component {
 
   render(){
     return (
-      <div className="govuk-fieldset">
+      <>
         <legend className="govuk-fieldset__legend govuk-fieldset__legend--l">
-          <h1 className="govuk-fieldset__heading govuk-!-margin-bottom-6">{this.title}</h1>
+          <h1 className="govuk-fieldset__heading">{this.title}</h1>
         </legend>
-        <form action="" className='govuk-grid-column-one-third govuk-!-padding-0'>
-            <input className="govuk-input" id={this.input.id}
-                   name={this.name} type="text" onChange={this.input.onChange} value={this.input.defaultValue}/>
-          <Button onClick={this.formSubmit} >Continue</Button>
-        </form>
-      </div>
+        <div className={this.state.error.msg ? 'govuk-form-group--error' : 'govuk-form-group'}>
+          <fieldset className="govuk-fieldset">
+            <form action="" className='govuk-grid-column-one-third govuk-!-padding-0'>
+              <span id={`${this.name}-error`}
+                className="govuk-error-message">
+                {this.state.error.msg}
+              </span>
+
+              <input className="govuk-input  govuk-!-margin-bottom-6" id={this.input.id}
+                name={this.name} type="text" onChange={this.input.onChange} value={this.input.defaultValue}/>
+              <Button onClick={this.formSubmit} >Continue</Button>
+            </form>
+          </fieldset>
+
+        </div>
+      </>
     )
   }
 }

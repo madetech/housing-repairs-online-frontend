@@ -1,5 +1,10 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-export default function handler(req, res) {
-  res.status(200).json({ name: 'John Doe' })
+
+import SearchPropertiesGateway from '../../gateways/SearchPropertiesGateway';
+
+export default async function handler(req, res) {
+  const result = await SearchPropertiesGateway(req.query.postcode);
+  console.log(result)
+  res.status(200).json(result)
 }

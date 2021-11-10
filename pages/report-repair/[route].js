@@ -13,7 +13,7 @@ import SmellGas from '../../compoments/report-repair/smell-gas';
 import Flow from '../../flow';
 import {useState} from 'react';
 import React from 'react';
-import BackLink from "../../compoments/backLink";
+import BackLink from '../../compoments/backLink';
 
 function ReportRepair() {
   const [state, setState] = useState({data:{}, step: 'priority-list'});
@@ -32,86 +32,69 @@ function ReportRepair() {
     flow.prevStep(state)
   }
 
-  const storeAddresses = (addresses) => {
-    state.addresses = addresses
-    setState(state)
-  }
-
   const values = state.data;
-  console.log('-----')
-  console.log(values)
-  console.log('-----')
-  const addresses = state.addresses;
 
   const component = () => {
-    if (currentPath === 'address') {
+    switch (currentPath) {
+    case 'address':
       return (
         <Address
           handleChange={handleChange}
-          values={values}
-          addresses={addresses}/>
+          values={values}/>
       )
-    }
-    if (currentPath === 'communal') {
+    case 'communal':
       return (
         <Communal
           handleChange={handleChange}
           values={values}/>
       )
-    }
-    if (currentPath === 'confirmation') {
+    case 'confirmation':
       return (
         <Confirmation/>
       )
-    }
-    if (currentPath === 'emergency-repair') {
+    case 'emergency-repair':
       return (
         <EmergencyRepair/>
       )
-    }
-    if (currentPath === 'not-eligible') {
+    case 'not-eligible':
       return (
         <NotEligible/>
       )
-    }
-    if (currentPath === 'not-eligible-communal-repairs') {
+    case 'not-eligible-communal-repairs':
       return (
         <NotEligibleCommunalRepairs/>
       )
-    }
-    if (currentPath === 'postcode') {
+    case 'postcode':
       return (
         <Postcode
           handleChange={handleChange}
-          values={values}
-          storeAddresses={storeAddresses}/>
+          values={values}/>
       )
-    }
-    if (currentPath === 'priority-list') {
+    case 'priority-list':
       return (
         <PriorityList
           handleChange={handleChange}
           values={values}/>
       )
-    }
-    if (currentPath === 'repair-location') {
+    case 'repair-location':
       return (
         <RepairLocation
           handleChange={handleChange}
           values={values}
         />
       )
-    }
-    if (currentPath === 'smell-gas') {
+    case 'smell-gas':
       return (
         <SmellGas/>
       )
+    default:
+      return <h1>boo</h1>;
     }
   }
 
   return (
     <>
-      <BackLink href="#" onClick={prevStep  }>Back</BackLink>
+      <BackLink href="#" onClick={prevStep}>Back</BackLink>
       {component()}
     </>
   )

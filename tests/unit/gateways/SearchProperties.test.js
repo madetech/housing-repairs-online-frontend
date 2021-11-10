@@ -8,8 +8,8 @@ describe('SearchProperties', () => {
   const postcode = 'M3 0W'
 
   beforeEach(() => {
-    process.env.REACT_APP_REPAIRS_API = api_url
-    process.env.REACT_APP_REPAIRS_API_KEY = api_key
+    process.env.NEXT_PUBLIC_REPAIRS_API = api_url
+    process.env.NEXT_PUBLIC_REPAIRS_API_KEY = api_key
 
     mockedFetch = jest.fn(() => { return {
       status: status,

@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import RadioFieldSet from '../radioFieldSet';
-import { withRouter } from 'next/router'
 import React from 'react';
 
 
@@ -43,4 +42,4 @@ PriorityList.propTypes = {
   handleChange: PropTypes.func,
 }
 
-export default withRouter(PriorityList)
+export default PriorityList;

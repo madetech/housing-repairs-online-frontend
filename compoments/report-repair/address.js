@@ -1,14 +1,22 @@
 import PropTypes from 'prop-types';
 import {useState} from 'react';
-import Select from "../select";
-import Link from "../link";
-import Button from "../button";
+import Select from '../select';
+import Link from '../link';
+import Button from '../button';
 import React from 'react';
+import useSWR from 'swr'
 
-const Address = ({handleChange, values, addresses}) => {
+const fetcher = (...args) => fetch(...args).then(res => res.json())
+
+const Address = ({handleChange, values}) => {
   const [state, setState] = useState({error: {}, value: 'null'});
 
-  addresses = addresses.map((a) => {
+  const { data, error } = useSWR(`/api/hello?postcode=${values.postcode}`, fetcher)
+
+  if (error) return <div>failed to load</div>
+  if (!data) return <div>loading...</div>
+
+  const addresses = data.map((a) => {
     return {
       obj: a,
       display: `${a.addressLine1}, ${a.addressLine2}, ${a.postCode}`

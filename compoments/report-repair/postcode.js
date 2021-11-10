@@ -1,19 +1,11 @@
 import PropTypes from 'prop-types';
-import {SearchPropertiesGateway} from '../../gateways';
-import TextInput from "../textInput";
+import TextInput from '../textInput';
 import React from 'react';
 
 
-const Postcode = ({handleChange, values, storeAddresses}) => {
+const Postcode = ({handleChange, values}) => {
   const Continue = val => {
-    SearchPropertiesGateway(val)
-      .then(results => {
-        storeAddresses(results);
-        handleChange('postcode', val);
-      })
-      .catch(err => {
-        console.error(err)
-      });
+    handleChange('postcode', val);
   }
 
   const Validation = {
