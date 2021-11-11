@@ -112,8 +112,8 @@ describe('priorityList', () => {
     it('should redirect the user to the home page',  () => {
       cy.contains('I can smell gas').click();
       cy.get('button').click();
-      cy.go('back')
-      cy.go('back')
+      cy.contains('Back').click();
+      cy.contains('Back').click();
       cy.url().should('eq', 'http://localhost:3000/');
     })
   })

@@ -11,7 +11,7 @@ import PriorityList from '../../compoments/report-repair/priority-list';
 import RepairLocation from '../../compoments/report-repair/repair-location';
 import SmellGas from '../../compoments/report-repair/smell-gas';
 import Flow from '../../flow';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import React from 'react';
 import BackLink from '../../compoments/backLink';
 
@@ -23,6 +23,19 @@ function ReportRepair() {
   const currentPath = router.query.route
 
   const flow = new Flow(setState, router, 'report-repair');
+
+  useEffect(() => {
+    router.beforePopState(({ as }) => {
+      if (as !== router.asPath) {
+        prevStep();
+      }
+      return true;
+    });
+
+    return () => {
+      router.beforePopState(() => true);
+    };
+  }, [router]);
 
   const handleChange = (input, value) => {
     flow.handleChange(input,value,state)
@@ -88,7 +101,7 @@ function ReportRepair() {
         <SmellGas/>
       )
     default:
-      return <h1>boo</h1>;
+      return <div>loading...</div>;
     }
   }
 
