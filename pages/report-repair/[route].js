@@ -101,7 +101,7 @@ function ReportRepair() {
         <SmellGas/>
       )
     default:
-      return <div>loading...</div>;
+      return <div>Not found</div>;
     }
   }
 

@@ -1,6 +1,3 @@
-module.exports = {
-  reactStrictMode: true,
-}
 const path = require('path')
 const withSass = require('@zeit/next-sass');
 module.exports = withSass({
@@ -13,8 +10,9 @@ module.exports = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
-}
-module.exports = {
+
+  reactStrictMode: true,
+
   async redirects() {
     return [
       {
@@ -24,9 +22,8 @@ module.exports = {
       },
     ]
   },
-}
-module.exports = {
+
   images: {
-    loader: 'cloudinary'
+    loader: 'default'
   }
 }
