@@ -2,7 +2,6 @@ import '../styles/globals.css'
 import '../styles/globals.scss'
 import React from 'react';
 import App from 'next/app'
-import Image from 'next/image';
 import Link from 'next/link'
 
 function MyApp({ Component, pageProps }) {
@@ -12,7 +11,7 @@ function MyApp({ Component, pageProps }) {
         <div className="govuk-header__logo">
           <a href="#" className="govuk-header__link govuk-header__link--homepage">
             <span className="govuk-header__logotype">
-              <Image src="/assets/images/govuk-logotype-crown.png" className="govuk-header__logotype-crown-fallback-image" width="36" height="32" alt="logo"/>
+              <img src="/assets/images/govuk-logotype-crown.png" className="govuk-header__logotype-crown-fallback-image" width="36" height="32" alt="logo"/>
             </span>
           </a>
         </div>
