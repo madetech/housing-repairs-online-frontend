@@ -3,8 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export",
-    "export": "next export",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "test": "jest tests/unit",
