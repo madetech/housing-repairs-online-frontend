@@ -25,3 +25,8 @@ module.exports = {
     ]
   },
 }
+module.exports = {
+  images: {
+    loader: 'cloudinary'
+  }
+}
