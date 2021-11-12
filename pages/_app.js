@@ -3,6 +3,7 @@ import '../styles/globals.scss'
 import React from 'react';
 import App from 'next/app'
 import Link from 'next/link'
+import Head from 'next/head';
 
 function MyApp({ Component, pageProps }) {
   return <>
