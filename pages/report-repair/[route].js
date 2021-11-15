@@ -61,10 +61,6 @@ function ReportRepair() {
           handleChange={handleChange}
           values={values}/>
       )
-    case 'confirmation':
-      return (
-        <Confirmation/>
-      )
     case 'emergency-repair':
       return (
         <EmergencyRepair/>
@@ -112,4 +108,25 @@ function ReportRepair() {
     </>
   )
 }
-export default ReportRepair
+
+export async function getStaticPaths() {
+
+  const paths = [
+    {params: { route: 'address'} },
+    {params: { route: 'communal'} },
+    {params: { route: 'emergency-repair'} },
+    {params: { route: 'not-eligible'} },
+    {params: { route: 'not-eligible-communal-repairs'} },
+    {params: { route: 'postcode'} },
+    {params: { route: 'priority-list'} },
+    {params: { route: 'repair-location'} },
+    {params: { route: 'smell-gas'} }
+  ]
+
+  return { paths, fallback: false };
+}
+
+export async function getStaticProps({ params }) {
+  return { props: {} };
+}
+export default ReportRepair;
