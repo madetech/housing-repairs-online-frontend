@@ -1,13 +1,14 @@
 import WarningText from '../compoments/warningText';
 import Details from '../compoments/details';
-import Link from '../compoments/link';
+import TextLink from '../compoments/textLink';
 import React from 'react';
+import Link from 'next/link'
 
 export default function Home() {
   const contactDetailsPageLink = (
-    <Link href="https://www.lincoln.gov.uk/contact-1/get-touch" target="_blank">
+    <TextLink href="https://www.lincoln.gov.uk/contact-1/get-touch" target="_blank">
       contact details page
-    </Link>
+    </TextLink>
   )
 
   return (
@@ -73,26 +74,28 @@ export default function Home() {
             </ul>
           </div>
         </Details>
-        <a href="/report-repair" role="button" draggable="false"
-          className="govuk-button govuk-button--start"
-          data-module="govuk-button">
-            Start now
-          <svg className="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
-            <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
-          </svg>
-        </a>
+        <Link href="/report-repair/priority-list">
+          <a role="button" draggable="false"
+            className="govuk-button govuk-button--start"
+            data-module="govuk-button">
+              Start now
+            <svg className="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+            </svg>
+          </a>
+        </Link>
       </div>
       <div className="govuk-grid-column-one-third">
         <h4>Related pages</h4>
         <ul listStyleType="none">
           <li>
-            <Link href="#">Report a communal repair</Link>
+            <TextLink href="#">Report a communal repair</TextLink>
           </li>
           <li>
-            <Link href="#">Leaseholder repairs</Link>
+            <TextLink href="#">Leaseholder repairs</TextLink>
           </li>
           <li>
-            <Link href="#">Fix it yourself videos</Link>
+            <TextLink href="#">Fix it yourself videos</TextLink>
           </li>
         </ul>
       </div>

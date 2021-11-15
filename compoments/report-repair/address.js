@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import {useState} from 'react';
 import Select from '../select';
-import Link from '../link';
+import TextLink from '../textLink';
 import Button from '../button';
 import React from 'react';
 import useSWR from 'swr'
@@ -70,7 +70,7 @@ const Address = ({handleChange, values}) => {
               ))}
             </Select>
           </div>
-          <Link href="not-eligible">I can&apos;t find my address on this list</Link>
+          <TextLink href="not-eligible">I can&apos;t find my address on this list</TextLink>
           <br/>
           <br/>
           <Button onClick={Continue} >Continue</Button>
