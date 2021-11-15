@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:azure" : "next build && next export",
+    "build:azure": "next build && next export",
     "start": "next start",
     "lint": "next lint",
     "test": "jest tests/unit",
