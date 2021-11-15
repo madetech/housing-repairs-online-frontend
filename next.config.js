@@ -25,5 +25,7 @@ module.exports = {
 
   images: {
     loader: 'default'
-  }
+  },
+
+  trailingSlash: true,
 }
