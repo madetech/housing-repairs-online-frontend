@@ -1,4 +1,4 @@
-import SearchPropertiesGateway from '../gateways/SearchPropertiesGateway';
+const SearchPropertiesGateway = require('../gateways/SearchPropertiesGateway');
 
 async (context, req) => {
   // build some Azure function compatibility layer.
