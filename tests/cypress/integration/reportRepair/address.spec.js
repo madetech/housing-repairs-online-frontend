@@ -18,6 +18,15 @@ describe('address', () => {
     cy.contains('Where is the repair located?');
   });
 
+  it('displays the label', () => {
+    cy.contains('Select an address');
+  });
+
+  it('button displays correct text', () => {
+    cy.get('button').contains('Tell us where the problem is');
+  });
+
+
   it('contains a can\t find my address link',  () => {
     cy.contains('I can\'t find my address').click();
     cy.url().should('include', '/report-repair/not-eligible');

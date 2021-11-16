@@ -53,12 +53,16 @@ const Address = ({handleChange, values}) => {
               className="govuk-error-message">
               {state.error.msg}
             </span>
+            <label className="govuk-label" htmlFor="select-address-dropdown">
+              Select an address
+            </label>
             <Select
               input={{
                 name: 'address',
                 onChange: onChange
               }}
               meta={state.error}
+              id={'select-address-dropdown'}
             >
               <option value="null">
                 {found_addresses}
@@ -73,7 +77,7 @@ const Address = ({handleChange, values}) => {
           <TextLink href="not-eligible">I can&apos;t find my address on this list</TextLink>
           <br/>
           <br/>
-          <Button onClick={Continue} >Continue</Button>
+          <Button onClick={Continue} >Tell us where the problem is</Button>
         </form>
       </fieldset>
     </div>
