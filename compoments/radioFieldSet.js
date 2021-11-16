@@ -9,6 +9,7 @@ class RadioFieldSet extends Component {
     super(props);
     this.name = this.props.name;
     this.checked = this.props.checked;
+    this.buttonText = this.props.buttonText;
     this.options = this.props.options.map(o =>{
       if (this.checked == o.value) {
         o.checked = true
@@ -74,7 +75,7 @@ class RadioFieldSet extends Component {
         <div className="govuk-!-margin-top-6">
           {this.beforeButton}
         </div>
-        <Button onClick={this.formSubmit}>Continue</Button>
+        <Button onClick={this.formSubmit}>{this.buttonText}</Button>
       </div>
     )
   }

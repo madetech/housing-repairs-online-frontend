@@ -14,13 +14,21 @@ const Communal = ({handleChange, nextStep, values}) => {
   const beforeButton =  (
     <Details summary="Which areas are communal?" testid="communal-area-prompt">
       <span data-testid="communal-area-info">
-          Communal areas are any spaces that are shared with other residents. <br/>
-          For example, this would include gardens, lifts, corridors, or car parks.
+        <p>Communal repairs are usually in areas that people share.</p>
+        <p>They can include:</p>
+        <ul>
+          <li>repairs to door entry systems</li>
+          <li>lock repairs to communal doors</li>
+          <li>lighting repairs to shared areas</li>
+          <li>glazing repairs to shared doors or stairway windows</li>
+          <li>roof and gutter repairs</li>
+          <li>structure and external walls to your block</li>
+        </ul>
       </span>
     </Details>
   );
 
-  const Continue = val => {
+  const nextPage = val => {
     const selected = val[name];
     handleChange(name, selected);
   }
@@ -30,9 +38,10 @@ const Communal = ({handleChange, nextStep, values}) => {
       <RadioFieldSet name={name}
         title={title}
         options={options}
-        onSubmit={Continue}
+        onSubmit={nextPage} buttonText={'Provide your postcode'}
         beforeButton={beforeButton}
-        checked={values[name]}></RadioFieldSet>
+        checked={values[name]}
+      ></RadioFieldSet>
     </div>
   </div>
 };
