@@ -26,6 +26,7 @@ const Postcode = ({handleChange, values}) => {
         validation={Validation}
         label="Postcode"
         title="What is the property address?"
+        buttonText={'Select yout adderess'}
       ></TextInput>
     </div>
   </div>

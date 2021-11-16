@@ -10,6 +10,9 @@ describe('postcode', () => {
   it('displays the question', () => {
     cy.contains('What is the property address?');
   });
+  it('displays input label', () => {
+    cy.contains('Postcode');
+  });
 
   context('When a user doesn\'t type anything', ()=>{
     it('an error should be shown',  () => {

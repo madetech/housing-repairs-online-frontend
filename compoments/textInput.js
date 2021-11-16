@@ -10,6 +10,7 @@ class TextInput extends Component {
     this.title = this.props.title;
     this.label = this.props.label;
     this.onSubmit = this.props.onSubmit;
+    this.buttonText = this.props.buttonText;
     this.validation = this.props.validation;
     this.state = {
       value: this.props.value || '',
@@ -71,10 +72,12 @@ class TextInput extends Component {
                 className="govuk-error-message">
                 {this.state.error.msg}
               </span>
-
+              <label className="govuk-label" htmlFor="this.input.id">
+                {this.label}
+              </label>
               <input className="govuk-input  govuk-!-margin-bottom-6" id={this.input.id}
                 name={this.name} type="text" onChange={this.input.onChange} value={this.input.defaultValue}/>
-              <Button onClick={this.formSubmit} >Continue</Button>
+              <Button onClick={this.formSubmit} >{this.buttonText}</Button>
             </form>
           </fieldset>
 
