@@ -61,7 +61,7 @@ describe('repairLocation', () => {
     });
   });
 
-  context('When a user selects an option', ()=>{
+  xcontext('When a user selects an option', ()=>{
     it('should be selected when they navigate back to the page',  () => {
       cy.contains('Kitchen').click();
       cy.get('button').click()
