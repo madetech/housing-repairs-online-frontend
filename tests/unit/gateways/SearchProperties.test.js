@@ -1,4 +1,4 @@
-const {SearchPropertiesGateway} = require('../../../gateways/');
+const {SearchPropertiesGateway} = require('../../../api/gateways/');
 
 describe('SearchProperties', () => {
   let mockedFetch;

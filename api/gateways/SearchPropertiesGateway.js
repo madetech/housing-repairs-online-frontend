@@ -1,9 +1,9 @@
 export default async postcode => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_REPAIRS_API}/addresses?postcode=${postcode}`,
+    `${process.env.REPAIRS_API}/addresses?postcode=${postcode}`,
     {
       headers: {
-        'X-API-Key': process.env.NEXT_PUBLIC_REPAIRS_API_KEY
+        'X-API-Key': process.env.REPAIRS_API_KEY
       }
     }
   );
