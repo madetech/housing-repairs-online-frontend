@@ -8,10 +8,14 @@ describe('repairLocation', () => {
     cy.get('button').click();
     cy.contains('No').click();
     cy.get('button').click();
-    cy.get('input').type('SW1A 2AA');
-    cy.get('button').click();
-    cy.get('select').select('1 Downing Street, London, SW1A 2AA')
-    cy.get('button').click();
+    cy.get('button').click().then(()=>{
+      cy.get('input.govuk-input').type('SW1A 2AA');
+      cy.get('button').click();
+    });
+    cy.get('[data-cy=SectionLoaded]', { timeout: 10000 }).then(($loadedSection) => {
+      cy.get('select').select('1 Downing Street, London, SW1A 2AA')
+      cy.get('button').click();
+    });
   });
 
   it('displays the repair location question', () => {

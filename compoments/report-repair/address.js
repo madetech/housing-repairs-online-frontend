@@ -41,7 +41,7 @@ const Address = ({handleChange, values}) => {
     return handleChange('address', state.value);
   }
 
-  return <div className="govuk-grid-row">
+  return <div className="govuk-grid-row" data-cy="SectionLoaded">
     <div className="govuk-grid-column-two-thirds">
       <fieldset className="govuk-fieldset">
         <legend className="govuk-fieldset__legend govuk-fieldset__legend--l">

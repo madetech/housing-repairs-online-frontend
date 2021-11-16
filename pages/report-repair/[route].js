@@ -38,6 +38,7 @@ function ReportRepair() {
   }, [router]);
 
   const handleChange = (input, value) => {
+    console.log(state);
     flow.handleChange(input,value,state)
   };
 
@@ -50,42 +51,50 @@ function ReportRepair() {
   const component = () => {
     switch (currentPath) {
     case 'address':
+      console.log('address');
       return (
         <Address
           handleChange={handleChange}
           values={values}/>
       )
     case 'communal':
+      console.log('communal');
       return (
         <Communal
           handleChange={handleChange}
           values={values}/>
       )
     case 'emergency-repair':
+      console.log('emergency-repair');
       return (
         <EmergencyRepair/>
       )
     case 'not-eligible':
+      console.log('not-eligible');
       return (
         <NotEligible/>
       )
     case 'not-eligible-communal-repairs':
+      console.log('not-eligible-communal-repairs');
       return (
         <NotEligibleCommunalRepairs/>
       )
     case 'postcode':
+      console.log('postcode');
       return (
         <Postcode
           handleChange={handleChange}
           values={values}/>
       )
     case 'priority-list':
+      console.log('priority-list');
       return (
         <PriorityList
           handleChange={handleChange}
           values={values}/>
       )
     case 'repair-location':
+      console.log('repair-location');
       return (
         <RepairLocation
           handleChange={handleChange}
@@ -93,6 +102,7 @@ function ReportRepair() {
         />
       )
     case 'smell-gas':
+      console.log('smell-gas');
       return (
         <SmellGas/>
       )

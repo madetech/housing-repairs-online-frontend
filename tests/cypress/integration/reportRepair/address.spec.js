@@ -11,6 +11,7 @@ describe('address', () => {
       cy.get('input.govuk-input').type('SW1A 2AA');
       cy.get('button').click();
     });
+    cy.get('[data-cy=SectionLoaded]', { timeout: 10000 }).then(($loadedSection) => {});
   });
 
   it('displays the question', () => {
@@ -25,15 +26,14 @@ describe('address', () => {
 
   context('When a user doesn\'t select anything', ()=>{
     it('an error should be shown',  () => {
-      cy.wait(200);
+      // cy.wait(200);
       cy.get('button').click()
       cy.contains('Required');
     });
   });
 
   context('When a user selects an option', ()=>{
-    it('an error should be shown',  () => {
-      cy.get('button').click()
+    it('next page is shown',  () => {
       cy.get('select').select('1 Downing Street, London, SW1A 2AA')
       cy.get('button').click()
       cy.url().should('include', '/report-repair/repair-location');
