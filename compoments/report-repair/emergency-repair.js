@@ -5,16 +5,37 @@ const EmergencyRepair = () => {
 
   return <div className="govuk-grid-row">
     <div className="govuk-grid-column-two-thirds">
-      <h1>This repair may be an emergency</h1>
+      <h1>Your repair could be an emergency</h1>
+      <h3>Emergencies</h3>
       <p>
-        An emergency repair is when there&apos;s immediate danger to you or the
-        structure of the building. In an emergency we&apos;ll make the situation
-        safe; we may need to return another day to complete the full repair.
+        An emergency is defined as something which could cause danger to
+        someone’s health or safety or cause serious damage and destruction to
+        property.
       </p>
       <p>
-        All emergency repairs can be reported 24 hours a day, 7 days a week by
-        calling <strong>0800 952 4444</strong> or <strong>020 7525 2600</strong>.
-        You may experience longer waiting times due to a high volume of calls.
+        Emergency Out of Hours Repairs - Telephone: <strong>01522 534747</strong>
+      </p>
+      <p>For emergencies in normal hours, please call <strong>01522 873333</strong></p>
+      <p>
+        Opening times:
+      </p>
+      <ul>
+        <li>Monday 9am - 5pm</li>
+        <li>Tuesday 9am - 5pm</li>
+        <li>Wednesday 10am - 4.30pm</li>
+        <li>Thursday 9am - 5pm</li>
+        <li>Friday 9am - 4.30pm</li>
+      </ul>
+      <p>
+        For non-emergency requests, call <strong>01522 873 333</strong>
+      </p>
+      <p>
+        Please do not call the emergency out of hours number if the repair is not urgent.
+      </p>
+      <p>
+        If you suspect you have a gas leak, you must report it immediately to
+        the Gas Emergency Service <strong>0800 111 999</strong> or via textphone (minicom) on
+        <strong> 0800 371 787</strong>
       </p>
     </div>
   </div>
