@@ -6,13 +6,7 @@
     "start": "func start",
     "test": "echo \"No tests yet...\""
   },
-  "engines": {
-    "npm": ">=6.0.0",
-    "node": ">=10.0.0"
-  },
   "dependencies": {
-    "azure-function-express": "^2.0.0",
-    "express": "^4.17.1"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
