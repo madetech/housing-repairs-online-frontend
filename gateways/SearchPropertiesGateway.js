@@ -1,4 +1,7 @@
-export default async postcode => {
+require('dotenv').config()
+const fetch = require('node-fetch');
+
+module.exports = async function(postcode) {
   const response = await fetch(
     `${process.env.REPAIRS_API}/addresses?postcode=${postcode}`,
     {
@@ -11,4 +14,4 @@ export default async postcode => {
     return new Error('Error searching');
   }
   return response.json();
-};
+}
