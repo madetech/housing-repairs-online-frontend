@@ -11,6 +11,10 @@ describe('communal', () => {
     cy.contains('Is the issue in a communal area?');
   });
 
+  it('displays button with correct text', () => {
+    cy.get('button').contains('Provide your postcode');
+  });
+
   context('communal area prompt', () => {
     it('displays text', () => {
       cy.get('[data-testid=communal-area-prompt]').should(

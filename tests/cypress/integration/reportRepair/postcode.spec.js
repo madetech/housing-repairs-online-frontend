@@ -10,10 +10,14 @@ describe('postcode', () => {
   it('displays the question', () => {
     cy.contains('What is the property address?');
   });
+
   it('displays input label', () => {
     cy.contains('Postcode');
   });
 
+  it('displays button with correct text', () => {
+    cy.get('button').contains('Select your address');
+  });
   context('When a user doesn\'t type anything', ()=>{
     it('an error should be shown',  () => {
       cy.get('button').click()
