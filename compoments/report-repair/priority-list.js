@@ -30,6 +30,7 @@ const PriorityList = ({handleChange, values}) => {
         title={title}
         options={options}
         onSubmit={Continue}
+        buttonText={'Continue'}
         checked={values[name]}></RadioFieldSet>
     </div>
   </div>)

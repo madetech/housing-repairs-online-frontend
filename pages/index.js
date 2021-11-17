@@ -12,7 +12,7 @@ export default function Home() {
   )
 
   return (
-    <div className="govuk-grid-row">
+    <div className="govuk-grid-row govuk-body-m">
       <div className="govuk-grid-column-two-thirds">
         <h1>Request a repair</h1>
         <h3>Before you start</h3>
