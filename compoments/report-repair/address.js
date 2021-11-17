@@ -43,43 +43,39 @@ const Address = ({handleChange, values}) => {
 
   return <div className="govuk-grid-row" data-cy="SectionLoaded">
     <div className="govuk-grid-column-two-thirds">
-      <fieldset className="govuk-fieldset">
-        <legend className="govuk-fieldset__legend govuk-fieldset__legend--l">
-          <h1 className="govuk-fieldset__heading">Where is the repair located?</h1>
-        </legend>
-        <form action="">
-          <div className={state.error.msg ? 'govuk-form-group govuk-form-group--error' : 'govuk-form-group'}>
-            <span id={'address-error'}
-              className="govuk-error-message">
-              {state.error.msg}
-            </span>
-            <label className="govuk-label" htmlFor="select-address-dropdown">
-              Select an address
-            </label>
-            <Select
-              input={{
-                name: 'address',
-                onChange: onChange
-              }}
-              meta={state.error}
-              id={'select-address-dropdown'}
-            >
-              <option value="null">
-                {found_addresses}
+      <h1 className="govuk-heading-xl">Where is the repair located?</h1>
+      <form action="">
+        <div className={state.error.msg ? 'govuk-form-group govuk-form-group--error' : 'govuk-form-group'}>
+          <span id={'address-error'}
+            className="govuk-error-message">
+            {state.error.msg}
+          </span>
+          <label className="govuk-label" htmlFor="select-address-dropdown">
+            Select an address
+          </label>
+          <Select
+            input={{
+              name: 'address',
+              onChange: onChange
+            }}
+            meta={state.error}
+            id={'select-address-dropdown'}
+          >
+            <option value="null">
+              {found_addresses}
+            </option>
+            {addresses?.map((address, i) => (
+              <option value={Object.values(address.obj)} key={i}>
+                {address.display}
               </option>
-              {addresses?.map((address, i) => (
-                <option value={Object.values(address.obj)} key={i}>
-                  {address.display}
-                </option>
-              ))}
-            </Select>
-          </div>
-          <TextLink href="not-eligible">I can&apos;t find my address on this list</TextLink>
-          <br/>
-          <br/>
-          <Button onClick={Continue} >Tell us where the problem is</Button>
-        </form>
-      </fieldset>
+            ))}
+          </Select>
+        </div>
+        <TextLink href="not-eligible">I can&apos;t find my address on this list</TextLink>
+        <br/>
+        <br/>
+        <Button onClick={Continue} >Tell us where the problem is</Button>
+      </form>
     </div>
   </div>
 };
