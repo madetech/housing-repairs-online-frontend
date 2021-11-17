@@ -4,12 +4,27 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+Install all dependencies:
 
 ```bash
-npm run dev
-# or
+yarn install
+```
+
+Globally install azure function tools:
+
+```bash
+ npm install -g azure-functions-core-tools@3 --unsafe-perm true
+ ```
+In one terminal run the next development server:
+
+```bash
 yarn dev
+```
+
+In another terminal run the function server:
+
+```bash
+cd api/ && yarn start
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
