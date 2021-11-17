@@ -35,7 +35,6 @@ describe('communal', () => {
   context('When a user doesn\'t select any option', ()=>{
     it('an error should be shown',  () => {
       cy.wait(150)
-      cy.get('button').click()
       cy.get('button').click({force: true}).then(()=>{
         cy.contains('Required');
       });
