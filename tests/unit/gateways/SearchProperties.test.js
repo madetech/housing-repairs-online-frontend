@@ -1,4 +1,4 @@
-const {SearchPropertiesGateway} = require('../../../gateways/');
+const {SearchPropertiesGateway} = require('../../../gateways');
 
 describe('SearchProperties', () => {
   let mockedFetch;
@@ -8,8 +8,8 @@ describe('SearchProperties', () => {
   const postcode = 'M3 0W'
 
   beforeEach(() => {
-    process.env.NEXT_PUBLIC_REPAIRS_API = api_url
-    process.env.NEXT_PUBLIC_REPAIRS_API_KEY = api_key
+    process.env.REPAIRS_API = api_url
+    process.env.REPAIRS_API_KEY = api_key
 
     mockedFetch = jest.fn(() => { return {
       status: status,
