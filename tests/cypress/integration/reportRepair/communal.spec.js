@@ -32,6 +32,15 @@ describe('communal', () => {
     });
   });
 
+  context('When a user doesn\'t select any option', ()=>{
+    it('an error should be shown',  () => {
+      cy.wait(150)
+      cy.get('button').click({force: true}).then(()=>{
+        cy.contains('Required');
+      });
+    });
+  });
+
   context('When a user selects: Yes', ()=>{
     it('should redirect them to not eligible non emergency page',  () => {
       cy.contains('Yes').click();
@@ -48,30 +57,6 @@ describe('communal', () => {
     });
     it('should redirect them to postcode then address page respectively',  () => {
       cy.url().should('include', '/report-repair/postcode');
-      cy.get('input').type('SW1A 2AA');
-      cy.get('button').click()
-      cy.url().should('include', '/report-repair/address');
-    });
-    it('and then it will redirect them to the not eligible if they click cannot find my address',  () => {
-      cy.get('input').type('SW1A 2AA');
-      cy.get('button').click()
-      cy.contains('I can\'t find my address').click();
-      cy.url().should('include', '/report-repair/not-eligible');
-    });
-
-  });
-
-  context('When a user doesn\'t select any option', ()=>{
-    it('an error should be shown',  () => {
-      cy.get('button').click()
-      cy.contains('Required');
     });
   });
-
-  context('When a user doesn\'t select anything', ()=>{
-    it('should show required message',  () => {
-      cy.get('button').click()
-      cy.contains('Required');
-    });
-  })
 });

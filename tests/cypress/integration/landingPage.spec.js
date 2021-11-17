@@ -66,7 +66,7 @@ describe('App', () => {
   });
 
   it('displays a start button', () => {
-    cy.get('a').contains('Start now').should('have.attr', 'href', '/report-repair');
+    cy.get('a').contains('Start now').should('have.attr', 'href', '/report-repair/priority-list');
 
   });
 });

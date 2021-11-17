@@ -1,4 +1,7 @@
-const {SearchPropertiesGateway} = require('../../../src/gateways');
+const {SearchPropertiesGateway} = require('../../../gateways');
+jest.mock('node-fetch');
+
+import fetch, {Response} from 'node-fetch';
 
 describe('SearchProperties', () => {
   let mockedFetch;
@@ -8,31 +11,36 @@ describe('SearchProperties', () => {
   const postcode = 'M3 0W'
 
   beforeEach(() => {
-    process.env.REACT_APP_REPAIRS_API = api_url
-    process.env.REACT_APP_REPAIRS_API_KEY = api_key
+    process.env.REPAIRS_API = api_url
+    process.env.REPAIRS_API_KEY = api_key
 
-    mockedFetch = jest.fn(() => { return {
+    mockedFetch = {
       status: status,
       json: () => {}
-    }});
+    };
 
-    global.fetch = mockedFetch;
-
+    fetch.mockReturnValue(Promise.resolve(mockedFetch));
   });
 
   test('api gets called appropriately', async () => {
     await SearchPropertiesGateway(postcode);
 
-    expect(mockedFetch).toHaveBeenCalledWith(
+    expect(fetch).toHaveBeenCalledWith(
       `${api_url}/addresses?postcode=${postcode}`,
       {'headers': {'X-API-Key': api_key}}
     )
   });
 
   describe('when api is down', () =>{
-    test('an error gets raised', async () => {
+    beforeEach(()=>{
       status = 400;
-
+      mockedFetch = {
+        status: status,
+        json: () => {}
+      };
+      fetch.mockReturnValue(Promise.resolve(mockedFetch));
+    })
+    test('an error gets raised', async () => {
       await SearchPropertiesGateway(postcode).then((res)=>{
         expect(res).toEqual(Error('Error searching'));
       });
