@@ -40,8 +40,8 @@ jobs:
           submodules: true
       - name: Set env
         run: cd api && touch .env |
-          echo "REPAIRS_API=${{ secrets.REPAIRS_API }}" >> .env
-          echo "REPAIRS_API_KEY=${{ secrets.REPAIRS_API_KEY }} >> .env"
+          echo "REPAIRS_API=${{ secrets.REPAIRS_API }}" >> .env |
+          echo "REPAIRS_API_KEY=${{ secrets.REPAIRS_API_KEY }}" >> .env
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
