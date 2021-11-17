@@ -62,9 +62,7 @@ class TextInput extends Component {
   render(){
     return (
       <>
-        <legend className="govuk-fieldset__legend govuk-fieldset__legend--l">
-          <h1 className="govuk-fieldset__heading">{this.title}</h1>
-        </legend>
+        <h1 className="govuk-heading-xl">{this.title}</h1>
         <div className={this.state.error.msg ? 'govuk-form-group--error' : 'govuk-form-group'}>
           <fieldset className="govuk-fieldset">
             <form action="" className='govuk-grid-column-one-third govuk-!-padding-0'>
@@ -75,7 +73,7 @@ class TextInput extends Component {
               <label className="govuk-label" htmlFor="this.input.id">
                 {this.label}
               </label>
-              <input className="govuk-input  govuk-!-margin-bottom-6" id={this.input.id}
+              <input className="govuk-input govuk-input--width-10 govuk-!-margin-bottom-6" id={this.input.id}
                 name={this.name} type="text" onChange={this.input.onChange} value={this.input.defaultValue}/>
               <Button onClick={this.formSubmit} >{this.buttonText}</Button>
             </form>
