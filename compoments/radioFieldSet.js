@@ -44,13 +44,9 @@ class RadioFieldSet extends Component {
 
     return (
       <div>
-        <legend
-          className="govuk-fieldset__legend govuk-fieldset__legend--l">
-          <h1 className="govuk-fieldset__heading">
-            {this.title}
-          </h1>
-        </legend>
-
+        <h1 className="govuk-heading-xl">
+          {this.title}
+        </h1>
         <div className={this.state.error ? 'govuk-form-group--error' : 'govuk-form-group'}>
           <fieldset className="govuk-fieldset">
             <span id={`${this.name}-error`}
@@ -60,7 +56,7 @@ class RadioFieldSet extends Component {
             <div className="govuk-radios" onChange={this.setValue.bind(this)}>
               {this.options.map((o, i) => (
                 <div className="govuk-radios__item" key={i}>
-                  <input className="govuk-radios__input"
+                  <input className="govuk-radios__input govuk-input--width-10"
                     id={`${this.name}-${i}`} name={this.name}
                     type="radio" value={o.value} defaultChecked={o.checked}/>
                   <label className="govuk-label govuk-radios__label"
