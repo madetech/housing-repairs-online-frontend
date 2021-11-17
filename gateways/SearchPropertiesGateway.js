@@ -10,6 +10,7 @@ module.exports = async function(postcode) {
       }
     }
   );
+
   if (response.status >= 400) {
     return new Error('Error searching');
   }
