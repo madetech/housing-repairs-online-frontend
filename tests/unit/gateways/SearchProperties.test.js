@@ -1,4 +1,4 @@
-const {SearchPropertiesGateway} = require('../../../gateways');
+const {SearchPropertiesGateway} = require('../../../api/gateways');
 jest.mock('node-fetch');
 
 import fetch, {Response} from 'node-fetch';
