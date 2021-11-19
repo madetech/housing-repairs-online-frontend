@@ -30,7 +30,7 @@ jobs:
       - run: yarn test:headless:integration
 
   build_and_deploy_job:
-#    needs: test
+    needs: test
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
     name: Build and Deploy Job
@@ -53,7 +53,8 @@ jobs:
           output_location: "out" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
         env:
-          REACT_APP_REPAIRS_API: ${{ secrets.REACT_APP_REPAIRS_API }}
+          REPAIRS_API: ${{ secrets.REPAIRS_API }}
+          REPAIRS_API_IDENTIFIER: ${{ secrets.REPAIRS_API_IDENTIFIER }}
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'

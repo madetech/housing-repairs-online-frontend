@@ -35,7 +35,6 @@ describe('address', () => {
 
   context('When a user doesn\'t select anything', ()=>{
     it('an error should be shown',  () => {
-      // cy.wait(200);
       cy.get('button').click()
       cy.contains('Required');
     });
