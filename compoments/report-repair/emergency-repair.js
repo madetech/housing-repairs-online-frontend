@@ -27,7 +27,7 @@ const EmergencyRepair = () => {
         <li>Friday 9am - 4.30pm</li>
       </ul>
       <p>
-        For non-emergency requests, call <strong>01522 873 333</strong>
+        For non-emergency requests, call <strong>01522 873333</strong>
       </p>
       <p>
         Please do not call the emergency out of hours number if the repair is not urgent.
