@@ -38,7 +38,7 @@ describe('address', () => {
       cy.contains('I can\'t find my address').click();
       cy.url().should('include', '/report-repair/not-eligible');
     });
-  });
+
     context('When a user doesn\'t select anything', ()=>{
       it('an error should be shown',  () => {
         cy.get('button').click()
