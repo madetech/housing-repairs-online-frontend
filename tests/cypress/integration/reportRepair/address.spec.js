@@ -18,15 +18,19 @@ describe('address', () => {
   });
 
   describe('Content and interaction', () => {
-    beforeEach(()=>{
+    beforeEach(() => {
       setup_addresses_search(intercept_address_search);
     });
 
-    it('displays the question', () => {
-      cy.contains('Where is the repair located?');
+    it('displays the label', () => {
+      cy.contains('Select an address');
     });
 
-    it('contains a can\t find my address link',  () => {
+    it('button displays correct text', () => {
+      cy.get('button').contains('Tell us where the problem is');
+    });
+
+    it('contains a can\t find my address link', () => {
       cy.contains('I can\'t find my address').click();
       cy.url().should('include', '/report-repair/not-eligible');
     });
@@ -45,7 +49,6 @@ describe('address', () => {
         cy.url().should('include', '/report-repair/repair-location');
       });
     });
-
   });
 
   describe('API addresses with nulls', () => {
@@ -60,6 +63,5 @@ describe('address', () => {
       });
     });
   });
-
 });
 

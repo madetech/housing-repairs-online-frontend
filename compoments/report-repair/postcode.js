@@ -18,7 +18,7 @@ const Postcode = ({handleChange, values}) => {
   }
 
   return <div className="govuk-grid-row">
-    <div className="govuk-grid-column-two-thirds">
+    <div>
       <TextInput
         value={values.postcode}
         name={'postcode'}
@@ -26,6 +26,7 @@ const Postcode = ({handleChange, values}) => {
         validation={Validation}
         label="Postcode"
         title="What is the property address?"
+        buttonText={'Select your address'}
       ></TextInput>
     </div>
   </div>

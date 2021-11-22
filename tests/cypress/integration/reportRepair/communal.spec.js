@@ -11,6 +11,10 @@ describe('communal', () => {
     cy.contains('Is the issue in a communal area?');
   });
 
+  it('displays button with correct text', () => {
+    cy.get('button').contains('Provide your postcode');
+  });
+
   context('communal area prompt', () => {
     it('displays text', () => {
       cy.get('[data-testid=communal-area-prompt]').should(
@@ -25,8 +29,7 @@ describe('communal', () => {
         .then(() => {
           cy.get('[data-testid=communal-area-info]').should('be.visible').should(
             'contain',
-            'Communal areas are any spaces that are shared with other residents.' +
-            ' For example, this would include gardens, lifts, corridors, or car parks.'
+            'Communal repairs are usually in areas that people share'
           );
         });
     });
