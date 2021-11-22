@@ -30,10 +30,6 @@ describe('address', () => {
       cy.get('button').contains('Tell us where the problem is');
     });
 
-    it('displays the question', () => {
-      cy.contains('Where is the repair located?');
-    });
-
     it('contains a can\t find my address link', () => {
       cy.contains('I can\'t find my address').click();
       cy.url().should('include', '/report-repair/not-eligible');
@@ -53,7 +49,6 @@ describe('address', () => {
         cy.url().should('include', '/report-repair/repair-location');
       });
     });
-
   });
 
   describe('API addresses with nulls', () => {
@@ -68,6 +63,5 @@ describe('address', () => {
       });
     });
   });
-
 });
 
