@@ -73,7 +73,7 @@ class TextInput extends Component {
               {this.label}
             </label>
             <input className="govuk-input govuk-input--width-10 govuk-!-margin-bottom-6" id={this.input.id}
-              name={this.name} type="text" onChange={this.input.onChange} value={this.input.defaultValue}/>
+              name={this.name} type="text" onChange={this.input.onChange} defaultValue={this.input.defaultValue}/>
             <Button onClick={this.formSubmit} >{this.buttonText}</Button>
           </form>
         </div>
