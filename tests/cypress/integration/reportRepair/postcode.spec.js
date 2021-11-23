@@ -41,4 +41,13 @@ describe('postcode', () => {
     });
   });
 
+  context('When a user type a valid postcode and returns to change it', ()=>{
+    it('the field is changeable',  () => {
+      cy.get('input.govuk-input').type('SW1A 2AA');
+      cy.get('button').click()
+      cy.contains('Back').click();
+      cy.get('input').type('hello');
+    });
+  });
+
 });
