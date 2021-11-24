@@ -10,6 +10,7 @@ class RadioFieldSet extends Component {
     this.name = this.props.name;
     this.checked = this.props.checked;
     this.buttonText = this.props.buttonText;
+    this.orDivider = this.props.orDivider;
     this.options = this.props.options.map(o =>{
       if (this.checked == o.value) {
         o.checked = true
@@ -40,6 +41,10 @@ class RadioFieldSet extends Component {
     }
   };
 
+  includeOrDivider(i) {
+    return this.orDivider && i == (this.options.length - 1);
+  };
+
   render(){
 
     return (
@@ -54,15 +59,18 @@ class RadioFieldSet extends Component {
           </span>
           <div className="govuk-radios" onChange={this.setValue.bind(this)}>
             {this.options.map((o, i) => (
-              <div className="govuk-radios__item" key={i}>
-                <input className="govuk-radios__input govuk-input--width-10"
-                  id={`${this.name}-${i}`} name={this.name}
-                  type="radio" value={o.value} defaultChecked={o.checked}/>
-                <label className="govuk-label govuk-radios__label"
-                  htmlFor={`${this.name}-${i}`}>
-                  {o.title}
-                </label>
-              </div>
+              <span>
+                { this.includeOrDivider(i) ? <div className="govuk-radios__divider">or</div> : <br/>}
+                <div className="govuk-radios__item" key={i}>
+                  <input className="govuk-radios__input govuk-input--width-10"
+                    id={`${this.name}-${i}`} name={this.name}
+                    type="radio" value={o.value} defaultChecked={o.checked}/>
+                  <label className="govuk-label govuk-radios__label"
+                    htmlFor={`${this.name}-${i}`}>
+                    {o.title}
+                  </label>
+                </div>
+              </span>
             ))}
           </div>
         </div>
@@ -81,6 +89,9 @@ RadioFieldSet.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   title:  PropTypes.string.isRequired,
   checked: PropTypes.string,
-  beforeButton:  PropTypes.object
+  beforeButton:  PropTypes.object,
+  orDivider: PropTypes.boolean
 };
 export default RadioFieldSet;
+
+
