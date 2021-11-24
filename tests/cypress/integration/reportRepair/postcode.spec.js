@@ -3,8 +3,10 @@ describe('postcode', () => {
     cy.visit('http://localhost:3000/report-repair/');
     cy.contains('No, I want to request a non-emergency repair').click();
     cy.get('button').click();
-    cy.contains('No').click();
-    cy.get('button').click()
+    cy.get('[data-cy=SectionLoaded]', { timeout: 10000 }).then(($loadedSection) => {
+      cy.contains('No').click();
+      cy.get('button').click()
+    });
   });
 
   it('displays the question', () => {
