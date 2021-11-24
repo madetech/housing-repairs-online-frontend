@@ -33,7 +33,7 @@ const Communal = ({handleChange, nextStep, values}) => {
     handleChange(name, selected);
   }
 
-  return <div className="govuk-grid-row">
+  return <div className="govuk-grid-row"  data-cy="SectionLoaded">
     <div className="govuk-grid-column-two-thirds">
       <RadioFieldSet name={name}
         title={title}
