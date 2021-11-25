@@ -43,13 +43,12 @@ export default function Home() {
             </ul>
           </div>
         </Details>
-        <br/>
-        <WarningText testid="landing-page-gas-warning" className="govuk-!-margin-top-4">
+        <WarningText testid="landing-page-gas-warning" className="">
             If you suspect you have a gas leak, you must report it immediately
             to the Gas Emergency Service on 0800 111 999 or via textphone
             (minicom) on 0800 371 787
         </WarningText>
-        <WarningText testid="landing-page-emergency-warning"  className="govuk-!-margin-top-4">
+        <WarningText testid="landing-page-emergency-warning"  className="">
           For other emergency repairs, please see customer services <TextLink href="https://www.lincoln.gov.uk/contact-1/get-touch" target={'_blank'}>contact details page</TextLink>.
         </WarningText>
         <Details summary="What is an emergency?" className="govuk-!-margin-top-6" testid="landing-page-emergency-prompt">
