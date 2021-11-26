@@ -104,7 +104,9 @@ function ReportRepair() {
   return (
     <>
       <BackLink href="#" onClick={prevStep}>Back</BackLink>
-      {component()}
+      <div className="govuk-!-margin-top-7">
+        {component()}
+      </div>
     </>
   )
 }

@@ -38,7 +38,7 @@ function MyApp({ Component, pageProps }) {
           </span>
         </p>
       </div>
-      <main className="govuk-main-wrapper">
+      <main className="govuk-main-wrapper govuk-!-padding-0">
         <Component {...pageProps} />
       </main>
     </div>
