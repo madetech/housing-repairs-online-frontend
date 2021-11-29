@@ -6,6 +6,7 @@ describe('postcode', () => {
     cy.get('[data-cy=SectionLoaded]', { timeout: 10000 }).then(($loadedSection) => {
       cy.contains('No').click();
       cy.get('button').click()
+      cy.wait(300)
     });
   });
 
