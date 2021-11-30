@@ -17,6 +17,7 @@ import BackLink from '../../compoments/backLink';
 import RepairProblem from '../../compoments/report-repair/repair-problem';
 import RepairProblemBestDescription from '../../compoments/report-repair/repair-problem-best-description';
 import RepairDescription from '../../compoments/report-repair/repair-description';
+import RepairAvailability from '../../compoments/report-repair/repair-availability';
 
 function ReportRepair() {
   const [state, setState] = useState({data:{}, step: 'priority-list'});
@@ -125,6 +126,14 @@ function ReportRepair() {
           values={values}
         />
       )
+    case 'repair-availability':
+      return (
+        <RepairAvailability
+          handleChange={handleChange}
+          values={values}
+          nextAvailability={router.query.next}
+        />
+      )
     default:
       return <div>Not found</div>;
     }
@@ -155,6 +164,7 @@ export async function getStaticPaths() {
     {params: { route: 'repair-kitchen-problems'} },
     {params: { route: 'repair-kitchen-cupboard-problems'} },
     {params: { route: 'repair-description'} },
+    {params: { route: 'repair-availability'} },
     {params: { route: 'smell-gas'} }
   ]
 
