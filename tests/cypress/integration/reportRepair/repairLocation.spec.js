@@ -1,27 +1,31 @@
 import {intercept_address_search} from '../../support/helpers';
 
-describe('repairLocation', () => {
-  beforeEach(() => {
-    intercept_address_search();
-    cy.visit('http://localhost:3000/report-repair/');
-    cy.contains('No, I want to request a non-emergency repair').click();
-    cy.get('button').click();
-    cy.get('[data-cy=SectionLoaded]', { timeout: 10000 }).then(($loadedSection) => {
-      cy.contains('No').click({force: true});
-      cy.get('button').click().then(()=>{
-        cy.wait(100)
-        cy.get('input.govuk-input').type('SW1A 2AA');
-        cy.get('button').click();
-      });
-    });
-    cy.get('[data-cy=SectionLoaded]', { timeout: 10000 }).then(($loadedSection) => {
-      cy.get('select').select('1 Downing Street, London, SW1A 2AA')
+function getToRepairLocation() {
+  intercept_address_search();
+  cy.visit('http://localhost:3000/report-repair/');
+  cy.contains('No, I want to request a non-emergency repair').click();
+  cy.get('button').click();
+  cy.get('[data-cy=SectionLoaded]', {timeout: 10000}).then(($loadedSection) => {
+    cy.contains('No').click({force: true});
+    cy.get('button').click().then(() => {
+      cy.wait(100)
+      cy.get('input.govuk-input').type('SW1A 2AA');
       cy.get('button').click();
     });
   });
+  cy.get('[data-cy=SectionLoaded]', {timeout: 10000}).then(($loadedSection) => {
+    cy.get('select').select('1 Downing Street, London, SW1A 2AA')
+    cy.get('button').click();
+  });
+}
+
+describe('repairLocation', () => {
+  before(() => {
+    getToRepairLocation();
+  });
 
   it('displays the repair location question', () => {
-    cy.contains('Where is the problem located?');
+    cy.contains('Where is the problem?');
   });
 
   context('repair location options', () => {
@@ -47,27 +51,29 @@ describe('repairLocation', () => {
   });
 
   context('When a user doesn\'t select anything', ()=>{
-    it.only('should show required message',  () => {
-      cy.wait(150);
-      cy.get('button').click({force: true}).then(()=>{
+    it('should show required message',  () => {
+      cy.get('button').click().then(()=>{
         cy.contains('Required');
       });
     });
   });
 
   context('When a user selects: Kitchen', ()=>{
+    beforeEach(()=>{
+      getToRepairLocation();
+    })
     context('by clicking the label', ()=>{
       it('should redirect them to kitchen repair type page',  () => {
         cy.contains('Kitchen').click();
         cy.get('button').click()
-        cy.url().should('include', '/report-repair/repair-kitchen-types');
+        cy.url().should('include', '/report-repair/repair-kitchen-problems');
       });
     });
     context('by checking the radio button', ()=>{
       it('should redirect them to kitchen repair type page',  () => {
         cy.get('[value="kitchen"]').check();
         cy.get('button').click()
-        cy.url().should('include', '/report-repair/repair-kitchen-types');
+        cy.url().should('include', '/report-repair/repair-kitchen-problems');
       });
     });
   });
