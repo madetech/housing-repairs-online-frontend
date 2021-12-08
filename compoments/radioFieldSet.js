@@ -24,6 +24,7 @@ class RadioFieldSet extends Component {
       error: null,
       value: {[this.name]: this.checked}
     };
+    this.conditionalValue = this.props.conditionalValue;
   }
 
   setValue(event) {
@@ -34,7 +35,21 @@ class RadioFieldSet extends Component {
   };
 
   formSubmit = () => {
-    if (this.state.value[this.name]) {
+    const value = this.state.value[this.name];
+    if (value) {
+      const selectedOption = this.options.find(o => o.value === value);
+      if (selectedOption.conditional) {
+        if (this.conditionalValue[value]) {
+          if (selectedOption.conditional.validator && !selectedOption.conditional.validator.isValid(this.conditionalValue[value])) {
+            return this.setState({error: selectedOption.conditional.validator.errorMessage})
+          }
+          return this.onSubmit({
+            selected: value,
+            input: this.conditionalValue[value]
+          })
+        }
+        return this.setState({error: 'Required'})
+      }
       this.onSubmit(this.state.value)
     } else {
       this.setState({error: 'Required'})
@@ -57,19 +72,40 @@ class RadioFieldSet extends Component {
             className="govuk-error-message">
             {this.state.error}
           </span>
-          <div className="govuk-radios" onChange={this.setValue.bind(this)}>
+          <div className={this.conditional ?'govuk-radios--conditional' : 'govuk-radios' }>
             {this.options.map((o, i) => (
-              <span>
+              <span key={i}>
                 { this.includeOrDivider(i) ? <div className="govuk-radios__divider">or</div> : <br/>}
-                <div className="govuk-radios__item" key={i}>
+                <div className="govuk-radios__item">
                   <input className="govuk-radios__input govuk-input--width-10"
                     id={`${this.name}-${i}`} name={this.name}
-                    type="radio" value={o.value} defaultChecked={o.checked}/>
+                    type="radio" value={o.value}
+                    defaultChecked={o.checked}
+                    onChange={this.setValue.bind(this)}
+                    data-aria-controls={`conditional-${this.name}-${i}`}
+                  />
                   <label className="govuk-label govuk-radios__label"
                     htmlFor={`${this.name}-${i}`}>
                     {o.title}
                   </label>
                 </div>
+                {o.conditional && <div
+                  className={`govuk-radios__conditional ${this.state.value[this.name] != o.value && 'govuk-visually-hidden'}`}
+                  id={`conditional-${this.name}-${i}`}>
+                  <div className="govuk-form-group" key={`conditional-${i}`}>
+                    <label className="govuk-hint" htmlFor={`${this.name}-${o.value}`}>
+                      {o.conditional.label}
+                    </label>
+                    <input className="govuk-input govuk-!-width-one-third"
+                      id={`${this.name}-${o.value}`} name={`${this.name}-${o.value}`}
+                      type={o.conditional.type}
+                      defaultValue={this.conditionalValue[o.value]}
+                      onChange={(e)=>{
+                        this.conditionalValue[o.value] = e.target.value
+                      }}
+                    />
+                  </div>
+                </div> }
               </span>
             ))}
           </div>
@@ -82,6 +118,9 @@ class RadioFieldSet extends Component {
     )
   }
 }
+RadioFieldSet.defaultProps = {
+  conditionalValue: {}
+};
 
 RadioFieldSet.propTypes = {
   name: PropTypes.string.isRequired,
@@ -90,7 +129,6 @@ RadioFieldSet.propTypes = {
   title:  PropTypes.string.isRequired,
   checked: PropTypes.string,
   beforeButton:  PropTypes.object,
-  orDivider: PropTypes.boolean
 };
 export default RadioFieldSet;
 
