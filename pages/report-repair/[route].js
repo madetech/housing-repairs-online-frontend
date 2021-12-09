@@ -1,7 +1,6 @@
 import {useRouter} from 'next/router';
 import Address from '../../compoments/report-repair/address';
 import Communal from '../../compoments/report-repair/communal';
-import Confirmation from '../../compoments/report-repair/confirmation';
 import EmergencyRepair from '../../compoments/report-repair/emergency-repair';
 import NotEligible from '../../compoments/report-repair/not-eligible';
 import NotEligibleCommunalRepairs
@@ -50,19 +49,14 @@ function ReportRepair() {
   };
   const getNextStepForRepairProblem = () => {
     let currentChangeLinkUrls = changeLinkUrls
-
     if(state.data.repairLocation){
-      let nextStep = flow.getNextStepFromPreviousStepAndCondition('repair-location', state.data.repairLocation);
-      currentChangeLinkUrls[state.data.repairLocation] = nextStep
+      currentChangeLinkUrls[state.data.repairLocation] = flow.getNextStepFromPreviousStepAndCondition('repair-location', state.data.repairLocation);
       setChangeLinkUrls(currentChangeLinkUrls)
     }
     if(state.data.repairProblem){
-      let nextStep = flow.getNextStepFromPreviousStepAndCondition(currentChangeLinkUrls[state.data.repairLocation], state.data.repairLocation);
-      console.log(nextStep)
-      currentChangeLinkUrls[state.data.repairProblem] = nextStep
+      currentChangeLinkUrls[state.data.repairProblem] = flow.getNextStepFromPreviousStepAndCondition(currentChangeLinkUrls[state.data.repairLocation], state.data.repairLocation);
       setChangeLinkUrls(currentChangeLinkUrls)
     }
-    console.log(currentChangeLinkUrls)
   }
 
   const prevStep = () => {
@@ -212,7 +206,7 @@ export async function getStaticPaths() {
   return { paths, fallback: false };
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ }) {
   return { props: {} };
 }
 export default ReportRepair;
