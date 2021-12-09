@@ -80,7 +80,7 @@ class Flow {
       'repair-description': {prevStep:'repair-kitchen-cupboard-problems', nextStep: 'contact-person'},//need to investigate this as there are numerous prev steps, but it might just work
       'contact-person': {prevStep: 'repair-description', nextStep:'contact-details'},
       'contact-details': {prevStep: 'contact-person', nextStep: 'repair-availability'},
-      'repair-availability': {prevStep: 'personal-details', nextStep: 'summary'},
+      'repair-availability': {prevStep: 'contact-details', nextStep: 'summary'},
       'summary': {prevStep: 'repair-availability', nextStep:''},//need to investigate this as there are numerous prev steps, but it might just work
 
       // 'contact-details-appointment': { prevStep: 'repair-availability', nextStep: 'appointment-playback'},
