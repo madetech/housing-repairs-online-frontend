@@ -18,10 +18,10 @@ import RepairProblem from '../../compoments/report-repair/repair-problem';
 import RepairProblemBestDescription from '../../compoments/report-repair/repair-problem-best-description';
 import RepairDescription from '../../compoments/report-repair/repair-description';
 import RepairAvailability from '../../compoments/report-repair/repair-availability';
-
+import Summary from '../../compoments/report-repair/summary';
 function ReportRepair() {
   const [state, setState] = useState({data:{}, step: 'priority-list'});
-
+  const [changeLinkUrls, setChangeLinkUrls] = useState({});
   const router = useRouter()
 
   const currentPath = router.query.route
@@ -29,6 +29,7 @@ function ReportRepair() {
   const flow = new Flow(setState, router, 'report-repair');
 
   useEffect(() => {
+    getNextStepForRepairProblem()
     router.beforePopState(({ as }) => {
       if (as !== router.asPath) {
         prevStep();
@@ -44,15 +45,35 @@ function ReportRepair() {
   const handleChange = (input, value) => {
     flow.handleChange(input,value,state)
   };
+  const getNextStepForRepairProblem = () => {
+    let currentChangeLinkUrls = changeLinkUrls
+
+    if(state.data.repairLocation){
+      let nextStep = flow.getNextStepFromPreviousStepAndCondition('repair-location', state.data.repairLocation);
+      currentChangeLinkUrls[state.data.repairLocation] = nextStep
+      setChangeLinkUrls(currentChangeLinkUrls)
+    }
+    if(state.data.repairProblem){
+      let nextStep = flow.getNextStepFromPreviousStepAndCondition(currentChangeLinkUrls[state.data.repairLocation], state.data.repairLocation);
+      console.log(nextStep)
+      currentChangeLinkUrls[state.data.repairProblem] = nextStep
+      setChangeLinkUrls(currentChangeLinkUrls)
+    }
+    console.log(currentChangeLinkUrls)
+  }
 
   const prevStep = () => {
     flow.prevStep(state)
   }
-
   const values = state.data;
+  const changeLinkUrlValues = changeLinkUrls
 
   const component = () => {
     switch (currentPath) {
+    case 'summary' :
+      return (
+        <Summary changeLinkUrlValues={changeLinkUrlValues} values={values}/>
+      )
     case 'address':
       return (
         <Address
@@ -152,6 +173,7 @@ function ReportRepair() {
 export async function getStaticPaths() {
 
   const paths = [
+    {params: { route: 'summary'}},
     {params: { route: 'address'} },
     {params: { route: 'communal'} },
     {params: { route: 'emergency-repair'} },
