@@ -77,16 +77,17 @@ class Flow {
       'repair-description-leak-inside': {prevStep: 'repair-description-leak-electrics', nextStep: 'repair-description-leak-source'},
       'repair-description-leak-source': {prevStep: 'repair-description-leak-inside', nextStep: 'repair-description'},
       'repair-leak-description-electrics-emergency': {prevStep: 'repair-description-leak-electrics'},
-      'repair-description': {prevStep:'repair-kitchen-cupboard-problems', nextStep: 'summary'},
-      'summary': {prevStep: 'repair-description', nextStep:''},//need to investigate this as there are numerous prev steps, but it might just work
-      'personal-details': {prevStep: 'repair-description', nextStep:'repair-availability'},
-      'repair-availability': {prevStep: 'personal-details', nextStep: 'contact-details-appointment'},
-      'contact-details-appointment': { prevStep: 'repair-availability', nextStep: 'appointment-playback'},
-      'appointment-playback': {prevStep: 'contact-details-appointment', nextStep: [
-        {condition: 'change-appointment', nextStep:'repair-availability'},
-        {condition: 'keep-appointment', nextStep: 'contact-details'}
-      ]},
-      'contact-details': {prevStep: 'appointment-playback', nextStep: 'summary'},
+      'repair-description': {prevStep:'repair-kitchen-cupboard-problems', nextStep: 'contact-person'},//need to investigate this as there are numerous prev steps, but it might just work
+      'contact-person': {prevStep: 'repair-description', nextStep:'contact-details'},
+      'contact-details': {prevStep: 'contact-person', nextStep: 'repair-availability'},
+      'repair-availability': {prevStep: 'personal-details', nextStep: 'summary'},
+      'summary': {prevStep: 'repair-availability', nextStep:''},//need to investigate this as there are numerous prev steps, but it might just work
+
+      // 'contact-details-appointment': { prevStep: 'repair-availability', nextStep: 'appointment-playback'},
+      // 'appointment-playback': {prevStep: 'contact-details-appointment', nextStep: [
+      //   {condition: 'change-appointment', nextStep:'repair-availability'},
+      //   {condition: 'keep-appointment', nextStep: 'contact-details'}
+      // ]},
       // 'summary': {prevStep: 'appointment-playback', nextStep: [
       //   {condition: 'change-repair-address', nextStep: 'postcode'},
       //   {condition: 'change-contact-details', nextStep: 'contact-details'},
@@ -145,12 +146,11 @@ class Flow {
         const condition = nextFlowStep.find(o => o.condition === value);
         nextFlowStep = condition ? condition.nextStep : state.step;
       }
-      console.log('first');
       return this.nextStep(nextFlowStep, state);
     }
+
     const { flowNextStep, flowPrevStep } = this._stepsFromUrl()
     state.prevStep = flowPrevStep;
-    console.log('second')
     this.nextStep(flowNextStep, state, flowPrevStep);
   };
 

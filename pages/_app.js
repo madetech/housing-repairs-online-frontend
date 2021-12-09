@@ -3,9 +3,14 @@ import '../styles/globals.scss'
 import React from 'react';
 import App from 'next/app'
 import Link from 'next/link'
-import Head from 'next/head';
+import { useEffect } from 'react';
 
 function MyApp({ Component, pageProps }) {
+  const enableJavascript = () => {
+    window.GOVUKFrontend.initAll()
+  }
+  useEffect(enableJavascript, [])
+
   return <>
     <header className="govuk-header " role="banner" data-module="govuk-header">
       <div className="govuk-header__container govuk-width-container">

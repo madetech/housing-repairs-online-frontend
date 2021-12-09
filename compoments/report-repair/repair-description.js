@@ -4,8 +4,8 @@ import Button from '../button';
 
 const RepairDescription = ({handleChange, values}) => {
   const [error, setError] = useState({});
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [text, setText] = useState(values.description)
+  const [selectedImage, setSelectedImage] = useState(values.description?.photo);
+  const [text, setText] = useState(values.description?.text)
   const [textAreaCount, setTextAreaCount] = React.useState(0);
   const textLimit = 255
 

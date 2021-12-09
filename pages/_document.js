@@ -11,9 +11,11 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+          <script src="/js/all.js"></script>
           <link rel="shortcut icon" href="/static/favicon.ico" />
         </Head>
-        <body>
+        <body className={'js-enabled'}>
           <Main />
           <NextScript />
         </body>
