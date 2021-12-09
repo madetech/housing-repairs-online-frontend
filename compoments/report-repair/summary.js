@@ -16,7 +16,11 @@ const Summary = ({values, changeLinkUrlValues}) => {
     { pageName:'Where is the problem?', value: values.repairLocation, link:'repair-location'},
     { pageName:'What is the problem?', value: values.repairProblem, link: changeLinkUrlValues[values.repairLocation]},
     { pageName:'What best describes the problem?', values: values.repairProblemBestDescription, link: changeLinkUrlValues[values.repairProblem]},
-    { pageName:'Description', value: '', link:'repair-description'}
+    { pageName:'Description', value: values.description?.text, link:'repair-description'}
+  ]
+  const appointmentDetailsSummary = [
+    { pageName:'Date', value: values.availability, link:'repair-availability'},
+    { pageName:'Confirmation contact details', value: values.contactDetails?.input, link: 'contact-details'},
   ]
 
   return(
@@ -32,9 +36,12 @@ const Summary = ({values, changeLinkUrlValues}) => {
             <h2 className="govuk-heading-m">Repair details</h2>
             <SummaryList summary={repairDetailsSummary}/>
 
+            <h2 className="govuk-heading-m">Appointment details</h2>
+            <SummaryList summary={appointmentDetailsSummary}/>
+
           </div>
         </div>
-        <Button >continue</Button>
+        <Button>continue</Button>
       </div>
     )}
     </>
