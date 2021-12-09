@@ -9,13 +9,14 @@ const Summary = ({values, changeLinkUrlValues}) => {
     setDescribeRepairProblemLink(changeLinkUrlValues[values.repairProblem])
   })
   const personalDetailsSummary = [
-    {pageName:'Repair address', link: 'postcode', value: values.address?.substring(1)+ ',' + values.postcode},
+    {pageName:'Repair address', value: values.address?.substring(1)+ ',' + values.postcode, link: 'postcode'},
+    {pageName:'Appointment contact number', value: values.contactPersonNumber, link: 'contact-person'},
   ]
   const repairDetailsSummary = [
-    { pageName:'Where is the problem?', link:'repair-location', value: values.repairLocation},
-    { pageName:'What is the problem?', link: changeLinkUrlValues[values.repairLocation], value: values.repairProblem},
-    { pageName:'What best describes the problem?', link: changeLinkUrlValues[values.repairProblem], values: values.repairProblemBestDescription},
-    { pageName:'Description', link:'repair-description', value: ''}
+    { pageName:'Where is the problem?', value: values.repairLocation, link:'repair-location'},
+    { pageName:'What is the problem?', value: values.repairProblem, link: changeLinkUrlValues[values.repairLocation]},
+    { pageName:'What best describes the problem?', values: values.repairProblemBestDescription, link: changeLinkUrlValues[values.repairProblem]},
+    { pageName:'Description', value: '', link:'repair-description'}
   ]
 
   return(
