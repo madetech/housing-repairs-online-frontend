@@ -4,6 +4,7 @@ import {
 } from '../../support/helpers';
 
 describe('summary', () => {
+  let timeSlot = ''
   beforeEach(() => {
     intercept_availability_search();
     intercept_address_search();
@@ -55,7 +56,10 @@ describe('summary', () => {
       cy.get('button').click();
     });
     cy.get('[data-cy=repair-availability]', {timeout: 10000}).then(() => {
-      cy.get('[data-cy=availability-slot-0]').click();
+      cy.get('[data-cy=availability-slot-0-0]').invoke('val').then(value =>{
+        timeSlot = value
+      })
+      cy.get('[data-cy=availability-slot-0-0]').click();
       cy.get('button').click();
     });
   });
@@ -82,7 +86,7 @@ describe('summary', () => {
         cy.get('button').contains('Continue').click();
         cy.get('button').click();
         cy.get('button').click();
-        cy.contains('1:00pm to 6:00pm').click();
+        cy.get('[data-cy=availability-slot-0-0]').click();
         cy.get('button').click();
         cy.contains('2 Downing Street,London,SW1A 2AA')
       });
@@ -103,7 +107,7 @@ describe('summary', () => {
       cy.get('button').contains('Continue').click();
       cy.get('button').click();
       cy.get('button').click();
-      cy.contains('1:00pm to 6:00pm').click();
+      cy.get('[data-cy=availability-slot-0-0]').click();
       cy.get('button').click();
       cy.contains(newNumber);
     });
@@ -127,20 +131,28 @@ describe('summary', () => {
       cy.get('button').contains('Continue').click();
       cy.get('button').click();
       cy.get('button').click();
-      cy.contains('1:00pm to 6:00pm').click();
+      cy.get('[data-cy=repair-availability]', {timeout: 10000}).then(() => {
+        cy.get('[data-cy=availability-slot-0-0]').click();
+        cy.get('button').click();
+      });
       cy.get('button').click();
       cy.contains(newText);
     });
   });
   context('Appointment Details', () => {
     it('allows you to change the date', () => {
-      let newAppointmentDate = '10:00am to 1:00pm'
-      cy.contains(newAppointmentDate).should('not.exist');
+      cy.contains(timeSlot);
       cy.get('a[href*="repair-availability"]').contains('Change').click()
       cy.location('href').should('eq', 'http://localhost:3000/report-repair/repair-availability');
-      cy.contains(newAppointmentDate).click();
-      cy.contains(newAppointmentDate);
-      cy.get('button').click();
+      cy.get('[data-cy=repair-availability]', {timeout: 10000}).then(() => {
+        cy.get('[data-cy=availability-slot-1-0]').invoke('val').then(value =>{
+          cy.get('[data-cy=availability-slot-1-0]').click();
+          cy.get('button').click();
+          cy.log(value)
+          cy.contains(value);
+          cy.get('button').click();
+        })
+      });
 
     });
     it('allows you to change the confirmation contact details', () => {
@@ -153,7 +165,10 @@ describe('summary', () => {
         cy.get('input#contactDetails-email').type(newEmail);
       })
       cy.get('button').click();
-      cy.contains('1:00pm to 6:00pm').click();
+      cy.get('[data-cy=repair-availability]', {timeout: 10000}).then(() => {
+        cy.get('[data-cy=availability-slot-0-0]').click();
+        cy.get('button').click();
+      });
       cy.get('button').click();
       cy.contains(newEmail);
     });
