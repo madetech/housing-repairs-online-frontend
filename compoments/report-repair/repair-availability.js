@@ -81,7 +81,7 @@ const RepairAvailability = ({handleChange, values, nextAvailability}) => {
               </h3>
               {availability[date].map((time, ti)=>(
                 <div className="govuk-radios__item" key={`${i}-${ti}`}>
-                  <input className="govuk-radios__input govuk-input--width-10"
+                  <input data-cy={`availability-slot-${i}`} className="govuk-radios__input govuk-input--width-10"
                     id={`${fieldName}-${i}-${ti}`} name={fieldName}
                     type="radio" value={`${date} ${time}`}
                     defaultChecked={false}/>

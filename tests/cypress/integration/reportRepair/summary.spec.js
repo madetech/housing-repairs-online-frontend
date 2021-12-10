@@ -55,7 +55,7 @@ describe('summary', () => {
       cy.get('button').click();
     });
     cy.get('[data-cy=repair-availability]', {timeout: 10000}).then(() => {
-      cy.contains('1:00pm to 6:00pm').click();
+      cy.get('[data-cy=availability-slot-0]').click();
       cy.get('button').click();
     });
   });
@@ -92,6 +92,7 @@ describe('summary', () => {
       cy.contains(newNumber).should('not.exist');
       cy.contains('1 Downing Street,London,SW1A 2AA');
       cy.get('a[href*="contact-person"]').contains('Change').click();
+
       cy.location('href').should('eq', 'http://localhost:3000/report-repair/contact-person');
       cy.get('input').clear();
       cy.get('input').type(newNumber);
