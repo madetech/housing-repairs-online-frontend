@@ -3,6 +3,20 @@ import {
   intercept_availability_search
 } from '../../support/helpers';
 
+const navigateToPageSelectRadioOptionAndContinue = ({page, option}) => {
+  cy.get(`[data-cy=${page}]`, {timeout: 10000}).then(() => {
+    cy.contains(option).click();
+    cy.get('button').click();
+  });
+}
+
+const navigateToPageTypeInputTextAndContinue = ({page, inputText}) => {
+  cy.get(`[data-cy=${page}]`, {timeout: 10000}).then(() => {
+    cy.get('input.govuk-input').type(inputText);
+    cy.get('button').click();
+  });
+}
+
 describe('summary', () => {
   let timeSlot = ''
   beforeEach(() => {
@@ -10,45 +24,28 @@ describe('summary', () => {
     intercept_address_search();
     cy.visit('http://localhost:3000/report-repair/');
 
-    cy.get('[data-cy=priority-list]', {timeout: 10000}).then(() => {
-      cy.contains('No, I want to request a non-emergency repair').click();
-      cy.get('button').click();
-    });
-    cy.get('[data-cy=communal]', {timeout: 10000}).then(() => {
-      cy.contains('No').click();
-      cy.get('button').click()
-    });
+    navigateToPageSelectRadioOptionAndContinue({page: 'priority-list', option:'No, I want to request a non-emergency repair' })
+    navigateToPageSelectRadioOptionAndContinue({page: 'communal', option:'No' })
+    navigateToPageTypeInputTextAndContinue({page: 'postcode', inputText:'SW1A 2AA' })
 
-    cy.get('[data-cy=postcode]', {timeout: 10000}).then(() => {
-      cy.get('input.govuk-input').type('SW1A 2AA');
-      cy.get('button').click();
-    });
 
     cy.get('[data-cy=address]', {timeout: 10000}).then(() => {
       cy.get('select').select('1 Downing Street, London')
       cy.get('button').click();
     });
-    cy.get('[data-cy=repair-location]', {timeout: 10000}).then(() => {
-      cy.contains('Kitchen').click();
-      cy.get('button').click();
-    });
-    cy.get('[data-cy=repair-problem]', {timeout: 10000}).then(() => {
-      cy.contains('Cupboards, including damaged cupboard doors').click();
-      cy.get('button').click();
-    });
-    cy.get('[data-cy=repair-problem-best-description]', {timeout: 10000}).then(() => {
-      cy.contains('Hanging door').click();
-      cy.get('button').click();
-    });
+    navigateToPageSelectRadioOptionAndContinue({page: 'repair-location', option:'Kitchen' })
+    navigateToPageSelectRadioOptionAndContinue({page: 'repair-problem', option:'Cupboards, including damaged cupboard doors' })
+    navigateToPageSelectRadioOptionAndContinue({page: 'repair-problem-best-description', option:'Hanging door' })
+
     cy.get('[data-cy=repair-description]', {timeout: 10000}).then(() => {
       cy.get('textarea').type('Eius postea venit saepius arcessitus.');
       cy.get('input').attachFile('good.jpg');
       cy.get('button').contains('Continue').click();
     });
-    cy.get('[data-cy=contact-person]', {timeout: 10000}).then(() => {
-      cy.get('input').type('02085548333');
-      cy.get('button').click()
-    });
+
+    navigateToPageTypeInputTextAndContinue({page: 'contact-person', inputText:'02085548333' })
+
+
     cy.get('[data-cy=contact-details]', {timeout: 10000}).then(() => {
       cy.get('input#contactDetails-1').click().then(()=> {
         cy.get('input#contactDetails-email').type('harrypotter@hogwarts.com');;
@@ -148,7 +145,6 @@ describe('summary', () => {
         cy.get('[data-cy=availability-slot-1-0]').invoke('val').then(value =>{
           cy.get('[data-cy=availability-slot-1-0]').click();
           cy.get('button').click();
-          cy.log(value)
           cy.contains(value);
           cy.get('button').click();
         })
