@@ -7,10 +7,11 @@ const Summary = ({values, changeLinkUrlValues}) => {
   useEffect(()=>{
     setWhatIsRepairProblemLink(changeLinkUrlValues[values.repairLocation])
     setDescribeRepairProblemLink(changeLinkUrlValues[values.repairProblem])
+    console.log('ADDRESS',values.address)
   })
   const personalDetailsSummary = [
-    {pageName:'Repair address', value: values.address?.substring(1)+ ',' + values.postcode, link: 'postcode'},
-    {pageName:'Appointment contact number', value: values.contactPersonNumber, link: 'contact-person'},
+    {pageName:'Repair address', value: values.address+ ',' + values.postcode, link: 'postcode'},
+    {pageName:'Appointment contact number', value: values.cxwontactPersonNumber, link: 'contact-person'},
   ]
   const repairDetailsSummary = [
     { pageName:'Where is the problem?', value: values.repairLocation, link:'repair-location'},
