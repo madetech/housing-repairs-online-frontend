@@ -11,7 +11,7 @@ const Summary = ({values, changeLinkUrlValues}) => {
   })
   const personalDetailsSummary = [
     {pageName:'Repair address', value: values.address+ ',' + values.postcode, link: 'postcode'},
-    {pageName:'Appointment contact number', value: values.cxwontactPersonNumber, link: 'contact-person'},
+    {pageName:'Appointment contact number', value: values.contactPersonNumber, link: 'contact-person'},
   ]
   const repairDetailsSummary = [
     { pageName:'Where is the problem?', value: values.repairLocation, link:'repair-location'},

@@ -5,7 +5,7 @@ function getToRepairLocation() {
   cy.visit('http://localhost:3000/report-repair/');
   cy.contains('No, I want to request a non-emergency repair').click();
   cy.get('button').click();
-  cy.get('[data-cy=SectionLoaded]', {timeout: 10000}).then(($loadedSection) => {
+  cy.get('[data-cy=communal]', {timeout: 10000}).then(($loadedSection) => {
     cy.contains('No').click({force: true});
     cy.get('button').click().then(() => {
       cy.wait(100)
@@ -13,7 +13,7 @@ function getToRepairLocation() {
       cy.get('button').click();
     });
   });
-  cy.get('[data-cy=SectionLoaded]', {timeout: 10000}).then(($loadedSection) => {
+  cy.get('[data-cy=address]', {timeout: 10000}).then(($loadedSection) => {
     cy.get('select').select('1 Downing Street, London')
     cy.get('button').click();
   });

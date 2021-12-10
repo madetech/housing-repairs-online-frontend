@@ -8,34 +8,56 @@ describe('summary', () => {
     intercept_availability_search();
     intercept_address_search();
     cy.visit('http://localhost:3000/report-repair/');
-    cy.contains('No, I want to request a non-emergency repair').click();
-    cy.get('button').click();
-    cy.contains('No').click();
-    cy.get('button').click().then(() => {
+
+    cy.get('[data-cy=priority-list]', {timeout: 10000}).then(() => {
+      cy.contains('No, I want to request a non-emergency repair').click();
+      cy.get('button').click();
+    });
+    cy.get('[data-cy=communal]', {timeout: 10000}).then(() => {
+      cy.contains('No').click();
+      cy.get('button').click()
+    });
+
+    cy.get('[data-cy=postcode]', {timeout: 10000}).then(() => {
       cy.get('input.govuk-input').type('SW1A 2AA');
       cy.get('button').click();
     });
-    cy.get('[data-cy=SectionLoaded]', {timeout: 10000}).then(() => {
+
+    cy.get('[data-cy=address]', {timeout: 10000}).then(() => {
       cy.get('select').select('1 Downing Street, London')
       cy.get('button').click();
     });
-    cy.contains('Kitchen').click();
-    cy.get('button').click();
-    cy.contains('Cupboards, including damaged cupboard doors').click();
-    cy.get('button').click();
-    cy.contains('Hanging door').click();
-    cy.get('button').click();
-    cy.get('textarea').type('Eius postea venit saepius arcessitus.');
-    cy.get('input').attachFile('good.jpg');
-    cy.get('button').contains('Continue').click();
-    cy.get('input').type('02085548333');
-    cy.get('button').click()
-    cy.get('input#contactDetails-1').click().then(()=> {
-      cy.get('input#contactDetails-email').type('harrypotter@hogwarts.com');;
-    })
-    cy.get('button').click();
-    cy.contains('1:00pm to 6:00pm').click();
-    cy.get('button').click();
+    cy.get('[data-cy=repair-location]', {timeout: 10000}).then(() => {
+      cy.contains('Kitchen').click();
+      cy.get('button').click();
+    });
+    cy.get('[data-cy=repair-problem]', {timeout: 10000}).then(() => {
+      cy.contains('Cupboards, including damaged cupboard doors').click();
+      cy.get('button').click();
+    });
+    cy.get('[data-cy=repair-problem-best-description]', {timeout: 10000}).then(() => {
+      cy.contains('Hanging door').click();
+      cy.get('button').click();
+    });
+    cy.get('[data-cy=repair-description]', {timeout: 10000}).then(() => {
+      cy.get('textarea').type('Eius postea venit saepius arcessitus.');
+      cy.get('input').attachFile('good.jpg');
+      cy.get('button').contains('Continue').click();
+    });
+    cy.get('[data-cy=contact-person]', {timeout: 10000}).then(() => {
+      cy.get('input').type('02085548333');
+      cy.get('button').click()
+    });
+    cy.get('[data-cy=contact-details]', {timeout: 10000}).then(() => {
+      cy.get('input#contactDetails-1').click().then(()=> {
+        cy.get('input#contactDetails-email').type('harrypotter@hogwarts.com');;
+      })
+      cy.get('button').click();
+    });
+    cy.get('[data-cy=repair-availability]', {timeout: 10000}).then(() => {
+      cy.contains('1:00pm to 6:00pm').click();
+      cy.get('button').click();
+    });
   });
 
   it('Should contain the title', () => {
@@ -47,9 +69,11 @@ describe('summary', () => {
       cy.contains('1 Downing Street,London,SW1A 2AA')
       cy.contains(newAddress).should('not.exist')
       cy.get('a[href*="postcode"]').contains('Change').click()
+
       cy.location('href').should('eq', 'http://localhost:3000/report-repair/postcode')
       cy.get('button').click();
-      cy.get('[data-cy=SectionLoaded]', {timeout: 10000}).then(() => {
+
+      cy.get('[data-cy=address]', {timeout: 10000}).then(() => {
         cy.get('select').select(newAddress);
         cy.get('button').click();
         cy.get('button').click();

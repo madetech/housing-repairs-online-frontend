@@ -54,7 +54,7 @@ const RepairAvailability = ({handleChange, values, nextAvailability}) => {
     setValue(event.target.value)
   }
 
-  return <div className="govuk-grid-row">
+  return <div className="govuk-grid-row" data-cy="repair-availability">
     <div className="govuk-grid-column-two-thirds">
       <h1 className="govuk-heading-xl">
         When are you available?

@@ -6,7 +6,7 @@ function setup_addresses_search(setup_addresses_API) {
     cy.get('input.govuk-input').type('SW1A 2AA');
     cy.get('button').click();
   });
-  cy.get('[data-cy=SectionLoaded]', { timeout: 10000 }).then(($loadedSection) => {});
+  cy.get('[data-cy=address]', { timeout: 10000 }).then(($loadedSection) => {});
 }
 
 describe('address', () => {
@@ -14,7 +14,7 @@ describe('address', () => {
     cy.visit('http://localhost:3000/report-repair/');
     cy.contains('No, I want to request a non-emergency repair').click();
     cy.get('button').click();
-    cy.get('[data-cy=SectionLoaded]', { timeout: 10000 }).then(($loadedSection) => {
+    cy.get('[data-cy=communal]', { timeout: 10000 }).then(($loadedSection) => {
       cy.contains('No').click();
     });
   });

@@ -52,7 +52,7 @@ const RepairDescription = ({handleChange, values}) => {
     setError({img: false, text: error.text});
   }
 
-  return <div className="govuk-grid-row">
+  return <div className="govuk-grid-row" data-cy="repair-description">
     <div className="govuk-grid-column-two-thirds">
       <h1 className="govuk-heading-xl govuk-!-margin-0">
         Describe your problem in more detail

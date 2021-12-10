@@ -9,7 +9,7 @@ const ContactPerson = ({handleChange, values}) => {
     handleChange('contactPersonNumber', val);
   }
 
-  return <div className="govuk-grid-row">
+  return <div className="govuk-grid-row" data-cy="contact-person">
     <div>
       <TextInput
         value={values.contactPersonNumber}

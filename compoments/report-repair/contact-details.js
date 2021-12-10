@@ -20,7 +20,7 @@ const ContactDetails = ({handleChange, values}) => {
     }}
   ];
 
-  return <div className="govuk-grid-row">
+  return <div className="govuk-grid-row" data-cy="contact-details">
     <div>
       <RadioFieldSet name={name}
         title={'How should we confirm the appointment?'}

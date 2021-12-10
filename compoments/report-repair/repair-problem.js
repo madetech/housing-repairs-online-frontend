@@ -11,7 +11,7 @@ const RepairProblem = ({handleChange, values, options}) => {
     handleChange(name, selected);
   }
 
-  return <div className="govuk-grid-row">
+  return <div className="govuk-grid-row" data-cy="repair-problem">
     <div className="govuk-grid-column-two-thirds">
       <RadioFieldSet
         name={name}
