@@ -46,7 +46,7 @@ describe('address', () => {
 
     context('When a user selects an option', ()=>{
       it('next page is shown',  () => {
-        cy.get('select').select('1 Downing Street, London, SW1A 2AA')
+        cy.get('select').select('1 Downing Street, London')
         cy.get('button').click()
         cy.url().should('include', '/report-repair/repair-location');
       });
@@ -57,11 +57,11 @@ describe('address', () => {
     context('When API addresses contain \'nulls\' they are not displayed', () => {
       it('address line 1 is null', () => {
         setup_addresses_search(()=>intercept_address_search(1, 'SW1A 2AA', true))
-        cy.get('select').contains(/^London, SW1A 2AA$/)
+        cy.get('select').contains(/^London$/)
       });
       it('address line 2 is null', () => {
         setup_addresses_search(()=>intercept_address_search(1, 'SW1A 2AA', false, true));
-        cy.get('select').contains(/^1 Downing Street, SW1A 2AA$/)
+        cy.get('select').contains(/^1 Downing Street$/)
       });
     });
   });

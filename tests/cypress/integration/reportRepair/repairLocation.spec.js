@@ -14,7 +14,7 @@ function getToRepairLocation() {
     });
   });
   cy.get('[data-cy=SectionLoaded]', {timeout: 10000}).then(($loadedSection) => {
-    cy.get('select').select('1 Downing Street, London, SW1A 2AA')
+    cy.get('select').select('1 Downing Street, London')
     cy.get('button').click();
   });
 }
