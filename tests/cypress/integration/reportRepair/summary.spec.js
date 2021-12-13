@@ -28,11 +28,11 @@ describe('summary', () => {
     navigateToPageSelectRadioOptionAndContinue({page: 'communal', option:'No' })
     navigateToPageTypeInputTextAndContinue({page: 'postcode', inputText:'SW1A 2AA' })
 
-
     cy.get('[data-cy=address]', {timeout: 10000}).then(() => {
-      cy.get('select').select('1 Downing Street, London')
+      cy.get('select').select('1 Downing Street, London, SW1A 2AA')
       cy.get('button').click();
     });
+
     navigateToPageSelectRadioOptionAndContinue({page: 'repair-location', option:'Kitchen' })
     navigateToPageSelectRadioOptionAndContinue({page: 'repair-problem', option:'Cupboards, including damaged cupboard doors' })
     navigateToPageSelectRadioOptionAndContinue({page: 'repair-problem-best-description', option:'Hanging door' })
@@ -64,10 +64,11 @@ describe('summary', () => {
   it('Should contain the title', () => {
     cy.contains('Request summary')
   });
+
   context('Personal Details', () => {
     it('allows you to change the address', () => {
-      let newAddress = '2 Downing Street, London'
-      cy.contains('1 Downing Street,London,SW1A 2AA')
+      let newAddress = '2 Downing Street, London, SW1A 2AA'
+      cy.contains('1 Downing Street, London, SW1A 2AA')
       cy.contains(newAddress).should('not.exist')
       cy.get('a[href*="postcode"]').contains('Change').click()
 
@@ -85,13 +86,13 @@ describe('summary', () => {
         cy.get('button').click();
         cy.get('[data-cy=availability-slot-0-0]').click();
         cy.get('button').click();
-        cy.contains('2 Downing Street,London,SW1A 2AA')
+        cy.contains('2 Downing Street, London, SW1A 2AA')
       });
     });
     it('allows you to change appointment contact number', () => {
       let newNumber = '02087748222';
       cy.contains(newNumber).should('not.exist');
-      cy.contains('1 Downing Street,London,SW1A 2AA');
+      cy.contains('1 Downing Street, London, SW1A 2AA');
       cy.get('a[href*="contact-person"]').contains('Change').click();
 
       cy.location('href').should('eq', 'http://localhost:3000/report-repair/contact-person');

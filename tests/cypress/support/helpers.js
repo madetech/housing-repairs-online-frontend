@@ -12,10 +12,10 @@ function intercept_address_search(
   for (let i = 0; i < numberOfResults; i++) {
     response.push({
       addressLine1: !nullAddressLine1 ? `${i+1} Downing Street` : undefined,
-      addressLine2: !nullAddressLine2 ? 'London' : undefined
+      addressLine2: !nullAddressLine2 ? 'London' : undefined,
+      postCode: postcode
     });
   }
-  cy.log('response',response)
   cy.intercept('GET', `${api_url}/address?*`, {
     statusCode: 201,
     body: response
