@@ -8,13 +8,12 @@ import moment from 'moment';
 const RepairAvailability = ({handleChange, values, nextAvailability}) => {
   const [error, setError] = useState();
   const [value, setValue] = useState();
-  console.log(values)
   const baseURL = '/api/availability';
   const params =  {
     repairLocation:  values.repairLocation,
     repairProblem:  values.repairProblem,
     repairIssue: values.repairProblemBestDescription,
-    uprn: values.uprn,
+    locationId: values.address?.locationId,
     next: nextAvailability
   }
   const apiUrl = `${baseURL}?${new URLSearchParams(params).toString()}`
@@ -38,11 +37,9 @@ const RepairAvailability = ({handleChange, values, nextAvailability}) => {
     })
   }
 
-  console.log(availability)
   const fieldName = 'availability';
 
   const Continue = () => {
-    console.log(value)
     if (value) {
       return handleChange(fieldName, value);
     }
