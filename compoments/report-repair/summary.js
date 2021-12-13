@@ -4,9 +4,17 @@ import Button from '../button';
 const Summary = ({values, changeLinkUrlValues}) => {
   let [whatIsRepairProblemLink, setWhatIsRepairProblemLink] = useState(null)
   let [describeRepairProblemLink, setDescribeRepairProblemLink] = useState(null)
+
+  const convertDateToDisplayDate = (date) => {
+    let dateArray = date?.split(' ')
+    dateArray?.splice(3, 0, 'between')
+    return(dateArray?.join(' '))
+  }
+
   useEffect(()=>{
     setWhatIsRepairProblemLink(changeLinkUrlValues[values.repairLocation])
     setDescribeRepairProblemLink(changeLinkUrlValues[values.repairProblem])
+    convertDateToDisplayDate(values.availability)
   })
   const personalDetailsSummary = [
     {pageName:'Repair address', value: values.address?.display, link: 'postcode'},
@@ -19,12 +27,12 @@ const Summary = ({values, changeLinkUrlValues}) => {
     { pageName:'Description', value: values.description?.text, link:'repair-description'}
   ]
   const appointmentDetailsSummary = [
-    { pageName:'Date', value: values.availability, link:'repair-availability'},
+    { pageName:'Date', value: convertDateToDisplayDate(values.availability), link:'repair-availability'},
     { pageName:'Confirmation contact details', value: values.contactDetails?.input, link: 'contact-details'},
   ]
 
   return(
-    <>{whatIsRepairProblemLink && describeRepairProblemLink && (
+    <>{values && whatIsRepairProblemLink && describeRepairProblemLink && (
       <div>
         <div className="govuk-grid-row govuk-body-m">
           <div className="govuk-grid-column-two-thirds">
