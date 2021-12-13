@@ -10,7 +10,7 @@ const Summary = ({values, changeLinkUrlValues}) => {
     console.log('ADDRESS',values.address)
   })
   const personalDetailsSummary = [
-    {pageName:'Repair address', value: values.address+ ',' + values.postcode, link: 'postcode'},
+    {pageName:'Repair address', value: values.address.display, link: 'postcode'},
     {pageName:'Appointment contact number', value: values.contactPersonNumber, link: 'contact-person'},
   ]
   const repairDetailsSummary = [
