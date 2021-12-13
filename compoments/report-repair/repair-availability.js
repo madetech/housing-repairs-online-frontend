@@ -81,7 +81,7 @@ const RepairAvailability = ({handleChange, values, nextAvailability}) => {
                   <input className="govuk-radios__input govuk-input--width-10"
                     id={`${fieldName}-${i}-${ti}`} name={fieldName}
                     type="radio" value={`${date} ${time}`}
-                    defaultChecked={false}/>
+                    defaultChecked={values.availability === `${date} ${time}` ? true : false}/>
                   <label className="govuk-label govuk-radios__label"
                     htmlFor={`${fieldName}-${i}-${ti}`}>
                     {time}
