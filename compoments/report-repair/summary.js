@@ -43,7 +43,7 @@ const Summary = ({values, changeLinkUrlValues}) => {
 
           </div>
         </div>
-        <Button>continue</Button>
+        <Button>Continue</Button>
       </div>
     )}
     </>
