@@ -139,24 +139,6 @@ describe('summary', () => {
       cy.get('button').click();
       cy.contains(newText);
     });
-
-    it('allows you to remove the image', () => {
-      cy.get('[data-cy=summary-image]').should('be.visible')
-      cy.get('a[href*="repair-description"]').contains('Change').click();
-      cy.location('href').should('eq', 'http://localhost:3000/report-repair/repair-description');
-      cy.get('button').contains('Delete').click();
-      cy.get('input').should('exist');
-      cy.get('button').contains('Continue').click();
-      cy.get('button').click();
-      cy.get('button').click();
-      cy.get('[data-cy=repair-availability]', {timeout: 10000}).then(() => {
-        cy.get('[data-cy=availability-slot-0-0]').click();
-        cy.get('button').click();
-      });
-      cy.get('button').click();
-      cy.get('[data-cy=summary-image]').should('not.exist')
-
-    });
   });
   context('Appointment Details', () => {
     it('allows you to change the date', () => {

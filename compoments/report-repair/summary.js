@@ -19,7 +19,7 @@ const Summary = ({values, changeLinkUrlValues}) => {
     { pageName:'Where is the problem?', value: values.repairLocation?.display, link:'repair-location'},
     { pageName:'What is the problem?', value: values.repairProblem?.display, link: changeLinkUrlValues[values.repairLocation?.value]},
     { pageName:'What best describes the problem?', value: values['repairProblemBestDescription']?.display, link: changeLinkUrlValues[values.repairProblem?.value]},
-    { pageName:'Description', value: values.description?.text, link:'repair-description', photo: values.description?.photo}
+    { pageName:'Description', value: values.description?.text, link:'repair-description'}
   ]
   const appointmentDetailsSummary = [
     { pageName:'Date', value: values.availability, link:'repair-availability'},
