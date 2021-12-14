@@ -11,9 +11,9 @@ export default function SummaryList ({summary}) {
         <dd className="govuk-summary-list__value">
           {o.value}
         </dd>
-        {o.photo && (<dd className="govuk-summary-list__value">
-          <img data-cy="summary-image" alt="not fount" width="200px" src={o.photo}/>
-        </dd>  )}
+        <dd className="govuk-summary-list__value">
+          {o.photo && (<img data-cy="summary-image" alt="not fount" width="200px" src={o.photo}/>)}
+        </dd>
         <dd className="govuk-summary-list__actions">
           <Link href={o.link}>
             <a className={'govuk-link'}>Change</a>
