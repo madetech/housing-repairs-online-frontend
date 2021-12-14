@@ -10,6 +10,7 @@ const Summary = ({values, changeLinkUrlValues}) => {
     setWhatIsRepairProblemLink(changeLinkUrlValues[values.repairLocation?.value])
     setDescribeRepairProblemLink(changeLinkUrlValues[values.repairProblem?.value])
   }, [values, changeLinkUrlValues])
+
   const personalDetailsSummary = [
     {pageName:'Repair address', value: values.address?.display, link: 'postcode'},
     {pageName:'Appointment contact number', value: values.contactPersonNumber, link: 'contact-person'},

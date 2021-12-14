@@ -48,7 +48,7 @@ const RepairAvailability = ({handleChange, values, nextAvailability}) => {
   const Continue = () => {
     if (value) {
       let title = convertDateToDisplayDate(value)
-      return handleChange(fieldName, {value:value, title: title});
+      return handleChange(fieldName, {value:value, display: title});
     }
     setError('Required')
   }
