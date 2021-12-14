@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import RadioFieldSet from '../radioFieldSet';
+import React from 'react';
 
 const RepairLocation = ({handleChange, values}) => {
   const name =  'repairLocation';
