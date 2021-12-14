@@ -5,29 +5,23 @@ const Summary = ({values, changeLinkUrlValues}) => {
   let [whatIsRepairProblemLink, setWhatIsRepairProblemLink] = useState(null)
   let [describeRepairProblemLink, setDescribeRepairProblemLink] = useState(null)
 
-  const convertDateToDisplayDate = (date) => {
-    let dateArray = date?.split(' ')
-    dateArray?.splice(3, 0, 'between')
-    return(dateArray?.join(' '))
-  }
 
   useEffect(()=>{
-    setWhatIsRepairProblemLink(changeLinkUrlValues[values.repairLocation])
-    setDescribeRepairProblemLink(changeLinkUrlValues[values.repairProblem])
-    convertDateToDisplayDate(values.availability)
-  })
+    setWhatIsRepairProblemLink(changeLinkUrlValues[values.repairLocation?.value])
+    setDescribeRepairProblemLink(changeLinkUrlValues[values.repairProblem?.value])
+  }, [values, changeLinkUrlValues])
   const personalDetailsSummary = [
     {pageName:'Repair address', value: values.address?.display, link: 'postcode'},
     {pageName:'Appointment contact number', value: values.contactPersonNumber, link: 'contact-person'},
   ]
   const repairDetailsSummary = [
-    { pageName:'Where is the problem?', value: values.repairLocation, link:'repair-location'},
-    { pageName:'What is the problem?', value: values.repairProblem, link: changeLinkUrlValues[values.repairLocation]},
-    { pageName:'What best describes the problem?', values: values.repairProblemBestDescription, link: changeLinkUrlValues[values.repairProblem]},
+    { pageName:'Where is the problem?', value: values.repairLocation?.display, link:'repair-location'},
+    { pageName:'What is the problem?', value: values.repairProblem?.display, link: changeLinkUrlValues[values.repairLocation?.value]},
+    { pageName:'What best describes the problem?', values: values.repairProblemBestDescription?.display, link: changeLinkUrlValues[values.repairProblem?.value]},
     { pageName:'Description', value: values.description?.text, link:'repair-description'}
   ]
   const appointmentDetailsSummary = [
-    { pageName:'Date', value: convertDateToDisplayDate(values.availability), link:'repair-availability'},
+    { pageName:'Date', value: values.availability?.display, link:'repair-availability'},
     { pageName:'Confirmation contact details', value: values.contactDetails?.input, link: 'contact-details'},
   ]
 

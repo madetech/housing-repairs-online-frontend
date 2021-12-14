@@ -10,9 +10,9 @@ const RepairAvailability = ({handleChange, values, nextAvailability}) => {
   const [value, setValue] = useState();
   const baseURL = '/api/availability';
   const params =  {
-    repairLocation:  values.repairLocation,
-    repairProblem:  values.repairProblem,
-    repairIssue: values.repairProblemBestDescription,
+    repairLocation:  values.repairLocation?.value,
+    repairProblem:  values.repairProblem?.value,
+    repairIssue: values.repairProblemBestDescription?.value,
     locationId: values.address?.locationId,
     next: nextAvailability
   }
@@ -36,12 +36,19 @@ const RepairAvailability = ({handleChange, values, nextAvailability}) => {
         availability[dateString] = [timeString]
     })
   }
+  const convertDateToDisplayDate = (date) => {
+    let dateArray = date?.split(' ')
+    dateArray?.splice(3, 0, 'between')
+    return(dateArray?.join(' '))
+  }
+
 
   const fieldName = 'availability';
 
   const Continue = () => {
     if (value) {
-      return handleChange(fieldName, value);
+      let title = convertDateToDisplayDate(value)
+      return handleChange(fieldName, {value:value, title: title});
     }
     setError('Required')
   }

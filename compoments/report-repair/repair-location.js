@@ -1,5 +1,3 @@
-import React from 'react';
-
 import PropTypes from 'prop-types';
 import RadioFieldSet from '../radioFieldSet';
 
@@ -14,9 +12,8 @@ const RepairLocation = ({handleChange, values}) => {
     { value: 'outside', title: 'Outside'},
   ];
 
-  const Continue = val => {
-    const selected = val[name];
-    handleChange(name, selected);
+  const Continue = ({val, display}) => {
+    handleChange(name, {value: val[name], display: display});
   }
 
   return <div className="govuk-grid-row" data-cy="repair-location">
@@ -25,7 +22,7 @@ const RepairLocation = ({handleChange, values}) => {
         title={title}
         options={options}
         onSubmit={Continue}
-        checked={values[name]}
+        checked={values[name]?.value}
         buttonText='Continue'
       />
     </div>

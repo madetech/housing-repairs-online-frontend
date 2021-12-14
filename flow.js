@@ -139,11 +139,16 @@ class Flow {
     this.history.push(state.prevStep)
   }
   handleChange = (input, value, state) => {
-    state.data[input] = value
+    state.data[input]= value
     let nextFlowStep =  this.flow[state.step]?.nextStep
     if (nextFlowStep) {
       if (Array.isArray(nextFlowStep)) {
-        const condition = nextFlowStep.find(o => o.condition === value);
+        let condition
+        if(typeof value === 'object'){
+          condition = nextFlowStep.find(o => o.condition === value.value)
+        }else{
+          condition = nextFlowStep.find(o => o.condition === value);
+        }
         nextFlowStep = condition ? condition.nextStep : state.step;
       }
       return this.nextStep(nextFlowStep, state);

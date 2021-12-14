@@ -17,6 +17,12 @@ const navigateToPageTypeInputTextAndContinue = ({page, inputText}) => {
   });
 }
 
+const convertDateToDisplayDate = (date) => {
+  let dateArray = date?.split(' ')
+  dateArray?.splice(3, 0, 'between')
+  return(dateArray?.join(' '))
+}
+
 describe('summary', () => {
   let timeSlot = ''
   beforeEach(() => {
@@ -48,13 +54,13 @@ describe('summary', () => {
 
     cy.get('[data-cy=contact-details]', {timeout: 10000}).then(() => {
       cy.get('input#contactDetails-1').click().then(()=> {
-        cy.get('input#contactDetails-email').type('harrypotter@hogwarts.com');;
+        cy.get('input#contactDetails-email').type('harrypotter@hogwarts.com');
       })
       cy.get('button').click();
     });
     cy.get('[data-cy=repair-availability]', {timeout: 10000}).then(() => {
       cy.get('[data-cy=availability-slot-0-0]').invoke('val').then(value =>{
-        timeSlot = value
+        timeSlot = value;
       })
       cy.get('[data-cy=availability-slot-0-0]').click();
       cy.get('button').click();
@@ -112,13 +118,15 @@ describe('summary', () => {
   });
   context('Repair Details', () => {
     it('allows you to navigate to change the repair location page ', () => {
-      cy.get('a[href*="repair-location"]').contains('Change').click()
+      cy.get('a[href*="repair-location"]').contains('Change').click();
       cy.location('href').should('eq', 'http://localhost:3000/report-repair/repair-location');
     });
+
     it('allows you to navigate to change what is the problem page', () => {
       cy.get('a[href*="repair-kitchen-problems"]').contains('Change').click();
       cy.location('href').should('eq', 'http://localhost:3000/report-repair/repair-kitchen-problems');
     });
+
     it('allows you to change the description', () => {
       let newText = 'loremmmm ipsummm'
       cy.contains(newText).should('not.exist')
@@ -139,14 +147,14 @@ describe('summary', () => {
   });
   context('Appointment Details', () => {
     it('allows you to change the date', () => {
-      cy.contains(timeSlot);
+      cy.contains(convertDateToDisplayDate(timeSlot));
       cy.get('a[href*="repair-availability"]').contains('Change').click()
       cy.location('href').should('eq', 'http://localhost:3000/report-repair/repair-availability');
       cy.get('[data-cy=repair-availability]', {timeout: 10000}).then(() => {
         cy.get('[data-cy=availability-slot-1-0]').invoke('val').then(value =>{
           cy.get('[data-cy=availability-slot-1-0]').click();
           cy.get('button').click();
-          cy.contains(value);
+          cy.contains(convertDateToDisplayDate(value));
           cy.get('button').click();
         })
       });

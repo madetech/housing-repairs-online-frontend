@@ -6,9 +6,8 @@ const RepairProblemBestDescription = ({handleChange, values, options}) => {
   const name =  'repairProblemBestDescription';
   const title =  'What best describes the problem?';
 
-  const Continue = val => {
-    const selected = val[name];
-    handleChange(name, selected);
+  const Continue = ({val, display}) => {
+    handleChange(name, {value:val[name], display: display});
   }
 
   return <div className="govuk-grid-row" data-cy="repair-problem-best-description">
@@ -18,7 +17,7 @@ const RepairProblemBestDescription = ({handleChange, values, options}) => {
         title={title}
         options={options}
         onSubmit={Continue}
-        checked={values[name]}
+        checked={values[name]?.value}
         buttonText='Continue'
       />
     </div>

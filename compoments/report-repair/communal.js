@@ -4,7 +4,7 @@ import RadioFieldSet from '../radioFieldSet';
 import React from 'react';
 
 
-const Communal = ({handleChange, nextStep, values}) => {
+const Communal = ({handleChange, values}) => {
   const name =  'communal';
   const title =  'Is the problem in a communal area?';
   const options =  [
@@ -28,22 +28,22 @@ const Communal = ({handleChange, nextStep, values}) => {
     </Details>
   );
 
-  const nextPage = val => {
+  const Continue = ({val}) => {
     const selected = val[name];
     handleChange(name, selected);
   }
 
-  return <div className="govuk-grid-row"  data-cy="communal">
+  return (<div className="govuk-grid-row"  data-cy="communal">
     <div className="govuk-grid-column-two-thirds">
       <RadioFieldSet name={name}
         title={title}
         options={options}
-        onSubmit={nextPage} buttonText={'Provide your postcode'}
+        onSubmit={Continue} buttonText={'Provide your postcode'}
         beforeButton={beforeButton}
         checked={values[name]}
-      ></RadioFieldSet>
+      />
     </div>
-  </div>
+  </div>)
 };
 
 Communal.propTypes = {

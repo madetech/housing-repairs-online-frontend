@@ -50,11 +50,11 @@ function ReportRepair() {
   const getNextStepForRepairProblem = () => {
     let currentChangeLinkUrls = changeLinkUrls
     if(state.data.repairLocation){
-      currentChangeLinkUrls[state.data.repairLocation] = flow.getNextStepFromPreviousStepAndCondition('repair-location', state.data.repairLocation);
+      currentChangeLinkUrls[state.data.repairLocation.value] = flow.getNextStepFromPreviousStepAndCondition('repair-location', state.data.repairLocation.value);
       setChangeLinkUrls(currentChangeLinkUrls)
     }
     if(state.data.repairProblem){
-      currentChangeLinkUrls[state.data.repairProblem] = flow.getNextStepFromPreviousStepAndCondition(currentChangeLinkUrls[state.data.repairLocation], state.data.repairLocation);
+      currentChangeLinkUrls[state.data.repairProblem.value] = flow.getNextStepFromPreviousStepAndCondition(currentChangeLinkUrls[state.data.repairLocation.value], state.data.repairLocation.value);
       setChangeLinkUrls(currentChangeLinkUrls)
     }
   }

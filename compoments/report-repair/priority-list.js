@@ -18,7 +18,7 @@ const PriorityList = ({handleChange, values}) => {
     { value: 'non-emergency/9', title: 'No, I want to request a non-emergency repair'},
   ];
 
-  const Continue = val => {
+  const Continue = ({val}) => {
     const selected = val[name];
     handleChange(name, selected);
   }
@@ -33,7 +33,7 @@ const PriorityList = ({handleChange, values}) => {
         buttonText={'Continue'}
         checked={values[name]}
         orDivider={true}
-      ></RadioFieldSet>
+      />
     </div>
   </div>)
 
