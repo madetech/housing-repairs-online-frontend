@@ -86,7 +86,7 @@ describe('priorityList', () => {
     });
   })
 
-  context('User uses back buttons to navigate out of an exit page and selects a different option', ()=>{
+  xcontext('User uses back buttons to navigate out of an exit page and selects a different option', ()=>{
     it.only('should redirect the user to a different exit page',  () => {
       cy.contains('I can smell gas in or near the property').click();
       cy.get('button').click();
@@ -97,7 +97,7 @@ describe('priorityList', () => {
     })
   })
 
-  context('User uses back buttons to navigate out of an exit page and selects the same option', ()=>{
+  xcontext('User uses back buttons to navigate out of an exit page and selects the same option', ()=>{
     it('should redirect the user to the same exit page',  () => {
       cy.contains('I can smell gas in or near the property').click();
       cy.get('button').click();
@@ -108,7 +108,7 @@ describe('priorityList', () => {
     })
   })
 
-  context('User presses the back button twice from an exit page', ()=>{
+  xcontext('User presses the back button twice from an exit page', ()=>{
     it('should redirect the user to the home page',  () => {
       cy.contains('I can smell gas in or near the property').click();
       cy.get('button').click();
