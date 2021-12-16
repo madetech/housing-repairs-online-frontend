@@ -4,8 +4,9 @@ import Button from '../button';
 import {fetcher} from '../../helpers/fetcher';
 import useSWR from 'swr';
 import moment from 'moment';
+import {useRouter} from 'next/router';
 
-const RepairAvailability = ({handleChange, values, nextAvailability}) => {
+const RepairAvailability = ({handleChange, values, fromDate}) => {
   const [error, setError] = useState();
   const [value, setValue] = useState();
   const baseURL = '/api/availability';
@@ -13,8 +14,14 @@ const RepairAvailability = ({handleChange, values, nextAvailability}) => {
     repairLocation:  values.repairLocation?.value,
     repairProblem:  values.repairProblem?.value,
     repairIssue: values.repairProblemBestDescription?.value,
+
+  const router = useRouter();
+
+
     locationId: values.address?.locationId,
-    next: nextAvailability
+  }
+  if (fromDate) {
+    params['fromDate'] = fromDate;
   }
   const apiUrl = `${baseURL}?${new URLSearchParams(params).toString()}`
   const { data, dataError } = useSWR(apiUrl, fetcher)
@@ -24,7 +31,12 @@ const RepairAvailability = ({handleChange, values, nextAvailability}) => {
 
   let availability = {};
 
+  let latestDate;
+
   if (data) {
+    let startTimes = data.map(d => moment(d.startTime))
+    latestDate = moment.max(startTimes).format('YYYY-MM-DD');
+
     data.forEach((d) => {
       const date = moment(d.startTime)
       const dateString = date.format('Do MMMM YYYY')
@@ -81,7 +93,7 @@ const RepairAvailability = ({handleChange, values, nextAvailability}) => {
                   <input data-cy={`availability-slot-${i}-${ti}`} className="govuk-radios__input govuk-input--width-10"
                     id={`${fieldName}-${i}-${ti}`} name={fieldName}
                     type="radio" value={`${date} ${time}`}
-                    defaultChecked={false}/>
+                    defaultChecked={values.availability === `${date} ${time}` ? true : false}/>
                   <label className="govuk-label govuk-radios__label"
                     htmlFor={`${fieldName}-${i}-${ti}`}>
                     {time}
@@ -93,12 +105,14 @@ const RepairAvailability = ({handleChange, values, nextAvailability}) => {
         </div>
       </div>
       <div>
-        {nextAvailability ? (
-          <a href="repair-availability"
-            className="govuk-button govuk-button--secondary">Previous 5 days</a>
+        {fromDate ? (
+          <a className="govuk-button govuk-button--secondary" onClick={()=>{
+            router.push(`${router.asPath}`, 'repair-availability', { shallow: true })
+          }}>Previous 5 days</a>
         ) : (
-          <a href="repair-availability?next=true"
-            className="govuk-button govuk-button--secondary">Next 5 days</a>
+          <a className="govuk-button govuk-button--secondary" onClick={()=>{
+            router.push(`${router.asPath}/?fromDate=${latestDate}`, `${router.asPath}/?next=true`, { shallow: true })
+          }}>Next 5 days</a>
         )}
       </div>
       <Button onClick={Continue} >Continue</Button>
