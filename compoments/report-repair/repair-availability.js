@@ -14,12 +14,10 @@ const RepairAvailability = ({handleChange, values, fromDate}) => {
     repairLocation:  values.repairLocation?.value,
     repairProblem:  values.repairProblem?.value,
     repairIssue: values.repairProblemBestDescription?.value,
-
-  const router = useRouter();
-
-
     locationId: values.address?.locationId,
   }
+  const router = useRouter();
+
   if (fromDate) {
     params['fromDate'] = fromDate;
   }
