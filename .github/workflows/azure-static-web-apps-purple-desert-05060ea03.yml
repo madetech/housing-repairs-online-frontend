@@ -39,9 +39,10 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           install-command: yarn --frozen-lockfile --silent
-          start: yarn dev
+          start: yarn build && yarn start
           # quote the url to be safe against YML parsing surprises
           wait-on: 'http://localhost:3000'
+          browser: firefox
           record: true
         env:
           # pass the Dashboard record key as an environment variable
