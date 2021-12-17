@@ -17,6 +17,11 @@ const navigateToPageTypeInputTextAndContinue = ({page, inputText}) => {
   });
 }
 
+const convertDateToDisplayDate = (date) => {
+  let dateArray = date?.split(' ')
+  dateArray?.splice(3, 0, 'between')
+  return(dateArray?.join(' '))
+}
 
 describe('summary', () => {
   let timeSlot = ''
@@ -200,14 +205,14 @@ describe('summary', () => {
   });
   context('Appointment Details', () => {
     it('allows you to change the date', () => {
-      cy.contains(timeSlot);
+      cy.contains(convertDateToDisplayDate(timeSlot));
       cy.get('a[href*="repair-availability"]').contains('Change').click()
       cy.location('href').should('eq', 'http://localhost:3000/report-repair/repair-availability');
       cy.get('[data-cy=repair-availability]', {timeout: 10000}).then(() => {
         cy.get('[data-cy=availability-slot-1-0]').invoke('val').then(value =>{
           cy.get('[data-cy=availability-slot-1-0]').click();
           cy.get('button').click();
-          cy.contains(value);
+          cy.contains(convertDateToDisplayDate(value));
           cy.get('button').click();
         })
       });

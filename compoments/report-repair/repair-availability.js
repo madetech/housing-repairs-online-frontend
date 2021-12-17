@@ -40,18 +40,24 @@ const RepairAvailability = ({handleChange, values, fromDate}) => {
       const dateString = date.format('Do MMMM YYYY')
       const startTime = date.format('h:mma');
       const endTime = moment(d.endTime).format('h:mma')
-      const timeString = `${startTime} between ${endTime}`
+      const timeString = `${startTime} to ${endTime}`
       availability[dateString] ?
         availability[dateString].push(timeString) :
         availability[dateString] = [timeString]
     })
+  }
+  const convertDateToDisplayDate = (date) => {
+    let dateArray = date?.split(' ')
+    dateArray?.splice(3, 0, 'between')
+    return(dateArray?.join(' '))
   }
 
   const fieldName = 'availability';
 
   const Continue = () => {
     if (value) {
-      return handleChange(fieldName, value);
+      let title = convertDateToDisplayDate(value)
+      return handleChange(fieldName, {value:value, display: title});
     }
     setError('Required')
   }

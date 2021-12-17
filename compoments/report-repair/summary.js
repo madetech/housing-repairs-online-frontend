@@ -22,7 +22,7 @@ const Summary = ({values, changeLinkUrlValues}) => {
     { pageName:'Description', value: values.description?.text, link:'repair-description'}
   ]
   const appointmentDetailsSummary = [
-    { pageName:'Date', value: values.availability, link:'repair-availability'},
+    { pageName:'Date', value: values.availability?.display, link:'repair-availability'},
     { pageName:'Confirmation contact details', value: values.contactDetails?.input, link: 'contact-details'},
   ]
 
