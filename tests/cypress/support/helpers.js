@@ -19,7 +19,7 @@ function intercept_address_search(
   cy.intercept('GET', `${api_url}/address?*`, {
     statusCode: 201,
     body: response
-  });
+  }).as('address');
 }
 
 function intercept_availability_search() {
