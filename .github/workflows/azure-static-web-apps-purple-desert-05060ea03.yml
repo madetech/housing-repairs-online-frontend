@@ -39,7 +39,8 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           install-command: yarn --frozen-lockfile --silent
-          start: yarn build && yarn start
+          build: yarn build
+          start: yarn start
           # quote the url to be safe against YML parsing surprises
           wait-on: 'http://localhost:3000'
           browser: firefox
