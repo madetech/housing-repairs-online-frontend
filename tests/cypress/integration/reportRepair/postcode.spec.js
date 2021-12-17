@@ -1,3 +1,5 @@
+import {intercept_address_search} from '../../support/helpers';
+
 describe('postcode', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/report-repair/');
@@ -46,12 +48,15 @@ describe('postcode', () => {
 
   context('When a user type a valid postcode and returns to change it', ()=>{
     it('the field is changeable',  () => {
+      intercept_address_search()
       cy.get('input.govuk-input').type('SW1A 2AA');
       cy.get('button').click()
-      cy.contains('Back').click();
+      cy.get('[data-cy=address]', {timeout: 10000}).then(() => {
+        cy.contains('Back').click();
+      });
       cy.get('[data-cy=postcode]', {timeout: 10000}).then(() => {
         cy.get('input').type('hello');
-        // ToDO: asset that the text changed
+        cy.get('input').should('have.value', 'SW1A 2AAhello')
       });
     });
   });
