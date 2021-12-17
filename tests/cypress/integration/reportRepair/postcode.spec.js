@@ -52,7 +52,9 @@ describe('postcode', () => {
       cy.get('input.govuk-input').type('SW1A 2AA');
       cy.get('button').click()
       cy.get('[data-cy=address]', {timeout: 10000}).then(() => {
-        cy.contains('Back').click();
+        cy.wait('@address').then(()=> {
+          cy.contains('Back').click();
+        });
       });
       cy.get('[data-cy=postcode]', {timeout: 10000}).then(() => {
         cy.get('input').type('hello');
