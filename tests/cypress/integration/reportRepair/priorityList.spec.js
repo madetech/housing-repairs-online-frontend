@@ -118,7 +118,7 @@ describe('priorityList', () => {
     })
   })
 
-  context('When a user proceeds to next step and goes back', ()=>{
+  xcontext('When a user proceeds to next step and goes back', ()=>{
     it('should have user\'s selection reselected',  () => {
       cy.contains('No, I want to request a non-emergency repair').click();
       cy.get('button').click()
