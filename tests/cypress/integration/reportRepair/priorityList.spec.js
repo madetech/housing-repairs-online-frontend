@@ -86,7 +86,7 @@ describe('priorityList', () => {
     });
   })
 
-  xcontext('User uses back buttons to navigate out of an exit page and selects a different option', ()=>{
+  context('User uses back buttons to navigate out of an exit page and selects a different option', ()=>{
     it('should redirect the user to a different exit page',  () => {
       cy.contains('I can smell gas in or near the property').click();
       cy.get('button').click();
@@ -97,7 +97,7 @@ describe('priorityList', () => {
     })
   })
 
-  xcontext('User uses back buttons to navigate out of an exit page and selects the same option', ()=>{
+  context('User uses back buttons to navigate out of an exit page and selects the same option', ()=>{
     it('should redirect the user to the same exit page',  () => {
       cy.contains('I can smell gas in or near the property').click();
       cy.get('button').click();
@@ -108,7 +108,7 @@ describe('priorityList', () => {
     })
   })
 
-  xcontext('User presses the back button twice from an exit page', ()=>{
+  context('User presses the back button twice from an exit page', ()=>{
     it('should redirect the user to the home page',  () => {
       cy.contains('I can smell gas in or near the property').click();
       cy.get('button').click();
@@ -118,7 +118,7 @@ describe('priorityList', () => {
     })
   })
 
-  xcontext('When a user proceeds to next step and goes back', ()=>{
+  context('When a user proceeds to next step and goes back', ()=>{
     it('should have user\'s selection reselected',  () => {
       cy.contains('No, I want to request a non-emergency repair').click();
       cy.get('button').click()
