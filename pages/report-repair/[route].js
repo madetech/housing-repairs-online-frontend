@@ -60,7 +60,7 @@ function ReportRepair() {
   }
 
   const prevStep = (e) => {
-    e.preventDefault();
+    e?.preventDefault();
     flow.prevStep(state)
   }
   const values = state.data;
