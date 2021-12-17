@@ -8,7 +8,7 @@ import {useRouter} from 'next/router';
 
 const RepairAvailability = ({handleChange, values, fromDate}) => {
   const [error, setError] = useState();
-  const [value, setValue] = useState();
+  const [value, setValue] = useState(values.availability?.value);
   const baseURL = '/api/availability';
   const params =  {
     repairLocation:  values.repairLocation?.value,
@@ -63,7 +63,6 @@ const RepairAvailability = ({handleChange, values, fromDate}) => {
   }
 
   const onChange = (event) =>{
-    console.log(event.target.value)
     setValue(event.target.value)
   }
 
@@ -97,7 +96,7 @@ const RepairAvailability = ({handleChange, values, fromDate}) => {
                   <input data-cy={`availability-slot-${i}-${ti}`} className="govuk-radios__input govuk-input--width-10"
                     id={`${fieldName}-${i}-${ti}`} name={fieldName}
                     type="radio" value={`${date} ${time}`}
-                    defaultChecked={values.availability === `${date} ${time}` ? true : false}/>
+                    defaultChecked={values.availability?.value === `${date} ${time}` ? true : false}/>
                   <label className="govuk-label govuk-radios__label"
                     htmlFor={`${fieldName}-${i}-${ti}`}>
                     {time}

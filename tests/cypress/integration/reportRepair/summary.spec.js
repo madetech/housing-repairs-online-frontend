@@ -150,8 +150,9 @@ describe('summary', () => {
       cy.get('[data-cy=contact-details]', {timeout: 10000}).then(() => {
         cy.get('button').click();
       });
-      cy.get('[data-cy=availability-slot-0-0]').click();
-      cy.get('button').click();
+      cy.get('[data-cy=repair-availability]', {timeout: 10000}).then(() => {
+        cy.get('button').click();
+      });
       cy.contains('2 Downing Street, London, SW1A 2AA')
     });
     it('allows you to change appointment contact number', () => {
@@ -165,8 +166,9 @@ describe('summary', () => {
       cy.get('[data-cy=contact-details]', {timeout: 10000}).then(() => {
         cy.get('button').click();
       });
-      cy.get('[data-cy=availability-slot-0-0]').click();
-      cy.get('button').click();
+      cy.get('[data-cy=repair-availability]', {timeout: 10000}).then(() => {
+        cy.get('button').click();
+      });
       cy.contains(newNumber);
     });
   });
@@ -196,7 +198,6 @@ describe('summary', () => {
         cy.get('button').click();
       });
       cy.get('[data-cy=repair-availability]', {timeout: 10000}).then(() => {
-        cy.get('[data-cy=availability-slot-0-0]').click();
         cy.get('button').click();
       });
       cy.get('button').click();
