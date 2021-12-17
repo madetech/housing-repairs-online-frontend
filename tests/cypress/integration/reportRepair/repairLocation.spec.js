@@ -79,6 +79,9 @@ describe('repairLocation', () => {
   });
 
   context('When a user selects an option', ()=>{
+    beforeEach(()=>{
+      getToRepairLocation();
+    })
     it('should be selected when they navigate back to the page',  () => {
       cy.contains('Kitchen').click();
       cy.get('button').click()
