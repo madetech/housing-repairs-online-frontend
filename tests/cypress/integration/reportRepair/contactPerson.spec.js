@@ -1,4 +1,4 @@
-describe('postcode', () => {
+describe('contactPerson', () => {
   before(() => {
     cy.visit('http://localhost:3000/report-repair/contact-person');
   });

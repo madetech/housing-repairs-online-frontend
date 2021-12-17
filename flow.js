@@ -33,7 +33,7 @@ class Flow {
         {condition: 'drip-or-leak', nextStep: 'repair-description-leak'},
         {condition: 'something-else', nextStep: 'repair-description'}
       ]},
-      'repair-kitchen-cupboard-problems': {prevStep: 'cupboards', nextStep: 'repair-description'},
+      'repair-kitchen-cupboard-problems': {prevStep: 'repair-kitchen-problems', nextStep: 'repair-description'},
       'repair-description-damp': {prevStep: 'repair-kitchen-types', nextStep: [
         {condition: 'damp', nextStep: 'repair-damp'},
         {condition: 'mould', nextStep: 'repair-description-damp-mold'},
@@ -77,32 +77,34 @@ class Flow {
       'repair-description-leak-inside': {prevStep: 'repair-description-leak-electrics', nextStep: 'repair-description-leak-source'},
       'repair-description-leak-source': {prevStep: 'repair-description-leak-inside', nextStep: 'repair-description'},
       'repair-leak-description-electrics-emergency': {prevStep: 'repair-description-leak-electrics'},
-      'repair-description': {prevStep:'' , nextStep: 'contact-person'},//need to investigate this as there are numerous prev steps, but it might just work
+      'repair-description': {prevStep:'repair-kitchen-cupboard-problems', nextStep: 'contact-person'},//need to investigate this as there are numerous prev steps, but it might just work
       'contact-person': {prevStep: 'repair-description', nextStep:'contact-details'},
       'contact-details': {prevStep: 'contact-person', nextStep: 'repair-availability'},
-      'repair-availability': {prevStep: 'personal-details', nextStep: 'summary'},
+      'repair-availability': {prevStep: 'contact-details', nextStep: 'summary'},
+      'summary': {prevStep: 'repair-availability', nextStep:''},//need to investigate this as there are numerous prev steps, but it might just work
+
       // 'contact-details-appointment': { prevStep: 'repair-availability', nextStep: 'appointment-playback'},
       // 'appointment-playback': {prevStep: 'contact-details-appointment', nextStep: [
       //   {condition: 'change-appointment', nextStep:'repair-availability'},
       //   {condition: 'keep-appointment', nextStep: 'contact-details'}
       // ]},
-      'summary': {prevStep: 'appointment-playback', nextStep: [
-        {condition: 'change-repair-address', nextStep: 'postcode'},
-        {condition: 'change-contact-details', nextStep: 'contact-details'},
-        {condition: 'change-phone-number', nextStep: 'contact-details-appointment'},
-        {condition: 'change-location', nextStep: 'repair-location'},
-        {condition: 'change-issue', nextStep: 'repair-kitchen-types'},
-        {condition: 'change-description', nextStep: 'repair-description'},
-        {condition: 'change-appointment-date', nextStep: 'repair-availability'},
-        {condition: 'change-appointment-information', nextStep: 'personal-details'},
-        {condition: 'confirm-and-report', nextStep: 'confirmation'}
-      ]},
+      // 'summary': {prevStep: 'appointment-playback', nextStep: [
+      //   {condition: 'change-repair-address', nextStep: 'postcode'},
+      //   {condition: 'change-contact-details', nextStep: 'contact-details'},
+      //   {condition: 'change-phone-number', nextStep: 'contact-details-appointment'},
+      //   {condition: 'change-location', nextStep: 'repair-location'},
+      //   {condition: 'change-issue', nextStep: 'repair-kitchen-types'},
+      //   {condition: 'change-description', nextStep: 'repair-description'},
+      //   {condition: 'change-appointment-date', nextStep: 'repair-availability'},
+      //   {condition: 'change-appointment-information', nextStep: 'personal-details'},
+      //   {condition: 'confirm-and-report', nextStep: 'confirmation'}
+      // ]},
       'confirmation': {prevStep:'summary', nextStep: [
         {condition: 'report-another-issue', nextStep: 'index'},
         {condition: 'request-confirmation', nextStep: 'confirmation-template'}
       ]}
     }
-  }
+  };
   nextStep (step, state, prevStep) {
     state.prevStep = prevStep ? prevStep : state.step
     state.step = step;
@@ -113,6 +115,12 @@ class Flow {
   _prevStepIsNotDefinedOrEqualsCurrentStep = (state) => (state.prevStep === state.step || !state.prevStep)
 
   _prevStepIsInFlow = (state) => (this.flow[state.step] && this.flow[state.step].prevStep)
+
+  getNextStepFromPreviousStepAndCondition = (previousStep, condition) => {
+    let steps = this.flow[previousStep].nextStep
+    steps.filter( step => step.condition == condition)
+    return steps[0].nextStep
+  }
 
   prevStep = (state) => {
     // Clicking the back button twice will result in the current
@@ -131,11 +139,16 @@ class Flow {
     this.history.push(state.prevStep)
   }
   handleChange = (input, value, state) => {
-    state.data[input] = value
+    state.data[input]= value
     let nextFlowStep =  this.flow[state.step]?.nextStep
     if (nextFlowStep) {
       if (Array.isArray(nextFlowStep)) {
-        const condition = nextFlowStep.find(o => o.condition === value);
+        let condition
+        if(typeof value === 'object'){
+          condition = nextFlowStep.find(o => o.condition === value.value)
+        }else{
+          condition = nextFlowStep.find(o => o.condition === value);
+        }
         nextFlowStep = condition ? condition.nextStep : state.step;
       }
       return this.nextStep(nextFlowStep, state);

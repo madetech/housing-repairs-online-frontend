@@ -6,19 +6,18 @@ const RepairProblemBestDescription = ({handleChange, values, options}) => {
   const name =  'repairProblemBestDescription';
   const title =  'What best describes the problem?';
 
-  const Continue = val => {
-    const selected = val[name];
-    handleChange(name, selected);
+  const Continue = ({val, display}) => {
+    handleChange(name, {value:val[name], display: display});
   }
 
-  return <div className="govuk-grid-row">
+  return <div className="govuk-grid-row" data-cy="repair-problem-best-description">
     <div className="govuk-grid-column-two-thirds">
       <RadioFieldSet
         name={name}
         title={title}
         options={options}
         onSubmit={Continue}
-        checked={values[name]}
+        checked={values[name]?.value}
         buttonText='Continue'
       />
     </div>

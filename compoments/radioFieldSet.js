@@ -50,7 +50,8 @@ class RadioFieldSet extends Component {
         }
         return this.setState({error: 'Required'})
       }
-      this.onSubmit(this.state.value)
+      let display = selectedOption.title
+      this.onSubmit({val: this.state.value, display: display})
     } else {
       this.setState({error: 'Required'})
     }

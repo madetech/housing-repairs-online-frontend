@@ -41,7 +41,7 @@ const Address = ({handleChange, values}) => {
     });
   }
 
-  return <div className="govuk-grid-row" data-cy="SectionLoaded">
+  return <div className="govuk-grid-row" data-cy="address">
     <div className="govuk-grid-column-two-thirds">
       <h1 className="govuk-heading-xl">Select an address</h1>
       <form action="">

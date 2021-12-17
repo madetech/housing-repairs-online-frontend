@@ -1,7 +1,7 @@
 import dummyAppointments from '../../fixtures/availableAppointments.json';
 
 function intercept_address_search(
-  numberOfResults = 1,
+  numberOfResults = 2,
   postcode='SW1A 2AA',
   nullAddressLine1 = false,
   nullAddressLine2 = false
@@ -16,11 +16,10 @@ function intercept_address_search(
       postCode: postcode
     });
   }
-
   cy.intercept('GET', `${api_url}/address?*`, {
     statusCode: 201,
     body: response
-  });
+  }).as('address');
 }
 
 function intercept_availability_search() {

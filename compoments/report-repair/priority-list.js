@@ -18,12 +18,12 @@ const PriorityList = ({handleChange, values}) => {
     { value: 'non-emergency/9', title: 'No, I want to request a non-emergency repair'},
   ];
 
-  const Continue = val => {
+  const Continue = ({val}) => {
     const selected = val[name];
     handleChange(name, selected);
   }
 
-  return (<div className="govuk-grid-row">
+  return (<div className="govuk-grid-row" data-cy="priority-list">
     <div className="govuk-grid-column-two-thirds">
       <RadioFieldSet
         name={name}
@@ -33,7 +33,7 @@ const PriorityList = ({handleChange, values}) => {
         buttonText={'Continue'}
         checked={values[name]}
         orDivider={true}
-      ></RadioFieldSet>
+      />
     </div>
   </div>)
 

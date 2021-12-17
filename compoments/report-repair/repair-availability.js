@@ -8,16 +8,16 @@ import {useRouter} from 'next/router';
 
 const RepairAvailability = ({handleChange, values, fromDate}) => {
   const [error, setError] = useState();
-  const [value, setValue] = useState();
+  const [value, setValue] = useState(values.availability?.value);
   const baseURL = '/api/availability';
-  const router = useRouter();
-
-  const params = {
-    repairLocation: values.repairLocation,
-    repairProblem: values.repairProblem,
-    repairIssue: values.repairProblemBestDescription,
+  const params =  {
+    repairLocation:  values.repairLocation?.value,
+    repairProblem:  values.repairProblem?.value,
+    repairIssue: values.repairProblemBestDescription?.value,
     locationId: values.address?.locationId,
   }
+  const router = useRouter();
+
   if (fromDate) {
     params['fromDate'] = fromDate;
   }
@@ -46,22 +46,27 @@ const RepairAvailability = ({handleChange, values, fromDate}) => {
         availability[dateString] = [timeString]
     })
   }
+  const convertDateToDisplayDate = (date) => {
+    let dateArray = date?.split(' ')
+    dateArray?.splice(3, 0, 'between')
+    return(dateArray?.join(' '))
+  }
 
   const fieldName = 'availability';
 
   const Continue = () => {
     if (value) {
-      return handleChange(fieldName, value);
+      let title = convertDateToDisplayDate(value)
+      return handleChange(fieldName, {value:value, display: title});
     }
     setError('Required')
   }
 
   const onChange = (event) =>{
-    console.log(event.target.value)
     setValue(event.target.value)
   }
 
-  return <div className="govuk-grid-row">
+  return <div className="govuk-grid-row" data-cy="repair-availability">
     <div className="govuk-grid-column-two-thirds">
       <h1 className="govuk-heading-xl">
         When are you available?
@@ -88,10 +93,10 @@ const RepairAvailability = ({handleChange, values, fromDate}) => {
               </h3>
               {availability[date].map((time, ti)=>(
                 <div className="govuk-radios__item" key={`${i}-${ti}`}>
-                  <input className="govuk-radios__input govuk-input--width-10"
+                  <input data-cy={`availability-slot-${i}-${ti}`} className="govuk-radios__input govuk-input--width-10"
                     id={`${fieldName}-${i}-${ti}`} name={fieldName}
                     type="radio" value={`${date} ${time}`}
-                    defaultChecked={values.availability === `${date} ${time}` ? true : false}/>
+                    defaultChecked={values.availability?.value === `${date} ${time}` ? true : false}/>
                   <label className="govuk-label govuk-radios__label"
                     htmlFor={`${fieldName}-${i}-${ti}`}>
                     {time}

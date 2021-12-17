@@ -11,7 +11,7 @@ describe('repairProblemBestDescription', () => {
       cy.get('input.govuk-input').type('SW1A 2AA');
       cy.get('button').click();
     });
-    cy.get('[data-cy=SectionLoaded]', {timeout: 10000}).then(() => {
+    cy.get('[data-cy=address]', {timeout: 10000}).then(() => {
       cy.get('select').select('1 Downing Street, London, SW1A 2AA')
       cy.get('button').click();
     });

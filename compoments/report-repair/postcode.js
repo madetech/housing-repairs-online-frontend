@@ -8,7 +8,7 @@ const Postcode = ({handleChange, values}) => {
     handleChange('postcode', val);
   }
 
-  return <div className="govuk-grid-row">
+  return <div className="govuk-grid-row" data-cy="postcode">
     <div>
       <TextInput
         value={values.postcode}

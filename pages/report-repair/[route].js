@@ -1,7 +1,6 @@
 import {useRouter} from 'next/router';
 import Address from '../../compoments/report-repair/address';
 import Communal from '../../compoments/report-repair/communal';
-import Confirmation from '../../compoments/report-repair/confirmation';
 import EmergencyRepair from '../../compoments/report-repair/emergency-repair';
 import NotEligible from '../../compoments/report-repair/not-eligible';
 import NotEligibleCommunalRepairs
@@ -18,12 +17,13 @@ import RepairProblem from '../../compoments/report-repair/repair-problem';
 import RepairProblemBestDescription from '../../compoments/report-repair/repair-problem-best-description';
 import RepairDescription from '../../compoments/report-repair/repair-description';
 import RepairAvailability from '../../compoments/report-repair/repair-availability';
+import Summary from '../../compoments/report-repair/summary';
 import ContactPerson from '../../compoments/report-repair/contact-person';
 import ContactDetails from '../../compoments/report-repair/contact-details';
 
 function ReportRepair() {
   const [state, setState] = useState({data:{}, step: 'priority-list'});
-
+  const [changeLinkUrls, setChangeLinkUrls] = useState({});
   const router = useRouter()
 
   const currentPath = router.query.route
@@ -31,6 +31,7 @@ function ReportRepair() {
   const flow = new Flow(setState, router, 'report-repair');
 
   useEffect(() => {
+    getNextStepForRepairProblem()
     router.beforePopState(({ as }) => {
       if (as !== router.asPath) {
         prevStep();
@@ -46,15 +47,31 @@ function ReportRepair() {
   const handleChange = (input, value) => {
     flow.handleChange(input,value,state)
   };
-
-  const prevStep = () => {
-    flow.prevStep(state)
+  const getNextStepForRepairProblem = () => {
+    let currentChangeLinkUrls = changeLinkUrls
+    if(state.data.repairLocation){
+      currentChangeLinkUrls[state.data.repairLocation.value] = flow.getNextStepFromPreviousStepAndCondition('repair-location', state.data.repairLocation.value);
+      setChangeLinkUrls(currentChangeLinkUrls)
+    }
+    if(state.data.repairProblem){
+      currentChangeLinkUrls[state.data.repairProblem.value] = flow.getNextStepFromPreviousStepAndCondition(currentChangeLinkUrls[state.data.repairLocation.value], state.data.repairLocation.value);
+      setChangeLinkUrls(currentChangeLinkUrls)
+    }
   }
 
+  const prevStep = (e) => {
+    e?.preventDefault();
+    flow.prevStep(state)
+  }
   const values = state.data;
+  const changeLinkUrlValues = changeLinkUrls
 
   const component = () => {
     switch (currentPath) {
+    case 'summary' :
+      return (
+        <Summary changeLinkUrlValues={changeLinkUrlValues} values={values}/>
+      )
     case 'contact-person':
       return (
         <ContactPerson
@@ -168,6 +185,7 @@ function ReportRepair() {
 export async function getStaticPaths() {
 
   const paths = [
+    {params: { route: 'summary'}},
     {params: { route: 'address'} },
     {params: { route: 'communal'} },
     {params: { route: 'emergency-repair'} },
@@ -189,7 +207,7 @@ export async function getStaticPaths() {
   return { paths, fallback: false };
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ }) {
   return { props: {} };
 }
 export default ReportRepair;
