@@ -6,8 +6,8 @@ describe('postcode', () => {
     cy.get('[data-cy=communal]', { timeout: 10000 }).then(($loadedSection) => {
       cy.contains('No').click();
       cy.get('button').click()
-      cy.wait(300)
     });
+    cy.get('[data-cy=postcode]', { timeout: 10000 })
   });
 
   it('displays the question', () => {
@@ -49,7 +49,10 @@ describe('postcode', () => {
       cy.get('input.govuk-input').type('SW1A 2AA');
       cy.get('button').click()
       cy.contains('Back').click();
-      cy.get('input').type('hello');
+      cy.get('[data-cy=postcode]', {timeout: 10000}).then(() => {
+        cy.get('input').type('hello');
+        // ToDO: asset that the text changed
+      });
     });
   });
 
