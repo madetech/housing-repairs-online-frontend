@@ -75,9 +75,39 @@ describe('contactDetails', () => {
       });
     });
 
-    context('When a user types in an invalid number', ()=>{
+    context('When a user types in an invalid email', ()=>{
       it('an error is displayed', () => {
         cy.get('input#contactDetails-email').type('abcde');
+        cy.get('button').click()
+        cy.contains('Not a valid email');
+      });
+    });
+
+    context('When a user types in an email with a subaddress', ()=>{
+      beforeEach(()=> {
+        cy.get('input#contactDetails-email').clear()
+      });
+
+      it('an error is not displayed', () => {
+        cy.get('input#contactDetails-email').type('housing-repairs+online@lincoln.gov.uk');
+        cy.get('button').click()
+      });
+    });
+
+    context('When a user types in an invalid email with the right format', ()=>{
+      beforeEach(()=> {
+        cy.visit('http://localhost:3000/report-repair/contact-details');
+        cy.contains('Email').click();
+      });
+
+      it('an error is displayed when username is invalid', () => {
+        cy.get('input#contactDetails-email').type('!@me.com');
+        cy.get('button').click()
+        cy.contains('Not a valid email');
+      });
+
+      it('an error is displayed when domain is invalid', () => {
+        cy.get('input#contactDetails-email').type('test@!.com');
         cy.get('button').click()
         cy.contains('Not a valid email');
       });
