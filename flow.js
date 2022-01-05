@@ -77,7 +77,7 @@ class Flow {
       'repair-description-leak-inside': {prevStep: 'repair-description-leak-electrics', nextStep: 'repair-description-leak-source'},
       'repair-description-leak-source': {prevStep: 'repair-description-leak-inside', nextStep: 'repair-description'},
       'repair-leak-description-electrics-emergency': {prevStep: 'repair-description-leak-electrics'},
-      'repair-description': {prevStep:true, nextStep: 'contact-person'},//need to investigate this as there are numerous prev steps, but it might just work
+      'repair-description': {prevStep: true, nextStep: 'contact-person'},
       'contact-person': {prevStep: 'repair-description', nextStep:'contact-details'},
       'contact-details': {prevStep: 'contact-person', nextStep: 'repair-availability'},
       'repair-availability': {prevStep: 'contact-details', nextStep: 'summary'},
