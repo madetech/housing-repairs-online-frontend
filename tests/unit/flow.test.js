@@ -131,6 +131,50 @@ describe('Flow', () => {
         expect(historySpy.push).toHaveBeenCalledWith('/');
       });
     })
+
+    describe('multiple previous step', ()=>{
+      test('redirects repair-kitchen-cupboard-problems when repairProblemBestDescription value is doorMissing', ()=>{
+        const state = {
+          prevStep: 'repair-description',
+          step: 'repair-description',
+          data: {
+            repairProblemBestDescription: {
+              value: 'doorMissing'
+            }
+          }
+        }
+        flow.prevStep(state);
+        expect(setStateSpy).toBeCalled();
+        expect(historySpy.push).toHaveBeenCalledWith('repair-kitchen-cupboard-problems');
+      });
+      test('redirects repair-kitchen-cupboard-problems when repairProblemBestDescription value is doorHangingOff', ()=>{
+        const state = {
+          prevStep: 'repair-description',
+          step: 'repair-description',
+          data: {
+            repairProblemBestDescription: {
+              value: 'doorHangingOff'
+            }
+          }
+        }
+        flow.prevStep(state);
+        expect(setStateSpy).toBeCalled();
+        expect(historySpy.push).toHaveBeenCalledWith('repair-kitchen-cupboard-problems');
+      });
+      test('does not redirect to repair-kitchen-cupboard-problems when repairProblemBestDescription value is random', ()=>{
+        const state = {
+          prevStep: 'repair-description',
+          step: 'repair-description',
+          data: {
+            repairProblemBestDescription: {
+              value: 'random'
+            }
+          }
+        }
+        flow.prevStep(state);
+        expect(historySpy.push).not.toHaveBeenCalledWith('repair-kitchen-cupboard-problems');
+      });
+    })
   });
 
   describe('handleChange', ()=> {
