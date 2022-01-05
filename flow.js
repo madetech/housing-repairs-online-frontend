@@ -77,7 +77,7 @@ class Flow {
       'repair-description-leak-inside': {prevStep: 'repair-description-leak-electrics', nextStep: 'repair-description-leak-source'},
       'repair-description-leak-source': {prevStep: 'repair-description-leak-inside', nextStep: 'repair-description'},
       'repair-leak-description-electrics-emergency': {prevStep: 'repair-description-leak-electrics'},
-      'repair-description': {prevStep:'repair-kitchen-cupboard-problems', nextStep: 'contact-person'},//need to investigate this as there are numerous prev steps, but it might just work
+      'repair-description': {prevStep:true, nextStep: 'contact-person'},//need to investigate this as there are numerous prev steps, but it might just work
       'contact-person': {prevStep: 'repair-description', nextStep:'contact-details'},
       'contact-details': {prevStep: 'contact-person', nextStep: 'repair-availability'},
       'repair-availability': {prevStep: 'contact-details', nextStep: 'summary'},
@@ -128,7 +128,11 @@ class Flow {
     // workout what the new previous step should be.
     if (this._prevStepIsNotDefinedOrEqualsCurrentStep(state)) {
       if (this._prevStepIsInFlow(state)) {
-        state.prevStep = this.flow[state.step].prevStep
+        if(state.step == 'repair-description' && (state.data.repairProblemBestDescription.value == "doorHangingOff" || state.data.repairProblemBestDescription.value == "doorMissing")){
+          state.prevStep ='repair-kitchen-cupboard-problems'
+        }else {
+          state.prevStep = this.flow[state.step].prevStep
+        }
       } else {
         return this.history.push('/')
       }
