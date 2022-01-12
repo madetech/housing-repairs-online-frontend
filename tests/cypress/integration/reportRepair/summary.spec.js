@@ -1,27 +1,10 @@
 import {
   intercept_address_search,
-  intercept_availability_search
+  intercept_availability_search,
+  navigateToPageSelectRadioOptionAndContinue,
+  navigateToPageTypeInputTextAndContinue,
+  convertDateToDisplayDate
 } from '../../support/helpers';
-
-const navigateToPageSelectRadioOptionAndContinue = ({page, option}) => {
-  cy.get(`[data-cy=${page}]`, {timeout: 10000}).then(() => {
-    cy.contains(option).click();
-    cy.get('button').click();
-  });
-}
-
-const navigateToPageTypeInputTextAndContinue = ({page, inputText}) => {
-  cy.get(`[data-cy=${page}]`, {timeout: 10000}).then(() => {
-    cy.get('input.govuk-input').type(inputText);
-    cy.get('button').click();
-  });
-}
-
-const convertDateToDisplayDate = (date) => {
-  let dateArray = date?.split(' ')
-  dateArray?.splice(3, 0, 'between')
-  return(dateArray?.join(' '))
-}
 
 describe('summary', () => {
   let timeSlot = ''

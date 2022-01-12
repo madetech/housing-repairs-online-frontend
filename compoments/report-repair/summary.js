@@ -29,7 +29,7 @@ const Summary = ({values, changeLinkUrlValues, submit}) => {
 
   return(
     <>{values && whatIsRepairProblemLink && describeRepairProblemLink && (
-      <div>
+      <div data-cy="summary">
         <div className="govuk-grid-row govuk-body-m">
           <div className="govuk-grid-column-two-thirds">
             <h1 className='govuk-heading-xl'>Request summary</h1>
