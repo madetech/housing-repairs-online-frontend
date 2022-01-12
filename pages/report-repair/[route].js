@@ -20,6 +20,7 @@ import RepairAvailability from '../../compoments/report-repair/repair-availabili
 import Summary from '../../compoments/report-repair/summary';
 import ContactPerson from '../../compoments/report-repair/contact-person';
 import ContactDetails from '../../compoments/report-repair/contact-details';
+import Confirmation from '../../compoments/report-repair/confirmation';
 
 function ReportRepair() {
   const [state, setState] = useState({data:{}, step: 'priority-list'});
@@ -59,6 +60,34 @@ function ReportRepair() {
     }
   }
 
+  const [showBack, setShowBack] = useState(true)
+  const [confirmation, setConfirmation] = useState('');
+  const [requestId, setRequestId] = useState();
+
+  const submit = (values) => {
+    setShowBack(false);
+    router.push('confirmation');
+    fetch('/api/repair', {
+      method: 'POST',
+      body: JSON.stringify({
+        postcode: values.postcode,
+        address: values.address,
+        location: values.repairLocation,
+        problem: values.repairProblem,
+        issue: values.repairProblemBestDescription,
+        contactPersonNumber: values.contactPersonNumber,
+        description: values.description,
+        contactDetails: values.contactDetails,
+        time: values.availability
+      }),
+    }).then(response =>{
+      setConfirmation(values.contactDetails.value);
+      return response.text().then((text)=> {
+        setRequestId(text);
+      });
+    })
+  }
+
   const prevStep = (e) => {
     e?.preventDefault();
     flow.prevStep(state)
@@ -70,7 +99,18 @@ function ReportRepair() {
     switch (currentPath) {
     case 'summary' :
       return (
-        <Summary changeLinkUrlValues={changeLinkUrlValues} values={values}/>
+        <Summary
+          changeLinkUrlValues={changeLinkUrlValues}
+          submit={submit}
+          values={values}
+        />
+      )
+    case 'confirmation':
+      return (
+        <Confirmation
+          requestId={requestId}
+          confirmation={confirmation}
+        />
       )
     case 'contact-person':
       return (
@@ -174,7 +214,7 @@ function ReportRepair() {
 
   return (
     <>
-      <BackLink href="#" onClick={prevStep}>Back</BackLink>
+      {showBack && <BackLink href="#" onClick={prevStep}>Back</BackLink>}
       <div className="govuk-!-margin-top-7">
         {component()}
       </div>
@@ -187,6 +227,7 @@ export async function getStaticPaths() {
   const paths = [
     {params: { route: 'summary'}},
     {params: { route: 'address'} },
+    {params: { route: 'confirmation'} },
     {params: { route: 'communal'} },
     {params: { route: 'emergency-repair'} },
     {params: { route: 'contact-person'} },

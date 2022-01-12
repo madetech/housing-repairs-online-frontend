@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import SummaryList from '../summaryList';
 import Button from '../button';
-const Summary = ({values, changeLinkUrlValues}) => {
+
+const Summary = ({values, changeLinkUrlValues, submit}) => {
   let [whatIsRepairProblemLink, setWhatIsRepairProblemLink] = useState(null)
   let [describeRepairProblemLink, setDescribeRepairProblemLink] = useState(null)
 
@@ -23,7 +24,7 @@ const Summary = ({values, changeLinkUrlValues}) => {
   ]
   const appointmentDetailsSummary = [
     { pageName:'Date', value: values.availability?.display, link:'repair-availability'},
-    { pageName:'Confirmation contact details', value: values.contactDetails?.input, link: 'contact-details'},
+    { pageName:'Confirmation contact details', value: values.contactDetails?.value, link: 'contact-details'},
   ]
 
   return(
@@ -44,7 +45,10 @@ const Summary = ({values, changeLinkUrlValues}) => {
 
           </div>
         </div>
-        <Button>Continue</Button>
+        <Button
+          onClick={()=>{
+            submit(values);
+          }}>Continue</Button>
       </div>
     )}
     </>
