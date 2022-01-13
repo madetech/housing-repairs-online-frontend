@@ -3,7 +3,7 @@ module.exports = makeGetRequest => {
   return async postcode => {
     var result;
     result = await makeGetRequest({
-      url: `/addressesss?postcode=${postcode}`
+      url: `/addresses?postcode=${postcode}`
     }).then(response => {
       return response.data;
     }).catch(error => {
@@ -15,4 +15,3 @@ module.exports = makeGetRequest => {
 
     return result;
   }};
-// execute
