@@ -1,11 +1,11 @@
-const SaveRepairGateway = require('../gateways/SaveRepairGateway');
+const {saveRepairGateway} = require('../gateways');
 
 module.exports = async function (context, req) {
 
   context.log('JavaScript HTTP trigger function processed a request.');
-  // const results = await SaveRepairGateway(req.body);
+  const results = await saveRepairGateway(req.body);
 
   context.res = {
-    body: 'ABCD1234'
+    body: results
   };
 };
