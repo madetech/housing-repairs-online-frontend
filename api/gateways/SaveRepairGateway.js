@@ -1,4 +1,4 @@
-const {makePostRequest} = require('./helpers');
+const {makePostRequest} = require('./apiRequester');
 
 module.exports = async ({body}) => {
   let result;

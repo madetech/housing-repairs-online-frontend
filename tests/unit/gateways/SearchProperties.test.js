@@ -1,8 +1,3 @@
-const {SearchPropertiesGateway} = require('../../../api/gateways');
-jest.mock('axios');
-
-import axios from 'axios';
-
 describe('SearchProperties', () => {
   let mockedGet;
   const api_url = 'https://repairs.api'
@@ -12,47 +7,19 @@ describe('SearchProperties', () => {
   let mockedAxiosInstance;
   const dummyData = {postcode: postcode}
   const jwt = '~~~jwt~~~'
+  let SearchPropertiesGateway;
+  let makeGetRequest;
 
   beforeAll(() => {
-    process.env.REPAIRS_API_BASE_URL = api_url
-    process.env.REPAIRS_API_IDENTIFIER = api_identifier
-
-    mockedPost = jest.fn().mockImplementation(() => Promise.resolve({data: jwt}));
-    mockedGet = jest.fn().mockImplementation(() => Promise.resolve({data: dummyData}));
-    mockedAxiosInstance = {
-      post: mockedPost,
-      get: mockedGet,
-      defaults: {
-        headers: {
-          common: {}
-        }
-      }
-    }
-
-    axios.create = jest.fn(()=>{
-      return mockedAxiosInstance
-    })
-  });
-
-  test('axios gets instantiated with the api url', async () => {
-    await SearchPropertiesGateway(postcode);
-
-    expect(axios.create).toHaveBeenCalledWith(
-      {'baseURL': api_url}
-    )
+    makeGetRequest =  jest.fn().mockImplementation(({url, params}) => Promise.resolve({data: dummyData}));
+    SearchPropertiesGateway = require('../../../api/gateways/SearchPropertiesGateway')(makeGetRequest);
   });
 
   test('api gets called appropriately', async () => {
     const result = await SearchPropertiesGateway(postcode);
 
-    expect(mockedPost).toHaveBeenCalledWith(
-      `/authentication?identifier=${api_identifier}`
-    )
-
-    expect(mockedAxiosInstance.defaults.headers.common['Authorization']).toEqual(`Bearer ${jwt}`);
-
-    expect(mockedGet).toHaveBeenCalledWith(
-      `/addresses?postcode=${postcode}`, {'params': {}}
+    expect(makeGetRequest).toHaveBeenCalledWith(
+      {url: `/addresses?postcode=${postcode}`}
     )
 
     expect(result).toEqual(dummyData)
@@ -60,16 +27,14 @@ describe('SearchProperties', () => {
 
   describe('when api is down', () =>{
     beforeEach(()=>{
-      axios.create = jest.fn(()=>{
-        return {
-          post: jest.fn().mockRejectedValue({status: 500})
-        }
-      })
+      makeGetRequest =  jest.fn().mockRejectedValue(new Error())
     })
     test('an error gets raised', async () => {
-      await SearchPropertiesGateway(postcode).then((res)=>{
-        expect(res).toEqual(Error('Error searching'));
-      });
+      const result = await SearchPropertiesGateway(postcode)
+      expect(result).toEqual(1);
+      //   .then((res)=>{
+      //   expect(res).toEqual(Error('Error searching'));
+      // });
     })
   });
 });

@@ -1,4 +1,4 @@
-const {makeGetRequest} = require('./helpers');
+const {makeGetRequest} = require('./apiRequester');
 
 module.exports = async ({repairLocation, repairProblem, repairIssue, locationId, fromDate}) => {
   let result;

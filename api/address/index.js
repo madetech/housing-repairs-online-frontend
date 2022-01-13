@@ -1,4 +1,4 @@
-const {searchPropertiesGateway} = require('../gateways/index');
+const {searchPropertiesGateway} = require('../gateways');
 
 module.exports = async function (context, req) {
 
