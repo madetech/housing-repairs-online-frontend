@@ -25,7 +25,7 @@ describe('SearchProperties', () => {
 
     expect(mockGetRequest).toHaveBeenCalledWith(
       {
-        url:  '/Appointments/AvailableAppointments',
+        uri:  '/Appointments/AvailableAppointments',
         params: {
           repairIssue: repairIssue,
           repairLocation: repairLocation,

@@ -3,7 +3,7 @@ module.exports = makeGetRequest => {
     let result;
 
     result = await makeGetRequest({
-      url: '/Appointments/AvailableAppointments',
+      uri: '/Appointments/AvailableAppointments',
       params: {
         repairLocation: repairLocation,
         repairProblem: repairProblem,
