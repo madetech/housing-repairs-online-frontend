@@ -2,7 +2,7 @@ require('dotenv').config()
 
 module.exports = axios => {
   return {
-    makeGetRequest: ({url, params ={}}) =>{
+    makeGetRequest: ({uri, params ={}}) =>{
       var identifier = process.env.REPAIRS_API_IDENTIFIER
       var baseUrl = process.env.REPAIRS_API_BASE_URL;
       const axiosInstance = axios.create({
@@ -12,13 +12,13 @@ module.exports = axios => {
         .then(response => {
           var jwt = response.data;
           axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${jwt}`;
-          return axiosInstance.get(url, {
+          return axiosInstance.get(uri, {
             params: params
           });
         })
     },
 
-    makePostRequest: ({url, body ={}}) =>{
+    makePostRequest: ({uri, body ={}}) =>{
       var identifier = process.env.REPAIRS_API_IDENTIFIER
       var baseUrl = process.env.REPAIRS_API_BASE_URL;
       const axiosInstance = axios.create({
@@ -28,7 +28,7 @@ module.exports = axios => {
         .then(response => {
           var jwt = response.data;
           axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${jwt}`;
-          return axiosInstance.post(url, body);
+          return axiosInstance.post(uri, body);
         })
     }
   }

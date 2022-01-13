@@ -14,7 +14,7 @@ describe('SearchProperties', () => {
       const result = await SearchPropertiesGateway(postcode);
 
       expect(mockGetRequest).toHaveBeenCalledWith(
-        {url: `/addresses?postcode=${postcode}`}
+        {uri: `/addresses?postcode=${postcode}`}
       )
 
       expect(result).toEqual(dummyData)
