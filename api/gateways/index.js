@@ -2,9 +2,9 @@
 // import AvailableAppointmentsGateway from './AvailableAppointmentsGateway';
 const axios = require('axios');
 
-const helpers = require('./helpers')(axios);
+const apiRequester = require('./apiRequester')(axios);
 
-const searchPropertiesGateway = require('./SearchPropertiesGateway')(helpers.makeGetRequest);
+const searchPropertiesGateway = require('./SearchPropertiesGateway')(apiRequester.makeGetRequest);
 
 module.exports = {
   searchPropertiesGateway,
