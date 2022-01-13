@@ -1,40 +1,35 @@
 describe('SearchProperties', () => {
-  let mockedGet;
-  const api_url = 'https://repairs.api'
-  const api_identifier = 'magic key'
   const postcode = 'M3 0W'
-  let mockedPost;
-  let mockedAxiosInstance;
   const dummyData = {postcode: postcode}
-  const jwt = '~~~jwt~~~'
   let SearchPropertiesGateway;
-  let makeGetRequest;
+  let mockGetRequest;
 
-  beforeAll(() => {
-    makeGetRequest =  jest.fn().mockImplementation(({url, params}) => Promise.resolve({data: dummyData}));
-    SearchPropertiesGateway = require('../../../api/gateways/SearchPropertiesGateway')(makeGetRequest);
-  });
+  describe('when api is up', () => {
+    beforeAll(() => {
+      mockGetRequest =  jest.fn().mockImplementation(({url, params}) => Promise.resolve({data: dummyData}));
+      SearchPropertiesGateway = require('../../../api/gateways/SearchPropertiesGateway')(mockGetRequest);
+    });
 
-  test('api gets called appropriately', async () => {
-    const result = await SearchPropertiesGateway(postcode);
+    test('api gets called appropriately', async () => {
+      const result = await SearchPropertiesGateway(postcode);
 
-    expect(makeGetRequest).toHaveBeenCalledWith(
-      {url: `/addresses?postcode=${postcode}`}
-    )
+      expect(mockGetRequest).toHaveBeenCalledWith(
+        {url: `/addresses?postcode=${postcode}`}
+      )
 
-    expect(result).toEqual(dummyData)
+      expect(result).toEqual(dummyData)
+    });
   });
 
   describe('when api is down', () =>{
-    beforeEach(()=>{
-      makeGetRequest =  jest.fn().mockRejectedValue(new Error())
+    beforeAll(()=>{
+      mockGetRequest = jest.fn().mockRejectedValue({status: 500})
+      SearchPropertiesGateway = require('../../../api/gateways/SearchPropertiesGateway')(mockGetRequest);
     })
     test('an error gets raised', async () => {
-      const result = await SearchPropertiesGateway(postcode)
-      expect(result).toEqual(1);
-      //   .then((res)=>{
-      //   expect(res).toEqual(Error('Error searching'));
-      // });
+      await SearchPropertiesGateway(postcode).then((res)=>{
+        expect(res).toEqual(Error('Error searching'));
+      });
     })
   });
 });
