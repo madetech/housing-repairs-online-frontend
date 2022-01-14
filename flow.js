@@ -102,8 +102,6 @@ class Flow {
     }
   };
   nextStep (step, state, prevStep) {
-    console.log('nextStep')
-    console.log(step, state, prevStep)
     state.prevStep = prevStep ? prevStep : state.step
     state.step = step;
     this.setState(state);

@@ -106,12 +106,6 @@ describe('confirmation', () => {
     it('Displays where the confirmation was sent to', () => {
       cy.contains('We have sent a confirmation to ' + email);
     });
-
-    // it('checks request',  () =>{
-    //   cy.wait('@saveRepair')
-    //     .its('request.body')
-    //     .should('include', 'fromDate=2017-07-22')
-    // });
   });
 
   context('when user sends confirmation via text', ()=>{
