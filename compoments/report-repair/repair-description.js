@@ -56,7 +56,7 @@ const RepairDescription = ({handleChange, values}) => {
       })
     }
     const image = URL.createObjectURL(file)
-    imageToBase64(selectedImage) // Image URL
+    imageToBase64(image)
       .then(
         (response) => {
           setBase64img(response);
