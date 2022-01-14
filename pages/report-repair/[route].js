@@ -65,6 +65,8 @@ function ReportRepair() {
   const [requestId, setRequestId] = useState();
 
   const submit = (values) => {
+    console.log('whaaatt?')
+    console.log(values)
     setShowBack(false);
     router.push('confirmation');
     fetch('/api/repair', {

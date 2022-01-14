@@ -81,7 +81,7 @@ class Flow {
       'contact-person': {prevStep: 'repair-description', nextStep:'contact-details'},
       'contact-details': {prevStep: 'contact-person', nextStep: 'repair-availability'},
       'repair-availability': {prevStep: 'contact-details', nextStep: 'summary'},
-      'summary': {prevStep: 'repair-availability', nextStep: 'confirmation'},//need to investigate this as there are numerous prev steps, but it might just work
+      'summary': {prevStep: 'repair-availability', nextStep: ''},//need to investigate this as there are numerous prev steps, but it might just work
 
       // 'contact-details-appointment': { prevStep: 'repair-availability', nextStep: 'appointment-playback'},
       // 'appointment-playback': {prevStep: 'contact-details-appointment', nextStep: [
@@ -102,6 +102,8 @@ class Flow {
     }
   };
   nextStep (step, state, prevStep) {
+    console.log('nextStep')
+    console.log(step, state, prevStep)
     state.prevStep = prevStep ? prevStep : state.step
     state.step = step;
     this.setState(state);
