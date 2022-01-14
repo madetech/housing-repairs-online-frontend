@@ -183,7 +183,6 @@ describe('summary', () => {
       cy.get('[data-cy=repair-availability]', {timeout: 10000}).then(() => {
         cy.get('button').click();
       });
-      cy.get('button').click();
       cy.contains(newText);
     });
   });
