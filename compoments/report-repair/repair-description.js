@@ -61,7 +61,7 @@ const RepairDescription = ({handleChange, values}) => {
         (response) => {
           setBase64img(response);
           setSelectedImage(image);
-          setFileExtension(file.name.split('.')[1]);
+          setFileExtension(file.name.split('.').pop());
           setError({img: false, text: error.text});
         }
       )
