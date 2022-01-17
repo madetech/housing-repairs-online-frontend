@@ -21,6 +21,7 @@ import Summary from '../../compoments/report-repair/summary';
 import ContactPerson from '../../compoments/report-repair/contact-person';
 import ContactDetails from '../../compoments/report-repair/contact-details';
 import Confirmation from '../../compoments/report-repair/confirmation';
+import Error from '../../compoments/error';
 
 function ReportRepair() {
   const [state, setState] = useState({data:{}, step: 'priority-list'});
@@ -62,11 +63,10 @@ function ReportRepair() {
 
   const [showBack, setShowBack] = useState(true)
   const [confirmation, setConfirmation] = useState('');
+  const [formError, setFormError] = useState();
   const [requestId, setRequestId] = useState();
 
   const submit = (values) => {
-    setShowBack(false);
-    router.push('confirmation');
     fetch('/api/repair', {
       method: 'POST',
       body: JSON.stringify({
@@ -81,10 +81,22 @@ function ReportRepair() {
         time: values.availability
       }),
     }).then(response =>{
-      setConfirmation(values.contactDetails.value);
-      return response.text().then((text)=> {
-        setRequestId(text);
-      });
+      console.log(response)
+      if (response.ok) {
+        setShowBack(false);
+        router.push('confirmation');
+        setConfirmation(values.contactDetails.value);
+        return response.text().then((text)=> {
+          setRequestId(text);
+        });
+      }
+      window.history.scrollRestoration = 'manual';
+      setFormError(
+        <Error
+          name="summary"
+          heading="An error occurred while requesting your request"
+          body="Please call 01522 873333 to complete your repair request"></Error>
+      )
     })
   }
 
@@ -216,6 +228,7 @@ function ReportRepair() {
     <>
       {showBack && <BackLink href="#" onClick={prevStep}>Back</BackLink>}
       <div className="govuk-!-margin-top-7">
+        {formError}
         {component()}
       </div>
     </>
