@@ -46,6 +46,7 @@ const Summary = ({values, changeLinkUrlValues, submit}) => {
           </div>
         </div>
         <Button
+          preventDoubleClick={true}
           onClick={()=>{
             submit(values);
           }}>Continue</Button>
