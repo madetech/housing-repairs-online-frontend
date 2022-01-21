@@ -44,19 +44,22 @@ class Flow {
         {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'}
       ]},
       'repair-bedroom-problems': { prevStep: 'repair-location', nextStep: [
-        {condition: 'damagedOrStuckDoors', nextStep: 'repair-bedroom-lighting-problems'},
+        {condition: 'damagedOrStuckDoors', nextStep: ''},
         {condition: 'electricsLightsSwitches', nextStep: 'repair-bedroom-lighting-problems'},
-        {condition: 'damagedOrStuckWindows', nextStep: 'repair-bedroom-lighting-problems'},
-        {condition: 'dampOrMould', nextStep: 'repair-bedroom-lighting-problems'},
+        {condition: 'damagedOrStuckWindows', nextStep: ''},
+        {condition: 'dampOrMould', nextStep: ''},
+        {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'}
       ]},
-      'repair-bedroom-lighting-problems': { prevStep: 'repair-bedroom-problems', nextStep: [
-        {condition: 'light', nextStep: 'repair-description'},
-        {condition: 'socket', nextStep: 'repair-description'}
-      ]},
-      'repair-living-areas-lighting-problems': { prevStep: 'repair-living-areas-problems', nextStep: [
-        {condition: 'light', nextStep: 'repair-description'},
-        {condition: 'socket', nextStep: 'repair-description'}
-      ]},
+      'repair-living-areas-problems': {prevSteps: 'repair-location', nextStep: [
+        {condition: 'damagedOrStuckDoors', nextStep: ''},
+        {condition: 'electricsLightsSwitches', nextStep: 'repair-bedroom-lighting-problems'},
+        {condition: 'damagedOrStuckWindows', nextStep: ''},
+        {condition: 'dampOrMould', nextStep: ''},
+        {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'},
+        {condition: 'stairs', nextStep: ''}]
+      },
+      'repair-bedroom-lighting-problems': { prevStep: 'repair-bedroom-problems', nextStep: 'repair-description'},
+      'repair-living-areas-lighting-problems': { prevStep: 'repair-living-areas-problems', nextStep: 'repair-description'},
       'wall-floor-ceiling-problems': {nextStep: 'repair-description'},
       'repair-kitchen-cupboard-problems': {prevStep: 'repair-kitchen-problems', nextStep: 'repair-description'},
       'repair-description-damp': {prevStep: 'repair-kitchen-types', nextStep: [

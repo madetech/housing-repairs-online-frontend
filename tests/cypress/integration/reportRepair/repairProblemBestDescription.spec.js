@@ -126,7 +126,7 @@ describe('repairProblemBestDescription', () => {
     });
 
     electricsOption();
-
+    testWallOption();
   });
 
   context('living areas', () => {
@@ -137,6 +137,6 @@ describe('repairProblemBestDescription', () => {
     });
 
     electricsOption();
-
+    testWallOption();
   });
 });
