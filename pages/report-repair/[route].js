@@ -101,7 +101,11 @@ function ReportRepair() {
   }
 
   const commonProblems = {
-    wallsFloorAndCeiling: { value: 'wallsFloorsCeiling', title: 'Walls, floor or ceiling, excluding damp' }
+    wallsFloorAndCeiling: { value: 'wallsFloorsCeiling', title: 'Walls, floor or ceiling, excluding damp' },
+    damagedOrStuckDoors: { value: 'damagedOrStuckDoors', title: 'Damaged or stuck doors' },
+    electricsLightsSwitches: {value: 'electricsLightsSwitches', title: 'Electrics, including lights and switches'},
+    damagedOrStuckWindows: { value: 'damagedOrStuckWindows', title: 'Damaged or stuck windows'},
+    dampOrMould: { value: 'dampOrMould', title: 'Damp or mould'}
   }
 
   const prevStep = (e) => {
@@ -212,17 +216,11 @@ function ReportRepair() {
           handleChange={handleChange}
           values={values}
           options = {[
-            commonProblems.wallsFloorAndCeiling
-          ]}
-        />
-      )
-    case 'repair-bedroom-problems':
-      return (
-        <RepairProblem
-          handleChange={handleChange}
-          values={values}
-          options = {[
-            commonProblems.wallsFloorAndCeiling
+            commonProblems.damagedOrStuckDoors,
+            commonProblems.electricsLightsSwitches,
+            commonProblems.wallsFloorAndCeiling,
+            commonProblems.damagedOrStuckWindows,
+            commonProblems.dampOrMould
           ]}
         />
       )
@@ -232,7 +230,34 @@ function ReportRepair() {
           handleChange={handleChange}
           values={values}
           options = {[
-            commonProblems.wallsFloorAndCeiling
+            commonProblems.damagedOrStuckDoors,
+            commonProblems.electricsLightsSwitches,
+            commonProblems.wallsFloorAndCeiling,
+            commonProblems.damagedOrStuckWindows,
+            commonProblems.dampOrMould,
+            { value: 'stairs', title: 'Stairs (including handrail)'}
+          ]}
+        />
+      )
+    case 'repair-bedroom-lighting-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'lights', title: 'Lights'},
+            { value: 'sockets', title: 'Sockets'}
+          ]}
+        />
+      )
+    case 'repair-living-areas-lighting-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'lights', title: 'Lights'},
+            { value: 'sockets', title: 'Sockets'}
           ]}
         />
       )
@@ -318,8 +343,10 @@ export async function getStaticPaths() {
     {params: { route: 'repair-bathroom-problems'} },
     {params: { route: 'repair-bedroom-problems'} },
     {params: { route: 'repair-living-areas-problems'} },
+    {params: { route: 'repair-living-areas-lighting-problems'} },
     {params: { route: 'wall-floor-ceiling-problems'} },
     {params: { route: 'repair-kitchen-cupboard-problems'} },
+    {params: { route: 'repair-bedroom-lighting-problems'} },
     {params: { route: 'repair-description'} },
     {params: { route: 'repair-availability'} },
     {params: { route: 'smell-gas'} }

@@ -36,6 +36,29 @@ const testWallOption = () => {
   });
 }
 
+const electricsOption = () => {
+  context('Electrics, including lights and switches', () => {
+    before(() => {
+      cy.contains('Electrics, including lights and switches').click();
+      cy.get('button').click();
+    });
+
+    it('displays the repair issue question', () => {
+      cy.contains('What best describes the problem?');
+    });
+
+    it('displays a "Light" option', () => {
+      cy.contains('Lights');
+    });
+
+    it('displays a "Socket" option', () => {
+      cy.contains('Sockets');
+    });
+
+  });
+}
+
+
 describe('repairProblemBestDescription', () => {
 
   context('kitchen', () => {
@@ -102,15 +125,7 @@ describe('repairProblemBestDescription', () => {
       cy.get('button').click();
     });
 
-    context('Walls, floor or ceiling, excluding damp', () => {
-      before(() => {
-        cy.contains('Walls, floor or ceiling, excluding damp').click();
-        cy.get('button').click();
-      });
-
-      testWallOption();
-
-    });
+    electricsOption();
 
   });
 
@@ -121,14 +136,7 @@ describe('repairProblemBestDescription', () => {
       cy.get('button').click();
     });
 
-    context('Walls, floor or ceiling, excluding damp', () => {
-      before(()=>{
-        cy.contains('Walls, floor or ceiling, excluding damp').click();
-        cy.get('button').click();
-      });
-
-      testWallOption();
-    });
+    electricsOption();
 
   });
 });
