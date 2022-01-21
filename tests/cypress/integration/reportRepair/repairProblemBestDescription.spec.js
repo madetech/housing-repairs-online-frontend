@@ -117,6 +117,40 @@ describe('repairProblemBestDescription', () => {
     });
 
   });
+  context('bedroom', () => {
+    before(()=>{
+      navigateToLocation()
+      cy.contains('Bedroom').click();
+      cy.get('button').click();
+    });
+
+    context('Walls, floor or ceiling, excluding damp', () => {
+      before(() => {
+        cy.contains('Walls, floor or ceiling, excluding damp').click();
+        cy.get('button').click();
+      });
+
+      testWallOption();
+
+    });
+
+  });
+  context('Living Area', () => {
+    before(()=>{
+      navigateToLocation()
+      cy.contains('Living Area').click();
+      cy.get('button').click();
+    });
+
+    context('Walls, floor or ceiling, excluding damp', () => {
+      before(() => {
+        cy.contains('Walls, floor or ceiling, excluding damp').click();
+        cy.get('button').click();
+      });
+
+      testWallOption();
+    });
+  });
 
   context('bedroom', () => {
     before(()=>{
@@ -126,7 +160,6 @@ describe('repairProblemBestDescription', () => {
     });
 
     electricsOption();
-    testWallOption();
   });
 
   context('living areas', () => {
@@ -137,6 +170,5 @@ describe('repairProblemBestDescription', () => {
     });
 
     electricsOption();
-    testWallOption();
   });
 });
