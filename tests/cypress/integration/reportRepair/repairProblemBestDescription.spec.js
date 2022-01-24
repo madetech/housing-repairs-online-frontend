@@ -123,7 +123,7 @@ describe('repairProblemBestDescription', () => {
 
   })
 
-  context('Bathroom', () => {
+  context.only('Bathroom', () => {
     before(()=>{
       navigateToLocation()
       cy.contains('Bathroom').click();
@@ -141,6 +141,9 @@ describe('repairProblemBestDescription', () => {
 
     context('Electrics, including extractor fan and pull cords', () => {
       before(() => {
+        navigateToLocation()
+        cy.contains('Bathroom').click();
+        cy.get('button').click();
         cy.contains('Electrics, including extractor fan and pull cords').click();
         cy.get('button').click();
       });
