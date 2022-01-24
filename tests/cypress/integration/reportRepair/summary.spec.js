@@ -157,7 +157,7 @@ describe('summary', () => {
     });
   });
   context('Repair Details', () => {
-    it.only('allows you to change location and problem',  () =>{
+    it('allows you to change location and problem',  () =>{
       cy.get('a[href*="repair-location"]').contains('Change').click();
       navigateToPageSelectRadioOptionAndContinue({
         page: 'repair-location', option:'Bathroom'
