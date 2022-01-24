@@ -11,21 +11,10 @@ const genericWhatIsTheProblemOptions = () => {
     cy.contains('Walls, floor or ceiling, excluding damp');
   });
 
-  it('displays a "damaged doors" option', () => {
-    cy.contains('Damaged or stuck doors');
-  });
-
   it('displays a "electrics" option', () => {
     cy.contains('Electrics, including lights and switches');
   });
 
-  it('displays a "windows" option', () => {
-    cy.contains('Damaged or stuck windows');
-  });
-
-  it('displays a "damp or mould" option', () => {
-    cy.contains('Damp or mould');
-  });
 }
 describe('repairProblem', () => {
 
@@ -85,9 +74,6 @@ describe('repairProblem', () => {
     it('displays a "walls" option', () => {
       genericWhatIsTheProblemOptions();
 
-      it('displays "stairs" option', () => {
-        cy.contains('Stairs (including handrail)');
-      });
     });
   });
 });
