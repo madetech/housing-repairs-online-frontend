@@ -26,6 +26,10 @@ describe('repairProblem', () => {
     it('displays a "electrical" option', () => {
       cy.contains('Electrical, including extractor fans and lightbulbs');
     });
+
+    it('displays a "worktop" option', () => {
+      cy.contains('Damaged worktop');
+    });
   });
 
   context('Bathroom', () => {
