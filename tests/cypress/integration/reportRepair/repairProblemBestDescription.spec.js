@@ -61,7 +61,7 @@ const electricsOption = () => {
 
 describe('repairProblemBestDescription', () => {
 
-  context('kitchen', () => {
+  context('Kitchen', () => {
     before(()=>{
       navigateToLocation()
       cy.contains('Kitchen').click();
@@ -123,7 +123,7 @@ describe('repairProblemBestDescription', () => {
 
   })
 
-  context('bathroom', () => {
+  context('Bathroom', () => {
     before(()=>{
       navigateToLocation()
       cy.contains('Bathroom').click();
@@ -137,11 +137,32 @@ describe('repairProblemBestDescription', () => {
       });
 
       testWallOption();
-
     });
 
+    context('Electrics, including extractor fan and pull cords', () => {
+      before(() => {
+        cy.contains('Electrics, including extractor fan and pull cords').click();
+        cy.get('button').click();
+      });
+
+      it('displays a "Spot lights" option', () => {
+        cy.contains('Spot lights');
+      });
+
+      it('displays a "Tube light" option', () => {
+        cy.contains('Tube light');
+      });
+
+      it('displays a "Pull cord for light or shower" option', () => {
+        cy.contains('Pull cord for light or shower');
+      });
+
+      it('displays a "Extractor fan not working" option', () => {
+        cy.contains('Extractor fan not working');
+      });
+    });
   });
-  context('bedroom', () => {
+  context('Bedroom', () => {
     before(()=>{
       navigateToLocation()
       cy.contains('Bedroom').click();
@@ -176,7 +197,7 @@ describe('repairProblemBestDescription', () => {
     });
   });
 
-  context('bedroom', () => {
+  context('Bedroom electrics', () => {
     before(()=>{
       navigateToLocation()
       cy.contains('Bedroom').click();
@@ -186,7 +207,7 @@ describe('repairProblemBestDescription', () => {
     electricsOption();
   });
 
-  context('living areas', () => {
+  context('Living area electrics', () => {
     before(()=>{
       navigateToLocation()
       cy.contains('Living Areas').click();
