@@ -33,13 +33,14 @@ class Flow {
       'repair-kitchen-problems': { prevStep: 'repair-location', nextStep: [
         {condition: 'cupboards', nextStep: 'repair-kitchen-cupboard-problems'},
         {condition: 'damp-or-mould', nextStep: 'repair-description-damp'},
-        {condition: 'electrical', nextStep: 'repair-description'},
+        {condition: 'electrical', nextStep: 'kitchen-electrical-problems'},
         {condition: 'heating-or-hot-water', nextStep: 'repair-description'},
         {condition: 'sink', nextStep: 'repair-description'},
         {condition: 'drip-or-leak', nextStep: 'repair-description-leak'},
         {condition: 'something-else', nextStep: 'repair-description'},
         {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'}
       ]},
+      'kitchen-electrical-problems': {prevStep: 'repair-kitchen-problems', nextStep: 'repair-description'},
       'repair-bathroom-problems': { prevStep: 'repair-location', nextStep: [
         {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'}
       ]},

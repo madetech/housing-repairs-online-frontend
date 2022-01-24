@@ -185,6 +185,7 @@ function ReportRepair() {
           values={values}
           options = {[
             { value: 'cupboards', title: 'Cupboards, including damaged cupboard doors'},
+            { value: 'electrical', title: 'Electrical, including extractor fans and lightbulbs'},
             commonProblems.wallsFloorAndCeiling
           ]}
         />
@@ -237,6 +238,19 @@ function ReportRepair() {
           options = {[
             { value: 'doorHangingOff', title: 'Hanging door'},
             { value: 'doorMissing', title: 'Missing door'},
+          ]}
+        />
+      )
+    case 'kitchen-electrical-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            {value: 'extractorFan', title: 'Extractor fan'},
+            {value: 'sockets', title: 'Socket(s)'},
+            {value: 'lightFitting', title: 'Light fitting(s)'},
+            {value: 'cookerSwitch', title: 'Cooker switch'}
           ]}
         />
       )
@@ -312,6 +326,7 @@ export async function getStaticPaths() {
     {params: { route: 'repair-bedroom-problems'} },
     {params: { route: 'repair-living-areas-problems'} },
     {params: { route: 'wall-floor-ceiling-problems'} },
+    {params: { route: 'kitchen-electrical-problems'} },
     {params: { route: 'repair-kitchen-cupboard-problems'} },
     {params: { route: 'repair-description'} },
     {params: { route: 'repair-availability'} },

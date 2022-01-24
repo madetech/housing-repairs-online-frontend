@@ -45,7 +45,7 @@ describe('repairProblemBestDescription', () => {
       cy.get('button').click();
     });
 
-    context('cupboards', () => {
+    context('Cupboards, including damaged cupboard doors', () => {
       before(()=>{
         cy.contains('Cupboards, including damaged cupboard doors').click();
         cy.get('button').click();
@@ -63,6 +63,30 @@ describe('repairProblemBestDescription', () => {
         cy.contains('Missing door');
       });
     })
+
+    context('Electrical, including extractor fans and lightbulbs', () => {
+      before(()=>{
+        cy.go(-1);
+        cy.contains('Electrical, including extractor fans and lightbulbs').click();
+        cy.get('button').click();
+      });
+
+      it('displays a "Extractor fan" option', () => {
+        cy.contains('Extractor fan');
+      });
+
+      it('displays a "Socket(s)" option', () => {
+        cy.contains('Socket(s)');
+      });
+
+      it('displays a "Light fitting(s)" option', () => {
+        cy.contains('Light fitting(s)');
+      });
+
+      it('displays a "Cooker switch" option', () => {
+        cy.contains('Cooker switch');
+      });
+    });
 
     context('Walls, floor or ceiling, excluding damp', () => {
       before(()=>{
