@@ -2,6 +2,20 @@ import {
   navigateToLocation
 } from '../../support/helpers';
 
+const genericWhatIsTheProblemOptions = () => {
+  it('displays the repair problem question', () => {
+    cy.contains('What is the problem?');
+  });
+
+  it('displays a "walls" option', () => {
+    cy.contains('Walls, floor or ceiling, excluding damp');
+  });
+
+  it('displays a "electrics" option', () => {
+    cy.contains('Electrics, including lights and switches');
+  });
+
+}
 describe('repairProblem', () => {
 
   context('kitchen', () => {
@@ -51,13 +65,7 @@ describe('repairProblem', () => {
       cy.get('button').click();
     });
 
-    it('displays the repair problem question', () => {
-      cy.contains('What is the problem?');
-    });
-
-    it('displays a "walls" option', () => {
-      cy.contains('Walls, floor or ceiling, excluding damp');
-    });
+    genericWhatIsTheProblemOptions();
   });
 
   context('Living Areas', () => {
@@ -67,12 +75,9 @@ describe('repairProblem', () => {
       cy.get('button').click();
     });
 
-    it('displays the repair problem question', () => {
-      cy.contains('What is the problem?');
-    });
-
     it('displays a "walls" option', () => {
-      cy.contains('Walls, floor or ceiling, excluding damp');
+      genericWhatIsTheProblemOptions();
+
     });
   });
 });
