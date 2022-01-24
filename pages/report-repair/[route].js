@@ -216,11 +216,8 @@ function ReportRepair() {
           handleChange={handleChange}
           values={values}
           options = {[
-            commonProblems.damagedOrStuckDoors,
             commonProblems.electricsLightsSwitches,
             commonProblems.wallsFloorAndCeiling,
-            commonProblems.damagedOrStuckWindows,
-            commonProblems.dampOrMould
           ]}
         />
       )
@@ -230,12 +227,8 @@ function ReportRepair() {
           handleChange={handleChange}
           values={values}
           options = {[
-            commonProblems.damagedOrStuckDoors,
             commonProblems.electricsLightsSwitches,
             commonProblems.wallsFloorAndCeiling,
-            commonProblems.damagedOrStuckWindows,
-            commonProblems.dampOrMould,
-            { value: 'stairs', title: 'Stairs (including handrail)'}
           ]}
         />
       )
