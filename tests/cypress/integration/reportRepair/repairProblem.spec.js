@@ -64,6 +64,10 @@ describe('repairProblem', () => {
     it('displays a "bath" option', () => {
       cy.contains('Bath, including taps');
     });
+
+    it('displays a "electrics" option', () => {
+      cy.contains('Electrics, including extractor fan and pull cords');
+    });
   });
 
   context('Bedroom', () => {

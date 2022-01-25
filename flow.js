@@ -46,6 +46,7 @@ class Flow {
       'repair-bathroom-problems': { prevStep: 'repair-location', nextStep: [
         {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'},
         {condition: 'bath', nextStep: 'bath-problems'},
+        {condition: 'electricsExtractorCords', nextStep: 'repair-bathroom-electric-problems'},
       ]},
       'repair-bedroom-problems': { prevStep: 'repair-location', nextStep: [
         {condition: 'electricsLightsSwitches', nextStep: 'repair-bedroom-lighting-problems'},
