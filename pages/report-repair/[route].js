@@ -192,6 +192,7 @@ function ReportRepair() {
             { value: 'cupboards', title: 'Cupboards, including damaged cupboard doors'},
             { value: 'electrical', title: 'Electrical, including extractor fans and lightbulbs'},
             { value: 'heatingOrHotWater', title: 'Heating or hot water'},
+            { value: 'door', title: 'Damaged or stuck doors'},
             commonProblems.wallsFloorAndCeiling,
             commonProblems.sink
           ]}
@@ -204,7 +205,8 @@ function ReportRepair() {
           values={values}
           options = {[
             commonProblems.wallsFloorAndCeiling,
-            commonProblems.sink
+            commonProblems.sink,
+            {value: 'electricsExtractorCords', title: 'Electrics, including extractor fan and pull cords'}
           ]}
         />
       )
@@ -263,6 +265,19 @@ function ReportRepair() {
           ]}
         />
       )
+    case 'repair-bathroom-electric-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'spotLights', title: 'Spot lights'},
+            { value: 'tubeLights', title: 'Tube light'},
+            { value: 'pullCord', title: 'Pull cord for light or shower'},
+            { value: 'extractorFan', title: 'Extractor fan not working'},
+          ]}
+        />
+      )
     case 'repair-kitchen-cupboard-problems':
       return (
         <RepairProblemBestDescription
@@ -284,6 +299,20 @@ function ReportRepair() {
             {value: 'sockets', title: 'Socket(s)'},
             {value: 'lightFitting', title: 'Light fitting(s)'},
             {value: 'cookerSwitch', title: 'Cooker switch'}
+          ]}
+        />
+      )
+    case 'kitchen-door-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            {value: 'backDoorWooden', title: 'Wooden back door'},
+            {value: 'backDoorUPVC', title: 'UPVC back door'},
+            {value: 'backFrenchDoors', title: 'French doors'},
+            {value: 'internal', title: 'Internal door issue, including hinges, handle, sticking'},
+            {value: 'sliding', title: 'Sliding door'}
           ]}
         />
       )
@@ -375,9 +404,11 @@ export async function getStaticPaths() {
     {params: { route: 'repair-living-areas-lighting-problems'} },
     {params: { route: 'wall-floor-ceiling-problems'} },
     {params: { route: 'kitchen-electrical-problems'} },
+    {params: { route: 'kitchen-door-problems'} },
     {params: { route: 'repair-kitchen-cupboard-problems'} },
     {params: { route: 'repair-kitchen-heating-problems'} },
     {params: { route: 'repair-bedroom-lighting-problems'} },
+    {params: { route: 'repair-bathroom-electric-problems'} },
     {params: { route: 'repair-description'} },
     {params: { route: 'repair-availability'} },
     {params: { route: 'smell-gas'} }
