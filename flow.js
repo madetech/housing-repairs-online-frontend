@@ -32,6 +32,7 @@ class Flow {
       ]},
       'repair-kitchen-problems': { prevStep: 'repair-location', nextStep: [
         {condition: 'cupboards', nextStep: 'repair-kitchen-cupboard-problems'},
+        {condition: 'windows', nextStep: 'repair-kitchen-window-problems'},
         {condition: 'damp-or-mould', nextStep: 'repair-description-damp'},
         {condition: 'electrical', nextStep: 'kitchen-electrical-problems'},
         {condition: 'heatingOrHotWater', nextStep: 'repair-kitchen-heating-problems'},
@@ -41,19 +42,23 @@ class Flow {
         {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'}
       ]},
       'repair-kitchen-heating-problems': { prevStep: 'repair-kitchen-problems', nextStep: 'repair-description'},
-
+      'repair-kitchen-window-problems': { prevSteps: 'repair-kitchen-problems', nextStep: 'repair-description'},
+      'repair-bathroom-window-problems': { prevSteps: 'repair-bathroom-problems', nextStep: 'repair-description'},
+      'repair-bedroom-window-problems': { prevSteps: 'repair-bedroom-problems', nextStep: 'repair-description'},
+      'repair-living-areas-window-problems': { prevSteps: 'repair-living-areas-problems', nextStep: 'repair-description'},
       'kitchen-electrical-problems': {prevStep: 'repair-kitchen-problems', nextStep: 'repair-description'},
       'repair-bathroom-problems': { prevStep: 'repair-location', nextStep: [
         {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'},
         {condition: 'electricsExtractorCords', nextStep: 'repair-bathroom-electric-problems'},
-      ]},
+        {condition: 'windows', nextStep: 'repair-bathroom-window-problems'},]},
       'repair-bedroom-problems': { prevStep: 'repair-location', nextStep: [
         {condition: 'electricsLightsSwitches', nextStep: 'repair-bedroom-lighting-problems'},
-        {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'}
-      ]},
+        {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'},
+        {condition: 'windows', nextStep: 'repair-bedroom-window-problems'},]},
       'repair-living-areas-problems': {prevSteps: 'repair-location', nextStep: [
         {condition: 'electricsLightsSwitches', nextStep: 'repair-bedroom-lighting-problems'},
-        {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'}]
+        {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'},
+        {condition: 'windows', nextStep: 'repair-living-areas-window-problems'}]
       },
       'repair-bedroom-lighting-problems': { prevStep: 'repair-bedroom-problems', nextStep: 'repair-description'},
       'repair-living-areas-lighting-problems': { prevStep: 'repair-living-areas-problems', nextStep: 'repair-description'},

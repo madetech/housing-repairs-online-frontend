@@ -191,6 +191,7 @@ function ReportRepair() {
             { value: 'cupboards', title: 'Cupboards, including damaged cupboard doors'},
             { value: 'electrical', title: 'Electrical, including extractor fans and lightbulbs'},
             { value: 'heatingOrHotWater', title: 'Heating or hot water'},
+            { value: 'windows', title: 'Damaged or stuck windows'},
             commonProblems.wallsFloorAndCeiling
           ]}
         />
@@ -202,7 +203,8 @@ function ReportRepair() {
           values={values}
           options = {[
             commonProblems.wallsFloorAndCeiling,
-            {value: 'electricsExtractorCords', title: 'Electrics, including extractor fan and pull cords'}
+            {value: 'electricsExtractorCords', title: 'Electrics, including extractor fan and pull cords'},
+            { value: 'windows', title: 'Damaged or stuck windows'},
           ]}
         />
       )
@@ -214,6 +216,7 @@ function ReportRepair() {
           options = {[
             commonProblems.electricsLightsSwitches,
             commonProblems.wallsFloorAndCeiling,
+            { value: 'windows', title: 'Damaged or stuck windows'},
           ]}
         />
       )
@@ -225,6 +228,59 @@ function ReportRepair() {
           options = {[
             commonProblems.electricsLightsSwitches,
             commonProblems.wallsFloorAndCeiling,
+            { value: 'windows', title: 'Damaged or stuck windows'},
+          ]}
+        />
+      )
+    case 'repair-kitchen-window-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'smashed', title: 'Smashed window(s)'},
+            { value: 'stuckOpen', title: 'Window stuck open'},
+            { value: 'stuckShut', title: 'Window stuck shut'},
+            { value: 'condensation', title: 'Condensation'}
+          ]}
+        />
+      )
+    case 'repair-bathroom-window-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'smashed', title: 'Smashed window(s)'},
+            { value: 'stuckOpen', title: 'Window stuck open'},
+            { value: 'stuckShut', title: 'Window stuck shut'},
+            { value: 'condensation', title: 'Condensation'}
+          ]}
+        />
+      )
+    case 'repair-bedroom-window-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'smashed', title: 'Smashed window(s)'},
+            { value: 'stuckOpen', title: 'Window stuck open'},
+            { value: 'stuckShut', title: 'Window stuck shut'},
+            { value: 'condensation', title: 'Condensation'}
+          ]}
+        />
+      )
+    case 'repair-living-areas-window-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'smashed', title: 'Smashed window(s)'},
+            { value: 'stuckOpen', title: 'Window stuck open'},
+            { value: 'stuckShut', title: 'Window stuck shut'},
+            { value: 'condensation', title: 'Condensation'}
           ]}
         />
       )
@@ -376,6 +432,10 @@ export async function getStaticPaths() {
     {params: { route: 'repair-kitchen-heating-problems'} },
     {params: { route: 'repair-bedroom-lighting-problems'} },
     {params: { route: 'repair-bathroom-electric-problems'} },
+    {params: { route: 'repair-kitchen-window-problems'} },
+    {params: { route: 'repair-bathroom-window-problems'} },
+    {params: { route: 'repair-bedroom-window-problems'} },
+    {params: { route: 'repair-living-areas-window-problems'} },
     {params: { route: 'repair-description'} },
     {params: { route: 'repair-availability'} },
     {params: { route: 'smell-gas'} }
