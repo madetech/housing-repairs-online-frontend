@@ -94,6 +94,7 @@ function ReportRepair() {
 
   const commonProblems = {
     wallsFloorAndCeiling: { value: 'wallsFloorsCeiling', title: 'Walls, floor or ceiling, excluding damp' },
+    sink: { value: 'sink', title: 'Sink, including taps and drainage'},
     damagedOrStuckDoors: { value: 'damagedOrStuckDoors', title: 'Damaged or stuck doors' },
     electricsLightsSwitches: {value: 'electricsLightsSwitches', title: 'Electrics, including lights and switches'},
     damagedOrStuckWindows: { value: 'damagedOrStuckWindows', title: 'Damaged or stuck windows'},
@@ -190,7 +191,8 @@ function ReportRepair() {
           options = {[
             { value: 'cupboards', title: 'Cupboards, including damaged cupboard doors'},
             { value: 'electrical', title: 'Electrical, including extractor fans and lightbulbs'},
-            commonProblems.wallsFloorAndCeiling
+            commonProblems.wallsFloorAndCeiling,
+            commonProblems.sink
           ]}
         />
       )
@@ -200,7 +202,8 @@ function ReportRepair() {
           handleChange={handleChange}
           values={values}
           options = {[
-            commonProblems.wallsFloorAndCeiling
+            commonProblems.wallsFloorAndCeiling,
+            commonProblems.sink
           ]}
         />
       )
@@ -288,6 +291,19 @@ function ReportRepair() {
           ]}
         />
       )
+    case 'sink-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'taps', title: 'Tap(s)'},
+            { value: 'pipeworkLeak', title: 'Pipework leak'},
+            { value: 'leakBlockage', title: 'Leak or blockage'},
+            { value: 'damageSink', title: 'Damage to the sink'}
+          ]}
+        />
+      )
     case 'smell-gas':
       return (
         <SmellGas/>
@@ -340,6 +356,7 @@ export async function getStaticPaths() {
     {params: { route: 'repair-location'} },
     {params: { route: 'smell-gas'} },
     {params: { route: 'repair-kitchen-problems'} },
+    {params: { route: 'sink-problems'} },
     {params: { route: 'repair-bathroom-problems'} },
     {params: { route: 'repair-bedroom-problems'} },
     {params: { route: 'repair-living-areas-problems'} },
