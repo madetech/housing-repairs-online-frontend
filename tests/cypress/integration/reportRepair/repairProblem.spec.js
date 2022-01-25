@@ -45,6 +45,10 @@ describe('repairProblem', () => {
       cy.contains('Damaged worktop');
     });
 
+    it('displays a "door" option', () => {
+      cy.contains('Damaged or stuck doors');
+    });
+
     it('displays a "heating" option', () => {
       cy.contains('Heating or hot water');
     });
@@ -63,6 +67,10 @@ describe('repairProblem', () => {
 
     it('displays a "walls" option', () => {
       cy.contains('Walls, floor or ceiling, excluding damp');
+    });
+
+    it('displays a "electrics" option', () => {
+      cy.contains('Electrics, including extractor fan and pull cords');
     });
   });
 
