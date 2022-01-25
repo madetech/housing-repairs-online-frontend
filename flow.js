@@ -44,7 +44,8 @@ class Flow {
       'repair-kitchen-heating-problems': { prevStep: 'repair-kitchen-problems', nextStep: 'repair-description'},
       'kitchen-electrical-problems': {prevStep: 'repair-kitchen-problems', nextStep: 'repair-description'},
       'repair-bathroom-problems': { prevStep: 'repair-location', nextStep: [
-          {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'},
+        {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'},
+        {condition: 'sink', nextStep: 'sink-problems'},
       ]},
       'repair-bedroom-problems': { prevStep: 'repair-location', nextStep: [
         {condition: 'electricsLightsSwitches', nextStep: 'repair-bedroom-lighting-problems'},
