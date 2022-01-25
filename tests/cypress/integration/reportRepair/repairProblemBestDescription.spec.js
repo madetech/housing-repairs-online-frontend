@@ -36,9 +36,32 @@ const testWallOption = () => {
   });
 }
 
-describe('repairProblemBestDescription', () => {
+const electricsOption = () => {
+  context('Electrics, including lights and switches', () => {
+    before(() => {
+      cy.contains('Electrics, including lights and switches').click();
+      cy.get('button').click();
+    });
 
-  context('kitchen', () => {
+    it('displays the repair issue question', () => {
+      cy.contains('What best describes the problem?');
+    });
+
+    it('displays a "Light" option', () => {
+      cy.contains('Lights');
+    });
+
+    it('displays a "Socket" option', () => {
+      cy.contains('Sockets');
+    });
+
+  });
+}
+
+
+describe.only('repairProblemBestDescription', () => {
+
+  context('Kitchen', () => {
     before(()=>{
       navigateToLocation()
       cy.contains('Kitchen').click();
@@ -61,6 +84,25 @@ describe('repairProblemBestDescription', () => {
 
       it('displays a "Missing door" option', () => {
         cy.contains('Missing door');
+      });
+    })
+    context('Heating or hot water', () => {
+      before(()=>{
+        cy.go(-1);
+        cy.contains('Heating or hot water').click();
+        cy.get('button').click();
+      });
+
+      it('displays the repair issue question', () => {
+        cy.contains('What best describes the problem?');
+      });
+
+      it('displays a "Boiler" option', () => {
+        cy.contains('Boiler');
+      });
+
+      it('displays a "Radiator" option', () => {
+        cy.contains('Radiator');
       });
     })
 
@@ -100,7 +142,7 @@ describe('repairProblemBestDescription', () => {
 
   })
 
-  context('bathroom', () => {
+  context('Bathroom', () => {
     before(()=>{
       navigateToLocation()
       cy.contains('Bathroom').click();
@@ -119,7 +161,7 @@ describe('repairProblemBestDescription', () => {
 
   });
 
-  context('bedroom', () => {
+  context('Bedroom', () => {
     before(()=>{
       navigateToLocation()
       cy.contains('Bedroom').click();
@@ -133,26 +175,43 @@ describe('repairProblemBestDescription', () => {
       });
 
       testWallOption();
-
     });
 
+    context('Electrical, including extractor fans and lightbulbs', () => {
+      before(()=>{
+        cy.go(-1);
+        navigateToLocation()
+        cy.contains('Bedroom').click();
+        cy.get('button').click();
+      });
+      electricsOption();
+    });
   });
 
-  context('living areas', () => {
+  context('Living Area', () => {
     before(()=>{
       navigateToLocation()
-      cy.contains('Living Areas').click();
+      cy.contains('Living Area').click();
       cy.get('button').click();
     });
 
     context('Walls, floor or ceiling, excluding damp', () => {
-      before(()=>{
+      before(() => {
         cy.contains('Walls, floor or ceiling, excluding damp').click();
         cy.get('button').click();
       });
 
       testWallOption();
     });
+    context('Electrical, including extractor fans and lightbulbs', () => {
+      before(()=>{
+        cy.go(-1);
+        navigateToLocation()
+        cy.contains('Living Areas').click();
+        cy.get('button').click();
+      });
 
+      electricsOption();
+    });
   });
 });
