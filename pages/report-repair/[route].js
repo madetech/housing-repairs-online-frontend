@@ -201,7 +201,8 @@ function ReportRepair() {
           handleChange={handleChange}
           values={values}
           options = {[
-            commonProblems.wallsFloorAndCeiling
+            commonProblems.wallsFloorAndCeiling,
+            {value: 'electricsExtractorCords', title: 'Electrics, including extractor fan and pull cords'}
           ]}
         />
       )
@@ -257,6 +258,19 @@ function ReportRepair() {
           options = {[
             { value: 'lights', title: 'Lights'},
             { value: 'sockets', title: 'Sockets'}
+          ]}
+        />
+      )
+    case 'repair-bathroom-electric-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'spotLights', title: 'Spot lights'},
+            { value: 'tubeLights', title: 'Tube light'},
+            { value: 'pullCord', title: 'Pull cord for light or shower'},
+            { value: 'extractorFan', title: 'Extractor fan not working'},
           ]}
         />
       )
@@ -361,6 +375,7 @@ export async function getStaticPaths() {
     {params: { route: 'repair-kitchen-cupboard-problems'} },
     {params: { route: 'repair-kitchen-heating-problems'} },
     {params: { route: 'repair-bedroom-lighting-problems'} },
+    {params: { route: 'repair-bathroom-electric-problems'} },
     {params: { route: 'repair-description'} },
     {params: { route: 'repair-availability'} },
     {params: { route: 'smell-gas'} }

@@ -60,6 +60,10 @@ describe('repairProblem', () => {
     it('displays a "walls" option', () => {
       cy.contains('Walls, floor or ceiling, excluding damp');
     });
+
+    it('displays a "electrics" option', () => {
+      cy.contains('Electrics, including extractor fan and pull cords');
+    });
   });
 
   context('Bedroom', () => {

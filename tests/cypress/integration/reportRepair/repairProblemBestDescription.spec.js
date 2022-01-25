@@ -59,7 +59,7 @@ const electricsOption = () => {
 }
 
 
-describe.only('repairProblemBestDescription', () => {
+describe('repairProblemBestDescription', () => {
 
   context('Kitchen', () => {
     before(()=>{
@@ -156,6 +156,24 @@ describe.only('repairProblemBestDescription', () => {
       });
 
       testWallOption();
+    });
+
+    context('Electrics, including extractor fan and pull cords', () => {
+      before(() => {
+        navigateToLocation()
+        cy.contains('Bathroom').click();
+        cy.get('button').click();
+        cy.contains('Electrics, including extractor fan and pull cords').click();
+        cy.get('button').click();
+      });
+
+      it('displays a "Spot lights" option', () => {
+        cy.contains('Spot lights');
+      });
+
+      it('displays a "Tube light" option', () => {
+        cy.contains('Tube light');
+      });
 
     });
 
@@ -175,6 +193,14 @@ describe.only('repairProblemBestDescription', () => {
       });
 
       testWallOption();
+    });
+
+    context('Electrics, including extractor fan and pull cords', () => {
+      before(()=>{
+        cy.go(-1);
+      });
+
+      electricsOption();
     });
 
     context('Electrical, including extractor fans and lightbulbs', () => {
@@ -203,7 +229,7 @@ describe.only('repairProblemBestDescription', () => {
 
       testWallOption();
     });
-    context('Electrical, including extractor fans and lightbulbs', () => {
+    context('Electrics, including lights and switches', () => {
       before(()=>{
         cy.go(-1);
         navigateToLocation()
