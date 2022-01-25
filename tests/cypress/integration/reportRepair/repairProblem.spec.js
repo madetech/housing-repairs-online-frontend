@@ -44,6 +44,10 @@ describe('repairProblem', () => {
     it('displays a "sink" option', () => {
       cy.contains('Sink, including taps and drainage');
     });
+
+    it('displays a "heating" option', () => {
+      cy.contains('Heating or hot water');
+    });
   });
 
   context('Bathroom', () => {

@@ -34,17 +34,17 @@ class Flow {
         {condition: 'cupboards', nextStep: 'repair-kitchen-cupboard-problems'},
         {condition: 'damp-or-mould', nextStep: 'repair-description-damp'},
         {condition: 'electrical', nextStep: 'kitchen-electrical-problems'},
-        {condition: 'heating-or-hot-water', nextStep: 'repair-description'},
         {condition: 'sink', nextStep: 'sink-problems'},
+        {condition: 'heatingOrHotWater', nextStep: 'repair-kitchen-heating-problems'},
         {condition: 'drip-or-leak', nextStep: 'repair-description-leak'},
         {condition: 'something-else', nextStep: 'repair-description'},
         {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'}
       ]},
       'sink-problems': {nextStep: 'repair-description'},
+      'repair-kitchen-heating-problems': { prevStep: 'repair-kitchen-problems', nextStep: 'repair-description'},
       'kitchen-electrical-problems': {prevStep: 'repair-kitchen-problems', nextStep: 'repair-description'},
       'repair-bathroom-problems': { prevStep: 'repair-location', nextStep: [
-        {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'},
-        {condition: 'sink', nextStep: 'sink-problems'}
+          {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'},
       ]},
       'repair-bedroom-problems': { prevStep: 'repair-location', nextStep: [
         {condition: 'electricsLightsSwitches', nextStep: 'repair-bedroom-lighting-problems'},

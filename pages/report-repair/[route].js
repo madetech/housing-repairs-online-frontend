@@ -191,6 +191,7 @@ function ReportRepair() {
           options = {[
             { value: 'cupboards', title: 'Cupboards, including damaged cupboard doors'},
             { value: 'electrical', title: 'Electrical, including extractor fans and lightbulbs'},
+            { value: 'heatingOrHotWater', title: 'Heating or hot water'},
             commonProblems.wallsFloorAndCeiling,
             commonProblems.sink
           ]}
@@ -237,6 +238,17 @@ function ReportRepair() {
           options = {[
             { value: 'lights', title: 'Lights'},
             { value: 'sockets', title: 'Sockets'}
+          ]}
+        />
+      )
+    case 'repair-kitchen-heating-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'boiler', title: 'Boiler'},
+            { value: 'radiator', title: 'Radiator'}
           ]}
         />
       )
@@ -364,6 +376,7 @@ export async function getStaticPaths() {
     {params: { route: 'wall-floor-ceiling-problems'} },
     {params: { route: 'kitchen-electrical-problems'} },
     {params: { route: 'repair-kitchen-cupboard-problems'} },
+    {params: { route: 'repair-kitchen-heating-problems'} },
     {params: { route: 'repair-bedroom-lighting-problems'} },
     {params: { route: 'repair-description'} },
     {params: { route: 'repair-availability'} },
