@@ -86,6 +86,25 @@ describe('repairProblemBestDescription', () => {
         cy.contains('Missing door');
       });
     })
+    context('Heating or hot water', () => {
+      before(()=>{
+        cy.go(-1);
+        cy.contains('Heating or hot water').click();
+        cy.get('button').click();
+      });
+
+      it('displays the repair issue question', () => {
+        cy.contains('What best describes the problem?');
+      });
+
+      it('displays a "Boiler" option', () => {
+        cy.contains('Boiler');
+      });
+
+      it('displays a "Radiator" option', () => {
+        cy.contains('Radiator');
+      });
+    })
 
     context('Electrical, including extractor fans and lightbulbs', () => {
       before(()=>{
@@ -156,14 +175,8 @@ describe('repairProblemBestDescription', () => {
         cy.contains('Tube light');
       });
 
-      it('displays a "Pull cord for light or shower" option', () => {
-        cy.contains('Pull cord for light or shower');
-      });
-
-      it('displays a "Extractor fan not working" option', () => {
-        cy.contains('Extractor fan not working');
-      });
     });
+
   });
 
   context('Bedroom', () => {
@@ -190,7 +203,17 @@ describe('repairProblemBestDescription', () => {
       electricsOption();
     });
 
+    context('Electrical, including extractor fans and lightbulbs', () => {
+      before(()=>{
+        cy.go(-1);
+        navigateToLocation()
+        cy.contains('Bedroom').click();
+        cy.get('button').click();
+      });
+      electricsOption();
+    });
   });
+
   context('Living Area', () => {
     before(()=>{
       navigateToLocation()
@@ -203,16 +226,18 @@ describe('repairProblemBestDescription', () => {
         cy.contains('Walls, floor or ceiling, excluding damp').click();
         cy.get('button').click();
       });
+
       testWallOption();
     });
-
-    context('Electrics, including extractor fan and pull cords', () => {
+    context('Electrics, including lights and switches', () => {
       before(()=>{
         cy.go(-1);
+        navigateToLocation()
+        cy.contains('Living Areas').click();
+        cy.get('button').click();
       });
+
       electricsOption();
     });
   });
-
-
 });

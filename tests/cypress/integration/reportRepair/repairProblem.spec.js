@@ -40,6 +40,10 @@ describe('repairProblem', () => {
     it('displays a "electrical" option', () => {
       cy.contains('Electrical, including extractor fans and lightbulbs');
     });
+
+    it('displays a "heating" option', () => {
+      cy.contains('Heating or hot water');
+    });
   });
 
   context('Bathroom', () => {
