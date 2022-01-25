@@ -249,7 +249,7 @@ function ReportRepair() {
           ]}
         />
       )
-    case 'repair-bathroom-lighting-problems':
+    case 'repair-bathroom-electric-problems':
       return (
         <RepairProblemBestDescription
           handleChange={handleChange}
@@ -362,7 +362,7 @@ export async function getStaticPaths() {
     {params: { route: 'kitchen-electrical-problems'} },
     {params: { route: 'repair-kitchen-cupboard-problems'} },
     {params: { route: 'repair-bedroom-lighting-problems'} },
-    {params: { route: 'repair-bathroom-lighting-problems'} },
+    {params: { route: 'repair-bathroom-electric-problems'} },
     {params: { route: 'repair-description'} },
     {params: { route: 'repair-availability'} },
     {params: { route: 'smell-gas'} }

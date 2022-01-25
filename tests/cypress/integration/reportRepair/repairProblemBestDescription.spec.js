@@ -123,7 +123,7 @@ describe('repairProblemBestDescription', () => {
 
   })
 
-  context.only('Bathroom', () => {
+  context('Bathroom', () => {
     before(()=>{
       navigateToLocation()
       cy.contains('Bathroom').click();
@@ -165,6 +165,7 @@ describe('repairProblemBestDescription', () => {
       });
     });
   });
+
   context('Bedroom', () => {
     before(()=>{
       navigateToLocation()
@@ -179,7 +180,14 @@ describe('repairProblemBestDescription', () => {
       });
 
       testWallOption();
+    });
 
+    context('Electrics, including extractor fan and pull cords', () => {
+      before(()=>{
+        cy.go(-1);
+      });
+
+      electricsOption();
     });
 
   });
@@ -195,28 +203,16 @@ describe('repairProblemBestDescription', () => {
         cy.contains('Walls, floor or ceiling, excluding damp').click();
         cy.get('button').click();
       });
-
       testWallOption();
     });
-  });
 
-  context('Bedroom electrics', () => {
-    before(()=>{
-      navigateToLocation()
-      cy.contains('Bedroom').click();
-      cy.get('button').click();
+    context('Electrics, including extractor fan and pull cords', () => {
+      before(()=>{
+        cy.go(-1);
+      });
+      electricsOption();
     });
-
-    electricsOption();
   });
 
-  context('Living area electrics', () => {
-    before(()=>{
-      navigateToLocation()
-      cy.contains('Living Areas').click();
-      cy.get('button').click();
-    });
 
-    electricsOption();
-  });
 });
