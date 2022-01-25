@@ -142,21 +142,48 @@ describe.only('repairProblemBestDescription', () => {
 
   })
 
-  context('Bathroom', () => {
+  context.only('Bathroom', () => {
     before(()=>{
       navigateToLocation()
       cy.contains('Bathroom').click();
       cy.get('button').click();
     });
 
+    context('Bath, including taps', () => {
+      before(() => {
+        cy.contains('Bath, including taps').click();
+        cy.get('button').click();
+      });
+
+      it('displays the repair issue question', () => {
+        cy.contains('What best describes the problem?');
+      });
+
+      it('displays a "Bath taps" option', () => {
+        cy.contains('Bath taps');
+      });
+
+      it('displays a "Seal around bath" option', () => {
+        cy.contains('Seal around bath');
+      });
+
+      it('displays a "Bath panel" option', () => {
+        cy.contains('Bath panel');
+      });
+
+      it('displays a "Blockage" option', () => {
+        cy.contains('Blockage');
+      });
+    });
+
     context('Walls, floor or ceiling, excluding damp', () => {
       before(() => {
+        cy.go(-1);
         cy.contains('Walls, floor or ceiling, excluding damp').click();
         cy.get('button').click();
       });
 
       testWallOption();
-
     });
 
   });
