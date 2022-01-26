@@ -128,6 +128,7 @@ describe('repairProblemBestDescription', () => {
         cy.contains('Radiator');
       });
     })
+
     context('Electrical, including extractor fans and lightbulbs', () => {
       before(()=>{
         cy.go(-1);
@@ -151,6 +152,35 @@ describe('repairProblemBestDescription', () => {
         cy.contains('Cooker switch');
       });
     });
+
+    context('Damaged or stuck doors', () => {
+      before(()=>{
+        cy.go(-1);
+        cy.contains('Damaged or stuck doors').click();
+        cy.get('button').click();
+      });
+
+      it('displays a "Wooden back door" option', () => {
+        cy.contains('Wooden back door');
+      });
+
+      it('displays a "UPVC back door" option', () => {
+        cy.contains('UPVC back door');
+      });
+
+      it('displays a "French doors" option', () => {
+        cy.contains('French doors');
+      });
+
+      it('displays a "Internal door issue, including hinges, handle, sticking" option', () => {
+        cy.contains('Internal door issue, including hinges, handle, sticking');
+      });
+
+      it('displays a "Sliding door" option', () => {
+        cy.contains('Sliding door');
+      });
+    });
+
     context('Walls, floor or ceiling, excluding damp', () => {
       before(()=>{
         cy.go(-1);
@@ -204,14 +234,7 @@ describe('repairProblemBestDescription', () => {
       });
 
     });
-    context('Damaged or stuck windows', () => {
-      before(()=>{
-        cy.go(-1);
-        cy.contains('Damaged or stuck windows').click();
-        cy.get('button').click();
-      });
-      testWindowOption();
-    });
+
   });
 
   context('Bedroom', () => {
