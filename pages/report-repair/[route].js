@@ -94,6 +94,7 @@ function ReportRepair() {
 
   const commonProblems = {
     wallsFloorAndCeiling: { value: 'wallsFloorsCeiling', title: 'Walls, floor or ceiling, excluding damp' },
+    sink: { value: 'sink', title: 'Sink, including taps and drainage'},
     damagedOrStuckDoors: { value: 'damagedOrStuckDoors', title: 'Damaged or stuck doors' },
     electricsLightsSwitches: {value: 'electricsLightsSwitches', title: 'Electrics, including lights and switches'},
     damagedOrStuckWindows: { value: 'damagedOrStuckWindows', title: 'Damaged or stuck windows'},
@@ -191,7 +192,9 @@ function ReportRepair() {
             { value: 'cupboards', title: 'Cupboards, including damaged cupboard doors'},
             { value: 'electrical', title: 'Electrical, including extractor fans and lightbulbs'},
             { value: 'heatingOrHotWater', title: 'Heating or hot water'},
-            commonProblems.wallsFloorAndCeiling
+            { value: 'door', title: 'Damaged or stuck doors'},
+            commonProblems.wallsFloorAndCeiling,
+            commonProblems.sink
           ]}
         />
       )
@@ -203,6 +206,7 @@ function ReportRepair() {
           options = {[
             {value: 'bath', title: 'Bath, including taps'},
             commonProblems.wallsFloorAndCeiling,
+            commonProblems.sink,
             {value: 'electricsExtractorCords', title: 'Electrics, including extractor fan and pull cords'}
           ]}
         />
@@ -312,6 +316,20 @@ function ReportRepair() {
           ]}
         />
       )
+    case 'kitchen-door-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            {value: 'backDoorWooden', title: 'Wooden back door'},
+            {value: 'backDoorUPVC', title: 'UPVC back door'},
+            {value: 'backFrenchDoors', title: 'French doors'},
+            {value: 'internal', title: 'Internal door issue, including hinges, handle, sticking'},
+            {value: 'sliding', title: 'Sliding door'}
+          ]}
+        />
+      )
     case 'wall-floor-ceiling-problems':
       return (
         <RepairProblemBestDescription
@@ -325,6 +343,19 @@ function ReportRepair() {
             { value: 'plasteringCeiling', title: 'Plastering on the ceiling'},
             { value: 'plasteringWalls', title: 'Plastering on the walls'},
             { value: 'woodenFloorboards', title: 'Wooden floorboards'},
+          ]}
+        />
+      )
+    case 'sink-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'taps', title: 'Tap(s)'},
+            { value: 'pipeworkLeak', title: 'Pipework leak'},
+            { value: 'leakBlockage', title: 'Leak or blockage'},
+            { value: 'damageSink', title: 'Damage to the sink'}
           ]}
         />
       )
@@ -380,6 +411,7 @@ export async function getStaticPaths() {
     {params: { route: 'repair-location'} },
     {params: { route: 'smell-gas'} },
     {params: { route: 'repair-kitchen-problems'} },
+    {params: { route: 'sink-problems'} },
     {params: { route: 'repair-bathroom-problems'} },
     {params: { route: 'repair-bedroom-problems'} },
     {params: { route: 'repair-living-areas-problems'} },
@@ -387,6 +419,7 @@ export async function getStaticPaths() {
     {params: { route: 'wall-floor-ceiling-problems'} },
     {params: { route: 'bath-problems'} },
     {params: { route: 'kitchen-electrical-problems'} },
+    {params: { route: 'kitchen-door-problems'} },
     {params: { route: 'repair-kitchen-cupboard-problems'} },
     {params: { route: 'repair-kitchen-heating-problems'} },
     {params: { route: 'repair-bedroom-lighting-problems'} },
