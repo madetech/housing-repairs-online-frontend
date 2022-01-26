@@ -58,6 +58,27 @@ const electricsOption = () => {
   });
 }
 
+const testSinkOptions = () => {
+  it('displays the repair issue question', () => {
+    cy.contains('What best describes the problem?');
+  });
+
+  it('displays a "Tap(s)" option', () => {
+    cy.contains('Tap(s)');
+  });
+
+  it('displays a "Pipework leak" option', () => {
+    cy.contains('Pipework leak');
+  });
+
+  it('displays a "Leak or blockage" option', () => {
+    cy.contains('Leak or blockage');
+  });
+
+  it('displays a "Damage to the sink" option', () => {
+    cy.contains('Damage to the sink');
+  });
+}
 
 describe('repairProblemBestDescription', () => {
 
@@ -168,6 +189,16 @@ describe('repairProblemBestDescription', () => {
       testWallOption();
     });
 
+    context('Sink, including taps and drainage', () => {
+      before(() => {
+        cy.go(-1);
+        cy.contains('Sink, including taps and drainage').click();
+        cy.get('button').click();
+      });
+
+      testSinkOptions();
+    });
+
   })
 
   context('Bathroom', () => {
@@ -186,11 +217,19 @@ describe('repairProblemBestDescription', () => {
       testWallOption();
     });
 
+    context('Sink, including taps and drainage', () => {
+      before(() => {
+        cy.go(-1);
+        cy.contains('Sink, including taps and drainage').click();
+        cy.get('button').click();
+      });
+
+      testSinkOptions();
+    });
+
     context('Electrics, including extractor fan and pull cords', () => {
       before(() => {
-        navigateToLocation()
-        cy.contains('Bathroom').click();
-        cy.get('button').click();
+        cy.go(-1);
         cy.contains('Electrics, including extractor fan and pull cords').click();
         cy.get('button').click();
       });
@@ -202,7 +241,6 @@ describe('repairProblemBestDescription', () => {
       it('displays a "Tube light" option', () => {
         cy.contains('Tube light');
       });
-
     });
 
   });
