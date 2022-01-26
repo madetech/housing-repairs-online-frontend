@@ -2,6 +2,29 @@ import {
   navigateToLocation
 } from '../../support/helpers';
 
+const testWindowOption = () => {
+  it('displays the repair issue question', () => {
+    cy.contains('What best describes the problem?');
+  });
+
+  it('displays a "Smashed window(s)" option', () => {
+    cy.contains('Smashed window(s)');
+  });
+
+  it('displays a "Window stuck open" option', () => {
+    cy.contains('Window stuck open');
+  });
+
+  it('displays a "Window stuck shut" option', () => {
+    cy.contains('Window stuck shut');
+  });
+
+  it('displays a "Condensation" option', () => {
+    cy.contains('Condensation');
+  });
+
+}
+
 const testWallOption = () => {
   it('displays the repair issue question', () => {
     cy.contains('What best describes the problem?');
@@ -188,6 +211,14 @@ describe('repairProblemBestDescription', () => {
 
       testWallOption();
     });
+    context('Damaged or stuck windows', () => {
+      before(()=>{
+        cy.go(-1);
+        cy.contains('Damaged or stuck windows').click();
+        cy.get('button').click();
+      });
+      testWindowOption();
+    });
 
     context('Sink, including taps and drainage', () => {
       before(() => {
@@ -229,7 +260,9 @@ describe('repairProblemBestDescription', () => {
 
     context('Electrics, including extractor fan and pull cords', () => {
       before(() => {
-        cy.go(-1);
+        navigateToLocation()
+        cy.contains('Bathroom').click();
+        cy.get('button').click();
         cy.contains('Electrics, including extractor fan and pull cords').click();
         cy.get('button').click();
       });
@@ -241,6 +274,7 @@ describe('repairProblemBestDescription', () => {
       it('displays a "Tube light" option', () => {
         cy.contains('Tube light');
       });
+
     });
 
   });
@@ -278,6 +312,15 @@ describe('repairProblemBestDescription', () => {
       });
       electricsOption();
     });
+
+    context('Damaged or stuck windows', () => {
+      before(()=>{
+        cy.go(-1);
+        cy.contains('Damaged or stuck windows').click();
+        cy.get('button').click();
+      });
+      testWindowOption();
+    });
   });
 
   context('Living Area', () => {
@@ -304,6 +347,15 @@ describe('repairProblemBestDescription', () => {
       });
 
       electricsOption();
+    });
+
+    context('Damaged or stuck windows', () => {
+      before(()=>{
+        cy.go(-1);
+        cy.contains('Damaged or stuck windows').click();
+        cy.get('button').click();
+      });
+      testWindowOption();
     });
   });
 });

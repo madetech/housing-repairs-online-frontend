@@ -52,6 +52,9 @@ describe('repairProblem', () => {
     it('displays a "heating" option', () => {
       cy.contains('Heating or hot water');
     });
+    it('displays a "window" option', () => {
+      cy.contains('Damaged or stuck windows');
+    });
   });
 
   context('Bathroom', () => {
@@ -76,6 +79,9 @@ describe('repairProblem', () => {
     it('displays a "electrics" option', () => {
       cy.contains('Electrics, including extractor fan and pull cords');
     });
+    it('displays a "window" option', () => {
+      cy.contains('Damaged or stuck windows');
+    });
   });
 
   context('Bedroom', () => {
@@ -86,6 +92,10 @@ describe('repairProblem', () => {
     });
 
     genericWhatIsTheProblemOptions();
+
+    it('displays a "window" option', () => {
+      cy.contains('Damaged or stuck windows');
+    });
   });
 
   context('Living Areas', () => {
@@ -97,7 +107,10 @@ describe('repairProblem', () => {
 
     it('displays a "walls" option', () => {
       genericWhatIsTheProblemOptions();
+    });
 
+    it('displays a "window" option', () => {
+      cy.contains('Damaged or stuck windows');
     });
   });
 });
