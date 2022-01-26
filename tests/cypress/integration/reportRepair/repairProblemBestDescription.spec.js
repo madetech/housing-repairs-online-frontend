@@ -109,7 +109,9 @@ describe('repairProblemBestDescription', () => {
     })
     context('Heating or hot water', () => {
       before(()=>{
-        cy.go(-1);
+        navigateToLocation()
+        cy.contains('Kitchen').click();
+        cy.get('button').click();
         cy.contains('Heating or hot water').click();
         cy.get('button').click();
       });
@@ -129,7 +131,9 @@ describe('repairProblemBestDescription', () => {
 
     context('Electrical, including extractor fans and lightbulbs', () => {
       before(()=>{
-        cy.go(-1);
+        navigateToLocation()
+        cy.contains('Kitchen').click();
+        cy.get('button').click();
         cy.contains('Electrical, including extractor fans and lightbulbs').click();
         cy.get('button').click();
       });
@@ -153,7 +157,9 @@ describe('repairProblemBestDescription', () => {
 
     context('Damaged or stuck doors', () => {
       before(()=>{
-        cy.go(-1);
+        navigateToLocation()
+        cy.contains('Kitchen').click();
+        cy.get('button').click();
         cy.contains('Damaged or stuck doors').click();
         cy.get('button').click();
       });
@@ -181,7 +187,9 @@ describe('repairProblemBestDescription', () => {
 
     context('Walls, floor or ceiling, excluding damp', () => {
       before(()=>{
-        cy.go(-1);
+        navigateToLocation()
+        cy.contains('Kitchen').click();
+        cy.get('button').click();
         cy.contains('Walls, floor or ceiling, excluding damp').click();
         cy.get('button').click();
       });
@@ -191,7 +199,9 @@ describe('repairProblemBestDescription', () => {
 
     context('Sink, including taps and drainage', () => {
       before(() => {
-        cy.go(-1);
+        navigateToLocation()
+        cy.contains('Kitchen').click();
+        cy.get('button').click();
         cy.contains('Sink, including taps and drainage').click();
         cy.get('button').click();
       });
@@ -201,7 +211,7 @@ describe('repairProblemBestDescription', () => {
 
   })
 
-  context.only('Bathroom', () => {
+  context('Bathroom', () => {
     before(()=>{
       navigateToLocation()
       cy.contains('Bathroom').click();
@@ -237,7 +247,9 @@ describe('repairProblemBestDescription', () => {
 
     context('Walls, floor or ceiling, excluding damp', () => {
       before(() => {
-        cy.go(-1);
+        navigateToLocation()
+        cy.contains('Bathroom').click();
+        cy.get('button').click();
         cy.contains('Walls, floor or ceiling, excluding damp').click();
         cy.get('button').click();
       });
@@ -247,7 +259,9 @@ describe('repairProblemBestDescription', () => {
 
     context('Sink, including taps and drainage', () => {
       before(() => {
-        cy.go(-1);
+        navigateToLocation()
+        cy.contains('Bathroom').click();
+        cy.get('button').click();
         cy.contains('Sink, including taps and drainage').click();
         cy.get('button').click();
       });
@@ -256,8 +270,10 @@ describe('repairProblemBestDescription', () => {
     });
 
     context('Electrics, including extractor fan and pull cords', () => {
-      before(() => {
-        cy.go(-1);
+      before(()=>{
+        navigateToLocation()
+        cy.contains('Bathroom').click();
+        cy.get('button').click();
         cy.contains('Electrics, including extractor fan and pull cords').click();
         cy.get('button').click();
       });
@@ -291,7 +307,9 @@ describe('repairProblemBestDescription', () => {
 
     context('Electrics, including extractor fan and pull cords', () => {
       before(()=>{
-        cy.go(-1);
+        navigateToLocation()
+        cy.contains('Bedroom').click();
+        cy.get('button').click();
       });
 
       electricsOption();
@@ -299,7 +317,6 @@ describe('repairProblemBestDescription', () => {
 
     context('Electrical, including extractor fans and lightbulbs', () => {
       before(()=>{
-        cy.go(-1);
         navigateToLocation()
         cy.contains('Bedroom').click();
         cy.get('button').click();
@@ -325,7 +342,6 @@ describe('repairProblemBestDescription', () => {
     });
     context('Electrics, including lights and switches', () => {
       before(()=>{
-        cy.go(-1);
         navigateToLocation()
         cy.contains('Living Areas').click();
         cy.get('button').click();
