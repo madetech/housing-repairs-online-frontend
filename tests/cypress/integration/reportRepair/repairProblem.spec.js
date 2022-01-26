@@ -41,6 +41,10 @@ describe('repairProblem', () => {
       cy.contains('Electrical, including extractor fans and lightbulbs');
     });
 
+    it('displays a "sink" option', () => {
+      cy.contains('Sink, including taps and drainage');
+    });
+
     it('displays a "door" option', () => {
       cy.contains('Damaged or stuck doors');
     });
@@ -63,6 +67,10 @@ describe('repairProblem', () => {
 
     it('displays a "walls" option', () => {
       cy.contains('Walls, floor or ceiling, excluding damp');
+    });
+
+    it('displays a "sink" option', () => {
+      cy.contains('Sink, including taps and drainage');
     });
 
     it('displays a "electrics" option', () => {
