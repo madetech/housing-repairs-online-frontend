@@ -51,7 +51,7 @@ jobs:
           start: yarn start
           # quote the url to be safe against YML parsing surprises
           wait-on: 'http://localhost:3000'
-          browser: firefox
+          browser: chrome
           record: true
           parallel: true
         env:
