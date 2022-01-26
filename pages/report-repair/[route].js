@@ -205,6 +205,7 @@ function ReportRepair() {
           handleChange={handleChange}
           values={values}
           options = {[
+            {value: 'bath', title: 'Bath, including taps'},
             commonProblems.wallsFloorAndCeiling,
             {value: 'electricsExtractorCords', title: 'Electrics, including extractor fan and pull cords'},
             { value: 'windows', title: 'Damaged or stuck windows'},
@@ -319,6 +320,19 @@ function ReportRepair() {
           ]}
         />
       )
+    case 'bath-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            {value: 'bathTaps', title: 'Bath taps'},
+            {value: 'sealAroundBath', title: 'Seal around bath'},
+            {value: 'bathPanel', title: 'Bath panel'},
+            {value: 'bathBlockage', title: 'Blockage'}
+          ]}
+        />
+      )
     case 'kitchen-door-problems':
       return (
         <RepairProblemBestDescription
@@ -420,6 +434,7 @@ export async function getStaticPaths() {
     {params: { route: 'repair-living-areas-problems'} },
     {params: { route: 'repair-living-areas-lighting-problems'} },
     {params: { route: 'wall-floor-ceiling-problems'} },
+    {params: { route: 'bath-problems'} },
     {params: { route: 'kitchen-electrical-problems'} },
     {params: { route: 'kitchen-door-problems'} },
     {params: { route: 'repair-kitchen-cupboard-problems'} },

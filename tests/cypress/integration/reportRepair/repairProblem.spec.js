@@ -72,6 +72,10 @@ describe('repairProblem', () => {
       cy.contains('Walls, floor or ceiling, excluding damp');
     });
 
+    it('displays a "bath" option', () => {
+      cy.contains('Bath, including taps');
+    });
+
     it('displays a "sink" option', () => {
       cy.contains('Sink, including taps and drainage');
     });

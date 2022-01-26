@@ -47,6 +47,7 @@ class Flow {
       'kitchen-electrical-problems': {prevStep: 'repair-kitchen-problems', nextStep: 'repair-description'},
       'repair-bathroom-problems': { prevStep: 'repair-location', nextStep: [
         {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'},
+        {condition: 'bath', nextStep: 'bath-problems'},
         {condition: 'electricsExtractorCords', nextStep: 'repair-bathroom-electric-problems'},
         {condition: 'sink', nextStep: 'sink-problems'},
         {condition: 'windows', nextStep: 'repair-window-problems'},
@@ -60,6 +61,7 @@ class Flow {
         {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'},
         {condition: 'windows', nextStep: 'repair-window-problems'}]
       },
+      'bath-problems': { prevStep: 'repair-bathroom-problems', nextStep: 'repair-description'},
       'repair-window-problems': {nextStep: 'repair-description'},
       'repair-bedroom-lighting-problems': { prevStep: 'repair-bedroom-problems', nextStep: 'repair-description'},
       'repair-living-areas-lighting-problems': { prevStep: 'repair-living-areas-problems', nextStep: 'repair-description'},
