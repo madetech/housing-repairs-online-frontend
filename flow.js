@@ -32,6 +32,7 @@ class Flow {
       ]},
       'repair-kitchen-problems': { prevStep: 'repair-location', nextStep: [
         {condition: 'cupboards', nextStep: 'repair-kitchen-cupboard-problems'},
+        {condition: 'windows', nextStep: 'repair-window-problems'},
         {condition: 'damp-or-mould', nextStep: 'repair-description-damp'},
         {condition: 'electrical', nextStep: 'kitchen-electrical-problems'},
         {condition: 'sink', nextStep: 'sink-problems'},
@@ -48,17 +49,20 @@ class Flow {
         {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'},
         {condition: 'bath', nextStep: 'bath-problems'},
         {condition: 'electricsExtractorCords', nextStep: 'repair-bathroom-electric-problems'},
-        {condition: 'sink', nextStep: 'sink-problems'}
+        {condition: 'sink', nextStep: 'sink-problems'},
+        {condition: 'windows', nextStep: 'repair-window-problems'},
       ]},
       'repair-bedroom-problems': { prevStep: 'repair-location', nextStep: [
         {condition: 'electricsLightsSwitches', nextStep: 'repair-bedroom-lighting-problems'},
-        {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'}
-      ]},
+        {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'},
+        {condition: 'windows', nextStep: 'repair-window-problems'},]},
       'repair-living-areas-problems': {prevSteps: 'repair-location', nextStep: [
         {condition: 'electricsLightsSwitches', nextStep: 'repair-bedroom-lighting-problems'},
-        {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'}]
+        {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'},
+        {condition: 'windows', nextStep: 'repair-window-problems'}]
       },
       'bath-problems': { prevStep: 'repair-bathroom-problems', nextStep: 'repair-description'},
+      'repair-window-problems': {nextStep: 'repair-description'},
       'repair-bedroom-lighting-problems': { prevStep: 'repair-bedroom-problems', nextStep: 'repair-description'},
       'repair-living-areas-lighting-problems': { prevStep: 'repair-living-areas-problems', nextStep: 'repair-description'},
       'wall-floor-ceiling-problems': {nextStep: 'repair-description'},

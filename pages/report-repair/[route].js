@@ -194,7 +194,8 @@ function ReportRepair() {
             { value: 'heatingOrHotWater', title: 'Heating or hot water'},
             { value: 'door', title: 'Damaged or stuck doors'},
             commonProblems.wallsFloorAndCeiling,
-            commonProblems.sink
+            commonProblems.sink,
+            { value: 'windows', title: 'Damaged or stuck windows'},
           ]}
         />
       )
@@ -206,8 +207,9 @@ function ReportRepair() {
           options = {[
             {value: 'bath', title: 'Bath, including taps'},
             commonProblems.wallsFloorAndCeiling,
+            {value: 'electricsExtractorCords', title: 'Electrics, including extractor fan and pull cords'},
+            { value: 'windows', title: 'Damaged or stuck windows'},
             commonProblems.sink,
-            {value: 'electricsExtractorCords', title: 'Electrics, including extractor fan and pull cords'}
           ]}
         />
       )
@@ -219,6 +221,7 @@ function ReportRepair() {
           options = {[
             commonProblems.electricsLightsSwitches,
             commonProblems.wallsFloorAndCeiling,
+            { value: 'windows', title: 'Damaged or stuck windows'},
           ]}
         />
       )
@@ -230,6 +233,20 @@ function ReportRepair() {
           options = {[
             commonProblems.electricsLightsSwitches,
             commonProblems.wallsFloorAndCeiling,
+            { value: 'windows', title: 'Damaged or stuck windows'},
+          ]}
+        />
+      )
+    case 'repair-window-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'smashed', title: 'Smashed window(s)'},
+            { value: 'stuckOpen', title: 'Window stuck open'},
+            { value: 'stuckShut', title: 'Window stuck shut'},
+            { value: 'condensation', title: 'Condensation'}
           ]}
         />
       )
@@ -424,6 +441,7 @@ export async function getStaticPaths() {
     {params: { route: 'repair-kitchen-heating-problems'} },
     {params: { route: 'repair-bedroom-lighting-problems'} },
     {params: { route: 'repair-bathroom-electric-problems'} },
+    {params: { route: 'repair-window-problems'} },
     {params: { route: 'repair-description'} },
     {params: { route: 'repair-availability'} },
     {params: { route: 'smell-gas'} }
