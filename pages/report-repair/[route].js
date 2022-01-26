@@ -236,46 +236,7 @@ function ReportRepair() {
           ]}
         />
       )
-    case 'repair-kitchen-window-problems':
-      return (
-        <RepairProblemBestDescription
-          handleChange={handleChange}
-          values={values}
-          options = {[
-            { value: 'smashed', title: 'Smashed window(s)'},
-            { value: 'stuckOpen', title: 'Window stuck open'},
-            { value: 'stuckShut', title: 'Window stuck shut'},
-            { value: 'condensation', title: 'Condensation'}
-          ]}
-        />
-      )
-    case 'repair-bathroom-window-problems':
-      return (
-        <RepairProblemBestDescription
-          handleChange={handleChange}
-          values={values}
-          options = {[
-            { value: 'smashed', title: 'Smashed window(s)'},
-            { value: 'stuckOpen', title: 'Window stuck open'},
-            { value: 'stuckShut', title: 'Window stuck shut'},
-            { value: 'condensation', title: 'Condensation'}
-          ]}
-        />
-      )
-    case 'repair-bedroom-window-problems':
-      return (
-        <RepairProblemBestDescription
-          handleChange={handleChange}
-          values={values}
-          options = {[
-            { value: 'smashed', title: 'Smashed window(s)'},
-            { value: 'stuckOpen', title: 'Window stuck open'},
-            { value: 'stuckShut', title: 'Window stuck shut'},
-            { value: 'condensation', title: 'Condensation'}
-          ]}
-        />
-      )
-    case 'repair-living-areas-window-problems':
+    case 'repair-window-problems':
       return (
         <RepairProblemBestDescription
           handleChange={handleChange}
@@ -465,10 +426,7 @@ export async function getStaticPaths() {
     {params: { route: 'repair-kitchen-heating-problems'} },
     {params: { route: 'repair-bedroom-lighting-problems'} },
     {params: { route: 'repair-bathroom-electric-problems'} },
-    {params: { route: 'repair-kitchen-window-problems'} },
-    {params: { route: 'repair-bathroom-window-problems'} },
-    {params: { route: 'repair-bedroom-window-problems'} },
-    {params: { route: 'repair-living-areas-window-problems'} },
+    {params: { route: 'repair-window-problems'} },
     {params: { route: 'repair-description'} },
     {params: { route: 'repair-availability'} },
     {params: { route: 'smell-gas'} }
