@@ -87,8 +87,13 @@ describe('repairProblem', () => {
     it('displays a "electrics" option', () => {
       cy.contains('Electrics, including extractor fan and pull cords');
     });
+
     it('displays a "window" option', () => {
       cy.contains('Damaged or stuck windows');
+    });
+
+    it('displays a "Damp or mould" option', () => {
+      cy.contains('Damp or mould');
     });
   });
 

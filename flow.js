@@ -52,11 +52,11 @@ class Flow {
         {condition: 'electricsExtractorCords', nextStep: 'repair-bathroom-electric-problems'},
         {condition: 'sink', nextStep: 'sink-problems'},
         {condition: 'windows', nextStep: 'repair-window-problems'},
+        {condition: 'dampMould', nextStep: 'bathroom-damp-mould-problems'},
       ]},
       'repair-bedroom-problems': { prevStep: 'repair-location', nextStep: [
         {condition: 'electricsLightsSwitches', nextStep: 'repair-bedroom-lighting-problems'},
         {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'},
-        {condition: 'dampMould', nextStep: 'bathroom-damp-mould-problems'},
         {condition: 'windows', nextStep: 'repair-window-problems'}
       ]},
       'repair-living-areas-problems': {prevSteps: 'repair-location', nextStep: [

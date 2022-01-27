@@ -319,6 +319,28 @@ describe('repairProblemBestDescription', () => {
 
     });
 
+    context('Damp or mould', () => {
+      beforeEach(() => {
+        navigateToLocation()
+        cy.contains('Bathroom').click();
+        cy.get('button').click();
+        cy.contains('Damp or mould').click();
+        cy.get('button').click();
+      });
+
+      it('displays a "Damp or mould caused by a leak" option', () => {
+        cy.contains('Damp or mould caused by a leak').click();
+        cy.get('button').click();
+        cy.url().should('include', '/report-repair/emergency-repair');
+      });
+
+      it('displays a "Damp or mould caused by something else" option', () => {
+        cy.contains('Damp or mould caused by something else').click();
+        cy.get('button').click();
+        cy.url().should('include', '/report-repair/repair-description');
+      });
+    });
+
   });
 
   context('Bedroom', () => {
