@@ -2,6 +2,29 @@ import {
   navigateToLocation
 } from '../../support/helpers';
 
+const testWindowOption = () => {
+  it('displays the repair issue question', () => {
+    cy.contains('What best describes the problem?');
+  });
+
+  it('displays a "Smashed window(s)" option', () => {
+    cy.contains('Smashed window(s)');
+  });
+
+  it('displays a "Window stuck open" option', () => {
+    cy.contains('Window stuck open');
+  });
+
+  it('displays a "Window stuck shut" option', () => {
+    cy.contains('Window stuck shut');
+  });
+
+  it('displays a "Condensation" option', () => {
+    cy.contains('Condensation');
+  });
+
+}
+
 const testWallOption = () => {
   it('displays the repair issue question', () => {
     cy.contains('What best describes the problem?');
@@ -109,7 +132,9 @@ describe('repairProblemBestDescription', () => {
     })
     context('Heating or hot water', () => {
       before(()=>{
-        cy.go(-1);
+        navigateToLocation()
+        cy.contains('Kitchen').click();
+        cy.get('button').click();
         cy.contains('Heating or hot water').click();
         cy.get('button').click();
       });
@@ -129,7 +154,9 @@ describe('repairProblemBestDescription', () => {
 
     context('Electrical, including extractor fans and lightbulbs', () => {
       before(()=>{
-        cy.go(-1);
+        navigateToLocation()
+        cy.contains('Kitchen').click();
+        cy.get('button').click();
         cy.contains('Electrical, including extractor fans and lightbulbs').click();
         cy.get('button').click();
       });
@@ -153,7 +180,9 @@ describe('repairProblemBestDescription', () => {
 
     context('Damaged or stuck doors', () => {
       before(()=>{
-        cy.go(-1);
+        navigateToLocation()
+        cy.contains('Kitchen').click();
+        cy.get('button').click();
         cy.contains('Damaged or stuck doors').click();
         cy.get('button').click();
       });
@@ -181,17 +210,29 @@ describe('repairProblemBestDescription', () => {
 
     context('Walls, floor or ceiling, excluding damp', () => {
       before(()=>{
-        cy.go(-1);
+        navigateToLocation()
+        cy.contains('Kitchen').click();
+        cy.get('button').click();
         cy.contains('Walls, floor or ceiling, excluding damp').click();
         cy.get('button').click();
       });
 
       testWallOption();
     });
+    context('Damaged or stuck windows', () => {
+      before(()=>{
+        cy.go(-1);
+        cy.contains('Damaged or stuck windows').click();
+        cy.get('button').click();
+      });
+      testWindowOption();
+    });
 
     context('Sink, including taps and drainage', () => {
       before(() => {
-        cy.go(-1);
+        navigateToLocation()
+        cy.contains('Kitchen').click();
+        cy.get('button').click();
         cy.contains('Sink, including taps and drainage').click();
         cy.get('button').click();
       });
@@ -208,8 +249,38 @@ describe('repairProblemBestDescription', () => {
       cy.get('button').click();
     });
 
+    context('Bath, including taps', () => {
+      before(() => {
+        cy.contains('Bath, including taps').click();
+        cy.get('button').click();
+      });
+
+      it('displays the repair issue question', () => {
+        cy.contains('What best describes the problem?');
+      });
+
+      it('displays a "Bath taps" option', () => {
+        cy.contains('Bath taps');
+      });
+
+      it('displays a "Seal around bath" option', () => {
+        cy.contains('Seal around bath');
+      });
+
+      it('displays a "Bath panel" option', () => {
+        cy.contains('Bath panel');
+      });
+
+      it('displays a "Blockage" option', () => {
+        cy.contains('Blockage');
+      });
+    });
+
     context('Walls, floor or ceiling, excluding damp', () => {
       before(() => {
+        navigateToLocation()
+        cy.contains('Bathroom').click();
+        cy.get('button').click();
         cy.contains('Walls, floor or ceiling, excluding damp').click();
         cy.get('button').click();
       });
@@ -219,7 +290,9 @@ describe('repairProblemBestDescription', () => {
 
     context('Sink, including taps and drainage', () => {
       before(() => {
-        cy.go(-1);
+        navigateToLocation()
+        cy.contains('Bathroom').click();
+        cy.get('button').click();
         cy.contains('Sink, including taps and drainage').click();
         cy.get('button').click();
       });
@@ -229,7 +302,9 @@ describe('repairProblemBestDescription', () => {
 
     context('Electrics, including extractor fan and pull cords', () => {
       before(() => {
-        cy.go(-1);
+        navigateToLocation()
+        cy.contains('Bathroom').click();
+        cy.get('button').click();
         cy.contains('Electrics, including extractor fan and pull cords').click();
         cy.get('button').click();
       });
@@ -241,6 +316,7 @@ describe('repairProblemBestDescription', () => {
       it('displays a "Tube light" option', () => {
         cy.contains('Tube light');
       });
+
     });
 
   });
@@ -263,7 +339,9 @@ describe('repairProblemBestDescription', () => {
 
     context('Electrics, including extractor fan and pull cords', () => {
       before(()=>{
-        cy.go(-1);
+        navigateToLocation()
+        cy.contains('Bedroom').click();
+        cy.get('button').click();
       });
 
       electricsOption();
@@ -271,12 +349,20 @@ describe('repairProblemBestDescription', () => {
 
     context('Electrical, including extractor fans and lightbulbs', () => {
       before(()=>{
-        cy.go(-1);
         navigateToLocation()
         cy.contains('Bedroom').click();
         cy.get('button').click();
       });
       electricsOption();
+    });
+
+    context('Damaged or stuck windows', () => {
+      before(()=>{
+        cy.go(-1);
+        cy.contains('Damaged or stuck windows').click();
+        cy.get('button').click();
+      });
+      testWindowOption();
     });
   });
 
@@ -297,13 +383,21 @@ describe('repairProblemBestDescription', () => {
     });
     context('Electrics, including lights and switches', () => {
       before(()=>{
-        cy.go(-1);
         navigateToLocation()
         cy.contains('Living Areas').click();
         cy.get('button').click();
       });
 
       electricsOption();
+    });
+
+    context('Damaged or stuck windows', () => {
+      before(()=>{
+        cy.go(-1);
+        cy.contains('Damaged or stuck windows').click();
+        cy.get('button').click();
+      });
+      testWindowOption();
     });
   });
 });

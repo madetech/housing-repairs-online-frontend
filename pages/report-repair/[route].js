@@ -191,10 +191,12 @@ function ReportRepair() {
           options = {[
             { value: 'cupboards', title: 'Cupboards, including damaged cupboard doors'},
             { value: 'electrical', title: 'Electrical, including extractor fans and lightbulbs'},
+            { value: 'worktop', title:   'Damaged worktop'},
             { value: 'heatingOrHotWater', title: 'Heating or hot water'},
             { value: 'door', title: 'Damaged or stuck doors'},
             commonProblems.wallsFloorAndCeiling,
-            commonProblems.sink
+            commonProblems.sink,
+            { value: 'windows', title: 'Damaged or stuck windows'},
           ]}
         />
       )
@@ -204,7 +206,10 @@ function ReportRepair() {
           handleChange={handleChange}
           values={values}
           options = {[
+            {value: 'bath', title: 'Bath, including taps'},
             commonProblems.wallsFloorAndCeiling,
+            {value: 'electricsExtractorCords', title: 'Electrics, including extractor fan and pull cords'},
+            { value: 'windows', title: 'Damaged or stuck windows'},
             commonProblems.sink,
             {value: 'electricsExtractorCords', title: 'Electrics, including extractor fan and pull cords'},
             {value: 'dampMould', title: 'Damp or mould'}
@@ -219,6 +224,7 @@ function ReportRepair() {
           options = {[
             commonProblems.electricsLightsSwitches,
             commonProblems.wallsFloorAndCeiling,
+            { value: 'windows', title: 'Damaged or stuck windows'},
           ]}
         />
       )
@@ -230,6 +236,20 @@ function ReportRepair() {
           options = {[
             commonProblems.electricsLightsSwitches,
             commonProblems.wallsFloorAndCeiling,
+            { value: 'windows', title: 'Damaged or stuck windows'},
+          ]}
+        />
+      )
+    case 'repair-window-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'smashed', title: 'Smashed window(s)'},
+            { value: 'stuckOpen', title: 'Window stuck open'},
+            { value: 'stuckShut', title: 'Window stuck shut'},
+            { value: 'condensation', title: 'Condensation'}
           ]}
         />
       )
@@ -311,6 +331,19 @@ function ReportRepair() {
             {value: 'sockets', title: 'Socket(s)'},
             {value: 'lightFitting', title: 'Light fitting(s)'},
             {value: 'cookerSwitch', title: 'Cooker switch'}
+          ]}
+        />
+      )
+    case 'bath-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            {value: 'bathTaps', title: 'Bath taps'},
+            {value: 'sealAroundBath', title: 'Seal around bath'},
+            {value: 'bathPanel', title: 'Bath panel'},
+            {value: 'bathBlockage', title: 'Blockage'}
           ]}
         />
       )
@@ -416,12 +449,14 @@ export async function getStaticPaths() {
     {params: { route: 'repair-living-areas-problems'} },
     {params: { route: 'repair-living-areas-lighting-problems'} },
     {params: { route: 'wall-floor-ceiling-problems'} },
+    {params: { route: 'bath-problems'} },
     {params: { route: 'kitchen-electrical-problems'} },
     {params: { route: 'kitchen-door-problems'} },
     {params: { route: 'repair-kitchen-cupboard-problems'} },
     {params: { route: 'repair-kitchen-heating-problems'} },
     {params: { route: 'repair-bedroom-lighting-problems'} },
     {params: { route: 'repair-bathroom-electric-problems'} },
+    {params: { route: 'repair-window-problems'} },
     {params: { route: 'repair-description'} },
     {params: { route: 'repair-availability'} },
     {params: { route: 'smell-gas'} }
