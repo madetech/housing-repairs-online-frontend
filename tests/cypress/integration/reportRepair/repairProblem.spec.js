@@ -83,8 +83,13 @@ describe('repairProblem', () => {
     it('displays a "electrics" option', () => {
       cy.contains('Electrics, including extractor fan and pull cords');
     });
+
     it('displays a "window" option', () => {
       cy.contains('Damaged or stuck windows');
+    });
+
+    it('displays a "door" option', () => {
+      cy.contains('Damaged or stuck doors');
     });
   });
 
@@ -99,6 +104,10 @@ describe('repairProblem', () => {
 
     it('displays a "window" option', () => {
       cy.contains('Damaged or stuck windows');
+    });
+
+    it('displays a "door" option', () => {
+      cy.contains('Damaged or stuck doors');
     });
   });
 
@@ -115,6 +124,10 @@ describe('repairProblem', () => {
 
     it('displays a "window" option', () => {
       cy.contains('Damaged or stuck windows');
+    });
+
+    it('displays a "door" option', () => {
+      cy.contains('Damaged or stuck doors');
     });
   });
 });

@@ -41,6 +41,10 @@ class Flow {
         {condition: 'door', nextStep: 'kitchen-door-problems'},
         {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'}
       ]},
+      'repair-door-problems': { prevSteps: '', nextStep: [
+        {condition: 'internalDoorIssue', nextStep: 'repair-description'},
+        {condition: 'lockOnDoor', nextStep: 'repair-description'},
+        {condition: 'adjustingDoorAfterCarpetFitting', nextStep: 'not-eligible-non-emergency'}]},
       'sink-problems': {nextStep: 'repair-description'},
       'repair-kitchen-heating-problems': { prevStep: 'repair-kitchen-problems', nextStep: 'repair-description'},
       'kitchen-door-problems': { prevStep: 'repair-kitchen-problems', nextStep: 'repair-description'},
@@ -51,15 +55,18 @@ class Flow {
         {condition: 'electricsExtractorCords', nextStep: 'repair-bathroom-electric-problems'},
         {condition: 'sink', nextStep: 'sink-problems'},
         {condition: 'windows', nextStep: 'repair-window-problems'},
+        {condition: 'damagedOrStuckDoors', nextStep: 'repair-door-problems'}
       ]},
       'repair-bedroom-problems': { prevStep: 'repair-location', nextStep: [
         {condition: 'electricsLightsSwitches', nextStep: 'repair-bedroom-lighting-problems'},
         {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'},
-        {condition: 'windows', nextStep: 'repair-window-problems'},]},
+        {condition: 'windows', nextStep: 'repair-window-problems'},
+        {condition: 'damagedOrStuckDoors', nextStep: 'repair-door-problems'}]},
       'repair-living-areas-problems': {prevSteps: 'repair-location', nextStep: [
         {condition: 'electricsLightsSwitches', nextStep: 'repair-bedroom-lighting-problems'},
         {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'},
-        {condition: 'windows', nextStep: 'repair-window-problems'}]
+        {condition: 'windows', nextStep: 'repair-window-problems'},
+        {condition: 'damagedOrStuckDoors', nextStep: 'repair-door-problems'}]
       },
       'bath-problems': { prevStep: 'repair-bathroom-problems', nextStep: 'repair-description'},
       'repair-window-problems': {nextStep: 'repair-description'},
