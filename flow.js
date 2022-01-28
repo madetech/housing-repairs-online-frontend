@@ -136,6 +136,7 @@ class Flow {
     }
   };
   nextStep (step, state, prevStep) {
+    console.log(state)
     state.prevStep = prevStep ? prevStep : state.step
     this.setPrevSteps([...this.prevSteps, state.prevStep])
     state.step = step;
@@ -172,6 +173,10 @@ class Flow {
     }
   }
   handleChange = (input, value, state) => {
+    let repairProblemChanged = false;
+    if(input == 'repairProblem' && state.data[input] != value){
+      repairProblemChanged = true
+    }
     state.data[input]= value
     let nextFlowStep =  this.flow[state.step]?.nextStep
     if (nextFlowStep) {
@@ -183,6 +188,9 @@ class Flow {
           condition = nextFlowStep.find(o => o.condition === value);
         }
         nextFlowStep = condition ? condition.nextStep : state.step;
+      }
+      if(nextFlowStep == 'repair-description' && repairProblemChanged){
+        delete state.data['repairProblemBestDescription']
       }
       return this.nextStep(nextFlowStep, state);
     }
