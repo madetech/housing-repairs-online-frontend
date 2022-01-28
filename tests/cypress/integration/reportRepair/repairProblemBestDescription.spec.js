@@ -103,6 +103,24 @@ const testSinkOptions = () => {
   });
 }
 
+const testDoorOption = () => {
+  it('displays the repair issue question', () => {
+    cy.contains('What best describes the problem?');
+  });
+
+  it('displays a "Internal door issue, including hinges, handle, sticking" option', () => {
+    cy.contains('Internal door issue, including hinges, handle, sticking');
+  });
+
+  it('displays a "Lock on the door" option', () => {
+    cy.contains('Lock on the door');
+  });
+
+  it('displays a "Adjusting a door after a carpet fitting" option', () => {
+    cy.contains('Adjusting a door after a carpet fitting');
+  });
+}
+
 describe('repairProblemBestDescription', () => {
 
   context('Kitchen', () => {
@@ -319,6 +337,17 @@ describe('repairProblemBestDescription', () => {
 
     });
 
+    context('Damaged or stuck doors', () => {
+      before(()=>{
+        navigateToLocation()
+        cy.contains('Bathroom').click();
+        cy.get('button').click();
+        cy.contains('Damaged or stuck doors').click();
+        cy.get('button').click();
+      });
+      testDoorOption();
+    });
+
   });
 
   context('Bedroom', () => {
@@ -364,6 +393,17 @@ describe('repairProblemBestDescription', () => {
       });
       testWindowOption();
     });
+
+    context('Damaged or stuck doors', () => {
+      before(()=>{
+        navigateToLocation()
+        cy.contains('Bedroom').click();
+        cy.get('button').click();
+        cy.contains('Damaged or stuck doors').click();
+        cy.get('button').click();
+      });
+      testDoorOption();
+    });
   });
 
   context('Living Area', () => {
@@ -398,6 +438,17 @@ describe('repairProblemBestDescription', () => {
         cy.get('button').click();
       });
       testWindowOption();
+    });
+
+    context('Damaged or stuck doors', () => {
+      before(()=>{
+        navigateToLocation()
+        cy.contains('Living Area').click();
+        cy.get('button').click();
+        cy.contains('Damaged or stuck doors').click();
+        cy.get('button').click();
+      });
+      testDoorOption();
     });
   });
 });

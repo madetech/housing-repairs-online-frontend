@@ -22,6 +22,7 @@ import ContactPerson from '../../compoments/report-repair/contact-person';
 import ContactDetails from '../../compoments/report-repair/contact-details';
 import Confirmation from '../../compoments/report-repair/confirmation';
 import Error from '../../compoments/error';
+import NotEligibleNonEmergency from '../../compoments/report-repair/not-eligible-non-emergency';
 
 function ReportRepair() {
   const [state, setState] = useState({data:{}, step: 'priority-list'});
@@ -160,6 +161,10 @@ function ReportRepair() {
       return (
         <NotEligible/>
       )
+    case 'not-eligible-non-emergency':
+      return (
+        <NotEligibleNonEmergency/>
+      )
     case 'not-eligible-communal-repairs':
       return (
         <NotEligibleCommunalRepairs/>
@@ -211,6 +216,7 @@ function ReportRepair() {
             {value: 'electricsExtractorCords', title: 'Electrics, including extractor fan and pull cords'},
             { value: 'windows', title: 'Damaged or stuck windows'},
             commonProblems.sink,
+            commonProblems.damagedOrStuckDoors
           ]}
         />
       )
@@ -223,6 +229,7 @@ function ReportRepair() {
             commonProblems.electricsLightsSwitches,
             commonProblems.wallsFloorAndCeiling,
             { value: 'windows', title: 'Damaged or stuck windows'},
+            commonProblems.damagedOrStuckDoors
           ]}
         />
       )
@@ -235,6 +242,7 @@ function ReportRepair() {
             commonProblems.electricsLightsSwitches,
             commonProblems.wallsFloorAndCeiling,
             { value: 'windows', title: 'Damaged or stuck windows'},
+            commonProblems.damagedOrStuckDoors
           ]}
         />
       )
@@ -248,6 +256,18 @@ function ReportRepair() {
             { value: 'stuckOpen', title: 'Window stuck open'},
             { value: 'stuckShut', title: 'Window stuck shut'},
             { value: 'condensation', title: 'Condensation'}
+          ]}
+        />
+      )
+    case 'repair-door-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'internalDoorIssue', title: 'Internal door issue, including hinges, handle, sticking'},
+            { value: 'lockOnDoor', title: 'Lock on the door'},
+            { value: 'adjustingDoorAfterCarpetFitting', title: 'Adjusting a door after a carpet fitting'},
           ]}
         />
       )
@@ -423,6 +443,7 @@ export async function getStaticPaths() {
     {params: { route: 'contact-person'} },
     {params: { route: 'contact-details'} },
     {params: { route: 'not-eligible'} },
+    {params: { route: 'not-eligible-non-emergency'} },
     {params: { route: 'not-eligible-communal-repairs'} },
     {params: { route: 'postcode'} },
     {params: { route: 'priority-list'} },
@@ -442,6 +463,7 @@ export async function getStaticPaths() {
     {params: { route: 'repair-kitchen-heating-problems'} },
     {params: { route: 'repair-bedroom-lighting-problems'} },
     {params: { route: 'repair-bathroom-electric-problems'} },
+    {params: { route: 'repair-door-problems'}},
     {params: { route: 'repair-window-problems'} },
     {params: { route: 'repair-description'} },
     {params: { route: 'repair-availability'} },
