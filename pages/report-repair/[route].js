@@ -202,6 +202,7 @@ function ReportRepair() {
             commonProblems.wallsFloorAndCeiling,
             commonProblems.sink,
             { value: 'windows', title: 'Damaged or stuck windows'},
+            commonProblems.dampOrMould
           ]}
         />
       )
@@ -229,7 +230,8 @@ function ReportRepair() {
             commonProblems.electricsLightsSwitches,
             commonProblems.wallsFloorAndCeiling,
             { value: 'windows', title: 'Damaged or stuck windows'},
-            commonProblems.damagedOrStuckDoors
+            commonProblems.damagedOrStuckDoors,
+            commonProblems.dampOrMould
           ]}
         />
       )
@@ -242,7 +244,8 @@ function ReportRepair() {
             commonProblems.electricsLightsSwitches,
             commonProblems.wallsFloorAndCeiling,
             { value: 'windows', title: 'Damaged or stuck windows'},
-            commonProblems.damagedOrStuckDoors
+            commonProblems.damagedOrStuckDoors,
+            commonProblems.dampOrMould
           ]}
         />
       )
@@ -397,6 +400,17 @@ function ReportRepair() {
           ]}
         />
       )
+    case 'damp-mould-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'dampMouldCausedByLeak', title: 'Damp or mould caused by a leak'},
+            { value: 'dampMouldCausedByOther', title: 'Damp or mould caused by something else'}
+          ]}
+        />
+      )
     case 'smell-gas':
       return (
         <SmellGas/>
@@ -457,6 +471,7 @@ export async function getStaticPaths() {
     {params: { route: 'repair-living-areas-lighting-problems'} },
     {params: { route: 'wall-floor-ceiling-problems'} },
     {params: { route: 'bath-problems'} },
+    {params: { route: 'damp-mould-problems'} },
     {params: { route: 'kitchen-electrical-problems'} },
     {params: { route: 'kitchen-door-problems'} },
     {params: { route: 'repair-kitchen-cupboard-problems'} },
