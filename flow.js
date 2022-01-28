@@ -179,6 +179,7 @@ class Flow {
     }
   }
   handleChange = (input, value, state) => {
+    let repairProblemChanged = input == 'repairProblem' && state.data[input] != value;
     state.data[input]= value
     let nextFlowStep =  this.flow[state.step]?.nextStep
     if (nextFlowStep) {
@@ -190,6 +191,9 @@ class Flow {
           condition = nextFlowStep.find(o => o.condition === value);
         }
         nextFlowStep = condition ? condition.nextStep : state.step;
+      }
+      if(nextFlowStep == 'repair-description' && repairProblemChanged){
+        delete state.data['repairProblemBestDescription']
       }
       return this.nextStep(nextFlowStep, state);
     }
