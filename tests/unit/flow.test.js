@@ -234,7 +234,7 @@ describe('Flow', () => {
     });
 
     describe('when a repairProblemBestDescription is selected', () => {
-      describe('when the repairProblemBestDescription is changed', () => {
+      describe('when the repairProblemBestDescription is updated', () => {
         test('then a repairProblemBestDescription is deselected and a repairProblemBestDescription does not exists', () =>{
           const state = {
             step: 'repair-kitchen-heating-problems',
