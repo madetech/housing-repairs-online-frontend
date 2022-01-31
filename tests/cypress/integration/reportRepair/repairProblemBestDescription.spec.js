@@ -121,6 +121,20 @@ const testDoorOption = () => {
   });
 }
 
+const testDampOrMouldOption = () => {
+  it('displays the repair issue question', () => {
+    cy.contains('What best describes the problem?');
+  });
+
+  it('displays a "Damp or mould caused by a leak" option', () => {
+    cy.contains('Damp or mould caused by a leak');
+  });
+
+  it('displays a "Damp or mould caused by something else" option', () => {
+    cy.contains('Damp or mould caused by something else');
+  });
+}
+
 describe('repairProblemBestDescription', () => {
 
   context('Kitchen', () => {
@@ -257,7 +271,16 @@ describe('repairProblemBestDescription', () => {
 
       testSinkOptions();
     });
-
+    context('Damp or mould', () => {
+      before(()=>{
+        navigateToLocation()
+        cy.contains('Kitchen').click();
+        cy.get('button').click();
+        cy.contains('Damp or mould').click();
+        cy.get('button').click();
+      });
+      testDampOrMouldOption();
+    });
   })
 
   context('Bathroom', () => {
@@ -404,6 +427,17 @@ describe('repairProblemBestDescription', () => {
       });
       testDoorOption();
     });
+
+    context('Damp or mould', () => {
+      before(()=>{
+        navigateToLocation()
+        cy.contains('Bedroom').click();
+        cy.get('button').click();
+        cy.contains('Damp or mould').click();
+        cy.get('button').click();
+      });
+      testDampOrMouldOption();
+    });
   });
 
   context('Living Area', () => {
@@ -449,6 +483,17 @@ describe('repairProblemBestDescription', () => {
         cy.get('button').click();
       });
       testDoorOption();
+    });
+
+    context('Damp or mould', () => {
+      before(()=>{
+        navigateToLocation()
+        cy.contains('Living Area').click();
+        cy.get('button').click();
+        cy.contains('Damp or mould').click();
+        cy.get('button').click();
+      });
+      testDampOrMouldOption();
     });
   });
 });
