@@ -371,6 +371,39 @@ describe('repairProblemBestDescription', () => {
       testDoorOption();
     });
 
+    context('Toilet', () => {
+      before(()=>{
+        navigateToLocation()
+        cy.contains('Bathroom').click();
+        cy.get('button').click();
+        cy.contains('Toilet').click();
+        cy.get('button').click();
+      });
+
+      it('displays the repair issue question', () => {
+        cy.contains('What best describes the problem?');
+      });
+
+      it('displays a "Not flushing" option', () => {
+        cy.contains('Not flushing');
+      });
+
+      it('displays a "Overflowing" option', () => {
+        cy.contains('Overflowing');
+      });
+
+      it('displays a "Coming loose from the floor or wall" option', () => {
+        cy.contains('Coming loose from the floor or wall');
+      });
+
+      it('displays a "Cracked" option', () => {
+        cy.contains('Cracked');
+      });
+
+      it('displays a "Toilet seat" option', () => {
+        cy.contains('Toilet seat');
+      });
+    });
   });
 
   context('Bedroom', () => {

@@ -217,7 +217,8 @@ function ReportRepair() {
             {value: 'electricsExtractorCords', title: 'Electrics, including extractor fan and pull cords'},
             { value: 'windows', title: 'Damaged or stuck windows'},
             commonProblems.sink,
-            commonProblems.damagedOrStuckDoors
+            commonProblems.damagedOrStuckDoors,
+            { value: 'toilet', title: 'Toilet'}
           ]}
         />
       )
@@ -246,6 +247,20 @@ function ReportRepair() {
             { value: 'windows', title: 'Damaged or stuck windows'},
             commonProblems.damagedOrStuckDoors,
             commonProblems.dampOrMould
+          ]}
+        />
+      )
+    case 'repair-toilet-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'notFlushing', title: 'Not flushing'},
+            { value: 'overflowing', title: 'Overflowing'},
+            { value: 'looseFromFloorOrWall', title: 'Coming loose from the floor or wall'},
+            { value: 'cracked', title: 'Cracked'},
+            { value: 'seat', title: 'Toilet seat'}
           ]}
         />
       )
@@ -479,6 +494,7 @@ export async function getStaticPaths() {
     {params: { route: 'repair-bedroom-lighting-problems'} },
     {params: { route: 'repair-bathroom-electric-problems'} },
     {params: { route: 'repair-door-problems'}},
+    {params: { route: 'repair-toilet-problems'}},
     {params: { route: 'repair-window-problems'} },
     {params: { route: 'repair-description'} },
     {params: { route: 'repair-availability'} },
