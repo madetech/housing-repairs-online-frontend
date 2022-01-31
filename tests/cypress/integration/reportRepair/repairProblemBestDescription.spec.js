@@ -148,6 +148,7 @@ describe('repairProblemBestDescription', () => {
         cy.contains('Missing door');
       });
     })
+
     context('Heating or hot water', () => {
       before(()=>{
         navigateToLocation()
@@ -237,6 +238,7 @@ describe('repairProblemBestDescription', () => {
 
       testWallOption();
     });
+
     context('Damaged or stuck windows', () => {
       before(()=>{
         cy.go(-1);
@@ -348,6 +350,48 @@ describe('repairProblemBestDescription', () => {
       testDoorOption();
     });
 
+    context('Shower, including the tray and shower door', () => {
+      before(()=>{
+        navigateToLocation()
+        cy.contains('Bathroom').click();
+        cy.get('button').click();
+        cy.contains('Shower, including the tray and shower door').click();
+        cy.get('button').click();
+      });
+
+      it('displays the repair issue question', () => {
+        cy.contains('What best describes the problem?');
+      });
+
+      it('displays a "Electric shower unit" option', () => {
+        cy.contains('Electric shower unit');
+      });
+
+      it('displays a "Tap shower" option', () => {
+        cy.contains('Tap shower');
+      });
+
+      it('displays a "Shower hose" option', () => {
+        cy.contains('Shower hose');
+      });
+
+      it('displays a "Shower head" option', () => {
+        cy.contains('Shower head');
+      });
+
+      it('displays a "Shower tray broken" option', () => {
+        cy.contains('Shower tray broken');
+      });
+
+      it('displays a "Cubicle door broken" option', () => {
+        cy.contains('Cubicle door broken');
+      });
+
+      it('displays a "Shower drain blocked" option', () => {
+        cy.contains('Shower drain blocked');
+      });
+    });
+
   });
 
   context('Bedroom', () => {
@@ -413,14 +457,7 @@ describe('repairProblemBestDescription', () => {
       cy.get('button').click();
     });
 
-    context('Walls, floor or ceiling, excluding damp', () => {
-      before(() => {
-        cy.contains('Walls, floor or ceiling, excluding damp').click();
-        cy.get('button').click();
-      });
 
-      testWallOption();
-    });
     context('Electrics, including lights and switches', () => {
       before(()=>{
         navigateToLocation()
