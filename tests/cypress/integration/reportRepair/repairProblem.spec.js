@@ -162,5 +162,9 @@ describe('repairProblem', () => {
     it('displays a "Outdoor security lights" option', () => {
       cy.contains('Outdoor security lights');
     });
+
+    it('displays a "Garage, including roof and door" option', () => {
+      cy.contains('Garage, including roof and door');
+    });
   });
 });

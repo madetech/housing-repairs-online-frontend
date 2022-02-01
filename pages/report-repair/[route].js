@@ -255,7 +255,21 @@ function ReportRepair() {
           handleChange={handleChange}
           values={values}
           options = {[
-            { value: 'outdoorSecurityLights', title: 'Outdoor security lights'}
+            { value: 'outdoorSecurityLights', title: 'Outdoor security lights'},
+            { value: 'garageRoofAndDoor', title: 'Garage, including roof and door'}
+          ]}
+        />
+      )
+    case 'repair-garage-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'doorDamage', title: 'Door damage'},
+            { value: 'lockDamage', title: 'Lock damage'},
+            { value: 'brokenInto', title: 'Broken into'},
+            { value: 'roofIssueOrLeak', title: 'Roof issue or leak'}
           ]}
         />
       )
@@ -489,6 +503,7 @@ export async function getStaticPaths() {
     {params: { route: 'repair-bedroom-lighting-problems'} },
     {params: { route: 'repair-bathroom-electric-problems'} },
     {params: { route: 'repair-door-problems'}},
+    {params: { route: 'repair-garage-problems'}},
     {params: { route: 'repair-window-problems'} },
     {params: { route: 'repair-outside-problems'}},
     {params: { route: 'repair-description'} },
