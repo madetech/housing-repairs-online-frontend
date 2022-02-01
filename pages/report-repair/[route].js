@@ -211,7 +211,6 @@ function ReportRepair() {
             {value: 'electricsExtractorCords', title: 'Electrics, including extractor fan and pull cords'},
             { value: 'windows', title: 'Damaged or stuck windows'},
             commonProblems.sink,
-            {value: 'electricsExtractorCords', title: 'Electrics, including extractor fan and pull cords'},
             {value: 'dampMould', title: 'Damp or mould'}
           ]}
         />
