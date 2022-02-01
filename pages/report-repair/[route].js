@@ -250,6 +250,7 @@ function ReportRepair() {
           ]}
         />
       )
+
     case 'repair-toilet-problems':
       return (
         <RepairProblemBestDescription
@@ -261,6 +262,14 @@ function ReportRepair() {
             { value: 'looseFromFloorOrWall', title: 'Coming loose from the floor or wall'},
             { value: 'cracked', title: 'Cracked'},
             { value: 'seat', title: 'Toilet seat'}
+
+    case 'repair-outside-problems':
+      return (
+        <RepairProblem
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'outdoorSecurityLights', title: 'Outdoor security lights'}
           ]}
         />
       )
@@ -496,6 +505,7 @@ export async function getStaticPaths() {
     {params: { route: 'repair-door-problems'}},
     {params: { route: 'repair-toilet-problems'}},
     {params: { route: 'repair-window-problems'} },
+    {params: { route: 'repair-outside-problems'}},
     {params: { route: 'repair-description'} },
     {params: { route: 'repair-availability'} },
     {params: { route: 'smell-gas'} }
