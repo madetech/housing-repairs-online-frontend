@@ -249,6 +249,16 @@ function ReportRepair() {
           ]}
         />
       )
+    case 'repair-outside-problems':
+      return (
+        <RepairProblem
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'outdoorSecurityLights', title: 'Outdoor security lights'}
+          ]}
+        />
+      )
     case 'repair-window-problems':
       return (
         <RepairProblemBestDescription
@@ -480,6 +490,7 @@ export async function getStaticPaths() {
     {params: { route: 'repair-bathroom-electric-problems'} },
     {params: { route: 'repair-door-problems'}},
     {params: { route: 'repair-window-problems'} },
+    {params: { route: 'repair-outside-problems'}},
     {params: { route: 'repair-description'} },
     {params: { route: 'repair-availability'} },
     {params: { route: 'smell-gas'} }
