@@ -56,8 +56,13 @@ describe('repairProblem', () => {
     it('displays a "heating" option', () => {
       cy.contains('Heating or hot water');
     });
+
     it('displays a "window" option', () => {
       cy.contains('Damaged or stuck windows');
+    });
+
+    it('displays a "Damp or mould" option', () => {
+      cy.contains('Damp or mould');
     });
   });
 
@@ -95,6 +100,10 @@ describe('repairProblem', () => {
     it('displays a "Damp or mould" option', () => {
       cy.contains('Damp or mould');
     });
+
+    it('displays a "door" option', () => {
+      cy.contains('Damaged or stuck doors');
+    });
   });
 
   context('Bedroom', () => {
@@ -108,6 +117,14 @@ describe('repairProblem', () => {
 
     it('displays a "window" option', () => {
       cy.contains('Damaged or stuck windows');
+    });
+
+    it('displays a "door" option', () => {
+      cy.contains('Damaged or stuck doors');
+    });
+
+    it('displays a "Damp or mould" option', () => {
+      cy.contains('Damp or mould');
     });
   });
 
@@ -124,6 +141,14 @@ describe('repairProblem', () => {
 
     it('displays a "window" option', () => {
       cy.contains('Damaged or stuck windows');
+    });
+
+    it('displays a "door" option', () => {
+      cy.contains('Damaged or stuck doors');
+    });
+
+    it('displays a "Damp or mould" option', () => {
+      cy.contains('Damp or mould');
     });
   });
 });
