@@ -50,7 +50,7 @@ class Flow {
         {condition: 'adjustingDoorAfterCarpetFitting', nextStep: 'not-eligible-non-emergency'}]},
       'damp-mould-problems':  { prevSteps: '', nextStep: [
         {condition: 'dampMouldCausedByLeak', nextStep: 'emergency-repair'},
-        {condition: 'dampMouldCausedByOther', nextStep: 'repair-description'}]},
+        {condition: 'dampOrMould', nextStep: 'repair-description'}]},
       'sink-problems': {nextStep: 'repair-description'},
       'repair-kitchen-heating-problems': { prevStep: 'repair-kitchen-problems', nextStep: 'repair-description'},
       'kitchen-door-problems': { prevStep: 'repair-kitchen-problems', nextStep: 'repair-description'},
