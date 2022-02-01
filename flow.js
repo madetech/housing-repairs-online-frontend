@@ -33,7 +33,7 @@ class Flow {
       ]},
       'repair-outside-problems': { prevSteps: '', nextStep: [
         {condition: 'outdoorSecurityLights', nextStep: 'repair-description'},
-        {condition: 'garageRoofAndDoor', nextStep: 'repair-garage-problems'}]},
+        {condition: 'garage', nextStep: 'repair-garage-problems'}]},
       'repair-garage-problems': { prevSteps:'', nextStep: 'repair-description'},
       'repair-kitchen-problems': { prevStep: 'repair-location', nextStep: [
         {condition: 'cupboards', nextStep: 'repair-kitchen-cupboard-problems'},
