@@ -256,7 +256,7 @@ function ReportRepair() {
           values={values}
           options = {[
             { value: 'outdoorSecurityLights', title: 'Outdoor security lights'},
-            { value: 'garageRoofAndDoor', title: 'Garage, including roof and door'}
+            { value: 'garage', title: 'Garage, including roof and door'}
           ]}
         />
       )
