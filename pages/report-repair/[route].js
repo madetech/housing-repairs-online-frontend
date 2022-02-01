@@ -417,7 +417,7 @@ function ReportRepair() {
           values={values}
           options = {[
             { value: 'dampMouldCausedByLeak', title: 'Damp or mould caused by a leak'},
-            { value: 'dampMouldCausedByOther', title: 'Damp or mould caused by something else'}
+            { value: 'dampOrMould', title: 'Damp or mould caused by something else'}
           ]}
         />
       )
