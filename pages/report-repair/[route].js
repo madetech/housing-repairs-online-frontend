@@ -261,8 +261,9 @@ function ReportRepair() {
             { value: 'overflowing', title: 'Overflowing'},
             { value: 'looseFromFloorOrWall', title: 'Coming loose from the floor or wall'},
             { value: 'cracked', title: 'Cracked'},
-            { value: 'seat', title: 'Toilet seat'}
-
+            { value: 'seat', title: 'Toilet seat'} ]}
+        />
+      )
     case 'repair-outside-problems':
       return (
         <RepairProblem
