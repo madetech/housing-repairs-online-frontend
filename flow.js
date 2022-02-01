@@ -59,7 +59,7 @@ class Flow {
         {condition: 'electricsExtractorCords', nextStep: 'repair-bathroom-electric-problems'},
         {condition: 'sink', nextStep: 'sink-problems'},
         {condition: 'windows', nextStep: 'repair-window-problems'},
-        {condition: 'dampMould', nextStep: 'bathroom-damp-mould-problems'},
+        {condition: 'dampOrMould', nextStep: 'bathroom-damp-mould-problems'},
         {condition: 'damagedOrStuckDoors', nextStep: 'repair-door-problems'}
       ]},
       'repair-bedroom-problems': { prevStep: 'repair-location', nextStep: [
@@ -85,7 +85,7 @@ class Flow {
       'bathroom-damp-mould-problems': { prevStep: 'repair-bedroom-problems',
         nextStep: [
           {condition: 'emergency', nextStep: 'emergency-repair'},
-          {condition: 'dampMould', nextStep: 'repair-description'}
+          {condition: 'dampOrMould', nextStep: 'repair-description'}
         ]
       },
       'repair-description-damp': {prevStep: 'repair-kitchen-types', nextStep: [

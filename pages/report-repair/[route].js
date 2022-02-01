@@ -217,7 +217,7 @@ function ReportRepair() {
             {value: 'electricsExtractorCords', title: 'Electrics, including extractor fan and pull cords'},
             { value: 'windows', title: 'Damaged or stuck windows'},
             commonProblems.sink,
-            {value: 'dampMould', title: 'Damp or mould'},
+            {value: 'dampOrMould', title: 'Damp or mould'},
             commonProblems.damagedOrStuckDoors
           ]}
         />
@@ -304,7 +304,7 @@ function ReportRepair() {
           values={values}
           options = {[
             { value: 'emergency', title: 'Damp or mould caused by a leak'},
-            { value: 'dampMould', title: 'Damp or mould caused by something else'}
+            { value: 'dampOrMould', title: 'Damp or mould caused by something else'}
           ]}
         />
       )
