@@ -29,7 +29,9 @@ class Flow {
         {condition: 'bathroom', nextStep: 'repair-bathroom-problems'},
         {condition: 'bedroom', nextStep: 'repair-bedroom-problems'},
         {condition: 'livingAreas', nextStep: 'repair-living-areas-problems'},
+        {condition: 'outside', nextStep: 'repair-outside-problems'}
       ]},
+      'repair-outside-problems': { prevSteps: '', nextStep:'repair-description'},
       'repair-kitchen-problems': { prevStep: 'repair-location', nextStep: [
         {condition: 'cupboards', nextStep: 'repair-kitchen-cupboard-problems'},
         {condition: 'windows', nextStep: 'repair-window-problems'},

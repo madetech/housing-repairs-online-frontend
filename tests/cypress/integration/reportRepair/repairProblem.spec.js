@@ -147,4 +147,20 @@ describe('repairProblem', () => {
       cy.contains('Damp or mould');
     });
   });
+
+  context('Outside', () => {
+    before(() => {
+      navigateToLocation()
+      cy.contains('Outside').click();
+      cy.get('button').click();
+    });
+
+    it('displays the repair problem question', () => {
+      cy.contains('What is the problem?');
+    });
+
+    it('displays a "Outdoor security lights" option', () => {
+      cy.contains('Outdoor security lights');
+    });
+  });
 });
