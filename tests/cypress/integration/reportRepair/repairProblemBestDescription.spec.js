@@ -500,7 +500,9 @@ describe('repairProblemBestDescription', () => {
 
     context('Damaged or stuck windows', () => {
       before(()=>{
-        cy.go(-1);
+        navigateToLocation()
+        cy.contains('Living Areas').click();
+        cy.get('button').click();
         cy.contains('Damaged or stuck windows').click();
         cy.get('button').click();
       });
@@ -527,6 +529,51 @@ describe('repairProblemBestDescription', () => {
         cy.get('button').click();
       });
       testDampOrMouldOption();
+    });
+  });
+
+  context.only('Outside', () => {
+    before(()=>{
+      navigateToLocation()
+      cy.contains('Outside').click();
+      cy.get('button').click();
+    });
+
+    it('Outdoor security lights goes to description',  () => {
+      cy.contains('Outdoor security lights').click();
+      cy.get('button').click();
+      cy.url().should('include', '/report-repair/repair-description');
+    });
+
+    context('Roof, including insulation and shed roof', () => {
+      before(()=>{
+        navigateToLocation()
+        cy.contains('Outside').click();
+        cy.get('button').click();
+        cy.contains('Roof, including insulation and shed roof').click();
+        cy.get('button').click();
+      });
+
+      it('displays the repair issue question', () => {
+        cy.contains('What best describes the problem?');
+      });
+
+      it ('displays a "Shed or outhouse roof" option', () => {
+        cy.contains('Shed or outhouse roof');
+      });
+
+      it ('displays a "Loft insulation" option', () => {
+        cy.contains('Loft insulation');
+      });
+
+      it ('displays a "Loose tiles" option', () => {
+        cy.contains('Loose tiles');
+      });
+
+      it ('displays a "Problem with a flat roof" option', () => {
+        cy.contains('Problem with a flat roof');
+      });
+
     });
   });
 });
