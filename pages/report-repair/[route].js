@@ -298,7 +298,7 @@ function ReportRepair() {
             { value: 'shedDoor', title: 'Shed door'},
             { value: 'outhouseCupboardDoor', title: 'Outhouse cupboard door'},
             { value: 'woodenBackDoor', title: 'Wooden back door'},
-            { value: 'UPVCBackDoor', title: 'UPVC back door'},
+            { value: 'upvcBackDoor', title: 'UPVC back door'},
             { value: 'frenchDoors', title: 'French doors'}
           ]}
         />
