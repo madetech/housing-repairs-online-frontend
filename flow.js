@@ -29,11 +29,13 @@ class Flow {
         {condition: 'bathroom', nextStep: 'repair-bathroom-problems'},
         {condition: 'bedroom', nextStep: 'repair-bedroom-problems'},
         {condition: 'livingAreas', nextStep: 'repair-living-areas-problems'},
+        {condition: 'outside', nextStep: 'repair-outside-problems'}
       ]},
+      'repair-outside-problems': { prevSteps: '', nextStep:'repair-description'},
       'repair-kitchen-problems': { prevStep: 'repair-location', nextStep: [
         {condition: 'cupboards', nextStep: 'repair-kitchen-cupboard-problems'},
         {condition: 'windows', nextStep: 'repair-window-problems'},
-        {condition: 'damp-or-mould', nextStep: 'repair-description-damp'},
+        {condition: 'dampOrMould', nextStep: 'damp-mould-problems'},
         {condition: 'electrical', nextStep: 'kitchen-electrical-problems'},
         {condition: 'worktop', nextStep: 'repair-description'},
         {condition: 'sink', nextStep: 'sink-problems'},
@@ -46,6 +48,9 @@ class Flow {
         {condition: 'internalDoorIssue', nextStep: 'repair-description'},
         {condition: 'lockOnDoor', nextStep: 'repair-description'},
         {condition: 'adjustingDoorAfterCarpetFitting', nextStep: 'not-eligible-non-emergency'}]},
+      'damp-mould-problems':  { prevSteps: '', nextStep: [
+        {condition: 'dampMouldCausedByLeak', nextStep: 'emergency-repair'},
+        {condition: 'dampOrMould', nextStep: 'repair-description'}]},
       'repair-shower-problems': { prevSteps: '', nextStep: [
         {condition: 'electricShowerUnit', nextStep: 'repair-description'},
         {condition: 'showerTap', nextStep: 'repair-description'},
@@ -70,12 +75,14 @@ class Flow {
         {condition: 'electricsLightsSwitches', nextStep: 'repair-bedroom-lighting-problems'},
         {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'},
         {condition: 'windows', nextStep: 'repair-window-problems'},
-        {condition: 'damagedOrStuckDoors', nextStep: 'repair-door-problems'}]},
+        {condition: 'damagedOrStuckDoors', nextStep: 'repair-door-problems'},
+        {condition: 'dampOrMould', nextStep: 'damp-mould-problems'}]},
       'repair-living-areas-problems': {prevSteps: 'repair-location', nextStep: [
         {condition: 'electricsLightsSwitches', nextStep: 'repair-bedroom-lighting-problems'},
         {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'},
         {condition: 'windows', nextStep: 'repair-window-problems'},
-        {condition: 'damagedOrStuckDoors', nextStep: 'repair-door-problems'}]
+        {condition: 'damagedOrStuckDoors', nextStep: 'repair-door-problems'},
+        {condition: 'dampOrMould', nextStep: 'damp-mould-problems'}]
       },
       'bath-problems': { prevStep: 'repair-bathroom-problems', nextStep: 'repair-description'},
       'repair-window-problems': {nextStep: 'repair-description'},
