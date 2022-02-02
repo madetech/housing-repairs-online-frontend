@@ -284,7 +284,8 @@ function ReportRepair() {
             { value: 'shedOuthouseRoof', title: 'Shed or outhouse roof'},
             { value: 'loftInsulation', title: 'Loft insulation'},
             { value: 'looseTiles', title: 'Loose tiles'},
-            { value: 'flatRoofProblems', title: 'Problem with a flat roof'}
+            { value: 'flatRoofProblems', title: 'Problem with a flat roof'},
+            { value: 'securityLights', title: 'Outdoor security lights'}
           ]}
         />
       )
