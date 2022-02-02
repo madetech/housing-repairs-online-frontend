@@ -467,7 +467,9 @@ describe('repairProblemBestDescription', () => {
 
     context('Damaged or stuck windows', () => {
       before(()=>{
-        cy.go(-1);
+        navigateToLocation()
+        cy.contains('Living Areas').click();
+        cy.get('button').click();
         cy.contains('Damaged or stuck windows').click();
         cy.get('button').click();
       });
