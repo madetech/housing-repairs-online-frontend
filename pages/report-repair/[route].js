@@ -280,7 +280,7 @@ function ReportRepair() {
           values={values}
           options = {[
             { value: 'electricShowerUnit', title: 'Electric shower unit'},
-            { value: 'tapShower', title: 'Tap shower'},
+            { value: 'showerTap', title: 'Tap shower'},
             { value: 'showerHose', title: 'Shower hose'},
             { value: 'showerHead', title: 'Shower head'},
             { value: 'showerTrayBroken', title: 'Shower tray broken'},
