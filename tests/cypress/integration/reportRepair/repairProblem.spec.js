@@ -100,6 +100,10 @@ describe('repairProblem', () => {
     it('displays a "door" option', () => {
       cy.contains('Damaged or stuck doors');
     });
+
+    it('displays a "toilet" option', () => {
+      cy.contains('Toilet');
+    });
   });
 
   context('Bedroom', () => {
@@ -161,6 +165,10 @@ describe('repairProblem', () => {
 
     it('displays a "Outdoor security lights" option', () => {
       cy.contains('Outdoor security lights');
+    });
+
+    it('displays a "Roof, including insulation and shed roof" option', () => {
+      cy.contains('Roof, including insulation and shed roof')
     });
 
     it('displays a "Garage, including roof and door" option', () => {

@@ -374,6 +374,39 @@ describe('repairProblemBestDescription', () => {
       testDoorOption();
     });
 
+    context('Toilet', () => {
+      before(()=>{
+        navigateToLocation()
+        cy.contains('Bathroom').click();
+        cy.get('button').click();
+        cy.contains('Toilet').click();
+        cy.get('button').click();
+      });
+
+      it('displays the repair issue question', () => {
+        cy.contains('What best describes the problem?');
+      });
+
+      it('displays a "Not flushing" option', () => {
+        cy.contains('Not flushing');
+      });
+
+      it('displays a "Overflowing" option', () => {
+        cy.contains('Overflowing');
+      });
+
+      it('displays a "Coming loose from the floor or wall" option', () => {
+        cy.contains('Coming loose from the floor or wall');
+      });
+
+      it('displays a "Cracked" option', () => {
+        cy.contains('Cracked');
+      });
+
+      it('displays a "Toilet seat" option', () => {
+        cy.contains('Toilet seat');
+      });
+    });
   });
 
   context('Bedroom', () => {
@@ -470,7 +503,9 @@ describe('repairProblemBestDescription', () => {
 
     context('Damaged or stuck windows', () => {
       before(()=>{
-        cy.go(-1);
+        navigateToLocation()
+        cy.contains('Living Areas').click();
+        cy.get('button').click();
         cy.contains('Damaged or stuck windows').click();
         cy.get('button').click();
       });
@@ -505,6 +540,42 @@ describe('repairProblemBestDescription', () => {
       navigateToLocation()
       cy.contains('Outside').click();
       cy.get('button').click();
+    });
+
+    it('Outdoor security lights goes to description',  () => {
+      cy.contains('Outdoor security lights').click();
+      cy.get('button').click();
+      cy.url().should('include', '/report-repair/repair-description');
+    });
+
+    context('Roof, including insulation and shed roof', () => {
+      before(()=>{
+        navigateToLocation()
+        cy.contains('Outside').click();
+        cy.get('button').click();
+        cy.contains('Roof, including insulation and shed roof').click();
+        cy.get('button').click();
+      });
+
+      it('displays the repair issue question', () => {
+        cy.contains('What best describes the problem?');
+      });
+
+      it ('displays a "Shed or outhouse roof" option', () => {
+        cy.contains('Shed or outhouse roof');
+      });
+
+      it ('displays a "Loft insulation" option', () => {
+        cy.contains('Loft insulation');
+      });
+
+      it ('displays a "Loose tiles" option', () => {
+        cy.contains('Loose tiles');
+      });
+
+      it ('displays a "Problem with a flat roof" option', () => {
+        cy.contains('Problem with a flat roof');
+      });
     });
 
     context('Garage, including roof and door', () => {

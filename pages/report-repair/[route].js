@@ -217,7 +217,8 @@ function ReportRepair() {
             {value: 'electricsExtractorCords', title: 'Electrics, including extractor fan and pull cords'},
             { value: 'windows', title: 'Damaged or stuck windows'},
             commonProblems.sink,
-            commonProblems.damagedOrStuckDoors
+            commonProblems.damagedOrStuckDoors,
+            { value: 'toilet', title: 'Toilet'}
           ]}
         />
       )
@@ -249,6 +250,20 @@ function ReportRepair() {
           ]}
         />
       )
+
+    case 'repair-toilet-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'notFlushing', title: 'Not flushing'},
+            { value: 'overflowing', title: 'Overflowing'},
+            { value: 'looseFromFloorOrWall', title: 'Coming loose from the floor or wall'},
+            { value: 'cracked', title: 'Cracked'},
+            { value: 'seat', title: 'Toilet seat'} ]}
+        />
+      )
     case 'repair-outside-problems':
       return (
         <RepairProblem
@@ -269,7 +284,23 @@ function ReportRepair() {
             { value: 'doorDamage', title: 'Door damage'},
             { value: 'lockDamage', title: 'Lock damage'},
             { value: 'brokenInto', title: 'Broken into'},
-            { value: 'roofIssueOrLeak', title: 'Roof issue or leak'}
+            { value: 'roofIssueOrLeak', title: 'Roof issue or leak'},
+            { value: 'securityLights', title: 'Outdoor security lights'},
+            { value: 'roof', title: 'Roof, including insulation and shed roof'}
+          ]}
+        />
+      )
+    case 'outside-roof-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'shedOuthouseRoof', title: 'Shed or outhouse roof'},
+            { value: 'loftInsulation', title: 'Loft insulation'},
+            { value: 'looseTiles', title: 'Loose tiles'},
+            { value: 'flatRoofProblems', title: 'Problem with a flat roof'},
+            { value: 'securityLights', title: 'Outdoor security lights'}
           ]}
         />
       )
@@ -503,9 +534,11 @@ export async function getStaticPaths() {
     {params: { route: 'repair-bedroom-lighting-problems'} },
     {params: { route: 'repair-bathroom-electric-problems'} },
     {params: { route: 'repair-door-problems'}},
+    {params: { route: 'repair-toilet-problems'}},
     {params: { route: 'repair-garage-problems'}},
     {params: { route: 'repair-window-problems'} },
     {params: { route: 'repair-outside-problems'}},
+    {params: { route: 'outside-roof-problems'}},
     {params: { route: 'repair-description'} },
     {params: { route: 'repair-availability'} },
     {params: { route: 'smell-gas'} }
