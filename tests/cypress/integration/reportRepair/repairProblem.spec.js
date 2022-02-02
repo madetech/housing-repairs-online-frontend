@@ -100,6 +100,10 @@ describe('repairProblem', () => {
     it('displays a "door" option', () => {
       cy.contains('Damaged or stuck doors');
     });
+
+    it('displays a "toilet" option', () => {
+      cy.contains('Toilet');
+    });
   });
 
   context('Bedroom', () => {
