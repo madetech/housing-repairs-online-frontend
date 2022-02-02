@@ -270,7 +270,7 @@ function ReportRepair() {
           handleChange={handleChange}
           values={values}
           options = {[
-            { value: 'outdoorSecurityLights', title: 'Outdoor security lights'}
+            { value: 'securityLights', title: 'Outdoor security lights'}
           ]}
         />
       )
