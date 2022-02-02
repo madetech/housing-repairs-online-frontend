@@ -218,7 +218,8 @@ function ReportRepair() {
             { value: 'windows', title: 'Damaged or stuck windows'},
             commonProblems.sink,
             {value: 'dampOrMould', title: 'Damp or mould'},
-            commonProblems.damagedOrStuckDoors
+            commonProblems.damagedOrStuckDoors,
+            { value: 'toilet', title: 'Toilet'}
           ]}
         />
       )
@@ -247,6 +248,45 @@ function ReportRepair() {
             { value: 'windows', title: 'Damaged or stuck windows'},
             commonProblems.damagedOrStuckDoors,
             commonProblems.dampOrMould
+          ]}
+        />
+      )
+
+    case 'repair-toilet-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'notFlushing', title: 'Not flushing'},
+            { value: 'overflowing', title: 'Overflowing'},
+            { value: 'looseFromFloorOrWall', title: 'Coming loose from the floor or wall'},
+            { value: 'cracked', title: 'Cracked'},
+            { value: 'seat', title: 'Toilet seat'} ]}
+        />
+      )
+    case 'repair-outside-problems':
+      return (
+        <RepairProblem
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'securityLights', title: 'Outdoor security lights'},
+            { value: 'roof', title: 'Roof, including insulation and shed roof'}
+          ]}
+        />
+      )
+    case 'outside-roof-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'shedOuthouseRoof', title: 'Shed or outhouse roof'},
+            { value: 'loftInsulation', title: 'Loft insulation'},
+            { value: 'looseTiles', title: 'Loose tiles'},
+            { value: 'flatRoofProblems', title: 'Problem with a flat roof'},
+            { value: 'securityLights', title: 'Outdoor security lights'}
           ]}
         />
       )
@@ -419,7 +459,7 @@ function ReportRepair() {
           values={values}
           options = {[
             { value: 'dampMouldCausedByLeak', title: 'Damp or mould caused by a leak'},
-            { value: 'dampMouldCausedByOther', title: 'Damp or mould caused by something else'}
+            { value: 'dampOrMould', title: 'Damp or mould caused by something else'}
           ]}
         />
       )
@@ -492,7 +532,10 @@ export async function getStaticPaths() {
     {params: { route: 'repair-bedroom-lighting-problems'} },
     {params: { route: 'repair-bathroom-electric-problems'} },
     {params: { route: 'repair-door-problems'}},
+    {params: { route: 'repair-toilet-problems'}},
     {params: { route: 'repair-window-problems'} },
+    {params: { route: 'repair-outside-problems'}},
+    {params: { route: 'outside-roof-problems'}},
     {params: { route: 'repair-description'} },
     {params: { route: 'repair-availability'} },
     {params: { route: 'smell-gas'} }

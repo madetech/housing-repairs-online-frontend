@@ -104,6 +104,10 @@ describe('repairProblem', () => {
     it('displays a "door" option', () => {
       cy.contains('Damaged or stuck doors');
     });
+
+    it('displays a "toilet" option', () => {
+      cy.contains('Toilet');
+    });
   });
 
   context('Bedroom', () => {
@@ -149,6 +153,26 @@ describe('repairProblem', () => {
 
     it('displays a "Damp or mould" option', () => {
       cy.contains('Damp or mould');
+    });
+  });
+
+  context('Outside', () => {
+    before(() => {
+      navigateToLocation()
+      cy.contains('Outside').click();
+      cy.get('button').click();
+    });
+
+    it('displays the repair problem question', () => {
+      cy.contains('What is the problem?');
+    });
+
+    it('displays a "Outdoor security lights" option', () => {
+      cy.contains('Outdoor security lights');
+    });
+
+    it('displays a "Roof, including insulation and shed roof" option', () => {
+      cy.contains('Roof, including insulation and shed roof')
     });
   });
 });
