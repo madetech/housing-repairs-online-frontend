@@ -166,5 +166,9 @@ describe('repairProblem', () => {
     it('displays a "Outdoor security lights" option', () => {
       cy.contains('Outdoor security lights');
     });
+
+    it('displays a "Roof, including insulation and shed roof" option', () => {
+      cy.contains('Roof, including insulation and shed roof')
+    });
   });
 });
