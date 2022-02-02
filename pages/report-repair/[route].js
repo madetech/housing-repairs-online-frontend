@@ -255,7 +255,21 @@ function ReportRepair() {
           handleChange={handleChange}
           values={values}
           options = {[
-            { value: 'outdoorSecurityLights', title: 'Outdoor security lights'}
+            { value: 'securityLights', title: 'Outdoor security lights'},
+            { value: 'roof', title: 'Roof, including insulation and shed roof'}
+          ]}
+        />
+      )
+    case 'outside-roof-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'shedOuthouseRoof', title: 'Shed or outhouse roof'},
+            { value: 'loftInsulation', title: 'Loft insulation'},
+            { value: 'looseTiles', title: 'Loose tiles'},
+            { value: 'flatRoofProblems', title: 'Problem with a flat roof'}
           ]}
         />
       )
@@ -491,6 +505,7 @@ export async function getStaticPaths() {
     {params: { route: 'repair-door-problems'}},
     {params: { route: 'repair-window-problems'} },
     {params: { route: 'repair-outside-problems'}},
+    {params: { route: 'outside-roof-problems'}},
     {params: { route: 'repair-description'} },
     {params: { route: 'repair-availability'} },
     {params: { route: 'smell-gas'} }
