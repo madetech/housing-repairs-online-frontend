@@ -218,7 +218,9 @@ function ReportRepair() {
             { value: 'windows', title: 'Damaged or stuck windows'},
             commonProblems.sink,
             commonProblems.damagedOrStuckDoors,
-            { value: 'showerIncludingTrayAndDoor', title: 'Shower, including the tray and shower door'}
+            { value: 'showerIncludingTrayAndDoor', title: 'Shower, including the tray and shower door'},
+            commonProblems.damagedOrStuckDoors,
+            { value: 'toilet', title: 'Toilet'}
           ]}
         />
       )
@@ -250,13 +252,72 @@ function ReportRepair() {
           ]}
         />
       )
+
+    case 'repair-toilet-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'notFlushing', title: 'Not flushing'},
+            { value: 'overflowing', title: 'Overflowing'},
+            { value: 'looseFromFloorOrWall', title: 'Coming loose from the floor or wall'},
+            { value: 'cracked', title: 'Cracked'},
+            { value: 'seat', title: 'Toilet seat'} ]}
+        />
+      )
     case 'repair-outside-problems':
       return (
         <RepairProblem
           handleChange={handleChange}
           values={values}
           options = {[
-            { value: 'outdoorSecurityLights', title: 'Outdoor security lights'}
+            { value: 'door', title: 'Door, including shed and outhouse'},
+            { value: 'securityLights', title: 'Outdoor security lights'},
+            { value: 'roof', title: 'Roof, including insulation and shed roof'},
+            { value: 'garage', title: 'Garage, including roof and door'},
+          ]}
+        />
+      )
+    case 'repair-garage-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'doorDamage', title: 'Door damage'},
+            { value: 'lockDamage', title: 'Lock damage'},
+            { value: 'brokenInto', title: 'Broken into'},
+            { value: 'roofIssueOrLeak', title: 'Roof issue or leak'},
+            { value: 'securityLights', title: 'Outdoor security lights'},
+          ]}
+        />
+      )
+    case 'outside-roof-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'shedOuthouseRoof', title: 'Shed or outhouse roof'},
+            { value: 'loftInsulation', title: 'Loft insulation'},
+            { value: 'looseTiles', title: 'Loose tiles'},
+            { value: 'flatRoofProblems', title: 'Problem with a flat roof'},
+            { value: 'securityLights', title: 'Outdoor security lights'}
+          ]}
+        />
+      )
+    case 'outside-door-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'shedDoor', title: 'Shed door'},
+            { value: 'outhouseCupboardDoor', title: 'Outhouse cupboard door'},
+            { value: 'woodenBackDoor', title: 'Wooden back door'},
+            { value: 'upvcBackDoor', title: 'UPVC back door'},
+            { value: 'frenchDoors', title: 'French doors'}
           ]}
         />
       )
@@ -506,8 +567,12 @@ export async function getStaticPaths() {
     {params: { route: 'repair-bedroom-lighting-problems'} },
     {params: { route: 'repair-bathroom-electric-problems'} },
     {params: { route: 'repair-door-problems'}},
+    {params: { route: 'repair-toilet-problems'}},
+    {params: { route: 'repair-garage-problems'}},
     {params: { route: 'repair-window-problems'} },
     {params: { route: 'repair-outside-problems'}},
+    {params: { route: 'outside-roof-problems'}},
+    {params: { route: 'outside-door-problems'}},
     {params: { route: 'repair-shower-problems'} },
     {params: { route: 'repair-description'} },
     {params: { route: 'repair-availability'} },

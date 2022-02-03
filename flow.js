@@ -31,7 +31,14 @@ class Flow {
         {condition: 'livingAreas', nextStep: 'repair-living-areas-problems'},
         {condition: 'outside', nextStep: 'repair-outside-problems'}
       ]},
-      'repair-outside-problems': { prevSteps: '', nextStep:'repair-description'},
+      'repair-outside-problems': { prevSteps: 'repair-location', nextStep: [
+        {condition: 'securityLights', nextStep: 'repair-description'},
+        {condition: 'roof', nextStep: 'outside-roof-problems'},
+        {condition: 'garage', nextStep: 'repair-garage-problems'},
+        {condition: 'door', nextStep: 'outside-door-problems'},]},
+      'repair-garage-problems': { prevSteps:'', nextStep: 'repair-description'},
+      'outside-roof-problems':  { prevSteps: 'repair-outside-problems', nextStep: 'repair-description'},
+      'outside-door-problems':  { prevSteps: 'repair-outside-problems', nextStep: 'repair-description'},
       'repair-kitchen-problems': { prevStep: 'repair-location', nextStep: [
         {condition: 'cupboards', nextStep: 'repair-kitchen-cupboard-problems'},
         {condition: 'windows', nextStep: 'repair-window-problems'},
@@ -48,6 +55,12 @@ class Flow {
         {condition: 'internalDoorIssue', nextStep: 'repair-description'},
         {condition: 'lockOnDoor', nextStep: 'repair-description'},
         {condition: 'adjustingDoorAfterCarpetFitting', nextStep: 'not-eligible-non-emergency'}]},
+      'repair-toilet-problems': { prevSteps: '', nextStep: [
+        {condition: 'notFlushing', nextStep: 'repair-description'},
+        {condition: 'overflowing', nextStep: 'repair-description'},
+        {condition: 'looseFromFloorOrWall', nextStep: 'repair-description'},
+        {condition: 'cracked', nextStep: 'repair-description'},
+        {condition: 'seat', nextStep: 'not-eligible-non-emergency'}]},
       'damp-mould-problems':  { prevSteps: '', nextStep: [
         {condition: 'dampMouldCausedByLeak', nextStep: 'emergency-repair'},
         {condition: 'dampOrMould', nextStep: 'repair-description'}]},
@@ -70,7 +83,10 @@ class Flow {
         {condition: 'sink', nextStep: 'sink-problems'},
         {condition: 'windows', nextStep: 'repair-window-problems'},
         {condition: 'damagedOrStuckDoors', nextStep: 'repair-door-problems'},
-        {condition: 'showerIncludingTrayAndDoor', nextStep: 'repair-shower-problems'}]},
+        {condition: 'showerIncludingTrayAndDoor', nextStep: 'repair-shower-problems'},
+        {condition: 'damagedOrStuckDoors', nextStep: 'repair-door-problems'},
+        {condition: 'toilet', nextStep: 'repair-toilet-problems'}
+      ]},
       'repair-bedroom-problems': { prevStep: 'repair-location', nextStep: [
         {condition: 'electricsLightsSwitches', nextStep: 'repair-bedroom-lighting-problems'},
         {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'},
