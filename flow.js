@@ -97,9 +97,13 @@ class Flow {
         {condition: 'electricsLightsSwitches', nextStep: 'repair-bedroom-lighting-problems'},
         {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'},
         {condition: 'windows', nextStep: 'repair-window-problems'},
-        {condition: 'damagedOrStuckDoors', nextStep: 'repair-door-problems'},
+        {condition: 'damagedOrStuckDoors', nextStep: 'repair-living-area-door-problems'},
         {condition: 'dampOrMould', nextStep: 'damp-mould-problems'}]
       },
+      'repair-living-area-door-problems': { prevSteps: '', nextStep: [
+        {condition: 'internalDoorIssue', nextStep: 'repair-description'},
+        {condition: 'lockOnDoor', nextStep: 'not-eligible-non-emergency'},
+        {condition: 'adjustingDoorAfterCarpetFitting', nextStep: 'not-eligible-non-emergency'}]},
       'bath-problems': { prevStep: 'repair-bathroom-problems', nextStep: 'repair-description'},
       'repair-window-problems': {nextStep: 'repair-description'},
       'repair-bedroom-lighting-problems': { prevStep: 'repair-bedroom-problems', nextStep: 'repair-description'},
