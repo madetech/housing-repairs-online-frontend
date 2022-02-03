@@ -35,8 +35,11 @@ class Flow {
         {condition: 'securityLights', nextStep: 'repair-description'},
         {condition: 'roof', nextStep: 'outside-roof-problems'},
         {condition: 'garage', nextStep: 'repair-garage-problems'},
-        {condition: 'door', nextStep: 'outside-door-problems'},]},
+        {condition: 'door', nextStep: 'outside-door-problems'},
+        {condition: 'gatesAndPathways', nextStep: 'gates-and-pathways-problems'}
+      ]},
       'repair-garage-problems': { prevSteps:'', nextStep: 'repair-description'},
+      'gates-and-pathways-problems': { prevSteps:'repair-outside-problems', nextStep: 'repair-description'},
       'outside-roof-problems':  { prevSteps: 'repair-outside-problems', nextStep: 'repair-description'},
       'outside-door-problems':  { prevSteps: 'repair-outside-problems', nextStep: 'repair-description'},
       'repair-kitchen-problems': { prevStep: 'repair-location', nextStep: [

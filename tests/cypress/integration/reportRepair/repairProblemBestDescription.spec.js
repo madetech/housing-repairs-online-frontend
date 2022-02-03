@@ -682,5 +682,40 @@ describe('repairProblemBestDescription', () => {
         cy.contains('French doors');
       });
     });
+
+    context('Gates and pathways', () => {
+      before(()=>{
+        navigateToLocation()
+        cy.contains('Outside').click();
+        cy.get('button').click();
+        cy.contains('Gates and pathways').click();
+        cy.get('button').click();
+      });
+
+      it('displays the repair issue question', () => {
+        cy.contains('What best describes the problem?');
+      });
+
+      it('displays a "Front gate" option', ()=>{
+        cy.contains('Front gate');
+      });
+
+      it('displays a "Back gate" option', ()=>{
+        cy.contains('Back gate');
+      });
+
+      it('displays a "Driveway" option', ()=>{
+        cy.contains('Driveway');
+      });
+
+      it('displays a "Concrete path around the property" option', ()=>{
+        cy.contains('Concrete path around the property');
+      });
+
+      it('displays a "Steps" option', ()=>{
+        cy.contains('Steps');
+      });
+
+    });
   });
 });
