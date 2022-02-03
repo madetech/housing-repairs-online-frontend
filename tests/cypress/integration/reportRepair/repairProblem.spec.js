@@ -183,6 +183,10 @@ describe('repairProblem', () => {
       cy.contains('Roof, including insulation and shed roof')
     });
 
+    it('displays a "Gates and pathways" option', () => {
+      cy.contains('Gates and pathways')
+    });
+
     it('displays a "Garage, including roof and door" option', () => {
       cy.contains('Garage, including roof and door');
     });

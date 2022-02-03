@@ -277,6 +277,7 @@ function ReportRepair() {
             { value: 'securityLights', title: 'Outdoor security lights'},
             { value: 'roof', title: 'Roof, including insulation and shed roof'},
             { value: 'garage', title: 'Garage, including roof and door'},
+            { value: 'gatesAndPathways', title: 'Gates and pathways'}
           ]}
         />
       )
@@ -305,6 +306,20 @@ function ReportRepair() {
             { value: 'looseTiles', title: 'Loose tiles'},
             { value: 'flatRoofProblems', title: 'Problem with a flat roof'},
             { value: 'securityLights', title: 'Outdoor security lights'}
+          ]}
+        />
+      )
+    case 'gates-and-pathways-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            {value: 'frontGate', title: 'Front gate'},
+            {value: 'backGate', title: 'Back gate'},
+            {value: 'driveway', title: 'Driveway'},
+            {value: 'concretePath', title: 'Concrete path around the property'},
+            {value: 'steps', title: 'Steps'}
           ]}
         />
       )
@@ -599,6 +614,7 @@ export async function getStaticPaths() {
     {params: { route: 'repair-outside-problems'}},
     {params: { route: 'outside-roof-problems'}},
     {params: { route: 'outside-door-problems'}},
+    {params: { route: 'gates-and-pathways-problems'}},
     {params: { route: 'repair-shower-problems'} },
     {params: { route: 'repair-description'} },
     {params: { route: 'repair-availability'} },
