@@ -167,6 +167,10 @@ describe('repairProblem', () => {
       cy.contains('What is the problem?');
     });
 
+    it('displays a "Door, including shed and outhouse" option', () => {
+      cy.contains('Door, including shed and outhouse');
+    });
+
     it('displays a "Outdoor security lights" option', () => {
       cy.contains('Outdoor security lights');
     });

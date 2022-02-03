@@ -597,5 +597,39 @@ context('Living Area', () => {
       });
 
     });
+
+    context('Door, including shed and outhouse', () => {
+      before(()=>{
+        navigateToLocation()
+        cy.contains('Outside').click();
+        cy.get('button').click();
+        cy.contains('Door, including shed and outhouse').click();
+        cy.get('button').click();
+      });
+
+      it('displays the repair issue question', () => {
+        cy.contains('What best describes the problem?');
+      });
+
+      it ('displays a "Shed door" option', () => {
+        cy.contains('Shed door');
+      });
+
+      it ('displays a "Outhouse cupboard door" option', () => {
+        cy.contains('Outhouse cupboard door');
+      });
+
+      it ('displays a "Wooden back door" option', () => {
+        cy.contains('Wooden back door');
+      });
+
+      it ('displays a "UPVC back door" option', () => {
+        cy.contains('UPVC back door');
+      });
+
+      it ('displays a "French doors" option', () => {
+        cy.contains('French doors');
+      });
+    });
   });
 });
