@@ -271,7 +271,8 @@ function ReportRepair() {
           values={values}
           options = {[
             { value: 'outdoorSecurityLights', title: 'Outdoor security lights'},
-            { value: 'garage', title: 'Garage, including roof and door'}
+            { value: 'garage', title: 'Garage, including roof and door'},
+            { value: 'roof', title: 'Roof, including insulation and shed roof'}
           ]}
         />
       )
@@ -286,7 +287,6 @@ function ReportRepair() {
             { value: 'brokenInto', title: 'Broken into'},
             { value: 'roofIssueOrLeak', title: 'Roof issue or leak'},
             { value: 'securityLights', title: 'Outdoor security lights'},
-            { value: 'roof', title: 'Roof, including insulation and shed roof'}
           ]}
         />
       )
