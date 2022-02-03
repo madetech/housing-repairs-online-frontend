@@ -212,11 +212,13 @@ function ReportRepair() {
           handleChange={handleChange}
           values={values}
           options = {[
-            {value: 'bath', title: 'Bath, including taps'},
+            { value: 'bath', title: 'Bath, including taps'},
             commonProblems.wallsFloorAndCeiling,
-            {value: 'electricsExtractorCords', title: 'Electrics, including extractor fan and pull cords'},
+            { value: 'electricsExtractorCords', title: 'Electrics, including extractor fan and pull cords'},
             { value: 'windows', title: 'Damaged or stuck windows'},
             commonProblems.sink,
+            commonProblems.damagedOrStuckDoors,
+            { value: 'showerIncludingTrayAndDoor', title: 'Shower, including the tray and shower door'},
             commonProblems.damagedOrStuckDoors,
             { value: 'toilet', title: 'Toilet'}
           ]}
@@ -329,6 +331,22 @@ function ReportRepair() {
             { value: 'stuckOpen', title: 'Window stuck open'},
             { value: 'stuckShut', title: 'Window stuck shut'},
             { value: 'condensation', title: 'Condensation'}
+          ]}
+        />
+      )
+    case 'repair-shower-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'electricShowerUnit', title: 'Electric shower unit'},
+            { value: 'showerTap', title: 'Tap shower'},
+            { value: 'showerHose', title: 'Shower hose'},
+            { value: 'showerHead', title: 'Shower head'},
+            { value: 'showerTrayBroken', title: 'Shower tray broken'},
+            { value: 'cubicleDoorBroken', title: 'Cubicle door broken'},
+            { value: 'showerDrainBlocked', title: 'Shower drain blocked'}
           ]}
         />
       )
@@ -555,6 +573,7 @@ export async function getStaticPaths() {
     {params: { route: 'repair-outside-problems'}},
     {params: { route: 'outside-roof-problems'}},
     {params: { route: 'outside-door-problems'}},
+    {params: { route: 'repair-shower-problems'} },
     {params: { route: 'repair-description'} },
     {params: { route: 'repair-availability'} },
     {params: { route: 'smell-gas'} }

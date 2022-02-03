@@ -64,6 +64,14 @@ class Flow {
       'damp-mould-problems':  { prevSteps: '', nextStep: [
         {condition: 'dampMouldCausedByLeak', nextStep: 'emergency-repair'},
         {condition: 'dampOrMould', nextStep: 'repair-description'}]},
+      'repair-shower-problems': { prevSteps: '', nextStep: [
+        {condition: 'electricShowerUnit', nextStep: 'repair-description'},
+        {condition: 'showerTap', nextStep: 'repair-description'},
+        {condition: 'showerHose', nextStep: 'repair-description'},
+        {condition: 'showerHead', nextStep: 'repair-description'},
+        {condition: 'showerTrayBroken', nextStep: 'repair-description'},
+        {condition: 'cubicleDoorBroken', nextStep: 'repair-description'},
+        {condition: 'showerDrainBlocked', nextStep: 'emergency-repair'},]},
       'sink-problems': {nextStep: 'repair-description'},
       'repair-kitchen-heating-problems': { prevStep: 'repair-kitchen-problems', nextStep: 'repair-description'},
       'kitchen-door-problems': { prevStep: 'repair-kitchen-problems', nextStep: 'repair-description'},
@@ -74,6 +82,8 @@ class Flow {
         {condition: 'electricsExtractorCords', nextStep: 'repair-bathroom-electric-problems'},
         {condition: 'sink', nextStep: 'sink-problems'},
         {condition: 'windows', nextStep: 'repair-window-problems'},
+        {condition: 'damagedOrStuckDoors', nextStep: 'repair-door-problems'},
+        {condition: 'showerIncludingTrayAndDoor', nextStep: 'repair-shower-problems'},
         {condition: 'damagedOrStuckDoors', nextStep: 'repair-door-problems'},
         {condition: 'toilet', nextStep: 'repair-toilet-problems'}
       ]},

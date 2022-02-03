@@ -101,6 +101,10 @@ describe('repairProblem', () => {
       cy.contains('Damaged or stuck doors');
     });
 
+    it('displays a "shower" option', () => {
+      cy.contains('Shower, including the tray and shower door');
+    });
+
     it('displays a "toilet" option', () => {
       cy.contains('Toilet');
     });
