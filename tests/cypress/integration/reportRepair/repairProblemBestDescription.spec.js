@@ -162,6 +162,7 @@ describe('repairProblemBestDescription', () => {
         cy.contains('Missing door');
       });
     })
+
     context('Heating or hot water', () => {
       before(()=>{
         navigateToLocation()
@@ -251,6 +252,7 @@ describe('repairProblemBestDescription', () => {
 
       testWallOption();
     });
+
     context('Damaged or stuck windows', () => {
       before(()=>{
         cy.go(-1);
@@ -271,6 +273,7 @@ describe('repairProblemBestDescription', () => {
 
       testSinkOptions();
     });
+
     context('Damp or mould', () => {
       before(()=>{
         navigateToLocation()
@@ -573,7 +576,36 @@ describe('repairProblemBestDescription', () => {
       it ('displays a "Problem with a flat roof" option', () => {
         cy.contains('Problem with a flat roof');
       });
+    });
 
+    context('Garage, including roof and door', () => {
+      before(()=>{
+        navigateToLocation()
+        cy.contains('Outside').click();
+        cy.get('button').click();
+        cy.contains('Garage, including roof and door').click();
+        cy.get('button').click();
+      });
+
+      it('displays the repair issue question', () => {
+        cy.contains('What best describes the problem?');
+      });
+
+      it('displays a "Door damage" option', () => {
+        cy.contains('Door damage');
+      });
+
+      it('displays a "Lock damage" option', () => {
+        cy.contains('Lock damage');
+      });
+
+      it('displays a "Broken into" option', () => {
+        cy.contains('Broken into');
+      });
+
+      it('displays a "Roof issue or leak" option', () => {
+        cy.contains('Roof issue or leak');
+      });
     });
 
     context('Door, including shed and outhouse', () => {
