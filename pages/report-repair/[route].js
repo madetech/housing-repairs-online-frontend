@@ -270,9 +270,10 @@ function ReportRepair() {
           handleChange={handleChange}
           values={values}
           options = {[
-            { value: 'outdoorSecurityLights', title: 'Outdoor security lights'},
+            { value: 'door', title: 'Door, including shed and outhouse'},
+            { value: 'securityLights', title: 'Outdoor security lights'},
+            { value: 'roof', title: 'Roof, including insulation and shed roof'},
             { value: 'garage', title: 'Garage, including roof and door'},
-            { value: 'roof', title: 'Roof, including insulation and shed roof'}
           ]}
         />
       )
@@ -301,6 +302,20 @@ function ReportRepair() {
             { value: 'looseTiles', title: 'Loose tiles'},
             { value: 'flatRoofProblems', title: 'Problem with a flat roof'},
             { value: 'securityLights', title: 'Outdoor security lights'}
+          ]}
+        />
+      )
+    case 'outside-door-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'shedDoor', title: 'Shed door'},
+            { value: 'outhouseCupboardDoor', title: 'Outhouse cupboard door'},
+            { value: 'woodenBackDoor', title: 'Wooden back door'},
+            { value: 'upvcBackDoor', title: 'UPVC back door'},
+            { value: 'frenchDoors', title: 'French doors'}
           ]}
         />
       )
@@ -462,7 +477,7 @@ function ReportRepair() {
           values={values}
           options = {[
             { value: 'dampMouldCausedByLeak', title: 'Damp or mould caused by a leak'},
-            { value: 'dampMouldCausedByOther', title: 'Damp or mould caused by something else'}
+            { value: 'dampOrMould', title: 'Damp or mould caused by something else'}
           ]}
         />
       )
@@ -539,6 +554,7 @@ export async function getStaticPaths() {
     {params: { route: 'repair-window-problems'} },
     {params: { route: 'repair-outside-problems'}},
     {params: { route: 'outside-roof-problems'}},
+    {params: { route: 'outside-door-problems'}},
     {params: { route: 'repair-description'} },
     {params: { route: 'repair-availability'} },
     {params: { route: 'smell-gas'} }
