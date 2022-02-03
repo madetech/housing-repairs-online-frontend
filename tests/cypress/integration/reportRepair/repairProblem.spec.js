@@ -97,6 +97,10 @@ describe('repairProblem', () => {
       cy.contains('Damaged or stuck windows');
     });
 
+    it('displays a "Damp or mould" option', () => {
+      cy.contains('Damp or mould');
+    });
+
     it('displays a "door" option', () => {
       cy.contains('Damaged or stuck doors');
     });

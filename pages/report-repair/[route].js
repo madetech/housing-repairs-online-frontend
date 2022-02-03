@@ -217,6 +217,7 @@ function ReportRepair() {
             { value: 'electricsExtractorCords', title: 'Electrics, including extractor fan and pull cords'},
             { value: 'windows', title: 'Damaged or stuck windows'},
             commonProblems.sink,
+            {value: 'dampOrMould', title: 'Damp or mould'},
             commonProblems.damagedOrStuckDoors,
             { value: 'showerIncludingTrayAndDoor', title: 'Shower, including the tray and shower door'},
             commonProblems.damagedOrStuckDoors,
@@ -396,6 +397,17 @@ function ReportRepair() {
           ]}
         />
       )
+    case 'bathroom-damp-mould-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'emergency', title: 'Damp or mould caused by a leak'},
+            { value: 'dampOrMould', title: 'Damp or mould caused by something else'}
+          ]}
+        />
+      )
     case 'repair-living-areas-lighting-problems':
       return (
         <RepairProblemBestDescription
@@ -567,6 +579,7 @@ export async function getStaticPaths() {
     {params: { route: 'sink-problems'} },
     {params: { route: 'repair-bathroom-problems'} },
     {params: { route: 'repair-bedroom-problems'} },
+    {params: { route: 'bathroom-damp-mould-problems'} },
     {params: { route: 'repair-living-areas-problems'} },
     {params: { route: 'repair-living-areas-lighting-problems'} },
     {params: { route: 'wall-floor-ceiling-problems'} },
