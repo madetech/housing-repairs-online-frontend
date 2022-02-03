@@ -95,7 +95,7 @@ class Flow {
       'repair-living-areas-lighting-problems': { prevStep: 'repair-living-areas-problems', nextStep: 'repair-description'},
       'wall-floor-ceiling-problems': {nextStep: 'repair-description'},
       'repair-kitchen-cupboard-problems': {prevStep: 'repair-kitchen-problems', nextStep: 'repair-description'},
-      'bathroom-damp-mould-problems': { prevStep: 'repair-bedroom-problems',
+      'bathroom-damp-mould-problems': { prevStep: 'repair-bathroom-problems',
         nextStep: [
           {condition: 'emergency', nextStep: 'emergency-repair'},
           {condition: 'dampOrMould', nextStep: 'repair-description'}
