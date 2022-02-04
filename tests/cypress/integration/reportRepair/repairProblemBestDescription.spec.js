@@ -60,24 +60,21 @@ const testWallOption = () => {
 }
 
 const electricsOption = () => {
-  context('Electrics, including lights and switches', () => {
-    before(() => {
-      cy.contains('Electrics, including lights and switches').click();
-      cy.get('button').click();
-    });
+  before(() => {
+    cy.contains('Electrics, including lights and switches').click();
+    cy.get('button').click();
+  });
 
-    it('displays the repair issue question', () => {
-      cy.contains('What best describes the problem?');
-    });
+  it('displays the repair issue question', () => {
+    cy.contains('What best describes the problem?');
+  });
 
-    it('displays a "Light" option', () => {
-      cy.contains('Lights');
-    });
+  it('displays a "Light" option', () => {
+    cy.contains('Lights');
+  });
 
-    it('displays a "Socket" option', () => {
-      cy.contains('Sockets');
-    });
-
+  it('displays a "Socket" option', () => {
+    cy.contains('Sockets');
   });
 }
 
@@ -599,6 +596,36 @@ context('Living Area', () => {
       cy.get('button').click();
     });
     testDampOrMouldOption();
+  });
+
+  context('Stairs (including handrail)', () => {
+    before(()=>{
+      navigateToLocation()
+      cy.contains('Living Area').click();
+      cy.get('button').click();
+      cy.contains('Stairs (including handrail)').click();
+      cy.get('button').click();
+    });
+
+    it('displays the repair issue question', () => {
+      cy.contains('What best describes the problem?');
+    });
+
+    it('displays a "Damaged stairs" option', () => {
+      cy.contains('Damaged stairs');
+    });
+
+    it('displays a "Damaged palistrades" option', ()=> {
+      cy.contains('Damaged palistrades');
+    });
+
+    it('displays a "Handrail" option', ()=> {
+      cy.contains('Handrail');
+    });
+
+    it('displays a "Stair rail came loose" option', ()=> {
+      cy.contains('Stair rail came loose');
+    });
   });
 
   context('Outside', () => {
