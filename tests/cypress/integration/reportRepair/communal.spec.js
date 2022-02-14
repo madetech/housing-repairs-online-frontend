@@ -3,7 +3,7 @@ import {intercept_address_search} from "../../support/helpers";
 describe('communal', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/report-repair/');
-    cy.contains('No, I want to request a non-emergency repair').click();
+    cy.contains('Something else').click();
     cy.get('button').click()
   });
 
@@ -12,14 +12,14 @@ describe('communal', () => {
   });
 
   it('displays button with correct text', () => {
-    cy.get('button').contains('Provide your postcode');
+    cy.get('button').contains('Continue');
   });
 
   context('communal area prompt', () => {
     it('displays text', () => {
       cy.get('[data-testid=communal-area-prompt]').should(
         'have.contain',
-        'Which areas are communal?'
+        'What is a communal area?'
       );
     });
 

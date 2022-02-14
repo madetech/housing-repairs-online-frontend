@@ -3,7 +3,7 @@ import {intercept_address_search} from '../../support/helpers';
 describe('postcode', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/report-repair/');
-    cy.contains('No, I want to request a non-emergency repair').click();
+    cy.contains('Something else').click();
     cy.get('button').click();
     cy.get('[data-cy=communal]', { timeout: 10000 }).then(($loadedSection) => {
       cy.contains('No').click();
@@ -13,7 +13,7 @@ describe('postcode', () => {
   });
 
   it('displays the question', () => {
-    cy.contains('What is the property address?');
+    cy.contains('What is the property postcode?');
   });
 
   it('displays input label', () => {
@@ -21,7 +21,7 @@ describe('postcode', () => {
   });
 
   it('displays button with correct text', () => {
-    cy.get('button').contains('Select your address');
+    cy.get('button').contains('Continue');
   });
   context('When a user doesn\'t type anything', ()=>{
     it('an error should be shown',  () => {

@@ -76,7 +76,7 @@ const navigateToLocation = () => {
 
   navigateToPageSelectRadioOptionAndContinue({
     page: 'priority-list',
-    option:'No, I want to request a non-emergency repair'
+    option:'Something else'
   })
 
   navigateToPageSelectRadioOptionAndContinue({
