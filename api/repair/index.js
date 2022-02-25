@@ -1,12 +1,27 @@
-const {saveRepairGateway} = require('../gateways');
+const Sentry = require('@sentry/node');
+
+const {saveRepairGateway, sentryParams} = require('../gateways');
 
 module.exports = async function (context, req) {
-
   context.log('JavaScript HTTP trigger function processed a request.');
-  const result = await saveRepairGateway(req.body);
+  Sentry.init(sentryParams);
+
+  let status;
+  let result;
+
+  try {
+    result = await saveRepairGateway(req.body);
+    status = 200;
+  } catch (e) {
+    Sentry.captureException(e);
+    await Sentry.flush(2000);
+
+    status = 500;
+    result = new Error('Error saving');
+  }
 
   context.res = {
-    status: result ? 200 : 500,
+    status: status,
     body: result
   };
 };

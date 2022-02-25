@@ -1,12 +1,8 @@
 const path = require('path')
-const withSass = require('@zeit/next-sass');
-module.exports = withSass({
-  /* bydefault config  option Read For More Optios
-  here https://github.com/vercel/next-plugins/tree/master/packages/next-sass*/
-  cssModules: true
-})
-module.exports = {
-  /* Add Your Scss File Folder Path Here */
+
+const { withSentryConfig } = require('@sentry/nextjs');
+
+const moduleExports =  {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
@@ -25,5 +21,13 @@ module.exports = {
 
   images: {
     loader: 'default'
-  }
-}
+  },
+};
+
+module.exports = withSentryConfig(moduleExports, {
+  org: 'housing-repairs-online',
+  project: 'housing-repairs-online-frontend',
+  authToken: process.env.SENTRY_AUTH_TOKEN || process.env.NEXT_PUBLIC_SENTRY_AUTH_TOKEN,
+  dryRun: false,
+  include: './.next'
+});

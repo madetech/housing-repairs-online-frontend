@@ -21,15 +21,4 @@ describe('SearchProperties', () => {
     });
   });
 
-  describe('when api is down', () =>{
-    beforeAll(()=>{
-      mockGetRequest = jest.fn().mockRejectedValue({status: 500})
-      SearchPropertiesGateway = require('../../../api/gateways/SearchPropertiesGateway')(mockGetRequest);
-    })
-    test('an error gets raised', async () => {
-      await SearchPropertiesGateway(postcode).then((res)=>{
-        expect(res).toEqual(Error('Error searching'));
-      });
-    })
-  });
 });
