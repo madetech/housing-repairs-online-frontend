@@ -2,6 +2,13 @@
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+# Copilot
+
+Before running any copilot commands run this
+
+1. Define AWS profile env var `export AWS_PROFILE=rnd-dev`
+2. Authenticate with AWS `aws sso login --profile rnd-dev`
+
 ## Getting Started
 
 Install all dependencies:
