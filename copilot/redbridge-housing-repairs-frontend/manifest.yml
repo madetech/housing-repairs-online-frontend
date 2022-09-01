@@ -16,14 +16,15 @@ http:
 
 # Configuration for your containers and service.
 image:
-  location: nginx
+  build:
+    dockerfile: ./nginx-temp/nginx.Dockerfile
   # Port exposed through your container to route traffic to it.
   port: 80
 
-cpu: 256       # Number of CPU units for the task.
-memory: 512    # Amount of memory in MiB used by the task.
-count: 1       # Number of tasks that should be running in your service.
-exec: true     # Enable running commands in your container.
+cpu: 256 # Number of CPU units for the task.
+memory: 512 # Amount of memory in MiB used by the task.
+count: 1 # Number of tasks that should be running in your service.
+exec: true # Enable running commands in your container.
 
 # Optional fields for more advanced use-cases.
 #
@@ -34,7 +35,10 @@ exec: true     # Enable running commands in your container.
 #  GITHUB_TOKEN: GITHUB_TOKEN  # The key is the name of the environment variable, the value is the name of the SSM parameter.
 
 # You can override any of the values defined above by environment.
-#environments:
+environments:
+  preproduction:
+    variables:
+      REPAIRS_API_URL: redbridge-housing-repairs-api.preproduction.saas-platform.local
 #  test:
 #    count: 2               # Number of tasks to run for the "test" environment.
 #    deployment:            # The deployment strategy for the "test" environment.
