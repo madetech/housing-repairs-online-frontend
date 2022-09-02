@@ -17,7 +17,7 @@ phases:
   build:
     commands:
       - echo "Run your tests"
-      - docker compose --file docker-compose.e2e.yml up --build
+      - docker-compose --file docker-compose.e2e.yml up --build
       # - make test
   post_build:
     commands:
