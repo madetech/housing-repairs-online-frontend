@@ -1,10 +1,18 @@
 # Buildspec runs in the build stage of your pipeline.
 version: 0.2
+batch:
+  fast-fail: false
+  build-list:
+    - identifier: cypress-e2e-tests
+      env:
+        variables:
+          IMAGE: public.ecr.aws/cypress-io/cypress/browsers:node14.17.0-chrome88-ff89
 phases:
   install:
     runtime-versions:
-      docker: 19
-      ruby: 2.6
+      docker: 20
+      ruby: 3.1
+      nodejs: 16
     commands:
       - echo "cd into $CODEBUILD_SRC_DIR"
       - cd $CODEBUILD_SRC_DIR
