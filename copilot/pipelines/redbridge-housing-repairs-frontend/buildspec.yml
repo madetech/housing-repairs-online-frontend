@@ -26,7 +26,7 @@ phases:
   build:
     commands:
       - echo "Run your tests"
-      - yarn test:headless:integration
+      - yarn start &
       - npx cypress run --browser chrome
       # - make test
   post_build:
@@ -81,4 +81,4 @@ phases:
       - ls -lah ./infrastructure
 artifacts:
   files:
-    - "infrastructure/*"
+    - 'infrastructure/*'
