@@ -14,16 +14,10 @@ phases:
       - wget -q https://ecs-cli-v2-release.s3.amazonaws.com/copilot-linux-v1.21.0
       - mv ./copilot-linux-v1.21.0 ./copilot-linux
       - chmod +x ./copilot-linux
-      - echo "Installing cypress deps"
-      - yum install -y xorg-x11-server-Xvfb gtk2-devel gtk3-devel libnotify-devel GConf2 nss libXScrnSaver alsa-lib
-      - echo "Installing yarn"
-      - npm install -g yarn
-      - yarn install --frozen-lockfile
   build:
     commands:
       - echo "Run your tests"
-      - yarn build && yarn start & npx wait-on http://localhost:3000
-      - npx cypress run --browser chrome
+      - docker compose --file docker-compose.e2e.yml up --build
       # - make test
   post_build:
     commands:

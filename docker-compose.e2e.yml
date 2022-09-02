@@ -1,0 +1,7 @@
+version: '3.9'
+
+services:
+  e2e:
+    build:
+      context: .
+      dockerfile: e2e.Dockerfile
