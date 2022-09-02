@@ -26,7 +26,7 @@ phases:
   build:
     commands:
       - echo "Run your tests"
-      - yarn build && yarn start
+      - yarn test:headless:integration
       - npx cypress run --browser chrome
       # - make test
   post_build:
