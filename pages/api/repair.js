@@ -1,5 +1,5 @@
-const { logger } = require('../../../helpers/log');
-const { saveRepairGateway } = require('../../../gateways');
+const { logger } = require('../../helpers/log');
+const { saveRepairGateway } = require('../../gateways');
 
 // Supported method = POST
 export default async function handler(req, res) {

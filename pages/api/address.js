@@ -1,5 +1,5 @@
-const { searchPropertiesGateway } = require('../../../gateways');
-const { logger } = require('../../../helpers/log');
+const { searchPropertiesGateway } = require('../../gateways');
+const { logger } = require('../../helpers/log');
 
 // Supported methods = GET
 export default async function handler(req, res) {
