@@ -10,16 +10,16 @@ type: Load Balanced Web Service
 http:
   # Requests to this path will be forwarded to your service.
   # To match all requests you can use the "/" path.
-  path: 'redbridge-housing-repairs-frontend'
+  path: '/'
   # You can specify a custom health check path. The default is "/".
-  healthcheck: '/health'
+  healthcheck: '/api/health'
 
 # Configuration for your containers and service.
 image:
   build:
-    dockerfile: ./nginx-temp/nginx.Dockerfile
+    dockerfile: ./Dockerfile
   # Port exposed through your container to route traffic to it.
-  port: 80
+  port: 3000
 
 cpu: 256 # Number of CPU units for the task.
 memory: 512 # Amount of memory in MiB used by the task.
@@ -38,7 +38,8 @@ exec: true # Enable running commands in your container.
 environments:
   preproduction:
     variables:
-      REPAIRS_API_URL: redbridge-housing-repairs-api.preproduction.saas-platform.local
+      REPAIRS_API_BASE_URL: http://redbridge-housing-repairs-api.preproduction.saas-platform.local
+      REPAIRS_API_IDENTIFIER: FOO
 #  test:
 #    count: 2               # Number of tasks to run for the "test" environment.
 #    deployment:            # The deployment strategy for the "test" environment.
