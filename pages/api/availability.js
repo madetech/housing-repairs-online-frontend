@@ -1,5 +1,5 @@
-const { logger } = require('../../../helpers/log');
-const { availableAppointmentsGateway } = require('../../../gateways');
+const { logger } = require('../../helpers/log');
+const { availableAppointmentsGateway } = require('../../gateways');
 
 // Supported methods = GET
 export default async function handler(req, res) {
