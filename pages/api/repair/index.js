@@ -1,6 +1,6 @@
 const Sentry = require('@sentry/node');
 
-const {saveRepairGateway, sentryParams} = require('../gateways');
+const { saveRepairGateway, sentryParams } = require('../gateways');
 
 module.exports = async function (context, req) {
   context.log('JavaScript HTTP trigger function processed a request.');
@@ -22,6 +22,6 @@ module.exports = async function (context, req) {
 
   context.res = {
     status: status,
-    body: result
+    body: result,
   };
 };
