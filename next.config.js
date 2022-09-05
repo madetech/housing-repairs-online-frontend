@@ -1,9 +1,11 @@
-const path = require('path')
+const path = require('path');
 
-module.exports =  {
+module.exports = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
+
+  output: 'standalone',
 
   reactStrictMode: true,
 
@@ -14,10 +16,10 @@ module.exports =  {
         destination: '/report-repair/priority-list',
         permanent: true,
       },
-    ]
+    ];
   },
 
   images: {
-    loader: 'default'
+    loader: 'default',
   },
 };
