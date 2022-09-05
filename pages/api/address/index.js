@@ -1,27 +1,18 @@
-const Sentry = require('@sentry/node');
+const { searchPropertiesGateway } = require('../../../gateways');
+const { logger } = require('../../../helpers/log');
 
-const {searchPropertiesGateway, sentryParams} = require('../gateways');
-
-module.exports = async function (context, req) {
-  Sentry.init(sentryParams);
-
-  context.log('JavaScript HTTP trigger function processed a request.');
-
-  let status;
-  let results;
-
-  try {
-    results = await searchPropertiesGateway(req.query.postcode);
-  } catch (e) {
-    Sentry.captureException(e);
-    await Sentry.flush(2000);
-
-    status = 500;
-    results = new Error('Error searching');
+// supports GET method
+export default async function handler(req, res) {
+  if (req.method === 'GET') {
+    try {
+      let results = await searchPropertiesGateway(req.query.postcode);
+      res.status(200).json(results);
+    } catch (e) {
+      logger.captureException(e);
+      let results = new Error('Error searching');
+      res.status(500).json(results);
+    }
+  } else {
+    res.status(405);
   }
-
-  context.res = {
-    status: status,
-    body: results,
-  };
-};
+}

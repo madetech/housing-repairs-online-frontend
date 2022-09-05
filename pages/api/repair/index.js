@@ -1,27 +1,19 @@
-const Sentry = require('@sentry/node');
+const { logger } = require('../../../helpers/log');
+const { saveRepairGateway } = require('../../../gateways');
 
-const { saveRepairGateway, sentryParams } = require('../gateways');
+// Supported method = POST
+export default async function handler(req, res) {
+  if (req.method === 'POST') {
+    try {
+      let result = await saveRepairGateway(req.body);
+      res.status(200).json(result);
+    } catch (e) {
+      logger.captureException(e);
 
-module.exports = async function (context, req) {
-  context.log('JavaScript HTTP trigger function processed a request.');
-  Sentry.init(sentryParams);
-
-  let status;
-  let result;
-
-  try {
-    result = await saveRepairGateway(req.body);
-    status = 200;
-  } catch (e) {
-    Sentry.captureException(e);
-    await Sentry.flush(2000);
-
-    status = 500;
-    result = new Error('Error saving');
+      let result = new Error('Error saving');
+      res.status(500).json(result);
+    }
+  } else {
+    res.status(405);
   }
-
-  context.res = {
-    status: status,
-    body: result,
-  };
-};
+}
