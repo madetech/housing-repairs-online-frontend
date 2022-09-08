@@ -36,9 +36,9 @@ exec: true # Enable running commands in your container.
 
 # You can override any of the values defined above by environment.
 environments:
-  preproduction:
+  development:
     variables:
-      REPAIRS_API_BASE_URL: http://redbridge-housing-repairs-api.preproduction.saas-platform.local
+      REPAIRS_API_BASE_URL: http://redbridge-housing-repairs-api.development.saas.local
       REPAIRS_API_IDENTIFIER: FOO
 #  test:
 #    count: 2               # Number of tasks to run for the "test" environment.
