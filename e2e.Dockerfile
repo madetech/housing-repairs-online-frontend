@@ -10,4 +10,4 @@ FROM base as runner
 WORKDIR /app
 COPY --from=base /app /app
 
-CMD ["yarn", "test:headless:integration"]
+CMD ["yarn", "test:docker"]

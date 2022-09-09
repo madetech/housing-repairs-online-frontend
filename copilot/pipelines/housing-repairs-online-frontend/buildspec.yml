@@ -3,8 +3,8 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      docker: 19
-      ruby: 2.6
+      docker: 20
+      ruby: 3.1
     commands:
       - echo "cd into $CODEBUILD_SRC_DIR"
       - cd $CODEBUILD_SRC_DIR
@@ -15,7 +15,7 @@ phases:
   build:
     commands:
       - echo "Run your tests"
-      # - make test
+      - docker-compose --file docker-compose.e2e.yml up --build
   post_build:
     commands:
       - ls -l
@@ -68,4 +68,4 @@ phases:
       - ls -lah ./infrastructure
 artifacts:
   files:
-    - "infrastructure/*"
+    - 'infrastructure/*'
