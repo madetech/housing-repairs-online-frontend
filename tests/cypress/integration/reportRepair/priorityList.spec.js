@@ -4,13 +4,13 @@ describe('priorityList', () => {
   });
 
   it('displays the question title', () => {
-    cy.contains('Please select one of the below');
+    cy.contains('What is the problem you are reporting?');
   });
 
   context('When a user doesn\'t select any option', ()=>{
     it('an error should be shown',  () => {
       cy.get('button').click()
-      cy.contains('Required');
+      cy.contains('Select the problem you are reporting');
     });
   });
 
