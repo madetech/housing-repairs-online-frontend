@@ -4,11 +4,7 @@ describe('App', () => {
   });
 
   it('displays service title', () => {
-    cy.contains('Housing Repairs Online');
-  });
-
-  it('displays correct phase banner', () => {
-    cy.get('[data-testid=phase-banner]').should('have.contain', 'beta');
+    cy.contains('Housing Repairs');
   });
 
   it('displays a smell gas warning on the landing page', () => {
@@ -23,7 +19,11 @@ describe('App', () => {
       'have.contain',
       'For other emergency repairs, please see customer services contact details page.'
     );
-    cy.get('[data-testid=landing-page-emergency-warning] a').should('have.attr', 'href', 'https://www.lincoln.gov.uk/contact-1/get-touch');;
+    cy.get('[data-testid=landing-page-emergency-warning] a').should(
+      'have.attr',
+      'href',
+      'https://www.newark-sherwooddc.gov.uk/contactus/'
+    );
   });
 
   context('emergency prompt', () => {
@@ -38,17 +38,30 @@ describe('App', () => {
       cy.get('[data-testid=landing-page-emergency-prompt] summary')
         .click()
         .then(() => {
-          cy.get('[data-testid=landing-page-emergency-info]')
-            .should('be.visible')
+          cy.get('[data-testid=landing-page-emergency-info]').should(
+            'be.visible'
+          );
         });
     });
   });
 
   it('displays a start button', () => {
-    cy.get('a').contains('Start now').should('have.attr', 'href', '/report-repair/priority-list');
+    cy.get('a')
+      .contains('Start now')
+      .should('have.attr', 'href', '/report-repair/priority-list');
   });
 
   it('has an accessibility link', () => {
-    cy.get('a').contains('Accessibility').should('have.attr', 'href', 'https://www.lincoln.gov.uk/accessibility');
+    cy.get('a').contains('Accessibility Statement').should('have.attr', 'href');
+  });
+
+  it('has an privacy link', () => {
+    cy.get('a')
+      .contains('Privacy')
+      .should(
+        'have.attr',
+        'href',
+        'https://www.newark-sherwooddc.gov.uk/privacynotice/'
+      );
   });
 });

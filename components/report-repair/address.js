@@ -7,12 +7,17 @@ import useSWR from 'swr'
 import {fetcher} from '../../helpers/fetcher';
 import Loader from '../loader';
 import Error from '../error';
+import {serviceName} from '../../helpers/constants';
+import ErrorSummary from '../errorSummary';
 
 const Address = ({handleChange, values}) => {
   const [state, setState] = useState({error: {}, value: 'null', activeError: false});
 
-
   const { data, error } = useSWR(`/api/address?postcode=${values.postcode}`, fetcher)
+
+  const title = 'Select an address';
+  const pageTitle = `${title} - ${serviceName}`;
+  const addressDropdownInputName = 'address';
 
   if (error) return <Error
     name="summary"
@@ -29,7 +34,7 @@ const Address = ({handleChange, values}) => {
   const found_addresses = `${addresses?.length} ${addresses?.length === 1 ? 'address': 'addresses'} found`
 
   const onChange = e => {
-    setState({error: {}, value: JSON.parse(e.target.value)})
+    setState({error: state.error, value: JSON.parse(e.target.value, ), activeError: false})
   }
 
   const Continue = e => {
@@ -37,9 +42,10 @@ const Address = ({handleChange, values}) => {
 
     if (state.value === 'null') {
       return setState({error: {
-        msg: 'Required',
+        msg: 'Select the property address',
         touched: true
-      }})
+      },
+      activeError: true})
     }
 
     return handleChange('address', {
@@ -49,17 +55,21 @@ const Address = ({handleChange, values}) => {
   }
 
   return <div className="govuk-grid-row" data-cy="address">
+    <header>
+      <title>{title} - {serviceName}</title>
+    </header>
     <div className="govuk-grid-column-two-thirds">
-      <h1 className="govuk-heading-l">Select an address</h1>
+      {state.error.msg && <ErrorSummary active={state.activeError} errorSummaryTextAndLocation={[{text:state.error.msg, location: '#address'}]} pageTitle={pageTitle} />}
+      <h1 className="govuk-heading-l">{title}</h1>
       <form action="">
         <div className={state.error.msg ? 'govuk-form-group govuk-form-group--error' : 'govuk-form-group'}>
+          <label className="govuk-label" htmlFor="select-address-dropdown">
+            {title}
+          </label>
           <span id={'address-error'}
             className="govuk-error-message">
             {state.error.msg}
           </span>
-          <label className="govuk-label" htmlFor="select-address-dropdown">
-            Select an address
-          </label>
           <Select
             input={{
               name: 'address',
@@ -78,7 +88,9 @@ const Address = ({handleChange, values}) => {
             ))}
           </Select>
         </div>
-        <TextLink href="not-eligible">I can&apos;t find my address on this list</TextLink>
+        <p className="govuk-body">
+          <TextLink href="not-eligible">I can&apos;t find my address on this list</TextLink>
+        </p>
         <br/>
         <br/>
         <Button onClick={Continue} >Continue</Button>

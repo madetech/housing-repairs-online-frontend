@@ -30,7 +30,7 @@ describe('apiRequester', () => {
         create: mockedCreate
       }
 
-      apiRequester = require('../../../api/gateways/apiRequester')(mockAxios);
+      apiRequester = require('../../../gateways/apiRequester')(mockAxios);
     });
 
     test('a get request is made with headers', async () => {

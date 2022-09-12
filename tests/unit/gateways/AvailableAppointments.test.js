@@ -12,7 +12,7 @@ describe('SearchProperties', () => {
 
   beforeAll(() => {
     mockGetRequest =  jest.fn().mockImplementation(({url, params}) => Promise.resolve({data: dummyData}));
-    AvailableAppointmentsGateway = require('../../../api/gateways/AvailableAppointmentsGateway')(mockGetRequest);
+    AvailableAppointmentsGateway = require('../../../gateways/AvailableAppointmentsGateway')(mockGetRequest);
   });
 
   test('api gets called appropriately', async () => {
