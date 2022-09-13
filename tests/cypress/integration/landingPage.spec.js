@@ -22,7 +22,7 @@ describe('App', () => {
     cy.get('[data-testid=landing-page-emergency-warning] a').should(
       'have.attr',
       'href',
-      'https://www.newark-sherwooddc.gov.uk/contactus/'
+      'https://www.lincoln.gov.uk/contact-1/get-touch'
     );
   });
 
@@ -55,13 +55,13 @@ describe('App', () => {
     cy.get('a').contains('Accessibility Statement').should('have.attr', 'href');
   });
 
-  it('has an privacy link', () => {
-    cy.get('a')
-      .contains('Privacy')
-      .should(
-        'have.attr',
-        'href',
-        'https://www.newark-sherwooddc.gov.uk/privacynotice/'
-      );
-  });
+  // it('has an privacy link', () => {
+  //   cy.get('a')
+  //     .contains('Privacy')
+  //     .should(
+  //       'have.attr',
+  //       'href',
+  //       'https://www.newark-sherwooddc.gov.uk/privacynotice/'
+  //     );
+  // });
 });
