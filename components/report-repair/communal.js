@@ -8,11 +8,29 @@ import {serviceName} from '../../helpers/constants';
 const Communal = ({handleChange, values}) => {
   const name =  'communal';
   const title =  'Is the problem in a communal area?';
-  const hintText = 'A communal area is a space available to use by more than one household. Examples of communal areas include flat block doors, stairs and corridors, play parks, shared mobility storage spaces and parking areas.';
+  const hintText = '';
   const options =  [
     { value: 'yes', title: 'Yes'},
     { value: 'no', title: 'No'}
   ];
+
+
+  const beforeButton =  (
+    <Details summary="What is a communal area?" testid="communal-area-prompt">
+      <span data-testid="communal-area-info">
+        <p>Communal repairs are usually in areas that people share.</p>
+        <p>They can include:</p>
+        <ul className={'govuk-list govuk-list--bullet'}>
+          <li>repairs to door entry systems</li>
+          <li>lock repairs to communal doors</li>
+          <li>lighting repairs to shared areas</li>
+          <li>glazing repairs to shared doors or stairway windows</li>
+          <li>roof and gutter repairs</li>
+          <li>structure and external walls to your block</li>
+        </ul>
+      </span>
+    </Details>
+  );
 
   const Continue = ({val}) => {
     const selected = val[name];
@@ -28,6 +46,7 @@ const Communal = ({handleChange, values}) => {
         title={title}
         options={options}
         onSubmit={Continue} buttonText={'Continue'}
+        beforeButton={beforeButton}
         checked={values[name]}
         hintText={hintText}
         errorText={'Select yes if the problem is in a communal area'}

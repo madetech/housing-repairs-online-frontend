@@ -7,7 +7,7 @@ let container = null;
 
 const accessibilityLink = 'Accessibility Statement';
 const privacyText = 'Privacy'
-const privacyLink = 'https://www.newark-sherwooddc.gov.uk/privacynotice/';
+const privacyLink = '#';
 
 beforeEach(() => {
   // setup a DOM element as a render target

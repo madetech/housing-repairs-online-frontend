@@ -39,7 +39,7 @@ export default function Home() {
           To request a repair for a <strong>communal area</strong>, please see
           customer services contact{' '}
             <TextLink
-              href="https://www.newark-sherwooddc.gov.uk/contactus/"
+              href="https://www.lincoln.gov.uk/contact-1/get-touch"
               target={'_blank'}
             >
             details page
@@ -71,7 +71,7 @@ export default function Home() {
           <WarningText testid="landing-page-emergency-warning" className="">
           For other emergency repairs, please see customer services{' '}
             <TextLink
-              href="https://www.newark-sherwooddc.gov.uk/contactus/"
+              href="https://www.lincoln.gov.uk/contact-1/get-touch"
               target={'_blank'}
             >
             contact details page
