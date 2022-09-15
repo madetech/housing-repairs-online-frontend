@@ -1,6 +1,11 @@
 describe('contactPerson', () => {
   before(() => {
     cy.visit('http://localhost:3000/report-repair/contact-person');
+    cy.injectAxe();
+  });
+
+  it('is accessible', () => {
+    cy.checkA11yNoFail();
   });
 
   it('displays the question', () => {
@@ -15,28 +20,28 @@ describe('contactPerson', () => {
     cy.get('button').contains('Continue');
   });
 
-  context('When a user doesn\'t type anything', ()=>{
-    it('an error should be shown',  () => {
-      cy.get('button').click()
+  context("When a user doesn't type anything", () => {
+    it('an error should be shown', () => {
+      cy.get('button').click();
       cy.contains('Enter a contact number');
     });
   });
 
-  context('When a user types in an invalid number', ()=>{
+  context('When a user types in an invalid number', () => {
     it('an error is displayed', () => {
       cy.get('input').type('12345');
-      cy.get('button').click()
+      cy.get('button').click();
       cy.contains('Enter a valid contact number');
     });
   });
 
-  context('When a user types invalid characters', ()=>{
-    before(()=>{
-      cy.get('input').clear()
-    })
+  context('When a user types invalid characters', () => {
+    before(() => {
+      cy.get('input').clear();
+    });
     it('only numbers are accepted', () => {
       cy.get('input').type('§§§+442031234567§§§§§');
-      cy.get('input').should('have.value', '+442031234567')
+      cy.get('input').should('have.value', '+442031234567');
     });
   });
 });

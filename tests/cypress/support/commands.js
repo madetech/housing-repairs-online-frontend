@@ -24,3 +24,8 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 import 'cypress-file-upload';
+import { terminalLog } from './helpers';
+
+Cypress.Commands.add('checkA11yNoFail', () => {
+  cy.checkA11y(null, null, terminalLog, true);
+});
