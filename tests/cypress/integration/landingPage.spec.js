@@ -1,6 +1,11 @@
 describe('App', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/');
+    cy.injectAxe();
+  });
+
+  it('is accessible', () => {
+    cy.checkA11yNoFail();
   });
 
   it('displays service title', () => {

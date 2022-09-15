@@ -1,6 +1,4 @@
-import {
-  navigateToLocation
-} from '../../support/helpers';
+import { navigateToLocation } from '../../support/helpers';
 
 const genericWhatIsTheProblemOptions = () => {
   it('displays the repair problem question', () => {
@@ -14,15 +12,18 @@ const genericWhatIsTheProblemOptions = () => {
   it('displays a "electrics" option', () => {
     cy.contains('Electrics, including lights and switches');
   });
-
-}
+};
 describe('repairProblem', () => {
-
   context('kitchen', () => {
     before(() => {
-      navigateToLocation()
+      navigateToLocation();
       cy.contains('Kitchen').click();
       cy.get('button').click();
+      cy.injectAxe();
+    });
+
+    it('is accessible', () => {
+      cy.checkA11yNoFail();
     });
 
     it('displays the repair problem question', () => {
@@ -65,18 +66,20 @@ describe('repairProblem', () => {
       cy.contains('Damp or mould');
     });
 
-    context('When a user doesn\'t select anything', ()=>{
-      it('should show validation message',  () => {
-        cy.get('button').click().then(()=>{
-          cy.contains('Select the problem you are reporting');
-        });
+    context("When a user doesn't select anything", () => {
+      it('should show validation message', () => {
+        cy.get('button')
+          .click()
+          .then(() => {
+            cy.contains('Select the problem you are reporting');
+          });
       });
     });
   });
 
   context('Bathroom', () => {
     before(() => {
-      navigateToLocation()
+      navigateToLocation();
       cy.contains('Bathroom').click();
       cy.get('button').click();
     });
@@ -125,18 +128,20 @@ describe('repairProblem', () => {
       cy.contains('Heating or hot water');
     });
 
-    context('When a user doesn\'t select anything', ()=>{
-      it('should show validation message',  () => {
-        cy.get('button').click().then(()=>{
-          cy.contains('Select the problem you are reporting');
-        });
+    context("When a user doesn't select anything", () => {
+      it('should show validation message', () => {
+        cy.get('button')
+          .click()
+          .then(() => {
+            cy.contains('Select the problem you are reporting');
+          });
       });
     });
   });
 
   context('Bedroom', () => {
     before(() => {
-      navigateToLocation()
+      navigateToLocation();
       cy.contains('Bedroom').click();
       cy.get('button').click();
     });
@@ -159,11 +164,13 @@ describe('repairProblem', () => {
       cy.contains('Heating');
     });
 
-    context('When a user doesn\'t select anything', ()=>{
-      it('should show validation message',  () => {
-        cy.get('button').click().then(()=>{
-          cy.contains('Select the problem you are reporting');
-        });
+    context("When a user doesn't select anything", () => {
+      it('should show validation message', () => {
+        cy.get('button')
+          .click()
+          .then(() => {
+            cy.contains('Select the problem you are reporting');
+          });
       });
     });
   });
@@ -199,18 +206,20 @@ describe('repairProblem', () => {
       cy.contains('Heating');
     });
 
-    context('When a user doesn\'t select anything', ()=>{
-      it('should show validation message',  () => {
-        cy.get('button').click().then(()=>{
-          cy.contains('Select the problem you are reporting');
-        });
+    context("When a user doesn't select anything", () => {
+      it('should show validation message', () => {
+        cy.get('button')
+          .click()
+          .then(() => {
+            cy.contains('Select the problem you are reporting');
+          });
       });
     });
   });
 
   context('Outside', () => {
     before(() => {
-      navigateToLocation()
+      navigateToLocation();
       cy.contains('Outside').click();
       cy.get('button').click();
     });
@@ -228,22 +237,24 @@ describe('repairProblem', () => {
     });
 
     it('displays a "Roof, including insulation and shed roof" option', () => {
-      cy.contains('Roof, including insulation and shed roof')
+      cy.contains('Roof, including insulation and shed roof');
     });
 
     it('displays a "Gates and pathways" option', () => {
-      cy.contains('Gates and pathways')
+      cy.contains('Gates and pathways');
     });
 
     it('displays a "Garage, including roof and door" option', () => {
       cy.contains('Garage, including roof and door');
     });
 
-    context('When a user doesn\'t select anything', ()=>{
-      it('should show validation message',  () => {
-        cy.get('button').click().then(()=>{
-          cy.contains('Select the problem you are reporting');
-        });
+    context("When a user doesn't select anything", () => {
+      it('should show validation message', () => {
+        cy.get('button')
+          .click()
+          .then(() => {
+            cy.contains('Select the problem you are reporting');
+          });
       });
     });
   });

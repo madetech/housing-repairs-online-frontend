@@ -1,10 +1,15 @@
-import {intercept_address_search} from "../../support/helpers";
+import { intercept_address_search } from '../../support/helpers';
 
 describe('communal', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/report-repair/');
+    cy.injectAxe();
     cy.contains('Something else').click();
-    cy.get('button').click()
+    cy.get('button').click();
+  });
+
+  it('is accessible', () => {
+    cy.checkA11yNoFail();
   });
 
   it('displays the question', () => {
@@ -24,31 +29,36 @@ describe('communal', () => {
     });
   });
 
-  context('When a user doesn\'t select any option', ()=>{
-    it('an error should be shown',  () => {
+  context("When a user doesn't select any option", () => {
+    it('an error should be shown', () => {
       cy.wait(150);
-      cy.get('button').click({force: true}).then(()=>{
-        cy.get('button').click();
-        cy.contains('Select yes if the problem is in a communal area');
-      });
+      cy.get('button')
+        .click({ force: true })
+        .then(() => {
+          cy.get('button').click();
+          cy.contains('Select yes if the problem is in a communal area');
+        });
     });
   });
 
-  context('When a user selects: Yes', ()=>{
-    it('should redirect them to not eligible non emergency page',  () => {
+  context('When a user selects: Yes', () => {
+    it('should redirect them to not eligible non emergency page', () => {
       cy.contains('Yes').click();
-      cy.get('button').click()
-      cy.url().should('include', '/report-repair/not-eligible-communal-repairs');
+      cy.get('button').click();
+      cy.url().should(
+        'include',
+        '/report-repair/not-eligible-communal-repairs'
+      );
     });
   });
 
-  context('When a user selects: No', ()=>{
+  context('When a user selects: No', () => {
     beforeEach(() => {
       intercept_address_search();
       cy.contains('No').click();
-      cy.get('button').click()
+      cy.get('button').click();
     });
-    it('should redirect them to postcode then address page respectively',  () => {
+    it('should redirect them to postcode then address page respectively', () => {
       cy.url().should('include', '/report-repair/postcode');
     });
   });

@@ -1,8 +1,13 @@
-import {navigateToLocation} from '../../support/helpers';
+import { navigateToLocation } from '../../support/helpers';
 
 describe('repairLocation', () => {
   before(() => {
     navigateToLocation();
+    cy.injectAxe();
+  });
+
+  it('is accessible', () => {
+    cy.checkA11yNoFail();
   });
 
   it('displays the repair location question', () => {
@@ -31,107 +36,118 @@ describe('repairLocation', () => {
     });
   });
 
-  context('When a user doesn\'t select anything', ()=>{
-    it('should show validation message',  () => {
-      cy.get('button').click().then(()=>{
-        cy.contains('Select the location of the problem you are reporting');
-      });
+  context("When a user doesn't select anything", () => {
+    it('should show validation message', () => {
+      cy.get('button')
+        .click()
+        .then(() => {
+          cy.contains('Select the location of the problem you are reporting');
+        });
     });
   });
 
-  context('When a user selects: Kitchen', ()=>{
-    beforeEach(()=>{
+  context('When a user selects: Kitchen', () => {
+    beforeEach(() => {
       navigateToLocation();
-    })
-    context('by clicking the label', ()=>{
-      it('should redirect them to kitchen repair type page',  () => {
+    });
+    context('by clicking the label', () => {
+      it('should redirect them to kitchen repair type page', () => {
         cy.contains('Kitchen').click();
-        cy.get('button').click()
+        cy.get('button').click();
         cy.url().should('include', '/report-repair/repair-kitchen-problems');
       });
     });
-    context('by checking the radio button', ()=>{
-      it('should redirect them to kitchen repair type page',  () => {
+    context('by checking the radio button', () => {
+      it('should redirect them to kitchen repair type page', () => {
         cy.get('[value="kitchen"]').check();
-        cy.get('button').click()
+        cy.get('button').click();
         cy.url().should('include', '/report-repair/repair-kitchen-problems');
       });
     });
   });
 
-  context('When a user selects: Bathroom', ()=>{
-    beforeEach(()=>{
+  context('When a user selects: Bathroom', () => {
+    beforeEach(() => {
       navigateToLocation();
-    })
-    context('by clicking the label', ()=>{
-      it('should redirect them to kitchen repair type page',  () => {
+    });
+    context('by clicking the label', () => {
+      it('should redirect them to kitchen repair type page', () => {
         cy.contains('Bathroom').click();
-        cy.get('button').click()
+        cy.get('button').click();
         cy.url().should('include', '/report-repair/repair-bathroom-problems');
       });
     });
-    context('by checking the radio button', ()=>{
-      it('should redirect them to kitchen repair type page',  () => {
+    context('by checking the radio button', () => {
+      it('should redirect them to kitchen repair type page', () => {
         cy.get('[value="bathroom"]').check();
-        cy.get('button').click()
+        cy.get('button').click();
         cy.url().should('include', '/report-repair/repair-bathroom-problems');
       });
     });
   });
 
-  context('When a user selects: Bedroom', ()=>{
-    beforeEach(()=>{
+  context('When a user selects: Bedroom', () => {
+    beforeEach(() => {
       navigateToLocation();
-    })
-    context('by clicking the label', ()=>{
-      it('should redirect them to kitchen repair type page',  () => {
+    });
+    context('by clicking the label', () => {
+      it('should redirect them to kitchen repair type page', () => {
         cy.contains('Bedroom').click();
-        cy.get('button').click()
+        cy.get('button').click();
         cy.url().should('include', '/report-repair/repair-bedroom-problems');
       });
     });
-    context('by checking the radio button', ()=>{
-      it('should redirect them to kitchen repair type page',  () => {
+    context('by checking the radio button', () => {
+      it('should redirect them to kitchen repair type page', () => {
         cy.get('[value="bedroom"]').check();
-        cy.get('button').click()
+        cy.get('button').click();
         cy.url().should('include', '/report-repair/repair-bedroom-problems');
       });
     });
   });
 
-  context('When a user selects: Living Areas', ()=>{
-    beforeEach(()=>{
+  context('When a user selects: Living Areas', () => {
+    beforeEach(() => {
       navigateToLocation();
-    })
-    context('by clicking the label', ()=>{
-      it('should redirect them to kitchen repair type page',  () => {
+    });
+    context('by clicking the label', () => {
+      it('should redirect them to kitchen repair type page', () => {
         cy.contains('Living Areas').click();
-        cy.get('button').click()
-        cy.url().should('include', '/report-repair/repair-living-areas-problems');
+        cy.get('button').click();
+        cy.url().should(
+          'include',
+          '/report-repair/repair-living-areas-problems'
+        );
       });
     });
-    context('by checking the radio button', ()=>{
-      it('should redirect them to kitchen repair type page',  () => {
+    context('by checking the radio button', () => {
+      it('should redirect them to kitchen repair type page', () => {
         cy.get('[value="livingAreas"]').check();
-        cy.get('button').click()
-        cy.url().should('include', '/report-repair/repair-living-areas-problems');
+        cy.get('button').click();
+        cy.url().should(
+          'include',
+          '/report-repair/repair-living-areas-problems'
+        );
       });
     });
   });
 
-  context('When a user selects an option', ()=>{
-    beforeEach(()=>{
+  context('When a user selects an option', () => {
+    beforeEach(() => {
       navigateToLocation();
-    })
+    });
 
-    it('should be selected when they navigate back to the page',  () => {
+    it('should be selected when they navigate back to the page', () => {
       cy.contains('Kitchen').click();
       cy.get('button').click();
-      cy.get('[data-cy=repair-problem]', {timeout: 10000}).then(() => {
-        cy.contains('Back').click({force: true});
+      cy.get('[data-cy=repair-problem]', { timeout: 10000 }).then(() => {
+        cy.contains('Back').click({ force: true });
       });
-      cy.url().should('eq', 'http://localhost:3000/report-repair/repair-location');
-      cy.get('[value="kitchen"]').should('be.checked')
+      cy.url().should(
+        'eq',
+        'http://localhost:3000/report-repair/repair-location'
+      );
+      cy.get('[value="kitchen"]').should('be.checked');
     });
   });
 });
