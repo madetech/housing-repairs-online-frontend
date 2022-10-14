@@ -27,5 +27,14 @@ import 'cypress-file-upload';
 import { terminalLog } from './helpers';
 
 Cypress.Commands.add('checkA11yNoFail', () => {
-  cy.checkA11y(null, null, terminalLog, true);
+  cy.checkA11y(
+    null,
+    {
+      // This is disabled as the back link exists outside of the main content, as prescribed by GDS
+      rules: { region: { enabled: false } },
+    },
+
+    terminalLog,
+    false
+  );
 });

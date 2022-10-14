@@ -31,7 +31,10 @@ const CharacterCount = ({
       <div
         className={errorText ? 'govuk-form-group--error' : 'govuk-form-group'}
       >
-        <label className="govuk-label govuk-label--m" htmlFor="description">
+        <label
+          className="govuk-label govuk-label--m"
+          htmlFor={repairDescriptionTextInputId}
+        >
           Description of problem
         </label>
         <span id={'description-error'} className="govuk-error-message">
@@ -202,8 +205,11 @@ const RepairDescription = ({ handleChange, values }) => {
         <div
           className={error.img ? 'govuk-form-group--error' : 'govuk-form-group'}
         >
-          <h3 className="govuk-heading-m">Upload a photo (optional)</h3>
-          <label className="govuk-label" htmlFor="upload-a-photo">
+          <h2 className="govuk-heading-m">Upload a photo (optional)</h2>
+          <label
+            className="govuk-label"
+            htmlFor={repairDescriptionUploadPhotoInputId}
+          >
             Upload a file
           </label>
           <span id="upload-a-photo-error" className="govuk-error-message">
