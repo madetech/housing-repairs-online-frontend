@@ -96,9 +96,6 @@ const Address = ({ handleChange, values }) => {
                 : 'govuk-form-group'
             }
           >
-            <label className="govuk-label" htmlFor="select-address-dropdown">
-              {title}
-            </label>
             <span id={'address-error'} className="govuk-error-message">
               {state.error.msg}
             </span>
@@ -107,8 +104,8 @@ const Address = ({ handleChange, values }) => {
                 name: 'address',
                 onChange: onChange,
               }}
-              meta={state.error}
               id={'select-address-dropdown'}
+              label={title}
             >
               <option value="null">{found_addresses}</option>
               {addresses?.map((address, i) => (
