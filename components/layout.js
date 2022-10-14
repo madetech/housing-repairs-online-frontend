@@ -5,7 +5,7 @@ import Header from './header';
 import SkipLink from './skipLink';
 import Footer from './footer';
 
-export const Layout = ({ children, title = 'dunno' }) => {
+export const Layout = ({ children, title }) => {
   const focusRef = React.useRef(null);
   const router = useRouter();
   const currentPath = router.query.route;
