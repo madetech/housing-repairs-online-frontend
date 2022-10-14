@@ -131,9 +131,9 @@ const RepairAvailability = ({ handleChange, values, fromDate }) => {
               A responsible adult must be at the property for all of the repair
               appointment time slot and during the repair appointment.
             </p>
-            <h3 className="govuk-heading-m">
+            <h2 className="govuk-heading-m">
               Please select a suitable time slot
-            </h3>
+            </h2>
             <hr />
             <div>
               {error && (
