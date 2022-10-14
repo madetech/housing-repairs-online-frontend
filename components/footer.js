@@ -21,7 +21,6 @@ const Footer = () => (
 
           <svg
             aria-hidden="true"
-            focusable="false"
             className="govuk-footer__licence-logo"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 483.2 195.7"
