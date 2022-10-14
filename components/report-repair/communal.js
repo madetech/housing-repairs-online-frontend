@@ -7,7 +7,8 @@ import { serviceName } from '../../helpers/constants';
 const Communal = ({ handleChange, values }) => {
   const name = 'communal';
   const title = 'Is the problem in a communal area?';
-  const hintText = '';
+  const hintText =
+    'A communal area is a space available to use by more than one household';
   const options = [
     { value: 'yes', title: 'Yes' },
     { value: 'no', title: 'No' },

@@ -29,6 +29,7 @@ const ContactPerson = ({ handleChange, values }) => {
           onKeyPress={phoneOnKeyPress}
           emptyInputErrorMessage={'Enter a contact number'}
           widthClassName="govuk-input--width-20"
+          label="Contact number"
         />
       </div>
     </div>

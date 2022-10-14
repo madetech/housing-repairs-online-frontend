@@ -55,11 +55,13 @@ const ContactDetails = ({ handleChange, values }) => {
       <div data-testid="no-applicable-contact-options-info">
         Please call 01522 873333 to report your repair during the office hours
         below
-        <li>Monday 9am - 5pm</li>
-        <li>Tuesday 9am - 5pm</li>
-        <li>Wednesday 9am - 4.30pm</li>
-        <li>Thursday 10am - 5pm</li>
-        <li>Friday 9am - 4.30pm</li>
+        <ul>
+          <li>Monday 9am - 5pm</li>
+          <li>Tuesday 9am - 5pm</li>
+          <li>Wednesday 9am - 4.30pm</li>
+          <li>Thursday 10am - 5pm</li>
+          <li>Friday 9am - 4.30pm</li>
+        </ul>
       </div>
     </Details>
   );

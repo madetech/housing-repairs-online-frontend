@@ -13,14 +13,14 @@ describe('repair availability', () => {
       cy.injectAxe();
     });
 
-    it('is accessible', () => {
-      cy.checkA11yNoFail();
-    });
-
     it('api is called without from date ', () => {
       cy.wait('@availability')
         .its('request.url')
         .should('not.include', 'fromDate=');
+    });
+
+    it('is accessible', () => {
+      cy.checkA11yNoFail();
     });
 
     it('displays the question', () => {

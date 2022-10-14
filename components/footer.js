@@ -13,7 +13,7 @@ const Footer = () => (
                   className="govuk-footer__link"
                   href="https://www.redbridge.gov.uk/accessibility-statement/"
                 >
-                  Accessibility
+                  Accessibility Statement
                 </a>
               </li>
             </ul>
