@@ -1,59 +1,100 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import SummaryList from '../summaryList';
 import Button from '../button';
-import {serviceName} from '../../helpers/constants';
+import { serviceName } from '../../helpers/constants';
 
-const Summary = ({values, getNextStepFromCondition, submit, goToStep}) => {
-  const title = 'Request summary'
-  let [repairProblemLink, setRepairProblemLink] = useState('')
-  let [repairProblemBestDescriptionLink, setRepairProblemBestDescriptionLink] = useState('')
+const Summary = ({ values, getNextStepFromCondition, submit, goToStep }) => {
+  const title = 'Request summary';
+  let [repairProblemLink, setRepairProblemLink] = useState('');
+  let [repairProblemBestDescriptionLink, setRepairProblemBestDescriptionLink] =
+    useState('');
 
-  useEffect(()=>{
+  useEffect(() => {
     setRepairProblemLink(getNextStepFromCondition(values.repairLocation.value));
-    setRepairProblemBestDescriptionLink(getNextStepFromCondition(values.repairProblem.value));
-  }, [values])
+    setRepairProblemBestDescriptionLink(
+      getNextStepFromCondition(values.repairProblem.value)
+    );
+  }, [values]);
 
   const personalDetailsSummary = [
-    {pageName:'Repair address', value: values.address?.display, link: 'postcode'},
-    {pageName:'Appointment contact number', value: values.contactPersonNumber, link: 'contact-person'},
-  ]
+    {
+      pageName: 'Repair address',
+      value: values.address?.display,
+      link: 'postcode',
+    },
+    {
+      pageName: 'Appointment contact number',
+      value: values.contactPersonNumber,
+      link: 'contact-person',
+    },
+  ];
   const repairDetailsSummary = [
-    { pageName:'Where is the problem?', value: values.repairLocation?.display, link:'repair-location'},
-    { pageName:'What is the problem?', value: values.repairProblem?.display, link: repairProblemLink},
-    { pageName:'What best describes the problem?', value: values['repairProblemBestDescription']?.display, link: repairProblemBestDescriptionLink},
-    { pageName:'Description', value: values.description?.text, link:'repair-description'}
-  ]
+    {
+      pageName: 'Where is the problem?',
+      value: values.repairLocation?.display,
+      link: 'repair-location',
+    },
+    {
+      pageName: 'What is the problem?',
+      value: values.repairProblem?.display,
+      link: repairProblemLink,
+    },
+    {
+      pageName: 'What best describes the problem?',
+      value: values['repairProblemBestDescription']?.display,
+      link: repairProblemBestDescriptionLink,
+    },
+    {
+      pageName: 'Description',
+      value: values.description?.text,
+      link: 'repair-description',
+    },
+  ];
   const appointmentDetailsSummary = [
-    { pageName:'Date', value: values.availability?.display, link:'repair-availability'},
-    { pageName:'Confirmation contact details', value: values.contactDetails?.value, link: 'contact-details'},
-  ]
+    {
+      pageName: 'Date',
+      value: values.availability?.display,
+      link: 'repair-availability',
+    },
+    {
+      pageName: 'Confirmation contact details',
+      value: values.contactDetails?.value,
+      link: 'contact-details',
+    },
+  ];
 
-  return(
+  return (
     <>
-      <header>
-        <title>{title} - {serviceName}</title>
-      </header>
-      { (
+      {
         <div data-cy="summary">
           <div className="govuk-grid-row govuk-body-m">
             <div className="govuk-grid-column-two-thirds">
-              <h1 className='govuk-heading-xl'>Request summary</h1>
+              <h1 className="govuk-heading-xl">Request summary</h1>
               <h2 className="govuk-heading-m">Personal details</h2>
-              <SummaryList goToStep={goToStep} summary={personalDetailsSummary}/>
+              <SummaryList
+                goToStep={goToStep}
+                summary={personalDetailsSummary}
+              />
               <h2 className="govuk-heading-m">Repair details</h2>
-              <SummaryList goToStep={goToStep} summary={repairDetailsSummary}/>
+              <SummaryList goToStep={goToStep} summary={repairDetailsSummary} />
               <h2 className="govuk-heading-m">Appointment details</h2>
-              <SummaryList goToStep={goToStep} summary={appointmentDetailsSummary}/>
+              <SummaryList
+                goToStep={goToStep}
+                summary={appointmentDetailsSummary}
+              />
             </div>
           </div>
           <Button
             preventDoubleClick={true}
-            onClick={()=>{
+            onClick={() => {
               submit(values);
-            }}>Continue</Button>
+            }}
+          >
+            Continue
+          </Button>
         </div>
-      )}
+      }
     </>
-  )
-}
-export default Summary
+  );
+};
+export default Summary;

@@ -627,7 +627,7 @@ function ReportRepair() {
   };
 
   return (
-    <Layout title={getTitle(currentPath)}>
+    <Layout title={getTitle(currentPath, !!formError)}>
       {showBack && (
         <BackLink href="#" onClick={prevStep}>
           Back
@@ -643,95 +643,105 @@ function ReportRepair() {
 
 // Just copying the function from inside the component to get this working
 // without making any mistakes, this really needs a large refactor
-function getTitle(route) {
+//
+// These title are repeated in each of the components but because of the lack
+// of Typescript and the way that this has been built, it's too difficult to
+// abstract this properly without making a mistake in the time that we have.
+function getTitle(route, isError) {
   let title;
-  switch (route) {
-    case 'summary':
-      title = 'Request summary';
-      break;
-    case 'confirmation':
-      title = 'Repair request complete';
-      break;
-    case 'contact-person':
-      title = 'What number should we call, if we need to get in touch?';
-      break;
-    case 'contact-details':
-      title = 'How should we confirm the appointment?';
-      break;
-    case 'address':
-      title = 'Select an address';
-      break;
-    case 'communal':
-      title = 'Is the problem in a communal area?';
-      break;
-    case 'emergency-repair':
-      title = 'Your repair could be an emergency';
-      break;
-    case 'not-eligible':
-      title = 'The council may not be responsible for repairs at this property';
-      break;
-    case 'not-eligible-non-emergency':
-      title = 'The council may not be responsible for repairs at this property';
-      break;
-    case 'not-eligible-communal-repairs':
-      title =
-        'For communal repairs, please call us during the office hours below';
-      break;
-    case 'unable-to-book':
-      title = 'Your repair could not be booked';
-      break;
-    case 'postcode':
-      title = 'What is the property postcode?';
-      break;
-    case 'priority-list':
-      title = 'What is the problem you are reporting?';
-      break;
-    case 'repair-location':
-      title = 'Where is the problem?';
-      break;
-    case 'repair-kitchen-problems' ||
-      'repair-bathroom-problems' ||
-      'repair-bedroom-problems' ||
-      'repair-living-areas-problems' ||
-      'repair-outside-problems':
-      title = 'What is the problem?';
-      break;
-    case 'repair-stairs-problems' ||
-      'repair-toilet-problems' ||
-      'repair-garage-problems' ||
-      'outside-roof-problems' ||
-      'gates-and-pathways-problems' ||
-      'outside-door-problems' ||
-      'repair-window-problems' ||
-      'repair-shower-problems' ||
-      'repair-door-problems' ||
-      'repair-living-area-door-problems' ||
-      'repair-bedroom-door-problems' ||
-      'repair-bedroom-lighting-problems' ||
-      'bathroom-damp-mould-problems' ||
-      'repair-living-areas-lighting-problems' ||
-      'repair-bathroom-electric-problems' ||
-      'repair-kitchen-cupboard-problems' ||
-      'kitchen-electrical-problems' ||
-      'bath-problems' ||
-      'kitchen-door-problems' ||
-      'wall-floor-ceiling-problems' ||
-      'sink-problems' ||
-      'damp-mould-problems':
-      title = 'What best describes the problem?';
-      break;
-    case 'smell-gas':
-      title = 'If you smell gas';
-      break;
-    case 'repair-description':
-      title = 'Describe your problem in more detail';
-      break;
-    case 'repair-availability':
-      title = 'When are you available?';
-      break;
-    default:
-      title = 'Not found';
-      break;
+  if (isError) {
+    title = 'An error occurred while processing your request';
+  } else {
+    switch (route) {
+      case 'summary':
+        title = 'Request summary';
+        break;
+      case 'confirmation':
+        title = 'Repair request complete';
+        break;
+      case 'contact-person':
+        title = 'What number should we call, if we need to get in touch?';
+        break;
+      case 'contact-details':
+        title = 'How should we confirm the appointment?';
+        break;
+      case 'address':
+        title = 'Select an address';
+        break;
+      case 'communal':
+        title = 'Is the problem in a communal area?';
+        break;
+      case 'emergency-repair':
+        title = 'Your repair could be an emergency';
+        break;
+      case 'not-eligible':
+        title =
+          'The council may not be responsible for repairs at this property';
+        break;
+      case 'not-eligible-non-emergency':
+        title =
+          'The council may not be responsible for repairs at this property';
+        break;
+      case 'not-eligible-communal-repairs':
+        title =
+          'For communal repairs, please call us during the office hours below';
+        break;
+      case 'unable-to-book':
+        title = 'Your repair could not be booked';
+        break;
+      case 'postcode':
+        title = 'What is the property postcode?';
+        break;
+      case 'priority-list':
+        title = 'What is the problem you are reporting?';
+        break;
+      case 'repair-location':
+        title = 'Where is the problem?';
+        break;
+      case 'repair-kitchen-problems' ||
+        'repair-bathroom-problems' ||
+        'repair-bedroom-problems' ||
+        'repair-living-areas-problems' ||
+        'repair-outside-problems':
+        title = 'What is the problem?';
+        break;
+      case 'repair-stairs-problems' ||
+        'repair-toilet-problems' ||
+        'repair-garage-problems' ||
+        'outside-roof-problems' ||
+        'gates-and-pathways-problems' ||
+        'outside-door-problems' ||
+        'repair-window-problems' ||
+        'repair-shower-problems' ||
+        'repair-door-problems' ||
+        'repair-living-area-door-problems' ||
+        'repair-bedroom-door-problems' ||
+        'repair-bedroom-lighting-problems' ||
+        'bathroom-damp-mould-problems' ||
+        'repair-living-areas-lighting-problems' ||
+        'repair-bathroom-electric-problems' ||
+        'repair-kitchen-cupboard-problems' ||
+        'kitchen-electrical-problems' ||
+        'bath-problems' ||
+        'kitchen-door-problems' ||
+        'wall-floor-ceiling-problems' ||
+        'sink-problems' ||
+        'damp-mould-problems':
+        title = 'What best describes the problem?';
+        break;
+      case 'smell-gas':
+        title = 'If you smell gas';
+        break;
+      case 'repair-description':
+        title = 'Describe your problem in more detail';
+        break;
+      case 'repair-availability':
+        title = 'When are you available?';
+        break;
+      default:
+        title = 'Not found';
+        break;
+    }
   }
 
   return `${title} - ${serviceName}`;
