@@ -37,7 +37,8 @@ function intercept_save_repair(repairId) {
 
   cy.intercept('POST', `${api_url}/repair`, {
     statusCode: 201,
-    body: repairId,
+    headers: {'Content-Type': 'application/json'},
+    body: `"${repairId}"`,
   }).as('saveRepair');
 }
 
