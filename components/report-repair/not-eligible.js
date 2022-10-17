@@ -16,13 +16,15 @@ const NotEligible = () => {
           someone’s health or safety or cause serious damage and destruction to
           property.
         </p>
-        <ContactNumbers />
+        <ContactNumbers/>
         <Details summary="Opening times" testid="opening-times">
-          <li>Monday 9am - 5pm</li>
-          <li>Tuesday 9am - 5pm</li>
-          <li>Wednesday 9am - 4.30pm</li>
-          <li>Thursday 10am - 5pm</li>
-          <li>Friday 9am - 4.30pm</li>
+          <ul>
+            <li>Monday 8am - 5pm</li>
+            <li>Tuesday 8am - 5pm</li>
+            <li>Wednesday 8am - 5pm</li>
+            <li>Thursday 8am - 5pm</li>
+            <li>Friday 8am - 5pm</li>
+          </ul>
         </Details>
         <p>
           Please do not call the emergency out of hours number if the repair is
@@ -37,7 +39,8 @@ const NotEligible = () => {
         <hr></hr>
         <h3>Non-emergency requests</h3>
         <p>
-          If you think the council is responsible for your property, please call{' '}
+          If you think the council is responsible for your property, please
+          call{' '}
           <strong>01522 873333</strong>.
         </p>
         <p>

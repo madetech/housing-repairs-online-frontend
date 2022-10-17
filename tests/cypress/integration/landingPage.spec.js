@@ -27,7 +27,7 @@ describe('App', () => {
     cy.get('[data-testid=landing-page-emergency-warning] a').should(
       'have.attr',
       'href',
-      'https://www.lincoln.gov.uk/contact-1/get-touch'
+      'https://www.redbridge.gov.uk/housing/council-tenants-and-leaseholders/repairs-and-improvements/'
     );
   });
 

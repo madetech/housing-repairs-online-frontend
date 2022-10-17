@@ -9,11 +9,11 @@ const NotEligibleCommunalRepairs = () => {
       <div className="govuk-grid-column-two-thirds">
         <h1 className="govuk-heading-xl">{title}</h1>
         <ul>
-          <li> Monday 9am - 5pm</li>
-          <li> Tuesday 9am - 5pm</li>
-          <li> Wednesday 10am - 4.30pm</li>
-          <li> Thursday 9am - 5pm</li>
-          <li> Friday 9am - 4.30pm</li>
+          <li>Monday 8am - 5pm</li>
+          <li>Tuesday 8am - 5pm</li>
+          <li>Wednesday 8am - 5pm</li>
+          <li>Thursday 8am - 5pm</li>
+          <li>Friday 8am - 5pm</li>
         </ul>
         <p>
           If you think the council is responsible for your property, please
