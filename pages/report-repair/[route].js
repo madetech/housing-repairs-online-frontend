@@ -92,8 +92,8 @@ function ReportRepair() {
         setShowBack(false);
         router.push('confirmation');
         setConfirmation(values.contactDetails.value);
-        return response.text().then((text) => {
-          setRequestId(text);
+        return response.json().then((json) => {
+          setRequestId(json);
         });
       }
       window.history.scrollRestoration = 'manual';
