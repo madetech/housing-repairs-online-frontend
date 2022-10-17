@@ -23,7 +23,7 @@ export default function Home() {
             <p>
               If you <strong>own the property</strong>, please see our{' '}
               <TextLink
-                href="https://www.lincoln.gov.uk/council-housing/council-leaseholders/3"
+                href="https://www.redbridge.gov.uk/housing/leaseholder-information-and-services/"
                 target={'_blank'}
               >
                 leaseholder contact details page{' '}
@@ -34,7 +34,7 @@ export default function Home() {
               To request a repair for a <strong>communal area</strong>, please
               see customer services contact{' '}
               <TextLink
-                href="https://www.lincoln.gov.uk/contact-1/get-touch"
+                href="https://www.redbridge.gov.uk/housing/council-tenants-and-leaseholders/repairs-and-improvements/"
                 target={'_blank'}
               >
                 details page
@@ -68,7 +68,7 @@ export default function Home() {
             <WarningText testid="landing-page-emergency-warning" className="">
               For other emergency repairs, please see customer services{' '}
               <TextLink
-                href="https://www.lincoln.gov.uk/contact-1/get-touch"
+                href="https://www.redbridge.gov.uk/housing/council-tenants-and-leaseholders/repairs-and-improvements/"
                 target={'_blank'}
               >
                 contact details page
@@ -88,11 +88,11 @@ export default function Home() {
                 <ContactNumbers />
                 <p>Opening times:</p>
                 <ul>
-                  <li>Monday 9am - 5pm</li>
-                  <li>Tuesday 9am - 5pm</li>
-                  <li>Wednesday 10am - 4.30pm</li>
-                  <li>Thursday 9am - 5pm</li>
-                  <li>Friday 9am - 4.30pm</li>
+                  <li>Monday 8am - 5pm</li>
+                  <li>Tuesday 8am - 5pm</li>
+                  <li>Wednesday 8am - 5pm</li>
+                  <li>Thursday 8am - 5pm</li>
+                  <li>Friday 8am - 5pm</li>
                 </ul>
               </div>
             </Details>
