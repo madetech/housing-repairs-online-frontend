@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import Button from '../button';
-import imageToBase64 from 'image-to-base64/browser';
 import { serviceName } from '../../helpers/constants';
 import ErrorSummary from '../errorSummary';
 
@@ -74,22 +73,14 @@ CharacterCount.propTypes = {
 };
 
 const RepairDescription = ({ handleChange, values }) => {
-  const [error, setError] = useState({ text: undefined, img: undefined });
+  const [error, setError] = useState({ text: undefined });
   const [activeError, setActiveError] = useState(false);
-  const [selectedFile, setSelectedFile] = useState();
-  const [selectedImage, setSelectedImage] = useState(values.description?.photo);
-  const [fileExtension, setFileExtension] = useState(
-    values.description?.fileExtension
-  );
-  const [base64img, setBase64img] = useState(values.description?.base64img);
   const [text, setText] = useState(values.description?.text);
   const [textAreaCount, setTextAreaCount] = React.useState(0);
   const textLimit = 255;
   const title = 'Describe your problem in more detail';
   const pageTitle = `${title} - ${serviceName}`;
   const repairDescriptionTextInputId = 'repair-description-text-input';
-  const repairDescriptionUploadPhotoInputId =
-    'repair-description-upload-a-photo-input';
 
   const TextChange = (e) => {
     setText(e.target.value);
@@ -97,56 +88,21 @@ const RepairDescription = ({ handleChange, values }) => {
     setActiveError(false);
   };
 
-  const saveFileAsImage = (file) => {
-    const image = URL.createObjectURL(file);
-    imageToBase64(image)
-      .then((response) => {
-        setBase64img(response);
-        setSelectedImage(image);
-        setFileExtension(file.name.split('.').pop());
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  const PhotoChange = (event) => {
-    const uploadedFile = event.target.files[0];
-    setActiveError(false);
-    setSelectedFile(uploadedFile);
-    saveFileAsImage(uploadedFile);
-  };
-
   const Continue = () => {
     let textError = undefined;
-    let imageError = undefined;
     setActiveError(true);
-    if (selectedFile) {
-      if (selectedFile.type !== 'image/jpeg') {
-        imageError = 'The selected file must be a JPG';
-      }
-      let size = (selectedFile.size / 1024 / 1024).toFixed(2);
-      if (size > 10) {
-        imageError = `The selected file must be smaller than 10MB. Your file size is ${size}MB`;
-      }
-    }
     if (textAreaCount > textLimit) {
       textError = `Enter a description of the problem using ${textLimit} characters or less`;
     }
     if (!text) {
       textError = 'Enter a description of the problem';
     }
-    if (!textError && !imageError) {
+    if (!textError) {
       return handleChange('description', {
-        photo: selectedImage,
         text: text,
-        fileExtension: fileExtension,
-        base64img: base64img,
       });
     } else {
-      setSelectedImage(null);
-      setSelectedFile(null);
-      return setError({ text: textError, img: imageError });
+      return setError({ text: textError });
     }
   };
 
@@ -157,18 +113,13 @@ const RepairDescription = ({ handleChange, values }) => {
         text: error.text,
         location: `#${repairDescriptionTextInputId}`,
       });
-    error.img &&
-      errorSummaryTextAndLocation.push({
-        text: error.img,
-        location: `#${repairDescriptionUploadPhotoInputId}`,
-      });
     return errorSummaryTextAndLocation;
   };
 
   return (
     <div className="govuk-grid-row" data-cy="repair-description">
       <div className="govuk-grid-column-two-thirds">
-        {(error.text || error.img) && (
+        {error.text && (
           <ErrorSummary
             active={activeError}
             errorSummaryTextAndLocation={getErrorSummaryTextAndLocation()}
@@ -202,48 +153,6 @@ const RepairDescription = ({ handleChange, values }) => {
             textLimit={textLimit}
           />
         </form>
-        <div
-          className={error.img ? 'govuk-form-group--error' : 'govuk-form-group'}
-        >
-          <h2 className="govuk-heading-m">Upload a photo (optional)</h2>
-          <label
-            className="govuk-label"
-            htmlFor={repairDescriptionUploadPhotoInputId}
-          >
-            Upload a file
-          </label>
-          <span id="upload-a-photo-error" className="govuk-error-message">
-            {error.img}
-          </span>
-          {selectedImage ? (
-            <table>
-              <tbody>
-                <tr>
-                  <td style={{ textAlign: 'center' }}>
-                    <img alt="not found" width="200px" src={selectedImage} />
-                  </td>
-                  <td style={{ textAlign: 'center' }}>
-                    <button
-                      className="govuk-button govuk-button--warning"
-                      onClick={() => setSelectedImage(null)}
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          ) : (
-            <input
-              className="govuk-file-upload govuk-file-upload--error"
-              id={repairDescriptionUploadPhotoInputId}
-              name="upload-a-photo"
-              type="file"
-              aria-describedby="upload-a-photo-error"
-              onChange={PhotoChange}
-            />
-          )}
-        </div>
         <br />
         <Button onClick={Continue}>Continue</Button>
       </div>
