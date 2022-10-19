@@ -83,6 +83,7 @@ const RepairAvailability = ({ handleChange, values, fromDate }) => {
         startDateTime: d.startTime,
         endDateTime: d.endTime,
         display: `${dateString} ${timeStringSummary}`,
+        id: d.id,
       };
     });
   }
@@ -93,6 +94,7 @@ const RepairAvailability = ({ handleChange, values, fromDate }) => {
     if (value) {
       let selectedAppointmentSlot = availabilityValues[value];
       return handleChange(fieldName, {
+        id: selectedAppointmentSlot.id,
         startDateTime: selectedAppointmentSlot.startDateTime,
         endDateTime: selectedAppointmentSlot.endDateTime,
         display: selectedAppointmentSlot.display,
