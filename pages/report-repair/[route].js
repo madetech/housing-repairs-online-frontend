@@ -680,7 +680,7 @@ function getTitle(route, isError) {
         break;
       case 'not-eligible-non-emergency':
         title =
-          'The council may not be responsible for repairs at this property';
+          'The council may not be responsible for this repair at this property';
         break;
       case 'not-eligible-communal-repairs':
         title =
