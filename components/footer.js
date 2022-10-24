@@ -13,7 +13,31 @@ const Footer = () => (
                   className="govuk-footer__link"
                   href="https://www.redbridge.gov.uk/accessibility-statement/"
                 >
-                  Accessibility Statement
+                  Accessibility
+                </a>
+              </li>
+              <li className="govuk-footer__inline-list-item">
+                <a
+                  className="govuk-footer__link"
+                  href="https://www.redbridge.gov.uk/have-your-say/"
+                >
+                  Feedback
+                </a>
+              </li>
+              <li className="govuk-footer__inline-list-item">
+                <a
+                  className="govuk-footer__link"
+                  href="https://www.redbridge.gov.uk/blog/redbridge-leaders-blog/"
+                >
+                  Leader's blog
+                </a>
+              </li>
+              <li className="govuk-footer__inline-list-item">
+                <a
+                  className="govuk-footer__link"
+                  href="https://my.redbridge.gov.uk/map"
+                >
+                  Maps
                 </a>
               </li>
             </ul>
