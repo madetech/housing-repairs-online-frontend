@@ -1,0 +1,15 @@
+$red: #bc0067;
+$grey: #484647;
+
+.govuk-header,
+.govuk-footer {
+  background-color: $grey;
+  color: white;
+  .govuk-footer__link {
+    color: white;
+  }
+}
+
+.govuk-header__container {
+  border-color: $red;
+}
