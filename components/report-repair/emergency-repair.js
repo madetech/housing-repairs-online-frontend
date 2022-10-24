@@ -1,5 +1,6 @@
 import React from 'react';
 import ContactNumbers from '../contactNumbers';
+import { InsetText } from '../insetText';
 import { serviceName } from '../../helpers/constants';
 
 const EmergencyRepair = () => {
@@ -15,19 +16,17 @@ const EmergencyRepair = () => {
           someone’s health or safety or cause serious damage and destruction to
           property.
         </p>
-        <ContactNumbers />
-        <p>Opening times:</p>
-        <ul>
-          <li>Monday 8am - 5pm</li>
-          <li>Tuesday 8am - 5pm</li>
-          <li>Wednesday 8am - 5pm</li>
-          <li>Thursday 8am - 5pm</li>
-          <li>Friday 8am - 5pm</li>
+        <h2 className="govuk-heading-m">Repairs contact information</h2>
+        <ul class="govuk-list">
+          <li>Telephone: 0208 498 8000</li>
+          <li>Freephone: 0800 393994</li>
+          <li>Monday to Friday, 8am to 5pm (except public holidays)</li>
+          <InsetText>
+            <li>
+              Please do not call us out of hours if the repair is not urgent.
+            </li>
+          </InsetText>
         </ul>
-        <p>
-          Please do not call the emergency out of hours number if the repair is
-          not urgent.
-        </p>
         <p>
           If you can smell gas, you must report it immediately to the Gas
           Emergency Service <strong>0800 111 999</strong> or via textphone
