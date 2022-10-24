@@ -85,14 +85,15 @@ export default function Home() {
                   to someone’s health or safety or cause serious damage and
                   destruction to property.
                 </p>
-                <ContactNumbers />
-                <p>Opening times:</p>
-                <ul>
-                  <li>Monday 8am - 5pm</li>
-                  <li>Tuesday 8am - 5pm</li>
-                  <li>Wednesday 8am - 5pm</li>
-                  <li>Thursday 8am - 5pm</li>
-                  <li>Friday 8am - 5pm</li>
+                <h2 className="govuk-heading-s">Repairs contact information</h2>
+                <ul class="govuk-list">
+                  <li>Telephone: 0208 498 8000</li>
+                  <li>Freephone: 0800 393994</li>
+                  <li>Monday to Friday, 8am to 5pm (except public holidays)</li>
+                  <li>
+                    Please do not call us out of hours if the repair is not
+                    urgent.
+                  </li>
                 </ul>
               </div>
             </Details>

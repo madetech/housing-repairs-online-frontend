@@ -1,5 +1,4 @@
 import React from 'react';
-import { InsetText } from '../insetText';
 
 const NotEligibleNonEmergency = () => {
   const title =
@@ -16,7 +15,7 @@ const NotEligibleNonEmergency = () => {
           If you are a leaseholder you can still report communal repairs using
           the details below.
         </p>
-        <h2 className="govuk-heading-m">Repairs contact information</h2>
+        <h2 className="govuk-heading-s">Repairs contact information</h2>
         <ul class="govuk-list">
           <li>Telephone: 0208 498 8000</li>
           <li>Freephone: 0800 393994</li>

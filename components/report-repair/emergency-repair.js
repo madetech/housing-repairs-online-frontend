@@ -1,7 +1,4 @@
 import React from 'react';
-import ContactNumbers from '../contactNumbers';
-import { InsetText } from '../insetText';
-import { serviceName } from '../../helpers/constants';
 
 const EmergencyRepair = () => {
   const title = 'Your repair could be an emergency';
@@ -10,22 +7,20 @@ const EmergencyRepair = () => {
     <div className="govuk-grid-row govuk-body-m">
       <div className="govuk-grid-column-two-thirds">
         <h1 className="govuk-heading-xl">{title}</h1>
-        <h3 className="govuk-heading-m">Emergencies</h3>
+        <h2 className="govuk-heading-m">Emergencies</h2>
         <p>
           An emergency is defined as something which could cause danger to
           someone’s health or safety or cause serious damage and destruction to
           property.
         </p>
-        <h2 className="govuk-heading-m">Repairs contact information</h2>
+        <h3 className="govuk-heading-s">Repairs contact information</h3>
         <ul class="govuk-list">
           <li>Telephone: 0208 498 8000</li>
           <li>Freephone: 0800 393994</li>
           <li>Monday to Friday, 8am to 5pm (except public holidays)</li>
-          <InsetText>
-            <li>
-              Please do not call us out of hours if the repair is not urgent.
-            </li>
-          </InsetText>
+          <li className="govuk-inset-text">
+            Please do not call us out of hours if the repair is not urgent.
+          </li>
         </ul>
         <p>
           If you can smell gas, you must report it immediately to the Gas

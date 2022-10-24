@@ -24,14 +24,13 @@ const Address = ({ handleChange, values }) => {
 
   const title = 'Select an address';
   const pageTitle = `${title} - ${serviceName}`;
-  const addressDropdownInputName = 'address';
 
   if (error)
     return (
       <Error
         name="summary"
         heading="An error occurred while looking for your address"
-        body="Please try again later or call 01522 873333 to complete your repair request"
+        body="Please try again later or call 0208 498 8000 or 0800 393994 to complete your repair request"
       />
     );
 

@@ -101,7 +101,7 @@ function ReportRepair() {
         <Error
           name="summary"
           heading="An error occurred while processing your request"
-          body="Please call 01522 873333 to complete your repair request"
+          body="Please call 0208 498 8000 or 0800 393994 to complete your repair request"
         />
       );
     });

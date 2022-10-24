@@ -7,7 +7,7 @@ const UnableToBook = () => {
         <h1 className="govuk-heading-xl">
           You need to contact us to report this repair
         </h1>
-        <h2 className="govuk-heading-m">Repairs contact information</h2>
+        <h2 className="govuk-heading-s">Repairs contact information</h2>
         <ul class="govuk-list">
           <li>Telephone: 0208 498 8000</li>
           <li>Freephone: 0800 393994</li>
