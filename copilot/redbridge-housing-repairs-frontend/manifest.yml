@@ -43,9 +43,10 @@ environments:
       REPAIRS_API_IDENTIFIER: FOO
     http:
       alias: housing-repairs.development.saas.by.madetech.com
-#  test:
-#    count: 2               # Number of tasks to run for the "test" environment.
-#    deployment:            # The deployment strategy for the "test" environment.
-#       rolling: 'recreate' # Stops existing tasks before new ones are started for faster deployments.
-#    production:
-#      exec: false
+  production:
+    exec: false
+    variables:
+      REPAIRS_API_BASE_URL: http://redbridge-housing-repairs-api.production.saas.local
+      REPAIRS_API_IDENTIFIER: FOO
+    http:
+      alias: redbridge-housing-repairs.production.saas.by.madetech.com
