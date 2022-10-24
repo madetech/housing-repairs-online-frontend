@@ -4,7 +4,6 @@ import TextLink from '../components/textLink';
 import { Layout } from '../components/layout';
 import React from 'react';
 import Link from 'next/link';
-import ContactNumbers from '../components/contactNumbers';
 import { serviceName } from '../helpers/constants';
 
 export default function Home() {
@@ -86,7 +85,7 @@ export default function Home() {
                   destruction to property.
                 </p>
                 <h2 className="govuk-heading-s">Repairs contact information</h2>
-                <ul class="govuk-list">
+                <ul className="govuk-list">
                   <li>Telephone: 0208 498 8000</li>
                   <li>Freephone: 0800 393994</li>
                   <li>Monday to Friday, 8am to 5pm (except public holidays)</li>

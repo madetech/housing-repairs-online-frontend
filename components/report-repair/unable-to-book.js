@@ -8,7 +8,7 @@ const UnableToBook = () => {
           You need to contact us to report this repair
         </h1>
         <h2 className="govuk-heading-s">Repairs contact information</h2>
-        <ul class="govuk-list">
+        <ul className="govuk-list">
           <li>Telephone: 0208 498 8000</li>
           <li>Freephone: 0800 393994</li>
           <li>Monday to Friday, 8am to 5pm (except public holidays)</li>

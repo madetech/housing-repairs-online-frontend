@@ -86,7 +86,7 @@ describe('repair availability', () => {
 
     it('displays unable to book page', () => {
       cy.wait('@availability');
-      cy.contains('Your repair could not be booked');
+      cy.contains('You need to contact us to report this repair');
     });
   });
 
