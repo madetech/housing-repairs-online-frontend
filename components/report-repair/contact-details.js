@@ -7,7 +7,6 @@ import {
 } from '../../helpers/validators';
 import RadioFieldSet from '../radioFieldSet';
 import Details from '../details';
-import { serviceName } from '../../helpers/constants';
 
 const ContactDetails = ({ handleChange, values }) => {
   const title = 'How should we confirm the appointment?';
@@ -53,14 +52,12 @@ const ContactDetails = ({ handleChange, values }) => {
       testid="no-applicable-contact-options-prompt"
     >
       <div data-testid="no-applicable-contact-options-info">
-        Please call 01522 873333 to report your repair during the office hours
-        below
-        <ul>
-          <li>Monday 8am - 5pm</li>
-          <li>Tuesday 8am - 5pm</li>
-          <li>Wednesday 8am - 5pm</li>
-          <li>Thursday 8am - 5pm</li>
-          <li>Friday 8am - 5pm</li>
+        <p>Please call us to report your repair using the information below.</p>
+        <h2 className="govuk-heading-s">Repairs contact information</h2>
+        <ul class="govuk-list">
+          <li>Telephone: 0208 498 8000</li>
+          <li>Freephone: 0800 393994</li>
+          <li>Monday to Friday, 8am to 5pm (except public holidays)</li>
         </ul>
       </div>
     </Details>

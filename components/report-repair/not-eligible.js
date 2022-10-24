@@ -1,7 +1,4 @@
-import Details from '../details';
 import React from 'react';
-import ContactNumbers from '../contactNumbers';
-import { serviceName } from '../../helpers/constants';
 
 const NotEligible = () => {
   const title =
@@ -10,42 +7,35 @@ const NotEligible = () => {
     <div className="govuk-grid-row govuk-body-m">
       <div className="govuk-grid-column-two-thirds">
         <h1 className="govuk-heading-xl">{title}</h1>
-        <h3 className="govuk-heading-m">Emergencies</h3>
+        <h2 className="govuk-heading-m">Emergencies</h2>
         <p>
           An emergency is defined as something which could cause danger to
           someone’s health or safety or cause serious damage and destruction to
           property.
         </p>
-        <ContactNumbers/>
-        <Details summary="Opening times" testid="opening-times">
-          <ul>
-            <li>Monday 8am - 5pm</li>
-            <li>Tuesday 8am - 5pm</li>
-            <li>Wednesday 8am - 5pm</li>
-            <li>Thursday 8am - 5pm</li>
-            <li>Friday 8am - 5pm</li>
-          </ul>
-        </Details>
-        <p>
-          Please do not call the emergency out of hours number if the repair is
-          not urgent. We may charge you a fee if the repair is not deemed an
-          emergency.
-        </p>
+        <h3 className="govuk-heading-s">Repairs contact information</h3>
+        <ul class="govuk-list">
+          <li>Telephone: 0208 498 8000</li>
+          <li>Freephone: 0800 393994</li>
+          <li>Monday to Friday, 8am to 5pm (except public holidays)</li>
+          <li className="govuk-inset-text">
+            Please do not call us out of hours if the repair is not urgent.
+          </li>
+        </ul>
         <p>
           If you suspect you have a gas leak, you must report it immediately to
           the Gas Emergency Service <strong>0800 111 999</strong> or via
           textphone (minicom) on <strong>0800 371 787</strong>
         </p>
         <hr></hr>
-        <h3>Non-emergency requests</h3>
+        <h2 className="govuk-heading-m">Non-emergency requests</h2>
         <p>
           If you think the council is responsible for your property, please
-          call{' '}
-          <strong>01522 873333</strong>.
+          contact us using the information above.
         </p>
         <p>
-          If you are a leaseholder you can still report communal repairs on{' '}
-          <strong>01522 873333</strong>.
+          If you are a leaseholder you can still report communal repairs using
+          the information above.
         </p>
       </div>
     </div>

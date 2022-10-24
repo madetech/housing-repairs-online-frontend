@@ -40,7 +40,7 @@ const RepairAvailability = ({ handleChange, values, fromDate }) => {
       <Error
         name="summary"
         heading="An error occurred while looking for available appointments"
-        body="Please try again later or call 01522 873333 to complete your repair request"
+        body="Please try again later or call 0208 498 8000 or 0800 393994 to complete your repair request"
       />
     );
 
