@@ -1,5 +1,7 @@
-@import "node_modules/govuk-frontend/govuk/all";
-@import "loader";
+@import 'node_modules/govuk-frontend/govuk/all';
+@import 'loader';
+@import 'redbridge';
+
 @keyframes loader-spin {
   0% {
     transform: rotate(0deg);
@@ -17,8 +19,6 @@
   height: 15vw;
   animation: loader-spin 1.2s linear infinite;
 }
-
-
 
 //.govuk-button {
 //  background-color: #265A87;
