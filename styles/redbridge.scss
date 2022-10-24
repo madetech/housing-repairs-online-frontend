@@ -13,3 +13,11 @@ $grey: #484647;
 .govuk-header__container {
   border-color: $red;
 }
+
+.govuk-header__link--service-name {
+  margin-top: 6px;
+}
+
+.govuk-footer__copyright-logo {
+  background-image: url('/assets/images/redbridge-logo.svg');
+}
