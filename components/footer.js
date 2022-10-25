@@ -29,7 +29,7 @@ const Footer = () => (
                   className="govuk-footer__link"
                   href="https://www.redbridge.gov.uk/blog/redbridge-leaders-blog/"
                 >
-                  Leader's blog
+                  Leader&aposs blog
                 </a>
               </li>
               <li className="govuk-footer__inline-list-item">
