@@ -63,9 +63,13 @@ function ReportRepair() {
   };
 
   const [showBack, setShowBack] = useState(true);
-  const [confirmation, setConfirmation] = useState('');
+  // Would not have to do this default initialisation if the code was structured like a normal NextJS application
+  const [confirmation, setConfirmation] = useState({
+    govNotifyStatus: '',
+    reference: '',
+    contactDetails: '',
+  });
   const [formError, setFormError] = useState();
-  const [requestId, setRequestId] = useState();
 
   const cleanPayload = (payload) => {
     delete payload.availability.appointmentSlotKey;
@@ -91,9 +95,12 @@ function ReportRepair() {
       if (response.ok) {
         setShowBack(false);
         router.push('confirmation');
-        setConfirmation(values.contactDetails.value);
-        return response.json().then((json) => {
-          setRequestId(json);
+        return response.json().then((response) => {
+          setConfirmation({
+            contactDetails: values.contactDetails.value,
+            reference: response.reference,
+            govNotifyStatus: response.govNotifyStatus,
+          });
         });
       }
       window.history.scrollRestoration = 'manual';
@@ -149,9 +156,7 @@ function ReportRepair() {
           />
         );
       case 'confirmation':
-        return (
-          <Confirmation requestId={requestId} confirmation={confirmation} />
-        );
+        return <Confirmation confirmation={confirmation} />;
       case 'contact-person':
         return <ContactPerson handleChange={handleChange} values={values} />;
       case 'contact-details':

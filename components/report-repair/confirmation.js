@@ -3,7 +3,7 @@ import React from 'react';
 import TextLink from '../textLink';
 import { serviceName } from '../../helpers/constants';
 
-const Confirmation = ({ requestId, confirmation }) => {
+const Confirmation = ({ confirmation }) => {
   const title = 'Repair request complete';
   return (
     <div className="govuk-grid-row" data-cy="confirmation">
@@ -13,10 +13,17 @@ const Confirmation = ({ requestId, confirmation }) => {
           <div className="govuk-panel__body">
             Your repair number is
             <br />
-            <strong>{requestId}</strong>
+            <strong>{confirmation.reference}</strong>
           </div>
         </div>
-        <p>We have sent a confirmation to {confirmation}.</p>
+        {confirmation.govNotifyStatus == 'success' ? (
+          <p>We have sent a confirmation to {confirmation.contactDetails}.</p>
+        ) : (
+          <p>
+            We were unable to send a confirmation to{' '}
+            {confirmation.contactDetails}.
+          </p>
+        )}
         <p>
           You will need to provide your repair number and postcode to either
           change or cancel your booking.
