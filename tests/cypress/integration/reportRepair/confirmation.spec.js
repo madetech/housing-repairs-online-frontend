@@ -92,7 +92,7 @@ describe('confirmation', () => {
   before(() => {
     intercept_availability_search();
     intercept_address_search();
-    intercept_save_repair(repairID);
+    intercept_save_repair(repairID, 'success');
     completeJourney();
   });
 
@@ -125,12 +125,27 @@ describe('confirmation', () => {
     before(() => {
       intercept_availability_search();
       intercept_address_search();
-      intercept_save_repair(repairID);
+      intercept_save_repair(repairID, 'success');
       completeJourney(true);
     });
 
     it('Displays where the confirmation was sent to', () => {
       cy.contains('We have sent a confirmation to ' + phoneNumber);
+    });
+  });
+
+  context('when repair is saved but GovNotify fails', () => {
+    before(() => {
+      intercept_availability_search();
+      intercept_address_search();
+      intercept_save_repair(repairID, 'failure');
+      completeJourney(true);
+    });
+
+    it('Displays a success message but informs the user that sending a notification failed', () => {
+      cy.get('.govuk-panel').contains('Repair request complete');
+      cy.get('.govuk-panel').contains(repairID);
+      cy.contains('We were unable to send a confirmation to ' + phoneNumber);
     });
   });
 });

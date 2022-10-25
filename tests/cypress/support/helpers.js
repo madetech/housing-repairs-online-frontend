@@ -32,13 +32,13 @@ function intercept_availability_search(appointments = dummyAppointments) {
   }).as('availability');
 }
 
-function intercept_save_repair(repairId) {
+function intercept_save_repair(repairId, govNotifyStatus) {
   const api_url = 'http://localhost:3000/api';
 
   cy.intercept('POST', `${api_url}/repair`, {
     statusCode: 201,
-    headers: {'Content-Type': 'application/json'},
-    body: `"${repairId}"`,
+    headers: { 'Content-Type': 'application/json' },
+    body: { govNotifyStatus, reference: repairId },
   }).as('saveRepair');
 }
 
