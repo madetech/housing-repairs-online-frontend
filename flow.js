@@ -40,7 +40,13 @@ class Flow {
       ]},
       'repair-garage-problems': { prevSteps:'', nextStep: 'repair-description'},
       'gates-and-pathways-problems': { prevSteps:'repair-outside-problems', nextStep: 'repair-description'},
-      'outside-roof-problems':  { prevSteps: 'repair-outside-problems', nextStep: 'repair-description'},
+      'outside-roof-problems':  { prevSteps: 'repair-outside-problems', nextStep: [
+          {condition: 'shedOuthouseRoof', nextStep: 'repair-description'},
+          {condition: 'loftInsulation', nextStep: 'not-eligible-non-emergency'},
+          {condition: 'looseTiles', nextStep: 'repair-description'},
+          {condition: 'flatRoofProblems', nextStep: 'repair-description'},
+          {condition: 'securityLights', nextStep: 'repair-description'},
+        ]},
       'outside-door-problems':  { prevSteps: 'repair-outside-problems', nextStep: 'repair-description'},
       'repair-kitchen-problems': { prevStep: 'repair-location', nextStep: [
         {condition: 'cupboards', nextStep: 'repair-kitchen-cupboard-problems'},
@@ -123,7 +129,15 @@ class Flow {
       'repair-window-problems': {nextStep: 'unable-to-book'},
       'repair-bedroom-lighting-problems': { prevStep: 'repair-bedroom-problems', nextStep: 'repair-description'},
       'repair-living-areas-lighting-problems': { prevStep: 'repair-living-areas-problems', nextStep: 'repair-description'},
-      'wall-floor-ceiling-problems': {nextStep: 'repair-description'},
+      'wall-floor-ceiling-problems': {nextStep: [
+        {condition: 'lightFitting', nextStep: 'repair-description'},
+        {condition: 'woodenFloorboards', nextStep: 'repair-description'},
+        {condition: 'skirtingBoardArchitrave', nextStep: 'repair-description'},
+        {condition: 'plasteringCeiling', nextStep: 'repair-description'},
+        {condition: 'plasteringWalls', nextStep: 'repair-description'},
+        {condition: 'wallTiles', nextStep: 'not-eligible-non-emergency'},
+        {condition: 'floorTiles', nextStep: 'not-eligible-non-emergency'},
+        ]},
       'repair-kitchen-cupboard-problems': {prevStep: 'repair-kitchen-problems', nextStep: 'repair-description'},
       'bathroom-damp-mould-problems': { prevStep: 'repair-bathroom-problems',
         nextStep: [
