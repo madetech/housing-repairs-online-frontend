@@ -66,7 +66,7 @@ class Flow {
         {condition: 'seat', nextStep: 'not-eligible-non-emergency'}]},
       'damp-mould-problems':  { prevSteps: '', nextStep: [
         {condition: 'dampMouldCausedByLeak', nextStep: 'emergency-repair'},
-        {condition: 'dampOrMould', nextStep: 'repair-description'}]},
+        {condition: 'dampOrMould', nextStep: 'unable-to-book'}]},
       'repair-shower-problems': { prevSteps: '', nextStep: [
         {condition: 'electricShowerUnit', nextStep: 'repair-description'},
         {condition: 'showerTap', nextStep: 'repair-description'},
@@ -120,7 +120,7 @@ class Flow {
         {condition: 'adjustingDoorAfterCarpetFitting', nextStep: 'not-eligible-non-emergency'}
       ]},
       'bath-problems': { prevStep: 'repair-bathroom-problems', nextStep: 'repair-description'},
-      'repair-window-problems': {nextStep: 'repair-description'},
+      'repair-window-problems': {nextStep: 'unable-to-book'},
       'repair-bedroom-lighting-problems': { prevStep: 'repair-bedroom-problems', nextStep: 'repair-description'},
       'repair-living-areas-lighting-problems': { prevStep: 'repair-living-areas-problems', nextStep: 'repair-description'},
       'wall-floor-ceiling-problems': {nextStep: 'repair-description'},
@@ -128,7 +128,7 @@ class Flow {
       'bathroom-damp-mould-problems': { prevStep: 'repair-bathroom-problems',
         nextStep: [
           {condition: 'emergency', nextStep: 'emergency-repair'},
-          {condition: 'dampOrMould', nextStep: 'repair-description'}
+          {condition: 'dampOrMould', nextStep: 'unable-to-book'}
         ]
       },
       'repair-description-damp': {prevStep: 'repair-kitchen-types', nextStep: [
