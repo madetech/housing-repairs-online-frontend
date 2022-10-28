@@ -400,7 +400,7 @@ describe('repairProblemBestDescription', () => {
       it('displays a "Damp or mould caused by something else" option', () => {
         cy.contains('Damp or mould caused by something else').click();
         cy.get('button').click();
-        cy.url().should('include', '/report-repair/repair-description');
+        cy.url().should('include', '/report-repair/unable-to-book');
       });
     });
 
@@ -560,10 +560,10 @@ context('Bedroom', () => {
   });
 });
 
-context('Living Area', () => {
+context('Living area', () => {
   before(() => {
     navigateToLocation();
-    cy.contains('Living Area').click();
+    cy.contains('Living area').click();
     cy.get('button').click();
   });
 
@@ -578,7 +578,7 @@ context('Living Area', () => {
   context('Electrics, including lights and switches', () => {
     before(() => {
       navigateToLocation();
-      cy.contains('Living Areas').click();
+      cy.contains('Living areas').click();
       cy.get('button').click();
     });
 
@@ -588,7 +588,7 @@ context('Living Area', () => {
   context('Damaged or stuck windows', () => {
     before(() => {
       navigateToLocation();
-      cy.contains('Living Areas').click();
+      cy.contains('Living areas').click();
       cy.get('button').click();
       cy.contains('Damaged or stuck windows').click();
       cy.get('button').click();
@@ -599,7 +599,7 @@ context('Living Area', () => {
   context('Damaged or stuck doors', () => {
     before(() => {
       navigateToLocation();
-      cy.contains('Living Area').click();
+      cy.contains('Living area').click();
       cy.get('button').click();
       cy.contains('Damaged or stuck doors').click();
       cy.get('button').click();
@@ -610,7 +610,7 @@ context('Living Area', () => {
   context('Damp or mould', () => {
     before(() => {
       navigateToLocation();
-      cy.contains('Living Area').click();
+      cy.contains('Living area').click();
       cy.get('button').click();
       cy.contains('Damp or mould').click();
       cy.get('button').click();
@@ -621,7 +621,7 @@ context('Living Area', () => {
   context('Stairs (including handrail)', () => {
     before(() => {
       navigateToLocation();
-      cy.contains('Living Area').click();
+      cy.contains('Living area').click();
       cy.get('button').click();
       cy.contains('Stairs (including handrail)').click();
       cy.get('button').click();

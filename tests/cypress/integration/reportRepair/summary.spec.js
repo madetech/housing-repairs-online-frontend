@@ -186,7 +186,7 @@ describe('summary', () => {
       });
       navigateToPageSelectRadioOptionAndContinue({
         page: 'repair-problem-best-description',
-        option: 'Floor tiles',
+        option: 'Plastering on the ceiling',
       });
 
       continueOnPage('repair-description');
@@ -196,7 +196,7 @@ describe('summary', () => {
       continueOnPage('repair-availability');
       cy.contains('Bathroom');
       cy.contains('What is the problem?');
-      cy.contains('Floor tiles');
+      cy.contains('Plastering on the ceiling');
 
       cy.get('a[href*="wall-floor-ceiling-problems"]')
         .contains('Change')
@@ -208,14 +208,14 @@ describe('summary', () => {
 
       navigateToPageSelectRadioOptionAndContinue({
         page: 'repair-problem-best-description',
-        option: 'Wall tiles',
+        option: 'Light fitting(s)',
       });
       continueOnPage('repair-description');
       continueOnPage('contact-person');
       continueOnPage('contact-details');
       continueOnPage('repair-availability');
 
-      cy.contains('Wall tiles');
+      cy.contains('Light fitting(s)');
     });
 
     it('allows you to navigate to change the repair location page ', () => {

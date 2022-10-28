@@ -175,10 +175,10 @@ describe('repairProblem', () => {
     });
   });
 
-  context('Living Areas', () => {
+  context('Living areas', () => {
     before(() => {
       navigateToLocation();
-      cy.contains('Living Areas').click();
+      cy.contains('Living areas').click();
       cy.get('button').click();
     });
 
