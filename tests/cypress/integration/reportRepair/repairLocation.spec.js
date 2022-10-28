@@ -27,8 +27,8 @@ describe('repairLocation', () => {
       cy.contains('Bedroom');
     });
 
-    it('displays "Living Areas" as an option', () => {
-      cy.contains('Living Areas');
+    it('displays "Living areas" as an option', () => {
+      cy.contains('Living areas');
     });
 
     it('displays "Outside" as an option', () => {
@@ -106,13 +106,13 @@ describe('repairLocation', () => {
     });
   });
 
-  context('When a user selects: Living Areas', () => {
+  context('When a user selects: Living areas', () => {
     beforeEach(() => {
       navigateToLocation();
     });
     context('by clicking the label', () => {
       it('should redirect them to kitchen repair type page', () => {
-        cy.contains('Living Areas').click();
+        cy.contains('Living areas').click();
         cy.get('button').click();
         cy.url().should(
           'include',
