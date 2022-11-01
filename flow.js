@@ -58,7 +58,7 @@ class Flow {
         {condition: 'heatingOrHotWater', nextStep: 'unable-to-book'},
         {condition: 'drip-or-leak', nextStep: 'repair-description-leak'},
         {condition: 'door', nextStep: 'kitchen-door-problems'},
-        {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'}
+        {condition: 'kitchenWallsFloorsCeiling', nextStep: 'kitchen-wall-floor-ceiling-problems'}
       ]},
       'repair-door-problems': { prevSteps: '', nextStep: [
         {condition: 'internalDoorIssue', nextStep: 'repair-description'},
@@ -135,6 +135,15 @@ class Flow {
         {condition: 'skirtingBoardArchitrave', nextStep: 'repair-description'},
         {condition: 'plasteringCeiling', nextStep: 'repair-description'},
         {condition: 'plasteringWalls', nextStep: 'repair-description'},
+        {condition: 'wallTiles', nextStep: 'not-eligible-non-emergency'},
+        {condition: 'floorTiles', nextStep: 'not-eligible-non-emergency'},
+        ]},
+      'kitchen-wall-floor-ceiling-problems': {nextStep: [
+        {condition: 'lightFitting', nextStep: 'repair-description'},
+        {condition: 'woodenFloorboards', nextStep: 'repair-description'},
+        {condition: 'skirtingBoardArchitrave', nextStep: 'repair-description'},
+        {condition: 'plasteringCeiling', nextStep: 'unable-to-book'},
+        {condition: 'plasteringWalls', nextStep: 'unable-to-book'},
         {condition: 'wallTiles', nextStep: 'not-eligible-non-emergency'},
         {condition: 'floorTiles', nextStep: 'not-eligible-non-emergency'},
         ]},

@@ -198,7 +198,7 @@ function ReportRepair() {
               { value: 'worktop', title: 'Damaged worktop' },
               commonProblems.heatingOrHotWater,
               { value: 'door', title: 'Damaged or stuck doors' },
-              commonProblems.wallsFloorAndCeiling,
+              { value: 'kitchenWallsFloorsCeiling', title: 'Walls, floor or ceiling, excluding damp'},
               commonProblems.sink,
               commonProblems.windows,
               commonProblems.dampOrMould,
@@ -582,6 +582,28 @@ function ReportRepair() {
             ]}
           />
         );
+      case 'kitchen-wall-floor-ceiling-problems':
+        return (
+          <RepairProblemBestDescription
+            handleChange={handleChange}
+            values={values}
+            options={[
+              { value: 'wallTiles', title: 'Wall tiles' },
+              { value: 'floorTiles', title: 'Floor tiles' },
+              { value: 'lightFitting', title: 'Light fitting(s)' },
+              {
+                value: 'skirtingBoardArchitrave',
+                title: 'Skirting boards or architraves',
+              },
+              {
+                value: 'plasteringCeiling',
+                title: 'Plastering on the ceiling',
+              },
+              { value: 'plasteringWalls', title: 'Plastering on the walls' },
+              { value: 'woodenFloorboards', title: 'Wooden floorboards' },
+            ]}
+          />
+        );
       case 'sink-problems':
         return (
           <RepairProblemBestDescription
@@ -730,6 +752,7 @@ function getTitle(route, isError) {
         'bath-problems' ||
         'kitchen-door-problems' ||
         'wall-floor-ceiling-problems' ||
+        'kitchen-wall-floor-ceiling-problems' ||
         'sink-problems' ||
         'damp-mould-problems':
         title = 'What best describes the problem?';
@@ -777,6 +800,7 @@ export async function getStaticPaths() {
     { params: { route: 'repair-living-areas-problems' } },
     { params: { route: 'repair-living-areas-lighting-problems' } },
     { params: { route: 'wall-floor-ceiling-problems' } },
+    { params: { route: 'kitchen-wall-floor-ceiling-problems' } },
     { params: { route: 'repair-stairs-problems' } },
     { params: { route: 'bath-problems' } },
     { params: { route: 'damp-mould-problems' } },
