@@ -91,7 +91,6 @@ function ReportRepair() {
         time: values.availability,
       }),
     }).then((response) => {
-      console.log(response);
       if (response.ok) {
         setShowBack(false);
         router.push('confirmation');
@@ -198,7 +197,10 @@ function ReportRepair() {
               { value: 'worktop', title: 'Damaged worktop' },
               commonProblems.heatingOrHotWater,
               { value: 'door', title: 'Damaged or stuck doors' },
-              { value: 'kitchenWallsFloorsCeiling', title: 'Walls, floor or ceiling, excluding damp'},
+              {
+                value: 'kitchenWallsFloorsCeiling',
+                title: 'Walls, floor or ceiling, excluding damp',
+              },
               commonProblems.sink,
               commonProblems.windows,
               commonProblems.dampOrMould,
@@ -725,36 +727,36 @@ function getTitle(route, isError) {
       case 'repair-location':
         title = 'Where is the problem?';
         break;
-      case 'repair-kitchen-problems' ||
-        'repair-bathroom-problems' ||
-        'repair-bedroom-problems' ||
-        'repair-living-areas-problems' ||
-        'repair-outside-problems':
+      case 'repair-kitchen-problems':
+      case 'repair-bathroom-problems':
+      case 'repair-bedroom-problems':
+      case 'repair-living-areas-problems':
+      case 'repair-outside-problem':
         title = 'What is the problem?';
         break;
-      case 'repair-stairs-problems' ||
-        'repair-toilet-problems' ||
-        'repair-garage-problems' ||
-        'outside-roof-problems' ||
-        'gates-and-pathways-problems' ||
-        'outside-door-problems' ||
-        'repair-window-problems' ||
-        'repair-shower-problems' ||
-        'repair-door-problems' ||
-        'repair-living-area-door-problems' ||
-        'repair-bedroom-door-problems' ||
-        'repair-bedroom-lighting-problems' ||
-        'bathroom-damp-mould-problems' ||
-        'repair-living-areas-lighting-problems' ||
-        'repair-bathroom-electric-problems' ||
-        'repair-kitchen-cupboard-problems' ||
-        'kitchen-electrical-problems' ||
-        'bath-problems' ||
-        'kitchen-door-problems' ||
-        'wall-floor-ceiling-problems' ||
-        'kitchen-wall-floor-ceiling-problems' ||
-        'sink-problems' ||
-        'damp-mould-problems':
+      case 'repair-stairs-problems':
+      case 'repair-toilet-problems':
+      case 'repair-garage-problems':
+      case 'outside-roof-problems':
+      case 'gates-and-pathways-problems':
+      case 'outside-door-problems':
+      case 'repair-window-problems':
+      case 'repair-shower-problems':
+      case 'repair-door-problems':
+      case 'repair-living-area-door-problems':
+      case 'repair-bedroom-door-problems':
+      case 'repair-bedroom-lighting-problems':
+      case 'bathroom-damp-mould-problems':
+      case 'repair-living-areas-lighting-problems':
+      case 'repair-bathroom-electric-problems':
+      case 'repair-kitchen-cupboard-problems':
+      case 'kitchen-electrical-problems':
+      case 'bath-problems':
+      case 'kitchen-door-problems':
+      case 'wall-floor-ceiling-problems':
+      case 'kitchen-wall-floor-ceiling-problems':
+      case 'sink-problems':
+      case 'damp-mould-problems':
         title = 'What best describes the problem?';
         break;
       case 'smell-gas':
