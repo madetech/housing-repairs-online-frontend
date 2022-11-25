@@ -41,7 +41,8 @@ environments:
     variables:
       REPAIRS_API_BASE_URL: http://redbridge-housing-repairs-api.development.saas.local
     http:
-      alias: housing-repairs.development.saas.by.madetech.com
+      alias: redbridge-housing-repairs.development.saas.by.madetech.com
+      
   production:
     exec: false
     variables:
